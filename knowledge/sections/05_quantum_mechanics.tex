@@ -1,0 +1,981 @@
+\section{Quantum Mechanics}
+\label{sec:quantum-mechanics}
+
+\noindent\textbf{Conventions.}\quad
+Single non-relativistic particle unless stated otherwise; position-space states
+\(\psi(\mathbf{x},t)\in L^2(\mathbb{R}^d)\); \(\hat{\mathbf{p}}=-i\hbar\nabla\);
+operator hats are kept where useful; \(\langle\cdot\rangle_\psi\) denotes an
+expectation value in the state \(\psi\).
+
+\subsection{Introduction}
+
+\noindent\textbf{Wavefunction and Born rule.}
+\[
+\psi(\mathbf{x},t)\in\mathbb{C},\qquad
+P(\mathbf{x},t)=|\psi(\mathbf{x},t)|^2,\qquad
+\Pr(\mathbf{x}\in V)=\int_V |\psi|^2\dd^3x .
+\]
+\[
+\boxed{\int_{\mathbb{R}^3}|\psi(\mathbf{x},t)|^2\dd^3x=1},\qquad
+\Psi\mapsto\psi=\frac{\Psi}{\sqrt{N}},\quad
+N=\int |\Psi|^2\dd^3x<\infty .
+\]
+Physical rays:
+\[
+\psi\sim e^{i\alpha}\psi,\qquad
+\text{equivalently before normalisation } \psi\sim \lambda\psi,\quad
+\lambda\in\mathbb{C}\setminus\{0\}.
+\]
+\(\psi\to0\) sufficiently fast at spatial infinity for normalisable states.
+\src{Tong QM \S 1.1}
+
+\noindent\textbf{Superposition.}
+\[
+\psi_1,\psi_2\in L^2,\quad \alpha,\beta\in\mathbb{C}
+\quad\Longrightarrow\quad
+\alpha\psi_1+\beta\psi_2\in L^2 .
+\]
+Typical separated packets:
+\[
+\psi(\mathbf{x})\propto e^{-a|\mathbf{x}-\mathbf{X}_1|^2}
+     +e^{-a|\mathbf{x}-\mathbf{X}_2|^2},
+\]
+not a classical exclusive-or: amplitudes superpose before probabilities.
+\src{Tong QM \S 1.1.2}
+
+\noindent\textbf{Schrodinger evolution.}
+\[
+\boxed{i\hbar\frac{\partial\psi}{\partial t}=\hat H\psi},\qquad
+[\hbar]=[\text{energy}][\text{time}]=[\text{action}].
+\]
+For a non-relativistic particle in \(V(\mathbf{x})\),
+\[
+\hat H=-\frac{\hbar^2}{2m}\nabla^2+V(\mathbf{x}),\qquad
+E_{\rm cl}=\frac{\mathbf{p}^2}{2m}+V(\mathbf{x}),\qquad
+\hat{\mathbf{p}}=-i\hbar\nabla .
+\]
+Time evolution is first order in \(t\): \(\psi(t_0)\) determines \(\psi(t)\).
+Friction/non-Hamiltonian effective forces are not fundamental Schrodinger
+dynamics without enlarging the system.
+\src{Tong QM \S 1.2}
+
+\noindent\textbf{Continuity equation.}
+\[
+P=|\psi|^2,\qquad
+\frac{\partial P}{\partial t}
+=\frac{i\hbar}{2m}\big(\psi^*\nabla^2\psi-\psi\nabla^2\psi^*\big)
+=-\nabla\cdot\mathbf{J},
+\]
+\[
+\boxed{\frac{\partial P}{\partial t}+\nabla\cdot\mathbf{J}=0},\qquad
+\boxed{\mathbf{J}=-\frac{i\hbar}{2m}(\psi^*\nabla\psi-\psi\nabla\psi^*)}.
+\]
+For \(V\subset\mathbb{R}^3\) with boundary \(S\),
+\[
+P_V=\int_V P\,\dd^3x,\qquad
+\frac{\dd P_V}{\dd t}=-\int_S \mathbf{J}\cdot\dd\mathbf{S}.
+\]
+If \(\psi,\mathbf{J}\to0\) at infinity, total probability is conserved.
+\src{Tong QM \S 1.2.2}
+
+\noindent\textbf{Measurement collapse.}
+\[
+\psi(\mathbf{x},t_0)\propto
+e^{-a|\mathbf{x}-\mathbf{X}_1|^2}+e^{-a|\mathbf{x}-\mathbf{X}_2|^2}
+\quad\xrightarrow{\text{detect near }\mathbf{X}_1}\quad
+\psi(\mathbf{x},t_0^+)\propto e^{-a|\mathbf{x}-\mathbf{X}_1|^2}.
+\]
+Unitary Schrodinger evolution is linear and deterministic; measurement update
+is probabilistic, discontinuous, and generally nonlocal as an update of the state.
+\src{Tong QM \S 1.2.3}
+
+\noindent\textbf{Double slit.}
+\[
+\text{classical particles:}\quad P_{12}=P_1+P_2.
+\]
+Quantum amplitudes add:
+\[
+\psi_{12}=\psi_1+\psi_2,\qquad
+P_{12}=|\psi_1+\psi_2|^2=P_1+P_2+2\operatorname{Re}(\psi_1^*\psi_2).
+\]
+Interference term requires coherent alternatives. Which-path measurement
+correlates paths with distinguishable detector states and removes the cross term
+after summing over detector outcomes.
+\[
+\psi_1|D_1\rangle+\psi_2|D_2\rangle
+\Longrightarrow
+P=P_1+P_2+2\operatorname{Re}\!\left(\psi_1^*\psi_2\langle D_1|D_2\rangle\right).
+\]
+\src{Tong QM \S 1.3}
+
+\subsection{A Quantum Particle in One Dimension}
+
+\noindent\textbf{Stationary states.}
+\[
+i\hbar\frac{\partial\psi}{\partial t}
+=-\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2}+V(x)\psi,\qquad
+\psi(x,t)=e^{-i\omega t}\psi(x),
+\]
+\[
+\boxed{\hat H\psi(x)=E\psi(x)},\qquad E=\hbar\omega,\qquad
+\hat H=-\frac{\hbar^2}{2m}\frac{\dd^2}{\dd x^2}+V(x).
+\]
+Stationary states have only phase time dependence and form the basis for
+general time-dependent solutions.
+
+\noindent\textbf{Free particle and de Broglie relation.}
+\[
+V=0,\qquad -\frac{\hbar^2}{2m}\psi''=E\psi,\qquad
+\psi_k=e^{ikx},\qquad
+E_k=\frac{\hbar^2k^2}{2m}.
+\]
+\[
+\boxed{p=\hbar k},\qquad
+\lambda=\frac{2\pi}{|k|},\qquad |p|=\frac{2\pi\hbar}{\lambda}.
+\]
+\(\psi_k\notin L^2(\mathbb{R})\), but plane waves are useful generalized
+eigenstates and scattering beams.
+\src{Tong QM \S 2.1}
+
+\noindent\textbf{Particle on a circle.}
+\[
+x\sim x+2\pi R,\qquad \psi(x+2\pi R)=\psi(x),\qquad
+e^{2\pi ikR}=1.
+\]
+\[
+k=\frac{n}{R},\quad
+p_n=\frac{\hbar n}{R},\quad
+E_n=\frac{\hbar^2 n^2}{2mR^2},\quad
+\psi_n(x)=\frac{e^{inx/R}}{\sqrt{2\pi R}},\qquad n\in\mathbb{Z}.
+\]
+Quantisation arises from boundary conditions, not discreteness in the
+differential equation.
+\src{Tong QM \S 2.1.1}
+
+\noindent\textbf{Infinite well.}
+\[
+V(x)=\begin{cases}0,&0<x<L,\\ \infty,&\text{otherwise},\end{cases}
+\qquad
+\psi(0)=\psi(L)=0.
+\]
+\[
+\boxed{\psi_n(x)=\sqrt{\frac{2}{L}}\sin\frac{n\pi x}{L}},\qquad
+\boxed{E_n=\frac{\hbar^2\pi^2n^2}{2mL^2}},\qquad n=1,2,\ldots .
+\]
+Momentum is not sharp:
+\[
+\sin kx=\frac{e^{ikx}-e^{-ikx}}{2i},\qquad p=\pm\hbar k.
+\]
+\src{Tong QM \S 2.1.2}
+
+\noindent\textbf{Gaussian wavepacket.}
+\[
+\psi_k(x,t)=e^{-iE_kt/\hbar}e^{ikx},\qquad
+\psi(x,t)=\int_{-\infty}^{\infty}A(k)\psi_k(x,t)\dd k.
+\]
+For
+\[
+A(k)=\exp\!\left[-\frac{(k-k_0)^2}{2\sigma}+\frac{k_0^2}{2\sigma}\right],
+\qquad
+\alpha(t)=\frac{1}{\sigma}+\frac{i\hbar t}{m},
+\]
+\[
+\psi(x,t)=\sqrt{\frac{2\pi}{\alpha(t)}}
+\exp\!\left[-\frac{1}{2\alpha(t)}
+\left(x-\frac{ik_0}{\sigma}\right)^2\right].
+\]
+After normalisation,
+\[
+P(x,t)\propto \frac{1}{|\alpha(t)|}
+\exp\!\left[-\frac{1}{\sigma|\alpha(t)|^2}
+\left(x-\frac{\hbar k_0t}{m}\right)^2\right],
+\qquad
+|\alpha|^2=\frac{1}{\sigma^2}+\frac{\hbar^2t^2}{m^2}.
+\]
+\[
+\langle x\rangle=\frac{\hbar k_0}{m}t,\qquad
+\langle p\rangle=\hbar k_0,\qquad
+\Delta x^2\,\Delta p^2\gtrsim\hbar^2 .
+\]
+Width in \(x\) grows under free evolution; narrow \(k\)-support implies broad
+position support.
+\src{Tong QM \S 2.1.3--2.1.4}
+
+\noindent\textbf{Expectation values in position representation.}
+\[
+\langle f(x)\rangle=\int_{-\infty}^{\infty}f(x)|\psi(x)|^2\dd x,\qquad
+\boxed{\langle p\rangle=-i\hbar\int_{-\infty}^{\infty}\psi^*(x)\psi'(x)\dd x}.
+\]
+
+\noindent\textbf{Harmonic oscillator.}
+\[
+\hat H=-\frac{\hbar^2}{2m}\frac{\dd^2}{\dd x^2}+\frac{1}{2}m\omega^2x^2,\qquad
+y=\sqrt{\frac{m\omega}{\hbar}}x,\qquad \widetilde E=\frac{2E}{\hbar\omega}.
+\]
+\[
+\psi''(y)-y^2\psi=-\widetilde E\psi,\qquad
+\psi(y)=h(y)e^{-y^2/2}.
+\]
+Hermite equation:
+\[
+h''-2yh'+(\widetilde E-1)h=0,\qquad
+h=\sum_{p=0}^{\infty}a_py^p,\qquad
+a_{p+2}=\frac{2p-\widetilde E+1}{(p+2)(p+1)}a_p.
+\]
+Normalisability requires termination:
+\[
+\boxed{E_n=\hbar\omega\left(n+\frac{1}{2}\right)},\qquad n=0,1,2,\ldots .
+\]
+\[
+\hat a=\sqrt{\frac{m\omega}{2\hbar}}\,\hat x
++\frac{i}{\sqrt{2m\hbar\omega}}\,\hat p
+=\frac{1}{\sqrt{2}}\left(y+\frac{\dd}{\dd y}\right),
+\quad
+\hat a^\dagger=\frac{1}{\sqrt{2}}\left(y-\frac{\dd}{\dd y}\right).
+\]
+\[
+[\hat a,\hat a^\dagger]=1,\qquad
+\hat H=\hbar\omega\left(\hat a^\dagger\hat a+\frac{1}{2}\right),\qquad
+\hat N=\hat a^\dagger\hat a.
+\]
+\[
+\hat N|n\rangle=n|n\rangle,\qquad
+\hat a|n\rangle=\sqrt{n}\,|n-1\rangle,\qquad
+\hat a^\dagger|n\rangle=\sqrt{n+1}\,|n+1\rangle,\qquad
+\hat a|0\rangle=0.
+\]
+\[
+\psi_n(x)=N_n H_n\!\left(\sqrt{\frac{m\omega}{\hbar}}x\right)
+e^{-m\omega x^2/2\hbar},\qquad
+\psi_0=N_0e^{-m\omega x^2/2\hbar}.
+\]
+Parity:
+\[
+V(x)=V(-x)\quad\Longrightarrow\quad
+\psi_n(-x)=(-1)^n\psi_n(x).
+\]
+Large \(n\): oscillatory in classically allowed region
+\(E>V(x)\), exponential in forbidden region, turning point
+\[
+x_{\max}^2\simeq \frac{2E}{m\omega^2}.
+\]
+\src{Tong QM \S 2.2}
+
+\noindent\textbf{Bound states in 1d.}
+For \(V(x)\to0\) as \(|x|\to\infty\),
+\[
+-\frac{\hbar^2}{2m}\psi''+V\psi=E\psi.
+\]
+\[
+E>0:\ \psi\sim e^{ikx}\quad\text{scattering},\qquad
+E<0:\ \psi\sim e^{-\eta |x|}\quad\text{bound},\quad
+E=-\frac{\hbar^2\eta^2}{2m}.
+\]
+Across a finite jump in \(V\), both \(\psi\) and \(\psi'\) are continuous.
+
+\noindent\textbf{Finite square well.}
+\[
+V(x)=\begin{cases}-V_0,&|x|<a,\\0,&|x|>a,\end{cases}\qquad
+E=-\frac{\hbar^2\eta^2}{2m},\qquad
+E+V_0=\frac{\hbar^2k^2}{2m}.
+\]
+\[
+k^2+\eta^2=\frac{2mV_0}{\hbar^2}.
+\]
+Even parity:
+\[
+\psi=B\cos kx\ (|x|<a),\quad \psi=Ae^{-\eta |x|}\ (|x|>a),\qquad
+k\tan ka=\eta .
+\]
+Odd parity:
+\[
+\psi=B\sin kx\ (|x|<a),\quad
+\psi=\operatorname{sgn}(x)Ae^{-\eta |x|}\ (|x|>a),\qquad
+\frac{k}{\tan ka}=-\eta .
+\]
+Odd bound state threshold:
+\[
+\frac{8mV_0a^2}{\hbar^2\pi^2}>1.
+\]
+Infinite-well limit \(V_0\to\infty\), measured above the floor:
+\[
+E+V_0\to\frac{\hbar^2\pi^2n^2}{2m(2a)^2}.
+\]
+\src{Tong QM \S 2.3.1}
+
+\noindent\textbf{Attractive delta function in 1d.}
+\[
+V(x)=-V_0\delta(x),\qquad \psi(0^+)=\psi(0^-),
+\]
+\[
+\boxed{\psi'(0^+)-\psi'(0^-)=-\frac{2mV_0}{\hbar^2}\psi(0)}.
+\]
+Bound state:
+\[
+\psi=Ae^{-\eta |x|},\qquad
+\eta=\frac{mV_0}{\hbar^2},\qquad
+\boxed{E=-\frac{\hbar^2\eta^2}{2m}=-\frac{mV_0^2}{2\hbar^2}}.
+\]
+\src{Tong QM \S 2.3.2}
+
+\noindent\textbf{General 1d bound-state facts.}
+\[
+\text{Wronskian }W(\psi,\phi)=\psi\phi'-\psi'\phi,\qquad
+\psi,\phi\text{ same }E\Longrightarrow W'=0.
+\]
+Normalisability gives \(W(\pm\infty)=0\), hence \(W=0\) and
+\(\psi=\alpha\phi\): 1d bound spectra are non-degenerate.
+\[
+\psi\text{ bound eigenstate}\quad\Longrightarrow\quad
+\psi\text{ can be chosen real}.
+\]
+Node count:
+\[
+\text{ground state: no nodes},\qquad
+n\text{th excited state: }n\text{ nodes}.
+\]
+Variational energy for real normalised \(\psi\):
+\[
+\langle E\rangle=\int_{-\infty}^{\infty}
+\left[\frac{\hbar^2}{2m}(\psi')^2+V(x)\psi^2\right]\dd x .
+\]
+\src{Tong QM \S 2.3.3}
+
+\noindent\textbf{Double well.}
+For symmetric \(V(x)=V(-x)\) with approximate localised states
+\(\psi_L,\psi_R\),
+\[
+\psi_\pm\simeq\psi_R\pm\psi_L,\qquad
+\psi_+\text{ even ground state},\qquad
+\psi_-\text{ odd first excited state}.
+\]
+The small splitting \(E_- - E_+\) drives tunnelling between wells.
+\src{Tong QM \S 2.3.4}
+
+\noindent\textbf{Scattering current and coefficients.}
+For a beam \(\psi=Ae^{ikx}\),
+\[
+J=-\frac{i\hbar}{2m}(\psi^*\psi'-\psi\psi'^*)
+=|A|^2\frac{\hbar k}{m}.
+\]
+Reflection/transmission:
+\[
+R=\frac{J_{\rm ref}}{J_{\rm inc}},\qquad
+T=\frac{J_{\rm trans}}{J_{\rm inc}},\qquad R+T=1
+\]
+for real localised potentials with no absorption.
+
+\noindent\textbf{Step potential.}
+\[
+V(x)=\begin{cases}0,&x<0,\\ U,&x>0,\end{cases}\qquad
+k=\frac{\sqrt{2mE}}{\hbar},\qquad
+k'=\frac{\sqrt{2m(E-U)}}{\hbar}.
+\]
+\[
+\psi(x)=\begin{cases}
+Ae^{ikx}+Be^{-ikx},&x<0,\\
+Ce^{ik'x},&x>0,
+\end{cases}
+\qquad
+\frac{B}{A}=\frac{k-k'}{k+k'},\qquad
+\frac{C}{A}=\frac{2k}{k+k'}.
+\]
+For \(E>U\),
+\[
+\boxed{R=\left(\frac{k-k'}{k+k'}\right)^2},\qquad
+\boxed{T=\frac{4kk'}{(k+k')^2}}.
+\]
+For \(E<U\), \(k'=i\eta\) and \(\psi\propto e^{-\eta x}\) in \(x>0\):
+\[
+\eta=\frac{\sqrt{2m(U-E)}}{\hbar},\qquad T=0,\qquad R=1.
+\]
+\src{Tong QM \S 2.4.1}
+
+\noindent\textbf{Barrier tunnelling.}
+\[
+V(x)=\begin{cases}U,&|x|<a,\\0,&|x|>a,\end{cases}\qquad
+E<U,\quad
+k=\frac{\sqrt{2mE}}{\hbar},\quad
+\eta=\frac{\sqrt{2m(U-E)}}{\hbar}.
+\]
+\[
+\psi=\begin{cases}
+e^{ikx}+Ae^{-ikx},&x<-a,\\
+Be^{-\eta x}+Ce^{\eta x},&|x|<a,\\
+De^{ikx},&x>a.
+\end{cases}
+\]
+\[
+D=\frac{2k\eta e^{-2ika}}
+{2k\eta\cosh(2\eta a)-i(k^2-\eta^2)\sinh(2\eta a)}.
+\]
+\[
+\boxed{
+T=|D|^2=
+\frac{4k^2\eta^2}
+{4k^2\eta^2+(k^2+\eta^2)^2\sinh^2(2\eta a)}
+}.
+\]
+Opaque barrier \(\eta a\gg1\):
+\[
+T(E)\simeq
+\frac{16k^2\eta^2}{(k^2+\eta^2)^2}
+\exp\!\left[-\frac{4a}{\hbar}\sqrt{2m(U-E)}\right].
+\]
+\src{Tong QM \S 2.4.2}
+
+\subsection{The Formalism of Quantum Mechanics}
+
+\noindent\textbf{Hilbert space and inner product.}
+\[
+\mathcal{H}=L^2(M),\qquad
+\langle\psi|\phi\rangle=\int_M \psi^*(\mathbf{x})\phi(\mathbf{x})\dd^d x.
+\]
+\[
+\langle\psi|\alpha\phi_1+\phi_2\rangle
+=\alpha\langle\psi|\phi_1\rangle+\langle\psi|\phi_2\rangle,\qquad
+\langle\alpha\psi_1+\psi_2|\phi\rangle
+=\alpha^*\langle\psi_1|\phi\rangle+\langle\psi_2|\phi\rangle.
+\]
+\[
+\langle\psi|\phi\rangle^*=\langle\phi|\psi\rangle,\qquad
+\|\psi\|^2=\langle\psi|\psi\rangle<\infty,\qquad
+\|\psi\|=1\text{ for normalised states}.
+\]
+\src{Tong QM \S 3.1}
+
+\noindent\textbf{Operators and observables.}
+Linear observables act on \(\mathcal{H}\):
+\[
+\hat O(\alpha\psi+\phi)=\alpha\hat O\psi+\hat O\phi.
+\]
+Basic position representation:
+\[
+\hat{\mathbf{x}}\psi=\mathbf{x}\psi,\qquad
+V(\hat{\mathbf{x}})\psi=V(\mathbf{x})\psi,\qquad
+\hat{\mathbf{p}}\psi=-i\hbar\nabla\psi.
+\]
+\[
+\hat{\mathbf{L}}=\hat{\mathbf{x}}\times\hat{\mathbf{p}}
+=-i\hbar\,\mathbf{x}\times\nabla,\qquad
+\hat H=\frac{\hat{\mathbf{p}}^2}{2m}+V(\hat{\mathbf{x}})
+=-\frac{\hbar^2}{2m}\nabla^2+V(\mathbf{x}).
+\]
+\src{Tong QM \S 3.2}
+
+\noindent\textbf{Eigenstates and spectra.}
+\[
+\hat O\phi_n=\lambda_n\phi_n,\qquad
+\operatorname{Spec}(\hat O)=\{\lambda_n\}.
+\]
+\[
+\boxed{\text{measurement outcomes of }\hat O\text{ lie in }\operatorname{Spec}(\hat O)}.
+\]
+Momentum:
+\[
+\hat{\mathbf{p}}e^{i\mathbf{k}\cdot\mathbf{x}}
+=\hbar\mathbf{k}e^{i\mathbf{k}\cdot\mathbf{x}}.
+\]
+On a torus \(x_i\sim x_i+L_i\),
+\[
+k_i=\frac{2\pi n_i}{L_i},\qquad p_i=\frac{2\pi\hbar n_i}{L_i},\qquad n_i\in\mathbb{Z}.
+\]
+Position eigenstates in 1d:
+\[
+\hat x\,\delta(x-X)=X\delta(x-X),\qquad
+\int f(x)\delta(x-X)\dd x=f(X).
+\]
+In 3d:
+\[
+\delta^3(\mathbf{x}-\mathbf{X})
+=\delta(x-X)\delta(y-Y)\delta(z-Z).
+\]
+Plane waves and delta-localised position states are generalized, not normalisable,
+eigenstates.
+\src{Tong QM \S 3.2.1}
+
+\noindent\textbf{Hermitian operators.}
+\[
+\langle\psi|\hat O\phi\rangle=\langle\hat O^\dagger\psi|\phi\rangle,\qquad
+\hat O=\hat O^\dagger\quad\text{for observables}.
+\]
+\[
+\hat x^\dagger=\hat x,\qquad
+\hat{\mathbf{p}}^\dagger=\hat{\mathbf{p}}
+\]
+assuming boundary terms vanish. For Hermitian \(\hat O\):
+\[
+\hat O\phi_n=\lambda_n\phi_n
+\quad\Longrightarrow\quad
+\lambda_n\in\mathbb{R},
+\]
+\[
+\lambda_n\ne\lambda_m\quad\Longrightarrow\quad
+\langle\phi_n|\phi_m\rangle=0.
+\]
+Choose an orthonormal complete basis:
+\[
+\langle\phi_n|\phi_m\rangle=\delta_{nm},\qquad
+\psi=\sum_n a_n\phi_n,\qquad
+a_n=\langle\phi_n|\psi\rangle,\qquad
+\|\psi\|^2=\sum_n |a_n|^2.
+\]
+\src{Tong QM \S 3.2.2}
+
+\noindent\textbf{Fourier transform as momentum expansion.}
+On a circle of radius \(R\),
+\[
+\phi_n(x)=\frac{1}{\sqrt{2\pi R}}e^{inx/R},\qquad
+p_n=\frac{\hbar n}{R},\qquad
+\psi(x)=\frac{1}{\sqrt{2\pi R}}\sum_{n\in\mathbb{Z}}a_ne^{inx/R}.
+\]
+\[
+a_n=\frac{1}{\sqrt{2\pi R}}\int_0^{2\pi R}e^{-inx/R}\psi(x)\dd x.
+\]
+On the line,
+\[
+\phi_k(x)=\frac{1}{\sqrt{2\pi}}e^{ikx},\qquad
+\langle\phi_k|\phi_{k'}\rangle=\delta(k-k'),
+\]
+\[
+\boxed{\psi(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\tilde\psi(k)e^{ikx}\dd k},\qquad
+\boxed{\tilde\psi(k)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\psi(x)e^{-ikx}\dd x}.
+\]
+\src{Tong QM \S 3.2.3}
+
+\noindent\textbf{Measurement postulates.}
+For non-degenerate \(\hat O\),
+\[
+\psi=\sum_n a_n\phi_n,\qquad \hat O\phi_n=\lambda_n\phi_n,\qquad
+\sum_n |a_n|^2=1.
+\]
+\[
+\boxed{\Pr(\lambda_n)=|a_n|^2},\qquad
+\boxed{\psi\to\phi_n\text{ after obtaining }\lambda_n}.
+\]
+For degeneracy,
+\[
+\Pr(\lambda)=\sum_{n:\lambda_n=\lambda}|a_n|^2,\qquad
+\psi\to C\sum_{n:\lambda_n=\lambda}a_n\phi_n.
+\]
+A state has a sharp value of \(\hat O\) iff it is an eigenstate of \(\hat O\).
+Measuring a different observable generally changes the expansion in the original
+eigenbasis.
+\src{Tong QM \S 3.3}
+
+\noindent\textbf{Expectation values.}
+\[
+\boxed{\langle\hat O\rangle_\psi=\langle\psi|\hat O\psi\rangle
+=\int\psi^*(\mathbf{x})\hat O\psi(\mathbf{x})\dd^3x}
+\]
+for \(\|\psi\|=1\); otherwise divide by \(\langle\psi|\psi\rangle\).
+\[
+\psi=\sum_n a_n\phi_n,\quad \hat O\phi_n=\lambda_n\phi_n
+\quad\Longrightarrow\quad
+\langle\hat O\rangle_\psi=\sum_n |a_n|^2\lambda_n.
+\]
+\[
+\langle\hat{\mathbf{x}}\rangle=\int\mathbf{x}|\psi(\mathbf{x})|^2\dd^3x,\qquad
+\langle\hat{\mathbf{p}}\rangle=-i\hbar\int\psi^*\nabla\psi\,\dd^3x.
+\]
+With 3d Fourier convention
+\[
+\psi(\mathbf{x})=\frac{1}{(2\pi)^{3/2}}\int \tilde\psi(\mathbf{k})
+e^{i\mathbf{k}\cdot\mathbf{x}}\dd^3k,
+\]
+\[
+\langle\hat{\mathbf{p}}\rangle=\int \hbar\mathbf{k}\,|\tilde\psi(\mathbf{k})|^2\dd^3k.
+\]
+\src{Tong QM \S 3.3.1}
+
+\noindent\textbf{Commutation relations.}
+\[
+[\hat O,\hat M]=\hat O\hat M-\hat M\hat O,\qquad
+[\hat O,\hat M]\psi=\hat O(\hat M\psi)-\hat M(\hat O\psi).
+\]
+Canonical commutators:
+\[
+\boxed{[\hat x_i,\hat x_j]=[\hat p_i,\hat p_j]=0,\qquad
+[\hat x_i,\hat p_j]=i\hbar\delta_{ij}}.
+\]
+Commuting observables can be simultaneously diagonalised, with degeneracy caveats:
+\[
+[\hat O,\hat M]=0\quad\Longleftrightarrow\quad
+\text{common eigenbasis can be chosen}.
+\]
+\src{Tong QM \S 3.4}
+
+\noindent\textbf{Uncertainty.}
+\[
+(\Delta_\psi O)^2=\left\langle(\hat O-\langle\hat O\rangle_\psi)^2\right\rangle_\psi
+=\langle\hat O^2\rangle_\psi-\langle\hat O\rangle_\psi^2.
+\]
+In 1d,
+\[
+[\hat x,\hat p]=i\hbar
+\quad\Longrightarrow\quad
+\boxed{\Delta_\psi x\,\Delta_\psi p\ge \frac{\hbar}{2}}.
+\]
+Proof skeleton for \(\langle x\rangle=\langle p\rangle=0\):
+\[
+0\le\|(\hat p-is\hat x)\psi\|^2
+=\Delta p^2-s\hbar+s^2\Delta x^2\quad\forall s\in\mathbb{R},
+\]
+so the discriminant is non-positive.
+Gaussian saturation:
+\[
+\psi(x)=\left(\frac{a}{\pi}\right)^{1/4}e^{-ax^2/2},\qquad
+(\Delta x)^2=\frac{1}{2a},\qquad
+(\Delta p)^2=\frac{\hbar^2a}{2},\qquad
+\Delta x\,\Delta p=\frac{\hbar}{2}.
+\]
+\src{Tong QM \S 3.4.1}
+
+\noindent\textbf{Interpretation markers.}
+\[
+\text{unitary evolution: } i\hbar\dot\psi=\hat H\psi,\qquad
+\text{measurement: } \psi=\sum_n a_n\phi_n\to\phi_n\text{ with }|a_n|^2.
+\]
+Local hidden-variable completions obey Bell-type constraints that are violated
+by quantum predictions and experiment. Copenhagen keeps a collapse/classical
+measurement divide; many-worlds keeps unitary evolution and branches the
+state. Decoherence suppresses interference between macroscopically distinct
+branches but does not alter the operational rules above.
+\src{Tong QM \S 3.5}
+
+\subsection{A Quantum Particle in Three Dimensions}
+
+\noindent\textbf{Central potentials.}
+\[
+\hat H=-\frac{\hbar^2}{2m}\nabla^2+V(r),\qquad r=|\mathbf{x}|.
+\]
+Classically, \(\mathbf{L}=\mathbf{x}\times\mathbf{p}\) is conserved for central
+forces. Quantum mechanically use angular momentum commuting operators.
+
+\noindent\textbf{Angular momentum operators.}
+\[
+\hat{\mathbf{L}}=\hat{\mathbf{x}}\times\hat{\mathbf{p}}
+=-i\hbar\,\mathbf{x}\times\nabla,\qquad
+\hat L_i=-i\hbar\epsilon_{ijk}x_j\frac{\partial}{\partial x_k}.
+\]
+\[
+\hat L_1=-i\hbar\left(x_2\frac{\partial}{\partial x_3}
+-x_3\frac{\partial}{\partial x_2}\right),\quad
+\hat L_2=-i\hbar\left(x_3\frac{\partial}{\partial x_1}
+-x_1\frac{\partial}{\partial x_3}\right),
+\]
+\[
+\hat L_3=-i\hbar\left(x_1\frac{\partial}{\partial x_2}
+-x_2\frac{\partial}{\partial x_1}\right).
+\]
+\[
+\boxed{[\hat L_i,\hat L_j]=i\hbar\epsilon_{ijk}\hat L_k},\qquad
+\hat L^2=\hat L_1^2+\hat L_2^2+\hat L_3^2,\qquad
+\boxed{[\hat L^2,\hat L_i]=0}.
+\]
+For \(V=V(r)\),
+\[
+[\hat H,\hat L_i]=[\hat H,\hat L^2]=0,
+\]
+so energy eigenstates can be labelled by eigenvalues of
+\(\hat H,\hat L^2,\hat L_3\).
+\src{Tong QM \S 4.1.1}
+
+\noindent\textbf{Spherical coordinates and spherical harmonics.}
+\[
+x_1=r\sin\theta\cos\phi,\qquad
+x_2=r\sin\theta\sin\phi,\qquad
+x_3=r\cos\theta.
+\]
+\[
+\hat L_1=i\hbar\left(\cot\theta\cos\phi\,\partial_\phi+\sin\phi\,\partial_\theta\right),
+\quad
+\hat L_2=i\hbar\left(\cot\theta\sin\phi\,\partial_\phi-\cos\phi\,\partial_\theta\right),
+\]
+\[
+\hat L_3=-i\hbar\partial_\phi,\qquad
+\hat L^2=-\frac{\hbar^2}{\sin^2\theta}
+\left[\sin\theta\,\partial_\theta(\sin\theta\,\partial_\theta)+\partial_\phi^2\right].
+\]
+Simultaneous eigenfunctions:
+\[
+Y_{l m}(\theta,\phi)=P_{l m}(\cos\theta)e^{im\phi},\qquad
+l=0,1,2,\ldots,\quad m=-l,\ldots,l.
+\]
+\[
+\boxed{\hat L^2Y_{lm}=l(l+1)\hbar^2Y_{lm}},\qquad
+\boxed{\hat L_3Y_{lm}=m\hbar Y_{lm}}.
+\]
+Examples up to normalisation:
+\[
+Y_{00}=1,\qquad
+Y_{1,-1}=\sin\theta e^{-i\phi},\quad
+Y_{10}=\cos\theta,\quad
+Y_{11}=\sin\theta e^{i\phi},
+\]
+\[
+Y_{2,\pm2}=\sin^2\theta e^{\pm2i\phi},\qquad
+Y_{2,\pm1}=\sin\theta\cos\theta e^{\pm i\phi},\qquad
+Y_{20}=3\cos^2\theta-1.
+\]
+Atomic nomenclature: \(l=0,1,2,\ldots\) are \(s,p,d,\ldots\) waves.
+\src{Tong QM \S 4.1.2}
+
+\noindent\textbf{Angular momentum ladder operators.}
+\[
+\hat L_\pm=\hat L_1\pm i\hat L_2,\qquad
+[\hat L_3,\hat L_\pm]=\pm\hbar\hat L_\pm,\qquad
+[\hat L^2,\hat L_\pm]=0.
+\]
+\[
+\hat L_\pm Y_{lm}
+=\hbar\sqrt{l(l+1)-m(m\pm1)}\,Y_{l,m\pm1},\qquad
+\hat L_+Y_{ll}=0,\qquad
+\hat L_-Y_{l,-l}=0.
+\]
+
+\noindent\textbf{Radial Schrodinger equation.}
+\[
+\nabla^2=\frac{1}{r^2}\partial_r(r^2\partial_r)-\frac{\hat L^2}{\hbar^2r^2}.
+\]
+With \(\psi(r,\theta,\phi)=R(r)Y_{lm}(\theta,\phi)\),
+\[
+\boxed{
+-\frac{\hbar^2}{2mr^2}\frac{\dd}{\dd r}
+\left(r^2\frac{\dd R}{\dd r}\right)
+\left[V(r)+\frac{l(l+1)\hbar^2}{2mr^2}\right]R=ER
+}.
+\]
+Effective angular momentum barrier:
+\[
+V_{\rm eff}(r)=V(r)+\frac{l(l+1)\hbar^2}{2mr^2},\qquad
+\text{generic central-potential degeneracy }2l+1.
+\]
+\src{Tong QM \S 4.2}
+
+\noindent\textbf{3d harmonic oscillator.}
+\[
+\hat H=\sum_{i=1}^3\left(-\frac{\hbar^2}{2m}\partial_i^2
++\frac{1}{2}m\omega^2x_i^2\right).
+\]
+Cartesian spectrum:
+\[
+\boxed{E_N=\hbar\omega\left(N+\frac{3}{2}\right)},\qquad
+N=n_1+n_2+n_3,\qquad n_i=0,1,2,\ldots .
+\]
+\[
+g_N=\frac{1}{2}(N+1)(N+2).
+\]
+Radial form with \(y=\sqrt{m\omega/\hbar}\,r\):
+\[
+\frac{1}{y^2}\frac{\dd}{\dd y}
+\left(y^2\frac{\dd R}{\dd y}\right)
+-\left(y^2+\frac{l(l+1)}{y^2}\right)R=-\widetilde E R.
+\]
+Asymptotics and ansatz:
+\[
+R\sim y^l\ (y\to0),\qquad R\sim e^{-y^2/2}\ (y\to\infty),\qquad
+R=y^l h(y)e^{-y^2/2}.
+\]
+Termination gives
+\[
+\boxed{E=\hbar\omega\left(\frac{3}{2}+l+2q\right)},\qquad
+l,q=0,1,2,\ldots .
+\]
+For fixed \(N\): even \(N\) contains \(l=0,2,\ldots,N\); odd \(N\) contains
+\(l=1,3,\ldots,N\).
+\src{Tong QM \S 4.2.1}
+
+\noindent\textbf{Bound states in 3d and radial boundary condition.}
+Let
+\[
+\chi(r)=rR(r).
+\]
+Then
+\[
+-\frac{\hbar^2}{2m}\chi''+
+\left[V(r)+\frac{l(l+1)\hbar^2}{2mr^2}\right]\chi=E\chi,
+\qquad
+\int_0^\infty|\chi|^2\dd r<\infty.
+\]
+Finite physical radial wavefunction requires
+\[
+\boxed{\chi(0)=0}.
+\]
+For a spherical well \(V=-V_0\) for \(r<a\), \(V=0\) otherwise, s-wave bound
+states map to odd solutions of the corresponding 1d even well. The first bound
+state needs
+\[
+\frac{8mV_0a^2}{\hbar^2\pi^2}>1.
+\]
+Self-adjoint radial Hamiltonian requires
+\[
+\lim_{r\to0}r^2\left(S\frac{\dd R}{\dd r}
+-\frac{\dd S}{\dd r}R\right)=0
+\]
+for all radial states \(R,S\). This excludes \(R\sim1/r\) even though it is
+square-integrable with measure \(r^2\dd r\).
+\src{Tong QM \S 4.2.2--4.2.3}
+
+\noindent\textbf{Hydrogen atom: setup.}
+\[
+V(r)=-\frac{e^2}{4\pi\epsilon_0r},\qquad
+\psi_{nlm}=R_{nl}(r)Y_{lm}(\theta,\phi).
+\]
+Radial equation:
+\[
+-\frac{\hbar^2}{2m_e}\left(R''+\frac{2}{r}R'\right)
++\left[-\frac{e^2}{4\pi\epsilon_0r}
++\frac{l(l+1)\hbar^2}{2m_er^2}\right]R=ER.
+\]
+Define
+\[
+\beta=\frac{e^2m_e}{2\pi\epsilon_0\hbar^2},\qquad
+\frac{1}{a^2}=-\frac{2m_eE}{\hbar^2},
+\]
+so
+\[
+R''+\frac{2}{r}R'-\frac{l(l+1)}{r^2}R+\frac{\beta}{r}R=\frac{1}{a^2}R.
+\]
+\src{Tong QM \S 4.3}
+
+\noindent\textbf{Hydrogen spectrum.}
+Asymptotics:
+\[
+R\sim r^l\quad(r\to0),\qquad R\sim e^{-r/a}\quad(r\to\infty).
+\]
+Use
+\[
+R(r)=r^l f(r)e^{-r/a},\qquad f(r)=\sum_{k=0}^{\infty}c_kr^k.
+\]
+Recurrence:
+\[
+c_k=\frac{1}{ak}\frac{2(k+l)-\beta a}{k+2l+1}c_{k-1}.
+\]
+Termination gives \(a=2n/\beta\), \(n=q+l\), \(n=1,2,\ldots\), \(l=0,\ldots,n-1\):
+\[
+\boxed{E_n=-\frac{e^4m_e}{32\pi^2\epsilon_0^2\hbar^2}\frac{1}{n^2}}
+=-\frac{\alpha^2m_ec^2}{2n^2}
+=-\frac{\mathrm{Ry}}{n^2}.
+\]
+\[
+\alpha=\frac{e^2}{4\pi\epsilon_0\hbar c}\simeq\frac{1}{137},\qquad
+\mathrm{Ry}=\frac{\alpha^2m_ec^2}{2}\simeq13.7\,\mathrm{eV}.
+\]
+Bohr radius:
+\[
+\boxed{r_B=\frac{4\pi\epsilon_0\hbar^2}{e^2m_e}
+=\frac{\hbar}{m_ec\alpha}\simeq5.3\times10^{-11}\,\mathrm{m}},
+\qquad a=nr_B.
+\]
+Degeneracy at fixed \(n\):
+\[
+l=0,\ldots,n-1,\quad m=-l,\ldots,l,\qquad
+\boxed{g_n=\sum_{l=0}^{n-1}(2l+1)=n^2}.
+\]
+Fine-structure corrections split the \(l\)-degeneracy at order \(\alpha^4m_ec^2\).
+\src{Tong QM \S 4.3.1}
+
+\noindent\textbf{Hydrogen wavefunctions.}
+\[
+\boxed{\psi_{nlm}(r,\theta,\phi)=r^l f_{nl}(r)e^{-\beta r/2n}Y_{lm}(\theta,\phi)}
+\]
+where \(f_{nl}\) is a polynomial of degree \(n-l-1\):
+\[
+f_{nl}(r)=\sum_{k=0}^{n-l-1}c_kr^k,\qquad
+c_k=\frac{2}{ak}\frac{k+l-n}{k+2l+1}c_{k-1},
+\]
+equivalently \(f_{nl}\propto L_{n-l-1}^{2l+1}(2r/nr_B)\).
+Ground state:
+\[
+\boxed{\psi_{100}(r)=\frac{1}{\sqrt{\pi r_B^3}}e^{-r/r_B}}.
+\]
+For large \(n\), radial probability peak scales as
+\[
+P(r)\sim r^{2(n-1)}e^{-2r/nr_B},\qquad
+r_{\rm peak}\sim n(n-1)r_B\sim n^2r_B.
+\]
+\src{Tong QM \S 4.3.2}
+
+\noindent\textbf{Spectral lines and Bohr model.}
+Hydrogen transitions:
+\[
+\hbar\omega=E_m-E_n=\mathrm{Ry}\left(\frac{1}{n^2}-\frac{1}{m^2}\right),\qquad
+\omega=\frac{2\pi c}{\lambda}.
+\]
+Rydberg formula:
+\[
+\frac{1}{\lambda}=R_H\left(\frac{1}{n^2}-\frac{1}{m^2}\right),\qquad
+R_H=\frac{e^4m_e}{64\pi^3\epsilon_0^2c\hbar^3}.
+\]
+Bohr circular orbit:
+\[
+\frac{m_ev^2}{r}=\frac{e^2}{4\pi\epsilon_0r^2},\qquad
+L=m_evr=n\hbar.
+\]
+\[
+r_n=n^2r_B,\qquad
+E_n=-\frac{e^4m_e}{32\pi^2\epsilon_0^2\hbar^2}\frac{1}{n^2}.
+\]
+Correct spectrum is accidental for the semiclassical model; exact QM has
+\(L^2=l(l+1)\hbar^2\), \(l<n\), and no electron trajectory.
+\src{Tong QM \S 4.4.1}
+
+\noindent\textbf{Photon formulas.}
+\[
+E=\hbar\omega=\frac{2\pi\hbar c}{\lambda},\qquad
+p=\frac{E}{c}=\frac{2\pi\hbar}{\lambda}.
+\]
+Photoelectric threshold:
+\[
+\hbar\omega>E_{\rm crit}
+\]
+for emission of an electron from a metal. A photon requires relativistic quantum
+field theory for a full dynamical treatment, not a non-relativistic Schrodinger
+equation.
+\src{Tong QM \S 4.4.2}
+
+\noindent\textbf{Two-dimensional delta potential and renormalisation.}
+\[
+V(\mathbf{x})=-g\delta^2(\mathbf{x}),\qquad
+-\frac{\hbar^2}{2m}\nabla^2\psi-g\delta^2(\mathbf{x})\psi=E\psi.
+\]
+Dimensionless coupling and energy:
+\[
+\tilde g=\frac{mg}{\hbar^2},\qquad
+\widetilde E=\frac{mE}{\hbar^2},\qquad
+-\frac{1}{2}\nabla^2\psi-\tilde g\delta^2(\mathbf{x})\psi=\widetilde E\psi.
+\]
+Classical scale invariance in \(d=2\): \(\nabla^2\) and \(\delta^2\) both have
+dimension length\(^{-2}\). Bound state with \(E=-\mathcal{E}\) from Fourier
+transform
+\[
+\psi(\mathbf{x})=\frac{1}{2\pi}\int \tilde\psi(\mathbf{k})e^{i\mathbf{k}\cdot\mathbf{x}}\dd^2k
+\]
+obeys
+\[
+\tilde\psi(\mathbf{k})
+=\frac{\tilde g\,\psi(0)}{2\pi(k^2/2+\mathcal{E})},\qquad
+1=\frac{\tilde g}{(2\pi)^2}\int\frac{\dd^2k}{k^2/2+\mathcal{E}}.
+\]
+The integral diverges logarithmically:
+\[
+\int\frac{\dd^2k}{k^2/2+\mathcal{E}}
+=2\pi\int_0^\infty\frac{k\dd k}{k^2/2+\mathcal{E}}=\infty.
+\]
+With UV cutoff \(\Lambda\),
+\[
+1=\frac{\tilde g}{2\pi}\log\!\left(1+\frac{\Lambda^2}{2\mathcal{E}}\right),
+\qquad
+\boxed{\mathcal{E}=\frac{\Lambda^2}{2(e^{2\pi/\tilde g}-1)}}.
+\]
+Keep physical \(\mathcal{E}\) fixed by running coupling:
+\[
+\boxed{\tilde g(\Lambda)=\frac{2\pi}{\log(1+\Lambda^2/2\mathcal{E})}}.
+\]
+As \(\Lambda\to\infty\), \(\tilde g\to0\): asymptotic freedom in this toy model.
+For weak coupling,
+\[
+\mathcal{E}\simeq\frac{\Lambda^2}{2}e^{-2\pi/\tilde g}\ll\Lambda^2.
+\]
+\src{Tong QM \S 4.5}

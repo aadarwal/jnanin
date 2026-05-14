@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ESSAY_TITLE}} | Aadarsh Agarwal</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/essay-styles.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta name="description" content="{{ESSAY_TITLE}} - An essay by Aadarsh Agarwal">
+    <meta name="author" content="Aadarsh Agarwal">
+    <meta name="theme-color" content="#1a52a1">
+</head>
+<body>
+    <div class="site-container">
+        <main class="main-content">
+            <div class="essay-header content-box">
+                <h1>{{ESSAY_TITLE}}</h1>
+                <div class="essay-meta">
+                    <span class="version">Version {{CURRENT_VERSION}}</span>
+                    <span class="date">{{LAST_UPDATED}}</span>
+                </div>
+                
+                <div class="version-nav">
+                    <select id="version-selector" onchange="changeVersion(this.value)">
+                        {{VERSION_OPTIONS}}
+                    </select>
+                    <a href="#" id="show-changes" onclick="toggleChanges(); return false;">View Changes</a>
+                </div>
+            </div>
+            
+            <div class="essay-content content-box">
+                {{ESSAY_CONTENT}}
+            </div>
+            
+            <!-- Change reasoning section -->
+            <div class="change-reasoning content-box">
+                <h3>Thought Process</h3>
+                <p>What changed my thinking between versions {{PREVIOUS_VERSION}} and {{CURRENT_VERSION}}:</p>
+                <div class="reasoning-content">
+                    {{CHANGE_REASONING}}
+                </div>
+            </div>
+            
+            <!-- Visual diff representation (hidden by default) -->
+            <div id="changes-visualization" class="changes-visualization content-box" style="display: none;">
+                <h3>Changes from Version {{PREVIOUS_VERSION}}</h3>
+                <div class="diff-container">
+                    {{DIFF_CONTENT}}
+                </div>
+            </div>
+        </main>
+
+        <nav class="nav">
+            <div class="nav-section">
+                <h3>Essays</h3>
+                <a href="/essays/mandate-of-heaven.html">Mandate of Heaven</a>
+                <a href="/essays/liberal-arts.html">Liberal Arts Education</a>
+                <a href="/essays/future.html">What the Future Could Look Like</a>
+                <a href="/essays/bell-labs-darpa.html">Bell Labs x DARPA</a>
+                <a href="/essays/mandate-knowledge.html">Mandate of Knowledge</a>
+                <a href="/essays/poker.html">Poker</a>
+                <a href="/essays/ship-of-theseus.html">Ship of Theseus</a>
+                <a href="/essays/how-to-philosophy.html">How to do Philosophy</a>
+                <a href="/essays/next-facebook.html">Who is going to build the Next Facebook?</a>
+                <a href="/essays/great-people.html">Great People</a>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Thought Evolution</h3>
+                <a href="/thought-model.html">My Thinking Model</a>
+                <a href="/evolution-stats.html">Evolution Statistics</a>
+                <a href="/methodology.html">Methodology</a>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Navigation</h3>
+                <a href="/">Home Page</a>
+                <a href="/#projects">Projects</a>
+                <a href="/#research">Research</a>
+            </div>
+        </nav>
+    </div>
+    
+    <script>
+        function changeVersion(version) {
+            window.location.href = version;
+        }
+        
+        function toggleChanges() {
+            const changesSection = document.getElementById('changes-visualization');
+            const showChangesLink = document.getElementById('show-changes');
+            
+            if (changesSection.style.display === 'none') {
+                changesSection.style.display = 'block';
+                showChangesLink.textContent = 'Hide Changes';
+            } else {
+                changesSection.style.display = 'none';
+                showChangesLink.textContent = 'View Changes';
+            }
+        }
+    </script>
+</body>
+</html> 

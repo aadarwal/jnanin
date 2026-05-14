@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Additional custom styles */
+.prose {
+  max-width: 65ch;
+  line-height: 1.5;
+}
+
+.prose h1, .prose h2, .prose h3 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: #1f2937;
+}
+
+.prose p {
+  margin-bottom: 1em;
+  color: #374151;
+}
+
+/* Timeline additional styles */
+.timeline-marker {
+  transition: all 0.2s ease;
+}
+
+.timeline-marker:hover {
+  transform: scale(1.2);
+}

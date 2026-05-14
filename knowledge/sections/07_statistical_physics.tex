@@ -1,0 +1,903 @@
+\section{Statistical Physics}
+\label{sec:statistical-physics}
+
+\noindent\textbf{Conventions.}\quad
+Equilibrium statistical mechanics with $k_B$ explicit,
+$\beta\equiv(k_B T)^{-1}$. Microstates are $|n\rangle$ with energy
+$E_n$ and probability $p(n)$. $\Omega$ counts accessible states in a narrow
+energy shell when spectra are discrete. Thermodynamic limit:
+$N,V,E\to\infty$ with densities fixed.
+
+\subsection{The Fundamentals of Statistical Mechanics}
+
+\noindent\textbf{Microcanonical ensemble.}\quad
+For an isolated equilibrium system at fixed $(E,V,N)$,
+\[
+\boxed{p(n)=\frac{1}{\Omega(E,V,N)}}\quad(E_n=E),
+\qquad
+p(n)=0\quad(E_n\ne E),
+\]
+\[
+\langle \hat O\rangle=\sum_n p(n)\langle n|\hat O|n\rangle,
+\qquad
+\boxed{S(E,V,N)=k_B\log\Omega(E,V,N)}.
+\]
+For independent systems,
+\[
+\Omega_{12}(E_1,E_2)=\Omega_1(E_1)\Omega_2(E_2),
+\qquad S_{12}=S_1+S_2.
+\]
+If two systems exchange energy with $E_{\rm tot}$ fixed,
+\[
+\Omega(E_{\rm tot})=\sum_{E_i}\Omega_1(E_i)\Omega_2(E_{\rm tot}-E_i)
+=\sum_{E_i}\exp\!\left[
+\frac{S_1(E_i)+S_2(E_{\rm tot}-E_i)}{k_B}\right].
+\]
+Large $N$ saddle:
+\[
+\boxed{\left.\frac{\partial S_1}{\partial E}\right|_{E_*}
+=\left.\frac{\partial S_2}{\partial E}\right|_{E_{\rm tot}-E_*}},
+\qquad
+S(E_{\rm tot})\simeq S_1(E_*)+S_2(E_{\rm tot}-E_*).
+\]
+Second law as state-counting:
+\[
+S_{\rm final}=k_B\log\Omega_{\rm accessible}\ge S_{\rm constrained}.
+\]
+
+\noindent\textbf{Temperature and stability.}\quad
+\[
+\boxed{\frac{1}{T}=\left(\frac{\partial S}{\partial E}\right)_{V,N}},
+\qquad
+T_1=T_2\Longleftrightarrow \text{thermal equilibrium}.
+\]
+For $\delta E_1=-\delta E_2$,
+\[
+\delta S=\left(\frac{1}{T_1}-\frac{1}{T_2}\right)\delta E_1,
+\]
+so entropy increase sends energy from larger $T$ to smaller $T$.
+\[
+C=\frac{\partial E}{\partial T},\qquad
+\frac{\partial S}{\partial T}=\frac{C}{T},\qquad
+\Delta S=\int_{T_1}^{T_2}\frac{C(T)}{T}\,dT,
+\]
+\[
+\boxed{\frac{\partial^2S}{\partial E^2}=-\frac{1}{T^2C}}.
+\]
+Positive $C$ makes the energy-exchange saddle an entropy maximum.
+
+\noindent\textbf{Two-state system.}\quad
+$N$ independent fixed sites, $E_\downarrow=0$, $E_\uparrow=\epsilon$:
+\[
+N_\uparrow=\frac{E}{\epsilon},\qquad
+\Omega(E)=\frac{N!}{N_\uparrow!(N-N_\uparrow)!}.
+\]
+Stirling gives
+\[
+S(E)=-k_BN\left[
+\left(1-\frac{E}{N\epsilon}\right)
+\log\left(1-\frac{E}{N\epsilon}\right)
++\frac{E}{N\epsilon}\log\frac{E}{N\epsilon}\right],
+\]
+\[
+\frac{1}{T}=\frac{k_B}{\epsilon}
+\log\left(\frac{N\epsilon}{E}-1\right),
+\qquad
+\boxed{\frac{N_\uparrow}{N}=\frac{1}{e^{\epsilon/k_BT}+1}}.
+\]
+$E>N\epsilon/2$ gives negative temperature. Schottky heat capacity:
+\[
+\boxed{C=\frac{N\epsilon^2}{k_BT^2}
+\frac{e^{\epsilon/k_BT}}{\left(e^{\epsilon/k_BT}+1\right)^2}}.
+\]
+
+\noindent\textbf{Pressure, volume, first law.}\quad
+\[
+\boxed{p=T\left(\frac{\partial S}{\partial V}\right)_{E,N}},
+\qquad
+dS=\left(\frac{\partial S}{\partial E}\right)_VdE
++\left(\frac{\partial S}{\partial V}\right)_EdV,
+\]
+\[
+\boxed{dE=T\,dS-p\,dV}.
+\]
+$-p\,dV$ is work done on the system; $T\,dS$ is reversible heat absorbed.
+\[
+\boxed{C_V=\left(\frac{\partial E}{\partial T}\right)_V
+=T\left(\frac{\partial S}{\partial T}\right)_V},
+\qquad
+C_p=T\left(\frac{\partial S}{\partial T}\right)_p.
+\]
+
+\noindent\textbf{Canonical ensemble.}\quad
+System $S$ exchanges energy with a reservoir at fixed $T$:
+\[
+\Omega(E_{\rm tot})\simeq e^{S_R(E_{\rm tot})/k_B}
+\sum_n e^{-\beta E_n},
+\qquad
+\boxed{Z(T,V,N)=\sum_n e^{-\beta E_n}},
+\]
+\[
+\boxed{p(n)=\frac{e^{-\beta E_n}}{Z}},
+\qquad
+Z_{12}=Z_1Z_2.
+\]
+Density matrix:
+\[
+\hat\rho=\frac{e^{-\beta\hat H}}{Z},
+\qquad
+\langle\hat O\rangle={\rm Tr}(\hat\rho\hat O).
+\]
+\[
+\boxed{\langle E\rangle=-\frac{\partial}{\partial\beta}\log Z},
+\qquad
+\boxed{\Delta E^2=
+\frac{\partial^2}{\partial\beta^2}\log Z
+=k_BT^2C_V}.
+\]
+Thus $\Delta E/E\sim N^{-1/2}$.
+
+\noindent\textbf{Entropy, maximum entropy, free energy.}\quad
+\[
+\boxed{S=-k_B\sum_n p(n)\log p(n)}
+\qquad
+\left(S=-k_B{\rm Tr}\,\hat\rho\log\hat\rho\right).
+\]
+Canonical:
+\[
+S=k_B\beta\langle E\rangle+k_B\log Z
+=\boxed{k_B\frac{\partial}{\partial T}\left(T\log Z\right)}.
+\]
+Saddle equivalence:
+\[
+Z=\sum_{E_i}\Omega(E_i)e^{-\beta E_i}
+\simeq\Omega(E_*)e^{-\beta E_*},
+\qquad
+\left.\frac{\partial\log\Omega}{\partial E}\right|_{E_*}=\beta.
+\]
+Maximizing Gibbs entropy with $\sum_np_n=1$ and fixed $\sum_np_nE_n$
+gives $p_n\propto e^{-\beta E_n}$.
+\[
+\boxed{F=\langle E\rangle-TS=-k_BT\log Z},
+\qquad
+\boxed{dF=-S\,dT-p\,dV},
+\]
+\[
+\boxed{S=-\left(\frac{\partial F}{\partial T}\right)_{V,N}},
+\qquad
+\boxed{p=-\left(\frac{\partial F}{\partial V}\right)_{T,N}}.
+\]
+
+\noindent\textbf{Chemical potential and grand canonical ensemble.}\quad
+\[
+\boxed{\mu=-T\left(\frac{\partial S}{\partial N}\right)_{E,V}},
+\qquad
+\boxed{dE=T\,dS-p\,dV+\mu\,dN}.
+\]
+\[
+\boxed{\mu=\left(\frac{\partial E}{\partial N}\right)_{S,V}
+=\left(\frac{\partial F}{\partial N}\right)_{T,V}}.
+\]
+At fixed $(T,\mu,V)$,
+\[
+\boxed{\mathcal Z(T,\mu,V)=\sum_n e^{-\beta(E_n-\mu N_n)}},
+\qquad
+\boxed{p(n)=\frac{e^{-\beta(E_n-\mu N_n)}}{\mathcal Z}}.
+\]
+\[
+\boxed{S=k_B\frac{\partial}{\partial T}\left(T\log\mathcal Z\right)},
+\qquad
+\boxed{\langle E\rangle-\mu\langle N\rangle
+=-\frac{\partial}{\partial\beta}\log\mathcal Z},
+\]
+\[
+\boxed{\langle N\rangle=\frac{1}{\beta}
+\left(\frac{\partial\log\mathcal Z}{\partial\mu}\right)_{T,V}},
+\qquad
+\boxed{\Delta N^2=\frac{1}{\beta}
+\left(\frac{\partial\langle N\rangle}{\partial\mu}\right)_{T,V}}.
+\]
+\[
+\boxed{\Phi=F-\mu N=-k_BT\log\mathcal Z},
+\qquad
+\boxed{d\Phi=-S\,dT-p\,dV-N\,d\mu}.
+\]
+Extensivity gives
+\[
+S(\lambda E,\lambda V,\lambda N)=\lambda S(E,V,N),
+\qquad
+\boxed{\Phi(T,V,\mu)=-p(T,\mu)V}.
+\]
+
+\subsection{Classical Gases}
+
+\noindent\textbf{Classical partition function.}\quad
+For $H=\mathbf p^2/2m+V(\mathbf q)$,
+\[
+Z_1=\frac{1}{h^3}\int d^3q\,d^3p\,e^{-\beta H(\mathbf p,\mathbf q)},
+\qquad h=2\pi\hbar.
+\]
+Classical limit of $Z={\rm Tr}\,e^{-\beta\hat H}$:
+\[
+e^{-\beta\hat H}
+=e^{-\beta\hat p^2/2m}e^{-\beta V(\hat q)}+O(\hbar),
+\qquad
+Z_1\to\frac{1}{2\pi\hbar}\int dq\,dp\,e^{-\beta H(p,q)}.
+\]
+For $N$ identical particles,
+\[
+Z(N,V,T)=\frac{1}{N!h^{3N}}
+\int \prod_{i=1}^N d^3r_i\,d^3p_i\,
+e^{-\beta H(\{\mathbf p_i,\mathbf r_i\})}.
+\]
+
+\noindent\textbf{Ideal monatomic gas.}\quad
+\[
+H=\frac{\mathbf p^2}{2m},\qquad
+Z_1=\frac{1}{(2\pi\hbar)^3}\int d^3q\,d^3p\,
+e^{-\beta\mathbf p^2/2m}
+=\frac{V}{\lambda^3},
+\]
+\[
+\boxed{\lambda=\sqrt{\frac{2\pi\hbar^2}{mk_BT}}},
+\qquad
+\boxed{Z_{\rm ideal}=\frac{1}{N!}\left(\frac{V}{\lambda^3}\right)^N}.
+\]
+\[
+\boxed{pV=Nk_BT},
+\qquad
+E=\frac32Nk_BT,
+\qquad
+\boxed{C_V=\frac32Nk_B}.
+\]
+In $D$ dimensions, $E=(D/2)Nk_BT$. Grand canonical:
+\[
+\mathcal Z_{\rm ideal}
+=\exp\left(\frac{e^{\beta\mu}V}{\lambda^3}\right),
+\qquad
+N=\frac{e^{\beta\mu}V}{\lambda^3},
+\]
+\[
+\boxed{\mu=k_BT\log\left(\frac{\lambda^3N}{V}\right)},
+\qquad n\lambda^3\ll1.
+\]
+Sackur--Tetrode:
+\[
+\boxed{S=Nk_B\left[\log\left(\frac{V}{N\lambda^3}\right)+\frac52\right]}.
+\]
+
+\noindent\textbf{Maxwell distribution.}\quad
+\[
+P(\mathbf v)\,d^3v=
+\left(\frac{m}{2\pi k_BT}\right)^{3/2}
+e^{-mv^2/2k_BT}\,d^3v,
+\]
+\[
+\boxed{f(v)\,dv=
+4\pi\left(\frac{m}{2\pi k_BT}\right)^{3/2}
+v^2e^{-mv^2/2k_BT}\,dv},
+\qquad
+\langle v^2\rangle=\frac{3k_BT}{m}.
+\]
+
+\noindent\textbf{Diatomic gas.}\quad
+\[
+Z_1=Z_{\rm trans}Z_{\rm rot}Z_{\rm vib},\qquad
+Z_{\rm trans}=\frac{V}{\lambda^3}.
+\]
+Rigid rotor:
+\[
+L_{\rm rot}=\frac12I(\dot\theta^2+\sin^2\theta\,\dot\phi^2),
+\qquad
+H_{\rm rot}=\frac{p_\theta^2}{2I}
++\frac{p_\phi^2}{2I\sin^2\theta},
+\]
+\[
+Z_{\rm rot}=\frac{2Ik_BT}{\hbar^2},\qquad
+E_{\rm rot}=k_BT.
+\]
+Vibration:
+\[
+H_{\rm vib}=\frac{p_\zeta^2}{2m}+\frac12m\omega^2\zeta^2,
+\qquad
+Z_{\rm vib}=\frac{k_BT}{\hbar\omega},
+\qquad
+E_{\rm vib}=k_BT.
+\]
+\[
+C_V=
+\begin{cases}
+\frac32Nk_B,&\text{translation only},\\
+\frac52Nk_B,&\text{translation + two rotations},\\
+\frac72Nk_B,&\text{translation + rotations + vibration}.
+\end{cases}
+\]
+Classical equipartition requires $k_BT$ above level spacings.
+
+\noindent\textbf{Interacting gas, Mayer function, and Virial expansion.}\quad
+\[
+H=\sum_i\frac{\mathbf p_i^2}{2m}+\sum_{i>j}U(r_{ij}),
+\qquad
+Z=\frac{1}{N!\lambda^{3N}}\int\prod_i d^3r_i\,
+e^{-\beta\sum_{j<k}U(r_{jk})}.
+\]
+\[
+\boxed{f(r)=e^{-\beta U(r)}-1},
+\qquad
+Z=\frac{1}{N!\lambda^{3N}}\int\prod_i d^3r_i\prod_{j<k}(1+f_{jk}).
+\]
+Leading low-density correction:
+\[
+F\simeq F_{\rm ideal}
+-Nk_BT\log\left(1+\frac{N}{2V}\int d^3r\,f(r)\right),
+\qquad nr_0^3\ll1.
+\]
+\[
+\boxed{\frac{p}{k_BT}=n+B_2(T)n^2+B_3(T)n^3+\cdots},
+\]
+\[
+\boxed{B_2(T)=-\frac12\int d^3r\,[e^{-\beta U(r)}-1]}.
+\]
+Cluster expansion with fugacity $z=e^{\beta\mu}$:
+\[
+\boxed{\mathcal Z=\exp\left(\frac{V}{\lambda^3}
+\sum_{l=1}^\infty b_lz^l\right)},
+\]
+\[
+\frac{pV}{k_BT}=\frac{V}{\lambda^3}\sum_l b_lz^l,
+\qquad
+n=\frac{1}{\lambda^3}\sum_l lb_lz^l,
+\qquad
+B_2=-\lambda^3b_2,\quad B_3=\lambda^6(4b_2^2-2b_3).
+\]
+
+\noindent\textbf{van der Waals gas.}\quad
+\[
+U(r)=
+\begin{cases}
+\infty,&r<r_0,\\
+-U_0(r_0/r)^6,&r\ge r_0.
+\end{cases}
+\]
+For $\beta U_0\ll1$,
+\[
+\int d^3r\,f(r)=\frac{4\pi r_0^3}{3}
+\left(\frac{U_0}{k_BT}-1\right),
+\quad
+a=\frac{2\pi r_0^3U_0}{3},\quad b=\frac{2\pi r_0^3}{3}.
+\]
+\[
+\boxed{k_BT=\left(p+\frac{N^2a}{V^2}\right)
+\left(\frac{V}{N}-b\right)},
+\qquad
+\boxed{p=\frac{Nk_BT}{V-bN}-a\frac{N^2}{V^2}}.
+\]
+
+\noindent\textbf{Debye--Huckel screening.}\quad
+One-component plasma, electron charge $-q$, neutralizing background $+q\rho$,
+$4\pi\epsilon_0=1$:
+\[
+\nabla^2\phi(\mathbf r)
+=-4\pi[-q\delta(\mathbf r)+q\rho-q\rho g(\mathbf r)].
+\]
+With $g(\mathbf r)\simeq e^{\beta q\phi}\simeq1+\beta q\phi$,
+\[
+\lambda_D^2=\frac{1}{4\pi\beta\rho q^2}
+=\frac{k_BT}{4\pi\rho q^2},
+\qquad
+\left(\nabla^2-\lambda_D^{-2}\right)\phi=4\pi q\delta(\mathbf r).
+\]
+\[
+\boxed{\phi(r)=-\frac{q\,e^{-r/\lambda_D}}{r}},
+\qquad
+\boxed{U_{\rm eff}(r)=\frac{q^2e^{-r/\lambda_D}}{r}},
+\qquad
+\rho\lambda_D^3\gg1.
+\]
+
+\subsection{Quantum Gases}
+
+\noindent\textbf{Density of states.}\quad
+Periodic box $V=L^3$, $k_i=2\pi n_i/L$:
+\[
+\sum_{\mathbf n}\to\frac{V}{(2\pi)^3}\int d^3k
+=\int_0^\infty g(E)\,dE.
+\]
+\[
+E=\frac{\hbar^2k^2}{2m},
+\qquad
+\boxed{g_{\rm nr}(E)=\frac{V}{4\pi^2}
+\left(\frac{2m}{\hbar^2}\right)^{3/2}E^{1/2}}.
+\]
+Spin degeneracy $g_s=2s+1$ multiplies $g(E)$. Relativistic:
+\[
+E=(\hbar^2k^2c^2+m^2c^4)^{1/2},
+\qquad
+g_{\rm rel}(E)=\frac{VE}{2\pi^2\hbar^3c^3}(E^2-m^2c^4)^{1/2},
+\]
+\[
+m=0:\qquad g(E)=\frac{VE^2}{2\pi^2\hbar^3c^3}.
+\]
+
+\noindent\textbf{Photons.}\quad
+$\mu=0$, two polarizations, $E=\hbar\omega$, $\omega=ck$:
+\[
+g(\omega)\,d\omega=\frac{V\omega^2}{\pi^2c^3}\,d\omega,
+\qquad
+Z_\omega=\frac{1}{1-e^{-\beta\hbar\omega}},
+\]
+\[
+\log Z=-\frac{V}{\pi^2c^3}\int_0^\infty
+\omega^2\log(1-e^{-\beta\hbar\omega})\,d\omega.
+\]
+Planck spectrum and thermodynamics:
+\[
+dU(\omega)=\frac{V\hbar}{\pi^2c^3}
+\frac{\omega^3\,d\omega}{e^{\beta\hbar\omega}-1},
+\]
+\[
+\boxed{\frac{U}{V}=\frac{\pi^2k_B^4}{15\hbar^3c^3}T^4},
+\qquad
+F=-\frac{\pi^2V}{45\hbar^3c^3}(k_BT)^4,
+\qquad
+\boxed{p=\frac{U}{3V}}.
+\]
+\[
+j=\frac{c}{4}\frac{U}{V}=\sigma T^4,
+\qquad
+\sigma=\frac{\pi^2k_B^4}{60\hbar^3c^2}.
+\]
+Rayleigh--Jeans limit:
+\[
+dU(\omega)\to\frac{V}{\pi^2c^3}\omega^2k_BT\,d\omega
+\quad\Rightarrow\quad \int^\infty d\omega\,\omega^2\ {\rm diverges}.
+\]
+
+\noindent\textbf{Phonons and Debye model.}\quad
+\[
+g(\omega)\,d\omega=\frac{3V\omega^2}{2\pi^2c_s^3}\,d\omega,
+\qquad
+\int_0^{\omega_D}g(\omega)\,d\omega=3N,
+\]
+\[
+\boxed{\omega_D=\left(\frac{6\pi^2N}{V}\right)^{1/3}c_s},
+\qquad T_D=\frac{\hbar\omega_D}{k_B}.
+\]
+\[
+U=\frac{3V(k_BT)^4}{2\pi^2\hbar^3c_s^3}
+\int_0^{T_D/T}\frac{x^3\,dx}{e^x-1}.
+\]
+\[
+T\ll T_D:\quad
+\boxed{C_V=Nk_B\frac{12\pi^4}{5}\left(\frac{T}{T_D}\right)^3},
+\qquad
+T\gg T_D:\quad \boxed{C_V\to3Nk_B}.
+\]
+One-dimensional lattice:
+\[
+H=\frac{m}{2}\sum_i\dot u_i^2+\frac{\alpha}{2}\sum_i(u_i-u_{i+1})^2,
+\qquad
+\omega_k=2\sqrt{\alpha/m}\sin\frac{ka}{2}.
+\]
+
+\noindent\textbf{Diatomic quantum corrections.}\quad
+\[
+E_{\rm rot}=\frac{\hbar^2}{2I}j(j+1),
+\qquad
+Z_{\rm rot}=\sum_{j=0}^\infty(2j+1)e^{-\beta\hbar^2j(j+1)/2I},
+\]
+\[
+T\gg\frac{\hbar^2}{2Ik_B}: Z_{\rm rot}\simeq\frac{2I}{\beta\hbar^2},
+\qquad
+T\ll\frac{\hbar^2}{2Ik_B}: Z_{\rm rot}\simeq1.
+\]
+\[
+E_{\rm vib}=\hbar\omega(n+\tfrac12),
+\qquad
+Z_{\rm vib}=\frac{1}{2\sinh(\beta\hbar\omega/2)}.
+\]
+
+\noindent\textbf{Bose and Fermi distributions.}\quad
+Single-particle levels $E_r$, fugacity $z=e^{\beta\mu}$:
+\[
+{\rm Bosons:}\quad
+Z_r=\frac{1}{1-e^{-\beta(E_r-\mu)}},
+\qquad
+n_r=\frac{1}{e^{\beta(E_r-\mu)}-1},
+\qquad \mu<0.
+\]
+\[
+{\rm Fermions:}\quad
+Z_r=1+e^{-\beta(E_r-\mu)},
+\qquad
+n_r=\frac{1}{e^{\beta(E_r-\mu)}+1}.
+\]
+Ideal Bose gas:
+\[
+N=\int_0^\infty\frac{g(E)\,dE}{z^{-1}e^{\beta E}-1},
+\quad
+U=\int_0^\infty\frac{Eg(E)\,dE}{z^{-1}e^{\beta E}-1},
+\quad
+pV=\frac23U.
+\]
+High-$T$:
+\[
+pV=Nk_BT\left(1-\frac{\lambda^3N}{2^{5/2}V}+\cdots\right)
+\quad({\rm bosons}),
+\]
+\[
+pV=Nk_BT\left(1+\frac{\lambda^3N}{2^{5/2}g_sV}+\cdots\right)
+\quad({\rm fermions}).
+\]
+
+\noindent\textbf{Bose--Einstein condensation.}\quad
+\[
+g_n(z)=\frac{1}{\Gamma(n)}
+\int_0^\infty\frac{x^{n-1}\,dx}{z^{-1}e^x-1}
+=\sum_{m=1}^\infty\frac{z^m}{m^n}.
+\]
+\[
+\frac{N}{V}=\frac{1}{\lambda^3}g_{3/2}(z),
+\qquad
+\boxed{T_c=\frac{2\pi\hbar^2}{mk_B}
+\left(\frac{N}{V\zeta(3/2)}\right)^{2/3}}.
+\]
+\[
+N=\frac{V}{\lambda^3}g_{3/2}(z)+\frac{z}{1-z},
+\qquad
+\boxed{\frac{N_0}{N}=1-\left(\frac{T}{T_c}\right)^{3/2}}\quad(T<T_c).
+\]
+\[
+p=\frac{k_BT}{\lambda^3}g_{5/2}(z),
+\qquad
+T<T_c:\quad p=\frac{k_BT}{\lambda^3}\zeta(5/2)\propto T^{5/2}.
+\]
+\[
+\frac{U}{V}=\frac{3k_BT}{2\lambda^3}g_{5/2}(z),
+\qquad
+T<T_c:\quad C_V=\frac{15Vk_B}{4\lambda^3}\zeta(5/2)\propto T^{3/2}.
+\]
+At $T_c$, $C_V$ is continuous but $dC_V/dT$ is discontinuous in the
+thermodynamic limit.
+
+\noindent\textbf{Degenerate Fermi gas and Sommerfeld expansion.}\quad
+\[
+n(E)=\Theta(E_F-E),\qquad
+\mu(0)=E_F,\qquad
+\hbar k_F=(2mE_F)^{1/2}.
+\]
+\[
+N=\frac{g_sV}{6\pi^2}
+\left(\frac{2m}{\hbar^2}\right)^{3/2}E_F^{3/2},
+\qquad
+\boxed{E_F=\frac{\hbar^2}{2m}
+\left(\frac{6\pi^2N}{g_sV}\right)^{2/3}}.
+\]
+\[
+U=\frac35NE_F,\qquad
+\boxed{pV=\frac25NE_F}.
+\]
+\[
+f_n(z)=\frac{1}{\Gamma(n)}
+\int_0^\infty\frac{x^{n-1}\,dx}{z^{-1}e^x+1},
+\]
+\[
+f_n(z)=\frac{(\log z)^n}{\Gamma(n+1)}
+\left[1+\frac{\pi^2n(n-1)}{6(\log z)^2}+\cdots\right]\quad(z\gg1).
+\]
+For fixed $N$,
+\[
+\mu=E_F\left[1-\frac{\pi^2}{12}
+\left(\frac{k_BT}{E_F}\right)^2+\cdots\right],
+\]
+\[
+\frac{U}{N}=\frac{3E_F}{5}
+\left[1+\frac{5\pi^2}{12}
+\left(\frac{k_BT}{E_F}\right)^2+\cdots\right],
+\qquad
+\boxed{C_V=\frac{\pi^2}{2}Nk_B\frac{T}{T_F}}.
+\]
+
+\noindent\textbf{White dwarfs, Pauli paramagnetism, and Landau diamagnetism.}\quad
+\[
+E_{\rm grav}=-\frac{3G_NM^2}{5R},\qquad
+R_{\rm nonrel}\sim M^{-1/3},
+\]
+\[
+\boxed{M_C\sim\left(\frac{\hbar c}{G_N}\right)^{3/2}\frac{1}{m_p^2}}.
+\]
+Spin response:
+\[
+E_{\rm spin}=\mu_BBs,\qquad
+\mu_B=\frac{|e|\hbar}{2m},
+\qquad
+\boxed{\chi_P=\mu_B^2g(E_F)}.
+\]
+Landau levels for $\mathbf B=B\hat{\mathbf z}$:
+\[
+E_{n,k_z}=\hbar\omega_c(n+\tfrac12)+\frac{\hbar^2k_z^2}{2m},
+\qquad
+\omega_c=\frac{eB}{m},
+\]
+\[
+\frac{eBL^2}{2\pi\hbar}=\frac{\Phi}{\Phi_0},
+\qquad
+\boxed{\chi_L=-\frac13\chi_P}.
+\]
+
+\subsection{Classical Thermodynamics}
+
+\noindent\textbf{Zeroth, first, and second laws.}\quad
+Equilibrium transitivity defines temperature; ideal gas convention:
+\[
+\boxed{T=\frac{pV}{Nk_B}}.
+\]
+Heat and work are path-dependent transfers:
+\[
+\Delta E=Q+W,\qquad dE=\delta Q+\delta W,\qquad
+\boxed{\delta W=-p\,dV}.
+\]
+Kelvin: no cyclic process has sole effect $Q_H\to W=Q_H$.
+Clausius: no process has sole effect of moving heat from cold to hot.
+For a reversible engine between $T_H>T_C$,
+\[
+W=Q_H-Q_C,\qquad
+\boxed{\eta=\frac{W}{Q_H}=1-\frac{Q_C}{Q_H}}.
+\]
+Carnot theorem and temperature scale:
+\[
+\boxed{\eta_{\rm Carnot}=1-\frac{T_C}{T_H}},
+\qquad
+\boxed{\frac{Q_C}{Q_H}=\frac{T_C}{T_H}}.
+\]
+Ideal gas adiabats:
+\[
+C_VdT=-\frac{Nk_BT}{V}\,dV,\qquad
+C_V=\frac32Nk_B,\qquad
+\boxed{TV^{2/3}=\text{constant}}.
+\]
+
+\noindent\textbf{Thermodynamic entropy.}\quad
+\[
+\boxed{\oint_{\rm rev}\frac{\delta Q}{T}=0},
+\qquad
+\boxed{dS=\frac{\delta Q_{\rm rev}}{T}},
+\]
+\[
+\boxed{dE=T\,dS-p\,dV+\mu\,dN}.
+\]
+Clausius inequality:
+\[
+\boxed{\oint\frac{\delta Q}{T}\le0},
+\qquad
+\int_A^B\frac{\delta Q}{T}\le S(B)-S(A).
+\]
+For isolated adiabatic evolution, $\boxed{\Delta S\ge0}$.
+
+\noindent\textbf{Potentials and Maxwell relations.}\quad
+\[
+F=E-TS,\quad dF=-S\,dT-p\,dV+\mu\,dN,
+\]
+\[
+G=F+pV,\quad dG=-S\,dT+V\,dp+\mu\,dN,
+\qquad
+\boxed{G(T,p,N)=\mu(T,p)N},
+\]
+\[
+H=E+pV,\quad dH=T\,dS+V\,dp+\mu\,dN.
+\]
+At fixed $N$,
+\[
+\boxed{\left(\frac{\partial T}{\partial V}\right)_S
+=-\left(\frac{\partial p}{\partial S}\right)_V},
+\quad
+\boxed{\left(\frac{\partial S}{\partial V}\right)_T
+=\left(\frac{\partial p}{\partial T}\right)_V},
+\]
+\[
+\boxed{\left(\frac{\partial S}{\partial p}\right)_T
+=-\left(\frac{\partial V}{\partial T}\right)_p},
+\quad
+\boxed{\left(\frac{\partial T}{\partial p}\right)_S
+=\left(\frac{\partial V}{\partial S}\right)_p}.
+\]
+\[
+C_V=T\left(\frac{\partial S}{\partial T}\right)_V,\qquad
+C_p=T\left(\frac{\partial S}{\partial T}\right)_p,
+\]
+\[
+\boxed{C_p-C_V=
+T\left(\frac{\partial V}{\partial T}\right)_p
+\left(\frac{\partial p}{\partial T}\right)_V},
+\qquad
+pV=Nk_BT\Rightarrow C_p-C_V=Nk_B.
+\]
+Third law:
+\[
+\boxed{\lim_{T\to0}S(T)=0},
+\qquad
+\lim_{T\to0}\lim_{N\to\infty}\frac{S}{N}=0,
+\]
+requiring $C_V\to0$ as $T\to0$ for finite entropy.
+
+\subsection{Phase Transitions}
+
+\noindent\textbf{Liquid--gas transition.}\quad
+\[
+p=\frac{k_BT}{v-b}-\frac{a}{v^2},\qquad v=\frac{V}{N}.
+\]
+Critical point from $\partial_vp=\partial_v^2p=0$:
+\[
+\boxed{k_BT_c=\frac{8a}{27b}},\qquad
+\boxed{v_c=3b},\qquad
+\boxed{p_c=\frac{a}{27b^2}}.
+\]
+Reduced variables:
+\[
+\boxed{\bar p=\frac{8\bar T}{3\bar v-1}-\frac{3}{\bar v^2}},
+\qquad
+\boxed{\frac{p_cv_c}{k_BT_c}=\frac38}.
+\]
+Stability requires $\kappa_T>0$,
+$\kappa_T=-v^{-1}(\partial v/\partial p)_T$; spinodal:
+$(\partial p/\partial v)_T=0$.
+
+\noindent\textbf{Coexistence and Clausius--Clapeyron.}\quad
+\[
+T_l=T_g,\qquad p_l=p_g,\qquad \mu_l=\mu_g,\qquad g_l=g_g.
+\]
+At fixed $T$, $dg=v\,dp$, so Maxwell construction:
+\[
+\boxed{\mu_g-\mu_l=\int_{p_l}^{p_g}v(p,T)\,dp=0}.
+\]
+\[
+\boxed{\frac{dp}{dT}=\frac{s_g-s_l}{v_g-v_l}
+=\frac{L}{T(v_g-v_l)}},
+\qquad L=T(s_g-s_l).
+\]
+With $L$ constant, $v_g\gg v_l$, $pv_g=k_BT$:
+\[
+\frac{dp}{dT}=\frac{Lp}{k_BT^2},
+\qquad p=p_0e^{-L/k_BT}.
+\]
+
+\noindent\textbf{Critical exponents and fluctuations.}\quad
+Mean-field/van der Waals:
+\[
+v_g-v_l\sim(T_c-T)^{1/2},\qquad
+p-p_c\sim(v-v_c)^3,\qquad
+\kappa_T\sim(T-T_c)^{-1}.
+\]
+General:
+\[
+v_g-v_l\sim(T_c-T)^{\beta_{\rm crit}},\quad
+p-p_c\sim(v-v_c)^\delta,\quad
+\kappa_T\sim(T-T_c)^{-\gamma}.
+\]
+Mean field gives $(1/2,3,1)$; liquid--gas and 3d Ising give
+approximately $(0.32,4.8,1.2)$; 2d Ising gives $(1/8,15,7/4)$.
+\[
+\log\mathcal Z=\beta Vp(T,\mu),
+\qquad
+\boxed{\frac{(\Delta N)^2}{N}=k_BT\,\rho\,\kappa_T}.
+\]
+
+\noindent\textbf{Ising model.}\quad
+\[
+E[\{s_i\}]=-J\sum_{\langle ij\rangle}s_is_j-B\sum_i s_i,
+\qquad s_i=\pm1,
+\]
+\[
+Z=\sum_{\{s_i\}}e^{-\beta E},
+\qquad
+m=\frac1N\sum_i\langle s_i\rangle
+=\frac{1}{N\beta}\frac{\partial\log Z}{\partial B}.
+\]
+Mean field:
+\[
+s_is_j\simeq m(s_i+s_j)-m^2,\qquad
+E_{\rm mf}=\frac12JNqm^2-(Jqm+B)\sum_i s_i,
+\]
+\[
+Z_{\rm mf}=e^{-\frac12\beta JNqm^2}
+[2\cosh\beta(B+Jqm)]^N,
+\qquad
+\boxed{m=\tanh[\beta(B+Jqm)]}.
+\]
+At $B=0$,
+\[
+\boxed{k_BT_c=Jq},\qquad
+m_0\sim(T_c-T)^{1/2},
+\qquad
+\chi=\frac{N\beta}{1-\beta Jq}\sim(T-T_c)^{-1}.
+\]
+In 1d, transfer matrix eigenvalues
+\[
+\lambda_\pm=e^{\beta J}\cosh\beta B
+\pm\sqrt{e^{2\beta J}\sinh^2\beta B+e^{-2\beta J}},
+\qquad Z\simeq\lambda_+^N,
+\]
+give $m(B=0)=0$ for all $T>0$.
+
+\noindent\textbf{2d Ising expansions and Kramers--Wannier.}\quad
+Square lattice, $B=0$, $E_0=-2NJ$:
+\[
+Z_{\rm low}=2e^{2N\beta J}\left[
+1+Ne^{-8\beta J}+2Ne^{-12\beta J}
++\frac12(N^2+9N)e^{-16\beta J}+\cdots\right].
+\]
+Peierls droplet:
+\[
+E_{\rm droplet}\sim2JL,\quad \Omega(L)\sim e^{\alpha L},
+\quad k_BT_c\sim\frac{2J}{\alpha}.
+\]
+High-$T$:
+\[
+e^{\beta Js_is_j}=\cosh\beta J(1+s_is_j\tanh\beta J),
+\]
+\[
+Z_{\rm high}=2^N(\cosh\beta J)^{2N}
+\left[1+Nt^4+2Nt^6+\frac12(N^2+9N)t^8+\cdots\right].
+\]
+Duality:
+\[
+e^{-2\tilde\beta J}=\tanh\beta J,\qquad
+\boxed{Z(\beta)=2^{N-1}(\sinh2\beta J)^NZ(\tilde\beta)}.
+\]
+Assuming one transition,
+\[
+\boxed{k_BT_c=\frac{2J}{\log(1+\sqrt2)}}\simeq2.269J.
+\]
+
+\noindent\textbf{Landau, Lee--Yang, Landau--Ginzburg.}\quad
+Order parameter $m$:
+\[
+F(T;m)=F_0(T)+a(T)m^2+b(T)m^4+\cdots,\qquad b>0.
+\]
+For $a(T)\simeq a_0(T-T_c)$,
+\[
+m_{\rm eq}=0\ (a>0),\qquad
+m_{\rm eq}=\pm\sqrt{-\frac{a}{2b}}\ (a<0),
+\]
+\[
+F_{\rm eq}=
+\begin{cases}
+F_0(T),&T>T_c,\\
+F_0(T)-a^2/(4b),&T<T_c.
+\end{cases}
+\]
+Odd terms $F=F_0+\alpha m+am^2+\gamma m^3+bm^4+\cdots$ allow first-order
+jumps, metastability, spinodals, and hysteresis.
+\[
+\mathcal Z(z,V,T)=\sum_{N=0}^{N_V}z^NZ(N,V,T),
+\qquad
+\Theta(z,T)=\lim_{V\to\infty}\frac1V\log\mathcal Z.
+\]
+Phase transitions require Lee--Yang zeros to pinch positive real $z$ as
+$V\to\infty$.
+\[
+F[m]=\int d^dr\,[a m^2+b m^4+c(\nabla m)^2],
+\qquad
+\boxed{c\nabla^2m=am+2bm^3}.
+\]
+For $a<0$,
+\[
+m_0=\sqrt{-\frac{a}{2b}},\qquad
+m(x)=m_0\tanh\!\left(\sqrt{\frac{-a}{2c}}\,x\right),
+\qquad
+\ell_{\rm wall}\sim\sqrt{\frac{-2c}{a}}.
+\]
+Small fluctuations:
+\[
+\delta m(r)\sim\frac{e^{-r/\xi}}{r^{(d-1)/2}},
+\qquad
+\boxed{\xi=\sqrt{\frac{-c}{2a}}\to\infty}.
+\]
+Coarse-grained path integral:
+\[
+Z=\int\mathcal Dm(\mathbf r)\,e^{-\beta F[m]},
+\qquad
+A=-k_BT\log Z.
+\]
+
+\src{Tong Statistical Physics \S 1--5}

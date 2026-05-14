@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+
+% imports
+\usepackage{appendix}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{bbold}
+\usepackage[justification=centering]{caption}
+\usepackage{float}
+\usepackage[margin=1em]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{layouts}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{optidef}
+\usepackage{physics}
+\usepackage{setspace}
+\usepackage{diagbox}
+\usepackage[labelformat=simple]{subcaption}
+\usepackage{xcolor}
+
+% configure imports
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
+\definecolor{darkgreen}{RGB}{46, 184, 46}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\R}{\mathbb{R}}
+\captionsetup[subfigure]{labelformat=empty, skip=0pt}
+\captionsetup{labelsep=period}
+\restylefloat{table}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\addto\captionsenglish{%
+  \renewcommand{\figurename}{FIG.}%
+  \renewcommand{\tablename}{TABLE}%
+  \renewcommand{\appendixname}{APPENDIX}%
+}
+
+\title{Mechanics}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{multicols}{2}
+
+\textbf{Dynamics}
+\begin{align}
+  L &= T - V\\
+  \frac{d}{dt}(\frac{\partial L}{\partial \dot{q}^i}) &= \frac{\partial L}{\partial q^i}\\
+  p_i &= \frac{\partial L}{\partial \dot{q}^i}\\
+  H &= \sum_{i = 1}^{N} p_i \dot{q}^i - L\\
+  \frac{dq^i}{dt} &= \frac{\partial H}{\partial p_i}\\
+  \frac{dp_i}{dt} &= -\frac{\partial H}{\partial q^i}
+\end{align}
+
+\textbf{Kinematics}
+\begin{align}
+  v_f &= v_i + a t\\
+  x_f &= x_i + v_it+ \frac{1}{2}at^2\\
+  x_f &= x_i + \frac{1}{2}(v_i + v_f)t\\
+  v_f^2 &= v_i^2 + 2 a (x_f - x_i)
+\end{align}
+
+\end{multicols}
+
+\end{document}

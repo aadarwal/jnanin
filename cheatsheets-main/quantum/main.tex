@@ -1,0 +1,122 @@
+\documentclass[12pt]{article}
+
+% imports
+\usepackage{appendix}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{bbold}
+\usepackage[justification=centering]{caption}
+\usepackage{float}
+\usepackage[margin=1em]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{layouts}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{optidef}
+\usepackage{physics}
+\usepackage{setspace}
+\usepackage{diagbox}
+\usepackage[labelformat=simple]{subcaption}
+\usepackage{xcolor}
+
+% configure imports
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
+\definecolor{darkgreen}{RGB}{46, 184, 46}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\R}{\mathbb{R}}
+\captionsetup[subfigure]{labelformat=empty, skip=0pt}
+\captionsetup{labelsep=period}
+\restylefloat{table}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\addto\captionsenglish{%
+  \renewcommand{\figurename}{FIG.}%
+  \renewcommand{\tablename}{TABLE}%
+  \renewcommand{\appendixname}{APPENDIX}%
+}
+
+\title{Quantum}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{multicols}{2}
+
+\textbf{Dynamics}
+\begin{align}
+  \ket*{\dot{\psi}} &= \frac{-i}{\hbar} H \ket{\psi}\\
+  \dot{\rho} = \frac{-i}{\hbar} [H_S, \rho_S] - \sum_k &\frac{\gamma_k}{2} (\{c_k^{\dagger} c_k, \rho_S\} - 2 c_k \rho_S c_k^{\dagger})\\
+  H_{\textrm{eff}} &= H_{S} - i \hbar \sum_k \frac{\gamma_k}{2} c_k^{\dagger} c_k\\
+  H &\rightarrow UHU^{\dagger} + i \hbar\dot{U}U^{\dagger}\\
+  d_t \hat{O} &= \frac{1}{i\hbar} [\hat{O}, \hat{H}] + \partial_t \hat{O}
+\end{align}
+
+\textbf{Misc}
+\begin{align}
+  \hat{p} &= -i\hbar\vec{\nabla}\\
+  [a, a^{\dagger}] &= \mathbb{1}\\
+  a \ket{n} &= \sqrt{n} \ket{n - 1}\\
+  a^{\dagger} \ket{n} &= \sqrt{n + 1}\ket{n + 1}\\
+  D(\alpha) &= \exp[\alpha a^{\dagger} - \alpha^{*} a]\\
+  S(z) &= \exp[\frac{1}{2}(z^* a^2 - z {a^{\dagger}}^2)]\\
+  B(\theta) &= \exp[i\theta(a^{\dagger}b + ab^{\dagger})]\\
+  e^{X} Y e^{-X} &= \sum_{n = 0}^{\infty} \frac{C_n}{n!}\\
+  C_n &= [X, C_{n - 1}]; \quad C_0 = Y\\
+  \Gamma &= \frac{2\pi}{\hbar} \lvert \bra{f} H^{\prime} \ket{i} \rvert^2 \rho(E_f)\\
+  \langle \vec{P} \rangle &= \frac{N}{V}\langle \vec{d} \rangle\\
+  \vec{d} &= -e \vec{x}\\
+  \hbar &= 1.054 \ 571 \ 817 \cdot 10^{-34} \textrm{Js}\\
+  e &= 1.602 \ 176 \ 634 \cdot 10^{-19} \textrm{C}\\
+  m_p &= 1.672 \ 621 \ 925 \cdot 10^{-27} \textrm{kg}\\
+  m_e &= 9.109 \ 383 \ 713 \cdot 10^{-31} \textrm{kg}\\
+  \mu_B &= e\hbar / 2m_e = 9.274 \ 010 \ 065 \cdot 10^{-24} \textrm{J}/\textrm{T}\\
+  1 \textrm{T} &= 10^4 \textrm{G}\\
+  k_B &= 1.380 \ 649 \cdot 10^{-23} \textrm{J/K}
+\end{align}
+
+\textbf{TLS}
+  \begin{align}
+    H/\hbar &= -\Omega/2 \ket{0} \bra{1} -\Omega^{*}/2 \ket{1} \bra{0} - \Delta \ket{1} \bra{1}\\
+    \Omega &= \frac{d_{01} E}{\hbar}; \quad \Delta = \nu - \omega_{10}\\
+    \rho_{01} &= \frac{i\Omega}{2(\gamma/2 - i\Delta)} \frac{1}{1 + s}\\
+    s &= \frac{\lvert \Omega \rvert^2}{2(\gamma^2/4 + \Delta^2)}
+  \end{align}
+
+  \textbf{AMO}
+  \begin{align}
+    \langle \vec{F} \rangle / \hbar &= \frac{1}{2} \textrm{Re}[\frac{\rho_{01}}{\Omega}]\vec{\nabla} \lvert \Omega \rvert^2
+    + \textrm{Im}[\frac{\rho_{01}}{\Omega}] \lvert \Omega \rvert^2 \vec{\nabla} \phi\\
+    \langle \vec{F} \rangle_{\textrm{dipole}} / \hbar &\approx \frac{-1}{4 \Delta} \vec{\nabla} \lvert \Omega \rvert^2\\
+    \langle \vec{F} \rangle_{\textrm{dis}} / \hbar &= -\vec{k} \frac{\lvert \Omega \rvert^2 \gamma}{\gamma^2 + 4 \Delta^2} \frac{1}{1 + s}
+  \end{align}
+
+%% Fujimoto denisty matrix perturbation theory
+%%   \textbf{Perturbation Theory}
+%%   \begin{align}
+%%     \dot{c}_{n}^{(n)} = -i \sum_m &e^{-i\omega_{mn} t} H_{nm}^{\prime}(t)/\hbar \; c_{m}^{(n - 1)}(t)\\ %% HW6
+%%     \begin{split}
+%%       \dot{\rho}_{mn}^{(n)} = -i \Omega_{mn} \rho_{mn}^{(n)}&\\
+%%       -i \sum_{l} (H^{\prime}_{ml}&/\hbar \; \rho_{ln}^{(n - 1)} - \rho_{ml}^{(n - 1)} H^{\prime}_{ln}/\hbar) %% HW6
+%%     \end{split}\\
+%%     \Omega_{mn} &= \omega_{mn} - i\Gamma_{mn}\\
+%%     A_{nm}(t_{j + 1} - t_j) &= e^{-i\Omega_{nm}(t_{j+1} - t_j)}\\
+%%     H^{\prime}_{nm}(t_j) &= -\frac{1}{2}\mu_{nm}Ee^{-i\omega t_j}
+%%   \end{align}
+
+%%   \begin{enumerate}
+%%   \item Use $\rho^{(0)}_{nm}(t_0)$
+%%   \item For ket line from $\ket*{n}$ to $\ket*{m}$ through $t_j$, use $H_{mn}^{\prime}(t_j)$; take $\dagger$ for bra line;
+%%     take $\dagger$ if photon leaves system
+%%   \item For ket--bra lines along $\ket*{n}\bra*{m}$ from $t_j$ to $t_{j + 1}$, use $\int_{t_0}^{t_{j+1}} dt_j A_{nm}(t_{j + 1} - t_j)$
+%%   \item Use $(i\hbar)^{-1}$ for each integration
+%%   \item Steady state $\lim_{t_0 \rightarrow -\infty}$
+%%   \end{enumerate}
+
+\end{multicols}
+
+\end{document}

@@ -1,0 +1,181 @@
+/* Essay styles with version control and diff visualization - Clean minimalist style */
+
+.essay-header {
+    margin-bottom: 2rem;
+}
+
+.essay-meta {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 1rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.essay-meta .version {
+    margin-right: 1rem;
+    font-weight: bold;
+}
+
+.version-nav {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    background-color: #eaeaea;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+}
+
+#version-selector {
+    font-family: Times, 'Times New Roman', serif;
+    padding: 0.3rem 0.5rem;
+    margin-right: 1rem;
+    border: 1px solid var(--border-color);
+    background-color: white;
+}
+
+#show-changes {
+    font-size: 0.9rem;
+    background-color: #e0e0e0;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    color: var(--royal-blue);
+}
+
+#show-changes:hover {
+    background-color: #d0d0d0;
+}
+
+.essay-content {
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+.essay-content p {
+    margin-bottom: 1.2rem;
+}
+
+.essay-content h2, .essay-content h3, .essay-content h4 {
+    color: var(--royal-blue);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Change reasoning section */
+.change-reasoning {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--box-bg-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.change-reasoning h3 {
+    color: var(--royal-blue);
+}
+
+.reasoning-content {
+    line-height: 1.6;
+}
+
+/* Diff visualization */
+.changes-visualization {
+    margin: 2rem 0;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--box-bg-color);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.diff-container {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+.diff-added {
+    background-color: #c3f3c3;
+    color: #006000;
+}
+
+.diff-removed {
+    background-color: #ffd4d4;
+    color: #a00000;
+    text-decoration: line-through;
+}
+
+.diff-unchanged {
+    color: #333;
+}
+
+.diff-section {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Version history timeline visualization */
+.version-timeline {
+    margin: 2rem 0;
+    position: relative;
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    background-color: var(--box-bg-color);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-track {
+    height: 4px;
+    background-color: #ccc;
+    position: relative;
+    margin: 2rem 0;
+    border: 1px solid #999;
+}
+
+.timeline-point {
+    width: 14px;
+    height: 14px;
+    background-color: var(--royal-blue);
+    border: 2px solid #000;
+    border-radius: 50%;
+    position: absolute;
+    top: -6px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.timeline-point:hover {
+    transform: scale(1.2);
+}
+
+.timeline-label {
+    position: absolute;
+    top: -25px;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: #000;
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .version-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    #version-selector {
+        margin-bottom: 0.5rem;
+        width: 100%;
+    }
+    
+    .timeline-label {
+        font-size: 0.7rem;
+    }
+} 

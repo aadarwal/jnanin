@@ -1,0 +1,1332 @@
+\section{Vector Calculus}
+\label{sec:vector-calculus}
+
+\noindent\textbf{Maps and fields.}\quad
+\[
+f:\R^m\to\R^n,\qquad
+\mathbf{x}=x^i\mathbf{e}_i,\qquad
+\mathbf{e}_i\cdot\mathbf{e}_j=\delta_{ij},
+\qquad i=1,\ldots,n.
+\]
+Curves: $m=1$. Scalar fields: $\phi:\R^n\to\R$. Vector fields:
+$\mathbf{F}:\R^n\to\R^n$. Repeated Cartesian indices are summed.
+\src{Tong VC \S 0}
+
+\subsection{Curves}
+
+\noindent\textbf{Parameterized curve and derivative.}
+\[
+C:\R\to\R^n,\qquad t\mapsto \mathbf{x}(t),\qquad
+\mathbf{x}(t+\delta t)-\mathbf{x}(t)
+=\dot{\mathbf{x}}(t)\,\delta t+O(\delta t^2).
+\]
+\[
+\dot{\mathbf{x}}=\frac{d\mathbf{x}}{dt}
+=\lim_{\delta t\to0}\frac{\delta\mathbf{x}}{\delta t},
+\qquad
+\mathbf{x}=x^i(t)\mathbf{e}_i\Rightarrow
+\dot{\mathbf{x}}=\dot{x}^i(t)\mathbf{e}_i
+\quad(\dot{\mathbf{e}}_i=0).
+\]
+\[
+\frac{d}{dt}(f\mathbf{g})=\dot f\,\mathbf{g}+f\dot{\mathbf{g}},
+\qquad
+\frac{d}{dt}(\mathbf{g}\cdot\mathbf{h})
+=\dot{\mathbf{g}}\cdot\mathbf{h}+\mathbf{g}\cdot\dot{\mathbf{h}},
+\]
+\[
+\frac{d}{dt}(\mathbf{g}\times\mathbf{h})
+=\dot{\mathbf{g}}\times\mathbf{h}+\mathbf{g}\times\dot{\mathbf{h}}
+\quad(\R^3).
+\]
+
+\noindent\textbf{Tangent and regularity.}
+\[
+\dot{\mathbf{x}}(t)\in T_{\mathbf{x}(t)}C,\qquad
+\text{regular parameterization: }\dot{\mathbf{x}}(t)\ne0.
+\]
+The tangent direction is geometric up to orientation; $|\dot{\mathbf{x}}|$ depends on
+the parameter. Piecewise smooth $C=C_1+C_2+\cdots$ has tangents away from joins.
+
+\noindent\textbf{Arc length.}
+\[
+\delta s=|\delta\mathbf{x}|+O(|\delta\mathbf{x}|^2)
+=|\dot{\mathbf{x}}\,\delta t|+O(\delta t^2),
+\qquad
+\frac{ds}{dt}=\pm\left|\frac{d\mathbf{x}}{dt}\right|.
+\]
+\[
+s(t)=\int_{t_0}^{t}|\dot{\mathbf{x}}(t')|\,dt'
+\quad(t>t_0).
+\]
+For $\tau=\tau(t)$ smooth, invertible, $d\tau/dt>0$,
+\[
+\frac{d\mathbf{x}}{dt}
+=\frac{d\mathbf{x}}{d\tau}\frac{d\tau}{dt},
+\qquad
+\int_{t_0}^{t}|\dot{\mathbf{x}}|\,dt
+=\int_{\tau_0}^{\tau}\left|\frac{d\mathbf{x}}{d\tau'}\right|\,d\tau'.
+\]
+Natural parameter:
+\[
+\mathbf{t}(s)\equiv\frac{d\mathbf{x}}{ds},\qquad |\mathbf{t}|=1.
+\]
+
+\noindent\textbf{Curvature, normal, torsion.}\quad
+For $C\subset\R^3$ parameterized by arc length and $\kappa\ne0$,
+\[
+\kappa(s)\equiv
+\left|\frac{d^2\mathbf{x}}{ds^2}\right|
+=\left|\frac{d\mathbf{t}}{ds}\right|,
+\qquad
+\mathbf{n}\equiv
+\frac{1}{\kappa}\frac{d^2\mathbf{x}}{ds^2}
+=\frac{1}{\kappa}\frac{d\mathbf{t}}{ds}.
+\]
+\[
+\mathbf{t}\cdot\mathbf{t}=1\Rightarrow\mathbf{t}\cdot\mathbf{n}=0,
+\qquad
+\kappa_{\rm circle}=R^{-1}.
+\]
+The span of $\{\mathbf{t},\mathbf{n}\}$ is the osculating plane. Define
+\[
+\mathbf{b}\equiv\mathbf{t}\times\mathbf{n},\qquad
+|\mathbf{b}|=1,\qquad
+\frac{d\mathbf{b}}{ds}=-\tau(s)\mathbf{n}.
+\]
+Frenet--Serret:
+\[
+\boxed{
+\frac{d\mathbf{t}}{ds}=\kappa\mathbf{n},\qquad
+\frac{d\mathbf{b}}{ds}=-\tau\mathbf{n},\qquad
+\frac{d\mathbf{n}}{ds}=\tau\mathbf{b}-\kappa\mathbf{t}}
+\]
+\[
+\frac{d\mathbf{t}}{ds}=\kappa(\mathbf{b}\times\mathbf{t}),
+\qquad
+\frac{d\mathbf{b}}{ds}=-\tau(\mathbf{b}\times\mathbf{t}).
+\]
+$\kappa(s),\tau(s)$ plus initial orientation determine $C$ up to rigid motion.
+\src{Tong VC \S 1.1}
+
+\noindent\textbf{Scalar line integral.}
+\[
+\phi:\R^n\to\R,\qquad
+\int_C\phi\,ds\equiv\int_{s_a}^{s_b}\phi(\mathbf{x}(s))\,ds.
+\]
+For $t_a<t_b$,
+\[
+\boxed{\int_C\phi\,ds
+=\int_{t_a}^{t_b}\phi(\mathbf{x}(t))|\dot{\mathbf{x}}(t)|\,dt.}
+\]
+Orientation independent; $\int_C ds$ is length.
+
+\noindent\textbf{Vector line integral.}
+\[
+\boxed{\int_C\mathbf{F}\cdot d\mathbf{x}
+\equiv\int_{t_a}^{t_b}
+\mathbf{F}(\mathbf{x}(t))\cdot\dot{\mathbf{x}}(t)\,dt}
+\]
+with limits chosen by the orientation of $C$. Hence
+\[
+\int_{-C}\mathbf{F}\cdot d\mathbf{x}=
+-\int_C\mathbf{F}\cdot d\mathbf{x},\qquad
+\oint_C\mathbf{F}\cdot d\mathbf{x}=\text{circulation}.
+\]
+If $C=C_1+C_2+\cdots$,
+\[
+\int_C\mathbf{F}\cdot d\mathbf{x}
+=\int_{C_1}\mathbf{F}\cdot d\mathbf{x}
++\int_{C_2}\mathbf{F}\cdot d\mathbf{x}+\cdots .
+\]
+
+\noindent\textbf{Gradient and conservative fields.}
+\[
+\partial_i\phi\equiv\frac{\partial\phi}{\partial x^i},
+\qquad
+\nabla\phi\equiv\frac{\partial\phi}{\partial x^i}\mathbf{e}_i,
+\qquad
+D_{\hat{\mathbf{n}}}\phi=\hat{\mathbf{n}}\cdot\nabla\phi.
+\]
+$D_{\hat{\mathbf{n}}}\phi$ is maximal for $\hat{\mathbf{n}}\parallel\nabla\phi$.
+\[
+\mathbf{F}\text{ conservative}\Longleftrightarrow \mathbf{F}=\nabla\phi.
+\]
+For $C:a\to b$,
+\[
+\boxed{\mathbf{F}=\nabla\phi\Rightarrow
+\int_C\mathbf{F}\cdot d\mathbf{x}=\phi(\mathbf{b})-\phi(\mathbf{a})}
+\]
+since
+\[
+\int_C\nabla\phi\cdot d\mathbf{x}
+=\int_{t_a}^{t_b}\frac{\partial\phi}{\partial x^i}
+\frac{dx^i}{dt}\,dt
+=\int_{t_a}^{t_b}\frac{d}{dt}\phi(\mathbf{x}(t))\,dt.
+\]
+Equivalently, modulo global regularity of the domain and potential,
+\[
+\boxed{\mathbf{F}\text{ conservative}
+\Longleftrightarrow
+\oint_C\mathbf{F}\cdot d\mathbf{x}=0\text{ for all closed }C.}
+\]
+Local test:
+\[
+\mathbf{F}=\nabla\phi\Rightarrow
+F_i=\partial_i\phi,\qquad
+\partial_jF_i=\partial_iF_j.
+\]
+The symmetry $\partial_iF_j=\partial_jF_i$ is necessary and locally sufficient for
+regular fields on simple domains.
+
+\noindent\textbf{Exact differential.}
+\[
+d\phi=\frac{\partial\phi}{\partial x^i}\,dx^i
+=\nabla\phi\cdot d\mathbf{x},
+\qquad
+\mathbf{F}\cdot d\mathbf{x}=d\phi
+\Longleftrightarrow \mathbf{F}=\nabla\phi.
+\]
+
+\noindent\textbf{Work and potential energy.}
+\[
+m\ddot{\mathbf{x}}=\mathbf{F}(\mathbf{x}),\qquad
+K=\frac12m|\dot{\mathbf{x}}|^2,
+\qquad
+K(t_2)-K(t_1)=\int_C\mathbf{F}\cdot d\mathbf{x}.
+\]
+If $\mathbf{F}=-\nabla V$,
+\[
+K(t_2)-K(t_1)=-V(\mathbf{x}(t_2))+V(\mathbf{x}(t_1)),
+\qquad
+\boxed{E=K+V=\text{constant}.}
+\]
+
+\noindent\textbf{Global subtlety.}\quad
+On $\R^2\setminus\{0\}$,
+\[
+\mathbf{F}(x,y)=
+\left(-\frac{y}{x^2+y^2},\,\frac{x}{x^2+y^2}\right),
+\qquad
+\frac{\partial F_x}{\partial y}=\frac{\partial F_y}{\partial x}
+=\frac{y^2-x^2}{(x^2+y^2)^2}.
+\]
+Locally $\mathbf{F}=\nabla\tan^{-1}(y/x)$, but the potential is not globally
+continuous and $\mathbf{F}$ is singular at $0$. For
+$\mathbf{x}(t)=(R\cos t,R\sin t)$,
+\[
+\oint_C\mathbf{F}\cdot d\mathbf{x}
+=\int_0^{2\pi}
+\left[-\frac{\sin t}{R}(-R\sin t)+
+\frac{\cos t}{R}(R\cos t)\right]dt
+=2\pi.
+\]
+Closed-loop vanishing requires field and potential data to be well behaved on the
+relevant domain, including the region enclosed by the loop.
+\src{Tong VC \S 1.2-\S 1.3}
+
+\subsection{Surfaces and Volumes}
+
+\noindent\textbf{Area integrals.}\quad For $D\subset\R^2$,
+\[
+\int_D \phi\,dA,\qquad dA=dx\,dy,\qquad
+\operatorname{Area}(D)=\int_D dA .
+\]
+Successive integrations encode the shape in limits:
+\[
+\int_D\phi(x,y)\,dA
+=\int_a^bdy\int_{x_1(y)}^{x_2(y)}dx\,\phi(x,y)
+=\int_c^ddx\int_{y_1(x)}^{y_2(x)}dy\,\phi(x,y).
+\]
+Fubini: order interchangeable for sufficiently regular $\phi,D$.
+
+\noindent\textbf{Coordinate changes in \texorpdfstring{$\R^2$}{R2}.}
+For a smooth invertible map $(u,v)\mapsto(x(u,v),y(u,v))$,
+\[
+\boxed{\int_D dx\,dy\,\phi(x,y)
+=\int_{D'}du\,dv\,|J(u,v)|\,\phi(x(u,v),y(u,v))}
+\]
+\[
+J=\frac{\partial(x,y)}{\partial(u,v)}
+=\det\begin{pmatrix}
+\partial_u x & \partial_v x\\
+\partial_u y & \partial_v y
+\end{pmatrix},
+\qquad
+\delta A=|J|\,\delta u\,\delta v.
+\]
+Plane polar:
+\[
+x=\rho\cos\varphi,\qquad y=\rho\sin\varphi,\qquad
+\rho\ge0,\quad\varphi\in[0,2\pi),
+\]
+\[
+J=\rho,\qquad \boxed{dA=\rho\,d\rho\,d\varphi},\qquad
+\int_0^\infty e^{-x^2/2}\,dx=\sqrt{\frac{\pi}{2}}.
+\]
+
+\noindent\textbf{Volume integrals and coordinate changes.}
+\[
+\int_V\phi(\mathbf{x})\,dV
+=\lim_{\delta V\to0}\sum_n\phi(\mathbf{x}_n)\delta V,
+\qquad
+\operatorname{Vol}(V)=\int_V dV.
+\]
+For $(u,v,w)\mapsto(x,y,z)$,
+\[
+\boxed{dV=dx\,dy\,dz=|J|\,du\,dv\,dw},
+\qquad
+J=\frac{\partial(x,y,z)}{\partial(u,v,w)}
+=\det\begin{pmatrix}
+\partial_u x & \partial_v x & \partial_w x\\
+\partial_u y & \partial_v y & \partial_w y\\
+\partial_u z & \partial_v z & \partial_w z
+\end{pmatrix}.
+\]
+Spherical polar:
+\[
+x=r\sin\theta\cos\varphi,\quad
+y=r\sin\theta\sin\varphi,\quad
+z=r\cos\theta,
+\]
+\[
+r\in[0,\infty),\quad\theta\in[0,\pi],\quad\varphi\in[0,2\pi),
+\qquad
+\boxed{dV=r^2\sin\theta\,dr\,d\theta\,d\varphi}.
+\]
+\[
+\int_{B_R} f(r)\,dV=4\pi\int_0^R r^2f(r)\,dr,
+\qquad
+\operatorname{Vol}(B_R)=\frac{4\pi R^3}{3}.
+\]
+Cylindrical polar:
+\[
+x=\rho\cos\varphi,\qquad y=\rho\sin\varphi,\qquad z=z,
+\]
+\[
+\rho\in[0,\infty),\quad \varphi\in[0,2\pi),\quad z\in\R,
+\qquad
+\boxed{dV=\rho\,d\rho\,d\varphi\,dz}.
+\]
+Sphere with cylinder removed, $x^2+y^2+z^2\le R^2$, $x^2+y^2\ge s^2$:
+\[
+\operatorname{Vol}
+=\int_0^{2\pi}d\varphi\int_s^R d\rho\,\rho
+\int_{-\sqrt{R^2-\rho^2}}^{\sqrt{R^2-\rho^2}}dz
+=\boxed{\frac{4\pi}{3}(R^2-s^2)^{3/2}}.
+\]
+
+\noindent\textbf{Vector-valued volume integrals and center of mass.}
+\[
+M=\int_V\rho(\mathbf{x})\,dV,\qquad
+\mathbf{X}=\frac{1}{M}\int_V\mathbf{x}\,\rho(\mathbf{x})\,dV.
+\]
+Uniform solid upper hemisphere:
+\[
+M=\frac{2\pi}{3}\rho R^3,\qquad \mathbf{X}=(0,0,3R/8).
+\]
+In $\R^n$, for $x^i=x^i(u^1,\ldots,u^n)$,
+\[
+\int_M f(x^i)\,dx^1\cdots dx^n
+=\int_{M'}f(x^i(u))\,|J|\,du^1\cdots du^n,
+\qquad
+J=\det\left(\frac{\partial x^i}{\partial u^a}\right).
+\]
+
+\noindent\textbf{Surfaces in \texorpdfstring{$\R^3$}{R3}.}
+\[
+S=\{\mathbf{x}\in\R^3:F(x,y,z)=0\},
+\qquad
+\mathbf{x}=\mathbf{x}(u,v):D\subset\R^2\to\R^3.
+\]
+Level-set normal:
+\[
+\mathbf{n}=\pm\frac{\nabla F}{|\nabla F|},\qquad
+\text{regular when }\nabla F\ne0\text{ on }S.
+\]
+Parametric tangents and normal:
+\[
+\mathbf{x}_u=\frac{\partial\mathbf{x}}{\partial u},\quad
+\mathbf{x}_v=\frac{\partial\mathbf{x}}{\partial v},\quad
+\mathbf{n}\sim\mathbf{x}_u\times\mathbf{x}_v,\quad
+\mathbf{x}_u\times\mathbf{x}_v\ne0.
+\]
+Examples:
+\[
+F=x^2+y^2+z^2-R^2,\quad \nabla F=2(x,y,z),
+\]
+\[
+F=x^2+y^2-z^2-R^2,\quad \nabla F=2(x,y,-z).
+\]
+
+\noindent\textbf{Boundaries, orientation, closedness.}
+\[
+\partial S=\text{piecewise smooth closed boundary curve},\qquad
+\partial V=\text{boundary surface of }V,\qquad
+\boxed{\partial^2=0}.
+\]
+An orientable surface admits a globally smooth unit normal. Reversing orientation:
+\[
+\mathbf{n}\mapsto-\mathbf{n}.
+\]
+A bounded surface lies in a finite ball; a closed surface is bounded and has no boundary.
+
+\noindent\textbf{Scalar surface integral.}
+\[
+dS=|\mathbf{x}_u\times\mathbf{x}_v|\,du\,dv,
+\qquad
+\boxed{\int_S\phi(\mathbf{x})\,dS
+=\int_Ddu\,dv\,|\mathbf{x}_u\times\mathbf{x}_v|\,
+\phi(\mathbf{x}(u,v)).}
+\]
+Orientation independent; $\operatorname{Area}(S)=\int_SdS$. Under
+$(u,v)\mapsto(\tilde u,\tilde v)$,
+\[
+\mathbf{x}_u\times\mathbf{x}_v
+=\frac{\partial(\tilde u,\tilde v)}{\partial(u,v)}
+\mathbf{x}_{\tilde u}\times\mathbf{x}_{\tilde v}.
+\]
+Sphere of radius $R$:
+\[
+\mathbf{x}(\theta,\varphi)
+=R(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta)=R\mathbf{e}_r,
+\]
+\[
+\mathbf{x}_\theta=R\mathbf{e}_\theta,\qquad
+\mathbf{x}_\varphi=R\sin\theta\,\mathbf{e}_\varphi,\qquad
+\mathbf{x}_\theta\times\mathbf{x}_\varphi
+=R^2\sin\theta\,\mathbf{e}_r.
+\]
+\[
+\boxed{dS=R^2\sin\theta\,d\theta\,d\varphi},\qquad
+A_{\rm cap}(0\le\theta\le\alpha)=\boxed{2\pi R^2(1-\cos\alpha)}.
+\]
+
+\noindent\textbf{Flux.}
+\[
+d\mathbf{S}=\mathbf{n}\,dS
+=(\mathbf{x}_u\times\mathbf{x}_v)\,du\,dv.
+\]
+\[
+\boxed{\int_S\mathbf{F}\cdot d\mathbf{S}
+=\int_Ddu\,dv\,
+(\mathbf{x}_u\times\mathbf{x}_v)\cdot\mathbf{F}(\mathbf{x}(u,v))}
+\]
+Changing orientation flips the sign. Fluid rate through $S$:
+\[
+\text{rate}=\int_S\mathbf{F}\cdot d\mathbf{S}.
+\]
+For $\mathbf{F}=(-x,0,z)$ on the radius-$R$ cap $0\le\theta\le\alpha$,
+\[
+\int_S\mathbf{F}\cdot d\mathbf{S}
+=\boxed{\pi R^3\cos\alpha\,\sin^2\alpha}.
+\]
+
+\noindent\textbf{Gaussian curvature and Gauss--Bonnet data.}
+\[
+\kappa_{\min}\le\kappa\le\kappa_{\max},\qquad
+\boxed{K=\kappa_{\min}\kappa_{\max}}.
+\]
+Gauss theorem egregium: $K$ is intrinsic. Geodesic triangle:
+\[
+\boxed{\theta_1+\theta_2+\theta_3
+=\pi+\int_DK\,dS}.
+\]
+Closed orientable surface of genus $g$:
+\[
+\boxed{\int_SK\,dS=4\pi(1-g)},\qquad
+K_{S_R^2}=R^{-2},\qquad \int_{S^2_R}K\,dS=4\pi.
+\]
+\src{Tong VC \S 2}
+
+\subsection{Grad, Div, Curl}
+
+\noindent\textbf{Gradient.}
+\[
+\nabla\phi=\frac{\partial\phi}{\partial x^i}\mathbf{e}_i,\qquad
+\phi(\mathbf{x}+\mathbf{h})
+=\phi(\mathbf{x})+\mathbf{h}\cdot\nabla\phi+O(|\mathbf{h}|^2).
+\]
+Along $\mathbf{x}(t)$,
+\[
+\frac{d}{dt}\phi(\mathbf{x}(t))
+=\frac{\partial\phi}{\partial x^i}\frac{dx^i}{dt}
+=\nabla\phi\cdot\dot{\mathbf{x}}.
+\]
+Radial identities, $r^2=x^ix^i$, $\mathbf{r}=x^i\mathbf{e}_i=r\hat{\mathbf{r}}$:
+\[
+\frac{\partial r}{\partial x^i}=\frac{x^i}{r},\qquad
+\nabla r^p=pr^{p-1}\hat{\mathbf{r}},\qquad
+\nabla\cdot\mathbf{r}=n,\qquad
+\nabla\times\mathbf{r}=0\quad(n=3).
+\]
+\[
+\phi=-\frac1r\Rightarrow \nabla\phi=\frac{\hat{\mathbf{r}}}{r^2}.
+\]
+
+\noindent\textbf{Operators.}
+\[
+\nabla=\mathbf{e}_i\frac{\partial}{\partial x^i},\qquad
+\nabla\cdot\mathbf{F}=\frac{\partial F_i}{\partial x^i}.
+\]
+In $\R^3$,
+\[
+\nabla\times\mathbf{F}
+=\epsilon_{ijk}\frac{\partial F_j}{\partial x^i}\mathbf{e}_k
+=\begin{pmatrix}
+\partial_2F_3-\partial_3F_2\\
+\partial_3F_1-\partial_1F_3\\
+\partial_1F_2-\partial_2F_1
+\end{pmatrix}.
+\]
+\[
+\epsilon_{ijk}\epsilon_{ilm}
+=\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl}.
+\]
+Examples:
+\[
+\mathbf{F}=(x^2,0,0):\quad\nabla\cdot\mathbf{F}=2x,\quad\nabla\times\mathbf{F}=0,
+\]
+\[
+\mathbf{F}=(y,-x,0):\quad\nabla\cdot\mathbf{F}=0,\quad\nabla\times\mathbf{F}=(0,0,-2),
+\]
+\[
+\mathbf{F}=\frac{\hat{\mathbf{r}}}{r^2}:\quad
+\nabla\cdot\mathbf{F}=0,\quad\nabla\times\mathbf{F}=0\quad(r\ne0),
+\qquad
+\nabla\cdot\frac{\hat{\mathbf{r}}}{r^2}=4\pi\delta^3(\mathbf{x}).
+\]
+
+\noindent\textbf{Linearity and product identities.}
+\[
+\nabla(\alpha\phi+\psi)=\alpha\nabla\phi+\nabla\psi,
+\quad
+\nabla\cdot(\alpha\mathbf{F}+\mathbf{G})
+=\alpha\nabla\cdot\mathbf{F}+\nabla\cdot\mathbf{G},
+\]
+\[
+\nabla\times(\alpha\mathbf{F}+\mathbf{G})
+=\alpha\nabla\times\mathbf{F}+\nabla\times\mathbf{G}.
+\]
+\[
+\nabla(\phi\psi)=\phi\nabla\psi+\psi\nabla\phi,
+\]
+\[
+\nabla\cdot(\phi\mathbf{F})
+=(\nabla\phi)\cdot\mathbf{F}+\phi\nabla\cdot\mathbf{F},
+\qquad
+\nabla\times(\phi\mathbf{F})
+=(\nabla\phi)\times\mathbf{F}+\phi\nabla\times\mathbf{F}.
+\]
+\[
+\nabla\cdot(\mathbf{F}\times\mathbf{G})
+=(\nabla\times\mathbf{F})\cdot\mathbf{G}
+-\mathbf{F}\cdot(\nabla\times\mathbf{G}).
+\]
+With $(\mathbf{F}\cdot\nabla)\equiv F_i\partial_i$,
+\[
+\nabla(\mathbf{F}\cdot\mathbf{G})
+=\mathbf{F}\times(\nabla\times\mathbf{G})
++\mathbf{G}\times(\nabla\times\mathbf{F})
++(\mathbf{F}\cdot\nabla)\mathbf{G}
++(\mathbf{G}\cdot\nabla)\mathbf{F},
+\]
+\[
+\nabla\times(\mathbf{F}\times\mathbf{G})
+=(\nabla\cdot\mathbf{G})\mathbf{F}
+-(\nabla\cdot\mathbf{F})\mathbf{G}
++(\mathbf{G}\cdot\nabla)\mathbf{F}
+-(\mathbf{F}\cdot\nabla)\mathbf{G}.
+\]
+
+\noindent\textbf{Irrotational, solenoidal, Helmholtz.}
+On fields defined everywhere on $\R^3$,
+\[
+\boxed{\nabla\times\mathbf{F}=0\Longleftrightarrow\mathbf{F}=\nabla\phi}
+\]
+and equivalently
+\[
+\nabla\times\mathbf{F}=0
+\Longleftrightarrow
+\mathbf{F}=\nabla\phi
+\Longleftrightarrow
+\oint_C\mathbf{F}\cdot d\mathbf{x}=0.
+\]
+\[
+\mathbf{F}=\nabla\phi\Rightarrow
+\nabla\times\mathbf{F}
+=\epsilon_{ijk}\partial_i\partial_j\phi\,\mathbf{e}_k=0.
+\]
+Solenoidal:
+\[
+\nabla\cdot\mathbf{F}=0,\qquad
+\boxed{\nabla\cdot\mathbf{F}=0\Longleftrightarrow\mathbf{F}=\nabla\times\mathbf{A}}
+\quad(\R^3,\text{ global regularity}).
+\]
+Gauge freedom:
+\[
+\mathbf{A}\sim\mathbf{A}+\nabla\chi.
+\]
+One explicit potential for solenoidal $\mathbf{F}$:
+\[
+\mathbf{A}=
+\left(
+\int_{z_0}^{z}F_y(x,y,z')\,dz',
+\int_{x_0}^{x}F_z(x',y,z_0)\,dx'
+-\int_{z_0}^{z}F_x(x,y,z')\,dz',
+0\right).
+\]
+Helmholtz form:
+\[
+\mathbf{F}=\nabla\phi+\nabla\times\mathbf{A}.
+\]
+
+\noindent\textbf{Laplacian.}
+\[
+\nabla^2\equiv\nabla\cdot\nabla=\partial_i\partial_i,\qquad
+\nabla^2_{\R^3}=
+\frac{\partial^2}{\partial x^2}
++\frac{\partial^2}{\partial y^2}
++\frac{\partial^2}{\partial z^2}.
+\]
+\[
+\nabla\times(\nabla\times\mathbf{F})
+=\nabla(\nabla\cdot\mathbf{F})-\nabla^2\mathbf{F}.
+\]
+Physics templates:
+\[
+\nabla\cdot\mathbf{E}=\frac{\rho}{\epsilon_0},\quad
+\nabla\times\mathbf{E}=-\frac{\partial\mathbf{B}}{\partial t},\quad
+\nabla\cdot\mathbf{B}=0,\quad
+\nabla\times\mathbf{B}=\mu_0\left(\mathbf{J}
++\epsilon_0\frac{\partial\mathbf{E}}{\partial t}\right).
+\]
+\[
+\frac{\partial T}{\partial t}=D\nabla^2T,\qquad
+i\hbar\frac{\partial\psi}{\partial t}
+=-\frac{\hbar^2}{2m}\nabla^2\psi+V\psi.
+\]
+\src{Tong VC \S 3.1-\S 3.2}
+
+\noindent\textbf{Orthogonal curvilinear coordinates.}
+\[
+d\mathbf{x}
+=\frac{\partial\mathbf{x}}{\partial u}du
++\frac{\partial\mathbf{x}}{\partial v}dv
++\frac{\partial\mathbf{x}}{\partial w}dw,
+\qquad
+\frac{\partial\mathbf{x}}{\partial u}\cdot
+\left(\frac{\partial\mathbf{x}}{\partial v}\times
+\frac{\partial\mathbf{x}}{\partial w}\right)\ne0.
+\]
+\[
+\frac{\partial\mathbf{x}}{\partial u}=h_u\mathbf{e}_u,\quad
+\frac{\partial\mathbf{x}}{\partial v}=h_v\mathbf{e}_v,\quad
+\frac{\partial\mathbf{x}}{\partial w}=h_w\mathbf{e}_w,\quad
+\mathbf{e}_u\times\mathbf{e}_v=\mathbf{e}_w.
+\]
+\[
+d\mathbf{x}=h_u\mathbf{e}_u\,du+h_v\mathbf{e}_v\,dv+h_w\mathbf{e}_w\,dw,
+\qquad
+d\mathbf{x}^2=h_u^2du^2+h_v^2dv^2+h_w^2dw^2.
+\]
+Cylindrical:
+\[
+\mathbf{x}=(\rho\cos\phi,\rho\sin\phi,z),\quad
+\mathbf{e}_\rho=(\cos\phi,\sin\phi,0),\quad
+\mathbf{e}_\phi=(-\sin\phi,\cos\phi,0),\quad
+\mathbf{e}_z=\hat{\mathbf{z}},
+\]
+\[
+h_\rho=1,\qquad h_\phi=\rho,\qquad h_z=1.
+\]
+Spherical:
+\[
+\mathbf{x}=(r\sin\theta\cos\phi,r\sin\theta\sin\phi,r\cos\theta),
+\]
+\[
+\mathbf{e}_r=(\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta),
+\quad
+\mathbf{e}_\theta=(\cos\theta\cos\phi,\cos\theta\sin\phi,-\sin\theta),
+\quad
+\mathbf{e}_\phi=(-\sin\phi,\cos\phi,0),
+\]
+\[
+h_r=1,\qquad h_\theta=r,\qquad h_\phi=r\sin\theta.
+\]
+
+\noindent\textbf{Grad, div, curl, Laplacian.}
+\[
+\boxed{\nabla f
+=\frac1{h_u}\frac{\partial f}{\partial u}\mathbf{e}_u
++\frac1{h_v}\frac{\partial f}{\partial v}\mathbf{e}_v
++\frac1{h_w}\frac{\partial f}{\partial w}\mathbf{e}_w}
+\]
+\[
+\boxed{\nabla\cdot\mathbf{F}
+=\frac1{h_uh_vh_w}
+\left[\partial_u(h_vh_wF_u)
++\partial_v(h_uh_wF_v)
++\partial_w(h_uh_vF_w)\right]}
+\]
+\[
+\boxed{\nabla\times\mathbf{F}
+=\frac1{h_uh_vh_w}
+\begin{vmatrix}
+h_u\mathbf{e}_u & h_v\mathbf{e}_v & h_w\mathbf{e}_w\\
+\partial_u & \partial_v & \partial_w\\
+h_uF_u & h_vF_v & h_wF_w
+\end{vmatrix}}
+\]
+where derivatives act on the third row only.
+\[
+\boxed{\nabla^2f
+=\frac1{h_uh_vh_w}
+\left[
+\partial_u\left(\frac{h_vh_w}{h_u}\partial_u f\right)
++\partial_v\left(\frac{h_uh_w}{h_v}\partial_v f\right)
++\partial_w\left(\frac{h_uh_v}{h_w}\partial_w f\right)
+\right].}
+\]
+Cylindrical:
+\[
+\nabla f=f_\rho\hat{\bm{\rho}}+\frac1{\rho}f_\phi\hat{\bm{\phi}}+f_z\hat{\mathbf{z}},
+\]
+\[
+\nabla\cdot\mathbf{F}
+=\frac1{\rho}\partial_\rho(\rho F_\rho)
++\frac1{\rho}\partial_\phi F_\phi+\partial_zF_z,
+\]
+\[
+\nabla\times\mathbf{F}
+=\left(\frac1{\rho}\partial_\phi F_z-\partial_zF_\phi\right)\hat{\bm{\rho}}
++\left(\partial_zF_\rho-\partial_\rho F_z\right)\hat{\bm{\phi}}
++\frac1{\rho}\left[\partial_\rho(\rho F_\phi)-\partial_\phi F_\rho\right]\hat{\mathbf{z}},
+\]
+\[
+\nabla^2f=
+\frac1{\rho}\partial_\rho(\rho\partial_\rho f)
++\frac1{\rho^2}\partial_\phi^2f+\partial_z^2f.
+\]
+Spherical:
+\[
+\nabla f=f_r\hat{\mathbf{r}}+\frac1r f_\theta\hat{\bm{\theta}}
++\frac1{r\sin\theta}f_\phi\hat{\bm{\phi}},
+\]
+\[
+\nabla\cdot\mathbf{F}
+=\frac1{r^2}\partial_r(r^2F_r)
++\frac1{r\sin\theta}\partial_\theta(\sin\theta F_\theta)
++\frac1{r\sin\theta}\partial_\phi F_\phi,
+\]
+\[
+\nabla\times\mathbf{F}
+=\frac1{r\sin\theta}
+\left[\partial_\theta(\sin\theta F_\phi)-\partial_\phi F_\theta\right]\hat{\mathbf{r}}
+\]
+\[
+\hspace{2em}
++\frac1r\left[\frac1{\sin\theta}\partial_\phi F_r-\partial_r(rF_\phi)\right]\hat{\bm{\theta}}
++\frac1r\left[\partial_r(rF_\theta)-\partial_\theta F_r\right]\hat{\bm{\phi}},
+\]
+\[
+\nabla^2f=
+\frac1{r^2}\partial_r(r^2\partial_r f)
++\frac1{r^2\sin\theta}\partial_\theta(\sin\theta\,\partial_\theta f)
++\frac1{r^2\sin^2\theta}\partial_\phi^2f.
+\]
+\src{Tong VC \S 3.3}
+
+\subsection{Integral Theorems}
+
+\noindent\textbf{Divergence theorem.}\quad
+For bounded $V\subset\R^3$ with piecewise smooth closed boundary
+$S=\partial V$ and outward $d\mathbf{S}=\mathbf{n}\,dS$,
+\[
+\boxed{\int_V\nabla\cdot\mathbf{F}\,dV
+=\int_{\partial V}\mathbf{F}\cdot d\mathbf{S}.}
+\]
+Local flux definition:
+\[
+\boxed{\nabla\cdot\mathbf{F}(\mathbf{x})
+=\lim_{V\to0}\frac{1}{V}
+\int_{\partial V}\mathbf{F}\cdot d\mathbf{S}.}
+\]
+Small box:
+\[
+\int_{\partial(\delta V)}\mathbf{F}\cdot d\mathbf{S}
+=\left(\frac{\partial F_x}{\partial x}
++\frac{\partial F_y}{\partial y}
++\frac{\partial F_z}{\partial z}\right)\delta x\,\delta y\,\delta z+o(\delta V).
+\]
+Tiling cancels interior face fluxes pairwise; only $\partial V$ remains.
+
+\noindent\textbf{Two-dimensional version and scalar corollary.}
+For $D\subset\R^2$, $C=\partial D$, outward normal $\mathbf{n}$,
+\[
+\boxed{\int_D\nabla\cdot\mathbf{F}\,dA
+=\int_C\mathbf{F}\cdot\mathbf{n}\,ds.}
+\]
+For scalar $\phi$,
+\[
+\boxed{\int_V\nabla\phi\,dV=\int_{\partial V}\phi\,d\mathbf{S}}
+\]
+from Gauss applied to $\mathbf{F}=\phi\mathbf{a}$ with constant $\mathbf{a}$.
+\src{Tong VC \S 4.1}
+
+\noindent\textbf{Continuity equation.}
+For density $\rho(\mathbf{x},t)$ and current $\mathbf{J}(\mathbf{x},t)$,
+\[
+Q_V(t)=\int_V\rho\,dV,\qquad
+\boxed{\frac{\partial\rho}{\partial t}+\nabla\cdot\mathbf{J}=0},
+\]
+\[
+\boxed{\frac{dQ_V}{dt}
+=-\int_{\partial V}\mathbf{J}\cdot d\mathbf{S}}.
+\]
+If $\mathbf{J}\to0$ sufficiently fast at infinity, then
+\[
+Q_{\rm tot}=\int_{\R^3}\rho\,dV,\qquad
+\frac{dQ_{\rm tot}}{dt}=0.
+\]
+Electric current:
+\[
+I=\int_S\mathbf{J}\cdot d\mathbf{S}.
+\]
+Fluid mass conservation, $\mathbf{J}=\rho\mathbf{u}$:
+\[
+\frac{\partial\rho}{\partial t}+\nabla\cdot(\rho\mathbf{u})=0,
+\qquad
+\rho=\text{const}\Rightarrow \boxed{\nabla\cdot\mathbf{u}=0}.
+\]
+
+\noindent\textbf{Diffusion from conservation.}
+For energy density $E=cT$ and heat current $\mathbf{J}=-\kappa\nabla T$,
+\[
+\frac{\partial E}{\partial t}+\nabla\cdot\mathbf{J}=0
+\Rightarrow
+\boxed{\frac{\partial T}{\partial t}=D\nabla^2T},
+\qquad
+D=\frac{\kappa}{c}.
+\]
+
+\noindent\textbf{Predator-prey / Bendixson-Dulac template.}
+Lotka--Volterra:
+\[
+\dot w=w(-\alpha+c),\qquad
+\dot c=c(\beta-w),\qquad \alpha,\beta>0,
+\]
+\[
+(w,c)_*=(\beta,\alpha),\qquad
+\frac{dw}{dc}=\frac{w(c-\alpha)}{c(\beta-w)},
+\qquad
+\boxed{\beta\log w-w+\alpha\log c-c=\text{const}.}
+\]
+With competition:
+\[
+\dot w=w(-\alpha+c-\mu w),\qquad
+\dot c=c(\beta-w-\nu c),\qquad \mu,\nu>0,
+\]
+\[
+(1+\mu\nu)w_*=\beta-\nu\alpha,\qquad
+(1+\mu\nu)c_*=\alpha+\mu\beta.
+\]
+Let $\mathbf{a}=(w,c)$, $\dot{\mathbf{a}}=\mathbf{p}$, $\nabla=(\partial_w,\partial_c)$.
+A closed orbit would imply, for any Dulac multiplier $b$,
+\[
+0=\oint b\,\mathbf{p}\cdot\mathbf{n}\,dt
+=\int_D\nabla\cdot(b\mathbf{p})\,dA.
+\]
+Choose $b=(wc)^{-1}$:
+\[
+\boxed{\nabla\cdot\left(\frac{\mathbf{p}}{wc}\right)
+=-\frac{\mu}{c}-\frac{\nu}{w}<0\quad(w,c>0).}
+\]
+Therefore no closed phase-plane orbits if $\mu\ne0$ or $\nu\ne0$.
+\src{Tong VC \S 4.2}
+
+\noindent\textbf{Green theorem in the plane.}
+For $C=\partial A$ positively oriented,
+\[
+\boxed{\int_A\left(\frac{\partial Q}{\partial x}
+-\frac{\partial P}{\partial y}\right)dA
+=\oint_C P\,dx+Q\,dy.}
+\]
+Equivalence with 2d Gauss: set $\mathbf{F}=(Q,-P)$; for
+$C:\mathbf{x}(s)=(x(s),y(s))$,
+\[
+\mathbf{n}=(y',-x'),\qquad
+\mathbf{F}\cdot\mathbf{n}\,ds=Q\,dy+P\,dx.
+\]
+For holes: outer boundary counterclockwise, inner boundaries clockwise.
+\src{Tong VC \S 4.3}
+
+\noindent\textbf{Stokes theorem.}
+For oriented $S\subset\R^3$ with boundary $C=\partial S$,
+\[
+\boxed{\int_S(\nabla\times\mathbf{F})\cdot d\mathbf{S}
+=\oint_C\mathbf{F}\cdot d\mathbf{x}.}
+\]
+Orientation: if $\mathbf{n}$ points toward the observer, $C$ is counterclockwise;
+equivalently $\mathbf{t}\times\mathbf{n}$ points outward from $S$.
+\[
+\boxed{\mathbf{n}\cdot(\nabla\times\mathbf{F})
+=\lim_{A\to0}\frac{1}{A}\oint_C\mathbf{F}\cdot d\mathbf{x}.}
+\]
+Rigid rotation:
+\[
+\mathbf{u}=\bm{\omega}\times\mathbf{x}
+\Rightarrow \nabla\times\mathbf{u}=2\bm{\omega}.
+\]
+If $\nabla\times\mathbf{F}=0$ on a simply connected region, then
+$\oint_C\mathbf{F}\cdot d\mathbf{x}=0$ for all closed $C$, so
+$\mathbf{F}=\nabla\phi$.
+
+\noindent\textbf{Stokes from Green.}
+For $\mathbf{x}=\mathbf{x}(u,v)$ and $C=\partial S$ corresponding to $\partial A$,
+\[
+\oint_C\mathbf{F}\cdot d\mathbf{x}
+=\oint_{\partial A}F_u\,du+F_v\,dv,
+\qquad
+F_u=\mathbf{F}\cdot\mathbf{x}_u,\quad
+F_v=\mathbf{F}\cdot\mathbf{x}_v,
+\]
+\[
+\frac{\partial F_v}{\partial u}
+-\frac{\partial F_u}{\partial v}
+=(\nabla\times\mathbf{F})\cdot(\mathbf{x}_u\times\mathbf{x}_v).
+\]
+
+\noindent\textbf{Magnetic field of an infinite wire.}
+\[
+\nabla\times\mathbf{B}=\mu_0\mathbf{J},\qquad
+\oint_{\partial S}\mathbf{B}\cdot d\mathbf{x}
+=\mu_0\int_S\mathbf{J}\cdot d\mathbf{S}
+=\mu_0 I.
+\]
+For a straight wire along $z$,
+\[
+\boxed{\mathbf{B}(\rho,\phi)=
+\frac{\mu_0I}{2\pi\rho}(-\sin\phi,\cos\phi,0)
+=\frac{\mu_0I}{2\pi\rho}\hat{\bm{\phi}}},\qquad
+\nabla\cdot\mathbf{B}=0.
+\]
+
+\noindent\textbf{Coordinate changes revisited.}
+For orthogonal coordinates $(u,v,w)$ with scale factors $h_u,h_v,h_w$,
+\[
+\boxed{\nabla\cdot\mathbf{F}
+=\frac{1}{h_uh_vh_w}\left[
+\partial_u(h_vh_wF_u)
++\partial_v(h_uh_wF_v)
++\partial_w(h_uh_vF_w)\right]}
+\]
+\[
+\boxed{
+\nabla\times\mathbf{F}
+=\frac{1}{h_uh_vh_w}
+\begin{vmatrix}
+h_u\mathbf{e}_u & h_v\mathbf{e}_v & h_w\mathbf{e}_w\\
+\partial_u & \partial_v & \partial_w\\
+h_uF_u & h_vF_v & h_wF_w
+\end{vmatrix}.}
+\]
+\src{Tong VC \S 4.4}
+
+\subsection{Poisson and Laplace Equations}
+
+\noindent\textbf{Gravity/electrostatics analogy and Gauss law.}
+\[
+\mathbf{F}_{\rm test}=m\mathbf{g}+q\mathbf{E},\qquad
+\mathbf{g}(\mathbf{x})=-\frac{GM}{r^2}\hat{\mathbf{r}},\qquad
+\mathbf{E}(\mathbf{x})=\frac{Q}{4\pi\epsilon_0r^2}\hat{\mathbf{r}}.
+\]
+For a point source enclosed by closed $S$,
+\[
+\boxed{\int_S\mathbf{g}\cdot d\mathbf{S}=-4\pi GM},
+\qquad
+\boxed{\int_S\mathbf{E}\cdot d\mathbf{S}=\frac{Q}{\epsilon_0}}.
+\]
+For densities $\rho_m,\rho_e$,
+\[
+\boxed{\nabla\cdot\mathbf{g}=-4\pi G\rho_m},
+\qquad
+\boxed{\nabla\cdot\mathbf{E}=\frac{\rho_e}{\epsilon_0}}.
+\]
+Spherical symmetry:
+\[
+\mathbf{g}(r)=-\frac{GM(r)}{r^2}\hat{\mathbf{r}},\qquad
+\mathbf{E}(r)=\frac{Q(r)}{4\pi\epsilon_0r^2}\hat{\mathbf{r}}.
+\]
+Infinite line charge of linear density $\lambda$:
+\[
+\boxed{\mathbf{E}(r)=\frac{\lambda}{2\pi\epsilon_0r}\hat{\mathbf{r}}.}
+\]
+In $\R^n$, point-source radial fields scale as $r^{-(n-1)}$.
+
+\noindent\textbf{Potentials and Poisson equations.}
+\[
+\nabla\times\mathbf{g}=0,\qquad \nabla\times\mathbf{E}=0,\qquad
+\mathbf{g}=-\nabla\Phi,\qquad \mathbf{E}=-\nabla\phi.
+\]
+\[
+\boxed{\nabla^2\Phi=4\pi G\rho_m},\qquad
+\boxed{\nabla^2\phi=-\frac{\rho_e}{\epsilon_0}}.
+\]
+Abstract normalization:
+\[
+\boxed{\nabla^2\psi(\mathbf{x})=-\rho(\mathbf{x})},\qquad
+\rho=0\Rightarrow \boxed{\nabla^2\psi=0}.
+\]
+Linearity: $\nabla^2\psi_1=\nabla^2\psi_2=0\Rightarrow
+\nabla^2(\psi_1+\psi_2)=0$.
+\src{Tong VC \S 5.1-\S 5.2}
+
+\noindent\textbf{Isotropic harmonic functions.}
+In $\R^3$, $\psi=\psi(r)$:
+\[
+\nabla^2\psi=\frac{1}{r^2}\frac{d}{dr}
+\left(r^2\frac{d\psi}{dr}\right)=0
+\Rightarrow
+\boxed{\psi(r)=\frac{A}{r}+B}\qquad(r\ne0).
+\]
+In cylindrical symmetry / $\R^2$:
+\[
+\nabla^2\psi=\frac{1}{r}\frac{d}{dr}
+\left(r\frac{d\psi}{dr}\right)=0
+\Rightarrow
+\boxed{\psi(r)=A\log r+B}\qquad(r\ne0).
+\]
+In $\R^n$,
+\[
+\psi(r)\sim
+\begin{cases}
+r^{2-n}, & n\ne2,\\
+\log r, & n=2.
+\end{cases}
+\]
+Derivatives of harmonic functions are harmonic away from singularities:
+\[
+\psi_{\rm dipole}(\mathbf{x})
+=\mathbf{d}\cdot\nabla\frac{1}{r}
+=-\frac{\mathbf{d}\cdot\mathbf{x}}{r^3}.
+\]
+
+\noindent\textbf{Spherical constant-density source.}
+For
+\[
+\nabla^2\psi=
+\begin{cases}
+-\rho_0, & r\le R,\\
+0, & r>R,
+\end{cases}
+\qquad
+\psi(0)\text{ finite},\quad \psi(r)\to0,\quad
+\psi,\psi'\text{ continuous at }R,
+\]
+\[
+\boxed{
+\psi(r)=
+\begin{cases}
+\dfrac{\rho_0}{6}(3R^2-r^2), & r\le R,\\[4pt]
+\dfrac{\rho_0R^3}{3r}, & r>R.
+\end{cases}}
+\]
+For gravity in the above normalization, $\Phi=-4\pi G\psi$.
+
+\noindent\textbf{Boundary data and uniqueness.}
+On bounded $V$,
+\[
+\text{Dirichlet: }\psi|_{\partial V}=f,\qquad
+\text{Neumann: }\frac{\partial\psi}{\partial n}
+=\mathbf{n}\cdot\nabla\psi=g.
+\]
+Dirichlet data determine a Poisson solution uniquely; pure Neumann data determine it
+up to an additive constant. If $\psi=\psi_1-\psi_2$,
+\[
+\nabla^2\psi=0,\qquad
+\int_V\nabla\cdot(\psi\nabla\psi)\,dV
+=\int_V|\nabla\psi|^2\,dV
+=\int_{\partial V}\psi\,\mathbf{n}\cdot\nabla\psi\,dS.
+\]
+Homogeneous Dirichlet or Neumann boundary term vanishes, so $\nabla\psi=0$ in $V$.
+Neumann compatibility for $\nabla^2\psi=\rho$:
+\[
+\boxed{\int_V\rho\,dV=\int_{\partial V}g\,dS.}
+\]
+
+\noindent\textbf{Green identities.}
+\[
+\boxed{
+\int_V\phi\nabla^2\psi\,dV
+=-\int_V\nabla\phi\cdot\nabla\psi\,dV
++\int_{\partial V}\phi\nabla\psi\cdot d\mathbf{S}}
+\]
+\[
+\boxed{
+\int_V(\phi\nabla^2\psi-\psi\nabla^2\phi)\,dV
+=\int_{\partial V}(\phi\nabla\psi-\psi\nabla\phi)\cdot d\mathbf{S}.}
+\]
+
+\noindent\textbf{Harmonic functions.}
+\[
+\boxed{\nabla^2\psi=0.}
+\]
+Mean value property: if $B_R(\mathbf{a})\subset V$,
+\[
+\boxed{\psi(\mathbf{a})
+=\frac{1}{4\pi R^2}
+\int_{|\mathbf{x}-\mathbf{a}|=R}\psi(\mathbf{x})\,dS.}
+\]
+Reason:
+\[
+\frac{d}{dR}\left[
+\frac{1}{4\pi R^2}\int_{S_R}\psi\,dS\right]
+=\frac{1}{4\pi R^2}\int_{S_R}\nabla\psi\cdot d\mathbf{S}
+=\frac{1}{4\pi R^2}\int_{B_R}\nabla^2\psi\,dV=0.
+\]
+Maximum/minimum principle:
+\[
+\boxed{\text{nonconstant harmonic }\psi\text{ has no interior maximum or minimum}.}
+\]
+
+\noindent\textbf{Green function in \texorpdfstring{$\R^3$}{R3}.}
+\[
+\delta^3(\mathbf{x})=0\quad(\mathbf{x}\ne0),\qquad
+\int_V f(\mathbf{x})\delta^3(\mathbf{x})\,dV=f(\mathbf{0})\quad(0\in V).
+\]
+\[
+\boxed{\nabla^2\left(\frac{1}{|\mathbf{x}|}\right)
+=-4\pi\delta^3(\mathbf{x})}.
+\]
+For localized source decaying sufficiently fast,
+\[
+\boxed{\psi(\mathbf{x})
+=\frac{1}{4\pi}\int
+\frac{\rho(\mathbf{x}')}{|\mathbf{x}-\mathbf{x}'|}\,dV'}
+\]
+solves $\nabla^2\psi=-\rho$.
+\src{Tong VC \S 5.2}
+
+\subsection{Tensors}
+
+\noindent\textbf{Transformation law.}
+For orthonormal bases related by $e'_i=R_{ij}e_j$,
+\[
+RR^T=I,\qquad R\in O(n),\qquad \det R=\pm1.
+\]
+Vector and rank-$p$ tensor components:
+\[
+\mathbf{x}=x_i e_i=x'_i e'_i,\qquad x'_i=R_{ij}x_j,
+\]
+\[
+\boxed{T'_{i_1\cdots i_p}
+=R_{i_1j_1}\cdots R_{i_pj_p}T_{j_1\cdots j_p}.}
+\]
+Rank $0$: scalar; rank $1$: vector; rank $2$: matrix only if it obeys this law.
+
+\noindent\textbf{Tensors as maps.}
+\[
+T(a,b,\ldots,c)=T_{i_1\cdots i_p}a_{i_1}b_{i_2}\cdots c_{i_p}
+\]
+is multilinear and basis-independent. Rank $2$ maps vectors to vectors:
+\[
+u_i=T_{ij}v_j,\qquad
+T'_{ij}=R_{ik}R_{jl}T_{kl},\qquad T'=RTR^T.
+\]
+
+\noindent\textbf{Tensor operations and quotient rule.}
+\[
+(S+T)_{i_1\cdots i_p}=S_{i_1\cdots i_p}+T_{i_1\cdots i_p},
+\]
+\[
+(S\otimes T)_{i_1\cdots i_pj_1\cdots j_q}
+=S_{i_1\cdots i_p}T_{j_1\cdots j_q},
+\]
+\[
+\delta_{ij}T_{ijk_1\cdots k_{p-2}},\qquad
+\operatorname{tr}T=T_{ii},\qquad
+a\cdot b=a_ib_i.
+\]
+Quotient rule:
+\[
+v_{i_1\cdots i_p}
+=T_{i_1\cdots i_pj_1\cdots j_q}u_{j_1\cdots j_q}
+\text{ tensor for all tensor }u
+\Rightarrow T\text{ is a tensor}.
+\]
+
+\noindent\textbf{Symmetry and invariant tensors.}
+\[
+T_{\cdots ij\cdots}=\pm T_{\cdots ji\cdots}
+\Rightarrow \text{symmetric/antisymmetric property is basis-independent}.
+\]
+In $\R^3$,
+\[
+T_{ij}=P_{ij}+\epsilon_{ijk}B_k+\frac13\delta_{ij}Q,
+\qquad
+P_{ii}=0,\quad Q=T_{ii},\quad
+B_k=\frac12\epsilon_{ijk}T_{ij}.
+\]
+\[
+\delta'_{ij}=R_{ik}R_{jl}\delta_{kl}=\delta_{ij},
+\]
+\[
+\epsilon'_{i_1\cdots i_n}
+=R_{i_1j_1}\cdots R_{i_nj_n}\epsilon_{j_1\cdots j_n}
+=(\det R)\epsilon_{i_1\cdots i_n}.
+\]
+Thus $\epsilon$ is invariant under $SO(n)$ and changes sign under reflections.
+In $\R^3$:
+\[
+\text{rank }1:0,\qquad
+\text{rank }2:\alpha\delta_{ij},\qquad
+\text{rank }3:\beta\epsilon_{ijk},
+\]
+\[
+T_{ijkl}^{\rm iso}
+=\alpha\delta_{ij}\delta_{kl}
++\beta\delta_{ik}\delta_{jl}
++\gamma\delta_{il}\delta_{jk},
+\qquad
+\epsilon_{ijk}\epsilon_{ilp}
+=\delta_{jl}\delta_{kp}-\delta_{jp}\delta_{kl}.
+\]
+\src{Tong VC \S 6.1}
+
+\noindent\textbf{Invariant integrals.}
+For rotationally invariant $V$ and radial $f(r)$,
+\[
+T_{i\cdots k}=\int_V f(r)x_i\cdots x_k\,dV
+\]
+is isotropic. Hence in $\R^3$,
+\[
+\int_V\rho(r)x_i\,dV=0,
+\]
+\[
+\int_V\rho(r)x_ix_j\,dV
+=\frac13\delta_{ij}\int_V\rho(r)r^2\,dV
+=\frac{4\pi}{3}\delta_{ij}\int_0^R\rho(r)r^4\,dr.
+\]
+
+\noindent\textbf{Tensor fields and vector-gradient decomposition.}
+\[
+X_{i_1\cdots i_qj_1\cdots j_p}
+=\partial_{i_1}\cdots\partial_{i_q}
+T_{j_1\cdots j_p}(\mathbf{x}),\qquad
+\partial_i\equiv\frac{\partial}{\partial x_i}.
+\]
+For vector field $F_i$,
+\[
+\partial_jF_i=P_{ij}+\epsilon_{ijk}B_k+\frac13\delta_{ij}Q,
+\]
+\[
+Q=\partial_iF_i=\nabla\cdot\mathbf{F},\qquad
+B_k=\frac12\epsilon_{ijk}\partial_jF_i
+=-\frac12(\nabla\times\mathbf{F})_k,
+\]
+\[
+P_{ij}=\frac12(\partial_jF_i+\partial_iF_j)
+-\frac13\delta_{ij}\partial_kF_k.
+\]
+
+\noindent\textbf{Physical tensors.}
+\[
+P_i=\alpha_{ij}E_j,\qquad J_i=\sigma_{ij}E_j.
+\]
+Isotropic $3$d media:
+\[
+\sigma_{ij}=\sigma\delta_{ij},\qquad
+\alpha_{ij}=\alpha\delta_{ij}.
+\]
+Isotropic $2$d conductor:
+\[
+\sigma_{ij}=\sigma_{xx}\delta_{ij}+\sigma_{xy}\epsilon_{ij}
+=\begin{pmatrix}
+\sigma_{xx} & \sigma_{xy}\\
+-\sigma_{xy} & \sigma_{xx}
+\end{pmatrix}.
+\]
+\[
+I_{ij}=\sum_a m_a\left(|\mathbf{x}_a|^2\delta_{ij}
+-(x_a)_i(x_a)_j\right),\qquad \mathbf{L}=I\bm{\omega}.
+\]
+Continuous body:
+\[
+\boxed{I_{ij}=\int_V\rho(\mathbf{x})
+\left(|\mathbf{x}|^2\delta_{ij}-x_ix_j\right)\,dV.}
+\]
+Sphere, radius $R$, radial density:
+\[
+I_{ij}=\frac{8\pi}{3}\delta_{ij}\int_0^R\rho(r)r^4\,dr,
+\qquad
+\rho=\rho_0:\quad I_{ij}=\frac25MR^2\delta_{ij}.
+\]
+Cylinder, radius $a$, height $2L$:
+\[
+I=\operatorname{diag}\left(
+M\left(\frac{a^2}{4}+\frac{L^2}{3}\right),
+M\left(\frac{a^2}{4}+\frac{L^2}{3}\right),
+\frac12Ma^2\right).
+\]
+Since $I_{ij}=I_{ji}$, principal axes diagonalize $I$:
+\[
+I'=RIR^T=\operatorname{diag}(I_1,I_2,I_3).
+\]
+Elasticity and geometry templates:
+\[
+\sigma_{ij}=C_{ijkl}e_{kl},\qquad R_{ijkl}\text{ (Riemann curvature)}.
+\]
+\src{Tong VC \S 6.2}
+
+\noindent\textbf{Antisymmetric tensors and integration.}
+Generalized cross product:
+\[
+(a\times b)_{i_1\cdots i_{n-2}}
+=\epsilon_{i_1\cdots i_{n-2}jk}a_jb_k.
+\]
+Hodge-dual-type contraction:
+\[
+(*T)_{i_1\cdots i_{n-p}}
+=\frac1{p!}\epsilon_{i_1\cdots i_{n-p}j_1\cdots j_p}
+T_{j_1\cdots j_p}.
+\]
+A totally antisymmetric $p$-tensor integrates over a $p$-dimensional subspace $M$:
+\[
+\int_M T_{i_1\cdots i_p}\,dS_{i_1\cdots i_p}.
+\]
+For $\mathbf{x}=\mathbf{x}(u,v)$,
+\[
+dS_{ij}
+=\frac12\left(
+\frac{\partial x_i}{\partial u}\frac{\partial x_j}{\partial v}
+-\frac{\partial x_i}{\partial v}\frac{\partial x_j}{\partial u}
+\right)du\,dv.
+\]
+
+\noindent\textbf{Exterior-derivative-like operator.}
+\[
+(D\phi)_i=\partial_i\phi,\qquad
+(D\mathbf{F})_{ij}=\frac12(\partial_jF_i-\partial_iF_j),
+\]
+\[
+(\nabla\times\mathbf{F})_i
+=\epsilon_{ijk}(D\mathbf{F})_{jk}\quad(\R^3).
+\]
+For antisymmetric $p$-tensor $T$,
+\[
+(DT)_{i_1\cdots i_{p+1}}
+=\frac1{p+1}\sum_{r=1}^{p+1}(-1)^{r+1}
+\partial_{i_r}T_{i_1\cdots\widehat{i_r}\cdots i_{p+1}},
+\qquad
+D^2T=0.
+\]
+
+\noindent\textbf{Generalized Stokes theorem.}
+\[
+\boxed{\int_M(DT)_{i_1\cdots i_{p+1}}\,dS_{i_1\cdots i_{p+1}}
+=\int_{\partial M}T_{i_1\cdots i_p}\,dS_{i_1\cdots i_p}.}
+\]
+Here $\dim M=p+1$ and $\dim\partial M=p$. Special cases: fundamental theorem of
+calculus, divergence theorem, ordinary Stokes theorem.
+\src{Tong VC \S 6.3}

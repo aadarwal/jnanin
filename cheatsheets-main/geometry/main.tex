@@ -1,0 +1,324 @@
+\documentclass[12pt]{article}
+
+% imports
+\usepackage{appendix}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{bbold}
+\usepackage[justification=centering]{caption}
+\usepackage{float}
+\usepackage[margin=1em]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{layouts}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{optidef}
+\usepackage{physics}
+\usepackage{setspace}
+\usepackage{diagbox}
+\usepackage[labelformat=simple]{subcaption}
+\usepackage{xcolor}
+
+% configure imports
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
+\definecolor{darkgreen}{RGB}{46, 184, 46}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\R}{\mathbb{R}}
+\captionsetup[subfigure]{labelformat=empty, skip=0pt}
+\captionsetup{labelsep=period}
+\restylefloat{table}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\addto\captionsenglish{%
+  \renewcommand{\figurename}{FIG.}%
+  \renewcommand{\tablename}{TABLE}%
+  \renewcommand{\appendixname}{APPENDIX}%
+}
+
+\title{\vspace{-2em}Geometry}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\vspace{-4em}
+\begin{multicols}{2}
+
+  \begin{center}
+    \textbf{Linear Algebra}
+  \end{center}
+  
+  \noindent
+  \textbf{Def. Vector Space:} A vector space $(V, +, \cdot)$ on a scalar field $\mathbb{F}$ is,
+  \begin{enumerate}
+  \item a set $V$,
+  \item $+ : V \times V \rightarrow V$,
+  \item $\cdot : \mathbb{F} \times V$ ,
+  \end{enumerate}
+  satisfying,
+  \begin{enumerate}
+  \item Commutivity $(+)$,
+  \item Associativity $(+)$,
+  \item Neutral $(+)$,
+  \item Inverse $(+)$,
+  \item Associativity - scalar $(\cdot)$,
+  \item Distributivity - scalar $(\cdot)$,
+  \item Distributivity - vector $(\cdot)$,
+  \item Unity $(\cdot)$.
+  \end{enumerate}
+  
+  \noindent
+  \textbf{Def. Linear Map:} For vector spaces $V$, $W$ a map $\phi: V \rightarrow W$ is linear ($\tilde{\rightarrow}$) if
+  for all $u, v \in V$ and $\lambda \in \mathbb{F}$,
+  \begin{enumerate}
+  \item $\phi(u +_V v) = \phi(u) +_W \phi(v)$,
+  \item $\phi(\lambda \cdot_V v) = \lambda \cdot_W \phi(v)$.
+  \end{enumerate}
+  
+  \noindent
+  \textbf{Def. Dual Space:} The dual vector space to $V$ is $V^{*} = \{\phi: V \tilde{\rightarrow} \mathbb{F}\}$.
+  
+  \noindent
+  \textbf{Def. Tensor:} A ($r$, $s$) tensor is a multi-linear
+  map $T: V^{*} \times \dots \times V^{*} \times V \times \dots \times V \rightarrow \mathbb{F}$.
+
+  \begin{center}
+    \textbf{Topology}
+  \end{center}
+  
+  \noindent
+  \textbf{Def. Topology:} A topology $O \subset P(M)$ satisfies,
+  \begin{enumerate}
+  \item $\emptyset \in O$, $M \in O$,
+  \item $U \in O$, $V \in O$ $\implies$ $U \cap V \in O$,
+  \item $U_{\alpha} \in O \implies \cup_{\alpha} U_{\alpha} \in O$.
+  \end{enumerate}
+  
+  \noindent
+  \textbf{Def. Continuity:} $(M, O_M), (N, O_N)$ top. spaces.
+  A map $f: M \rightarrow N$ is continuous w.r.t. to the topologies if for all $U \in O_N$,
+  $\textrm{preim}_f(U) \in O_M$.
+  
+  \noindent
+  \textbf{Def. Topological Manifold:} $(M, O)$ called a top. manifold if for all $p \in M$, there exists
+  $U$ with $p \in U \in O$ and there exists $x: U \rightarrow x(U) \subset \mathbb{R}^d$ with
+  \begin{enumerate}
+  \item $x$ continuous,
+  \item $x^{-1}$ exists,
+  \item $x^{-1}$ continuous.
+  \end{enumerate}
+  $A = {(U, x)}$ an atlas if $M = \cup_{\alpha} U_{\alpha}$.
+  
+  \noindent
+  \textbf{Def. $*$ Compatability:} Two charts $(U, x), (V, y)$ of a top. manifold are called $*$-compatible if either
+  $U \cap V = \emptyset$ or $U \cap V \neq \emptyset$ and $y \circ x^{-1}$ and $x \circ y^{-1}$ are $*$-differentiable.
+  
+  \noindent
+  \textbf{Def. $*$ Manifold:} A $*$-manifold is $(M, O, A)$ where
+  $(M, O)$ is a top. manifold and any two charts in $A$ are $*$-compatible.
+  The manifold is called smooth if $* = C^{\infty}$.
+
+  \noindent
+  \textbf{Thm.}
+  $C^{\infty}(M) = \{f : M \rightarrow \mathbb{R} | f \ \textrm{is} \ C^{\infty}\}$ is a ring.
+
+  \noindent
+  \textbf{Def. Velocity:} $(M, O, A)$ is a smooth manifold. $\gamma : \mathbb{R} \rightarrow M$
+  is a curve at least $C^{1}$ with $\gamma(\lambda_0) = p$. The velocity of $\gamma$ at $p$ is the linear map
+  $v_{\gamma, p} : C^{\infty}(M) \rightarrow \mathbb{R}$ given by $v_{\gamma, p}(f) = \partial_1 (f \circ \gamma)\lvert_{\lambda_0}$.
+
+  \noindent
+  \textbf{Def. Tangent Space:} $T_{p}M = \{v_{\gamma, p} | \gamma \ C^{\infty}\}$
+
+  \noindent
+  \textbf{Def. Cotangent Space:} $T^{*}_{p}M = \{\phi: T_pM \tilde{\rightarrow} \mathbb{R}\}$
+
+  %% TODO: I don't understand this construction fully, what is the def. of the action dx^i
+  \noindent
+  \textbf{Thm. Tangent Space Bases:} For a chart $(U, x)$, $\partial x_i \lvert_p$ constitutes a basis for $T_{p}U$
+  and $d x^i$ constitutes a basis for $T^{*}_{p}U$ where $\partial x_i \lvert_p f = \partial_i (f \circ x^{-1})\lvert_{x(p)}$,
+  for $f \in C^{\infty}(M)$.
+
+  \noindent
+  \textbf{Def. Bundle:} A bundle is $(E, \pi, M)$ where $E$ and $M$
+  are smooth mainfolds and $\pi: E \rightarrow M$ is a smooth, surjective map.
+
+  \noindent
+  \textbf{Def. Fiber:} Given a bundle $(E, \pi, M)$, a fiber over $p \in M$
+  is $\textrm{preim}_\pi({p})$.
+
+  \noindent
+  \textbf{Def. Section:} Given a bundle $(E, \pi, M)$, a section $\sigma$ is
+  a map $\sigma: M \rightarrow E$ satisfying $\pi \circ \sigma = \textrm{id}_M$.
+
+  \noindent
+  \textbf{Thm. Tangent Bundle:} The "tangent bundle"
+  $TM = \dot{\cup}_{p \in M} T_pM$ is a smooth manifold
+  when equipped with,
+  \begin{align}
+  O_{TM} &= \{\textrm{preim}_{\pi}(U) | U \in O\},\\
+  A_{TM} &= \{(TU, \xi_x), | (U, x) \in A\},
+  \end{align}
+  where $\xi_X: TU \rightarrow \mathbb{R}^{2d}$,
+  \begin{align}
+  \xi_x(X) &= (\dots, (x^i \circ \pi)(X), \dots, dx^i(X), \dots), \ \textrm{and}\\
+  \pi(X) &= p \ \textrm{s.t.} \ X \in T_pM.
+  \end{align}
+  This structure allows the creation of a bundle $(TM, \pi, M)$.
+  A similar structure can make $T^*M = \dot{\cup}_{p \in M} T_p^*M$
+  a smooth manifold.
+
+  \noindent
+  \textbf{Def. Vector Field:}
+  A vector field is a smooth section of the tangent bundle.
+
+  %% TODO:  I don't understand this construction fully.
+  \noindent
+  \textbf{Thm. Tangent Bundle Module:}
+  $\Gamma(TM) = \{\sigma : M \rightarrow TM\}$ is a vector space over
+  $C^{\infty}(M)$ with the following operations for $\sigma, \nu \in \Gamma(TM)$
+  and $f, g \in C^{\infty}(M)$,
+  \begin{itemize}
+  \item $(\sigma \oplus \nu)(f) = \sigma(f) + \nu(f)$,
+  \item $(g \odot \sigma)(f) = g \cdot \sigma(f)$
+  \end{itemize}
+
+  \noindent
+  \textbf{Def. Tensor Field:}
+  A (r, s) tensor field is a multi-linear map $T: \Gamma(T^*M) \times \dots \times \Gamma(T^*M) \times \Gamma(TM) \times \dots \times \Gamma(TM) \tilde{\rightarrow} C^{\infty}(M)$. It is understood
+  that a $(0, 0)$ tensor field takes $T: C^{\infty}(M) \tilde{\rightarrow} C^{\infty}(M)$.
+
+  \noindent
+  \textbf{Def. Connection:} A connection on a smooth manifold is a map that takes a vector field
+  and a $(p, q)$ tensor field $T$ and returns a $(p, q)$ tensor field, satisfying, for all $f \in C^{\infty}(M)$,
+  $X, Y, Z \in \Gamma(TM)$, and $w \in \Gamma(T^*M)$,
+  \begin{itemize}
+  \item $\nabla_X f = X f$ 
+  \item $\nabla_X (T + S) = \nabla_X T + \nabla_X S$
+  \item $\nabla_X (T(w, Y)) = (\nabla_X T)(w, Y) + T(\nabla_X w, Y) + T(w, \nabla_X Y)$
+  \item $\nabla_{f X + Z} T = f \nabla_X T + \nabla_Z T$
+  \end{itemize}
+
+  \noindent
+  \textbf{Rmk. Connection Coefficient Functions:}
+  \begin{align}
+  \nabla_{\partial x_k} \partial x_j &= {\Gamma_{(x)}}^i_{jk} \partial x_i\\
+  \nabla_{\partial x_k} d x^i &= -{\Gamma_{(x)}}^i_{jk} dx^j\\
+  \begin{split}
+    {\Gamma_{(y)}}^i_{jk} &= (\partial x_q y^i) [\partial y_k (\partial y_j x^q)]\\
+    & \ + (\partial x_q y^i) (\partial y_k x^p) (\partial y_j x^s) {\Gamma_{(x)}}^q_{sp}
+  \end{split}
+  \end{align}
+  
+  \noindent
+  \textbf{Rmk.}
+  \begin{align}
+    A^{[ab]} &= \frac{1}{2}(A^{ab} - A^{ba})\\
+    A^{(ab)} &= \frac{1}{2}(A^{ab} + A^{ba})
+  \end{align}
+
+  \noindent
+  \textbf{Def. Torsion:}
+  The torision of a connection is the (1, 2) tensor field
+  \begin{align}
+    T(w, X, Y) = w(\nabla_X Y - \nabla_Y X - [X, Y])
+  \end{align}
+  A manifold with connection is torsion free if the torsion tensor vanishes everywhere on the manifold.
+  It can be shown that the connection coefficient functions are symmetric in the lower two indices
+  if the connection is torsion free.
+
+  \noindent
+  \textbf{Def. Riemann Curvature:}
+  The Riemann Curvature of a connection is the (1, 3) tensor field
+  \begin{align}
+    T(w, Z, X, Y) = w(\nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X, Y]} Z)
+  \end{align}
+
+  \noindent
+  \textbf{Def. Parallel Transport:}
+  A vector field $X$ is parallely transported along a smooth curve $\gamma(\lambda)$ if,
+  \begin{align}
+    \nabla_{v_{\gamma, \gamma(\lambda)}} X \lvert_{\gamma(\lambda)} &= 0,  \ \textrm{for all} \ \lambda.
+  \end{align}
+  A vector field is parallel to another vector $\mu X$ with $\mu: \mathbb{R} \rightarrow \mathbb{R}$ if,
+  \begin{align}
+    \nabla_{v_{\gamma, \gamma(\lambda)}} X \lvert_{\gamma(\lambda)} &= \mu \lvert_{\lambda} X \lvert_{\gamma(\lambda)},
+    \ \textrm{for all} \ \lambda.
+  \end{align}
+
+  \noindent
+  \textbf{Def. Autoparallel Transport:}
+  A vector field is autoparallely transported if,
+  \begin{align}
+    \nabla_{v_{\gamma, \gamma(\lambda)}} v_{\gamma, \gamma(\lambda)} &= 0, \ \textrm{for all} \ \lambda.
+  \end{align}
+  A vector field is autoparallel to another $\mu v_{\gamma}$ if,
+  \begin{align}
+    \nabla_{v_{\gamma, \gamma(\lambda)}} v_{\gamma, \gamma(\lambda)} &= \mu \lvert_{\lambda} v_{\gamma, \gamma(\lambda)},
+    \ \textrm{for all} \ \lambda.
+  \end{align}
+
+  \noindent
+  \textbf{Def. Metric:}
+  A metric $g$ is a $(0, 2)$ tensor field satisfying,
+  \begin{itemize}
+  \item symmetric: $g(X, Y) = g(Y, X)$,
+  \item non-degenerate: for every $X \in \Gamma(TM),\ X \neq 0$, there exists $Y \in \Gamma(TM)$ s.t. $g(X, Y) \neq 0$,
+  \end{itemize}
+  A Riemannian metric is positive definite.
+  The inverse metric $g^{-1}$ is a symmetric, non-degenerate $(2, 0)$ tensor satisfying $g(w, \sigma) = w b^{-1}(\sigma)$
+  where $b(x) = g(x, \cdot)$ is a $C^{\infty}$ isomorphism which exists and is invertible by the non-degeneracy condition
+  on $g$. Note that ${g^{-1}}^{am}g_{mb} = \delta^a_b$.
+
+  \noindent
+  \textbf{Def. Length:}
+  The speed of a curve $\gamma: (a, b) \subset \mathbb{R} \rightarrow M$ is,
+  \begin{align}
+    s(\lambda) &= [g(v_{\gamma}, v_{\gamma})]^{1/2} \lvert_{\gamma(\lambda)}.
+  \end{align}
+  The length of a curve is,
+  \begin{align}
+    L[\gamma] &= \int_a^b d\lambda \ s(\lambda).
+  \end{align}
+  It can be shown that this length is invariant under reparameterizations of $\gamma$.
+
+  \noindent
+  \textbf{Def. Geodesic:} A curve $\gamma$ is called a geodesic if it is stationary (extremal)
+  w.r.t. $L[\gamma]$.
+
+  \noindent
+  \textbf{Thm. Geodesic Equation:} $\gamma$ is a geodesic iff it satisfies,
+  \begin{align}
+    \ddot{\gamma}^q &+ \Gamma^q_{ij}[\gamma(\lambda)] \dot{\gamma}^i \dot{\gamma}^j = 0,\\
+    \Gamma^q_{ij} &= (g^{-1})^{qm} \frac{1}{2}(\partial_i g_{mj} + \partial_j g_{mi} - \partial_m g_{ij}),
+  \end{align}
+  where $\dot{\gamma}^i = \partial_1 (x \circ \gamma)^i$.
+
+  \noindent
+  \textbf{Def. Levi-Civita:}
+  The $\Gamma^q_{ij}$ in the geodesic equation are the connection coefficient functions for the Levi-Civita connection,
+  also called the Christoffel Symbols of the first kind.
+  An equivalent way to define this connection is requiring $\nabla g = 0$ and $T_{\textrm{torsion}} = 0$.
+
+  \noindent
+  \textbf{Def. Riemann Christoffel Curvature:}
+  \begin{align}
+    R_{abcd} &= g_{am} R^m_{bcd},
+  \end{align}
+  where the Riemann curvature is obtained with the Levi-Civita connection.
+
+  \noindent
+  \textbf{Def. Ricci Curvature:}
+  \begin{align}
+    R_{ab} &= R^m_{amb}\\
+    R &= (g^{-1})^{ab} R_{ab}
+  \end{align}
+
+  
+\end{multicols}
+
+\end{document}

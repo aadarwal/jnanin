@@ -1,0 +1,1065 @@
+\providecommand{\half}{\frac{1}{2}}
+\providecommand{\epszero}{\epsilon_0}
+\providecommand{\rhat}{\hat{\mathbf r}}
+\providecommand{\thetahat}{\hat{\boldsymbol\theta}}
+\providecommand{\om}{\bm{\omega}}
+\providecommand{\Iten}{\mathsf I}
+\providecommand{\tr}{\operatorname{tr}}
+
+\section{Dynamics and Relativity}
+\label{sec:dynamics-relativity}
+
+\noindent\textbf{Conventions.}\quad Ordinary vectors are bold; $r=|\mathbf x|$,
+$\rhat=\mathbf x/r$. Dots are $d/dt$. Relativity uses
+$\eta_{\mu\nu}=\operatorname{diag}(1,-1,-1,-1)$ and explicit $c$ unless a block
+states $c=1$.
+
+\subsection{Newtonian Mechanics}
+
+\noindent\textbf{Particle kinematics.}\quad
+\[
+  \mathbf v=\dot{\mathbf x}=\frac{d\mathbf x}{dt},\qquad
+  \mathbf a=\ddot{\mathbf x}=\frac{d^2\mathbf x}{dt^2},
+\]
+\[
+  \frac{d}{dt}(\mathbf f\cdot\mathbf g)=\dot{\mathbf f}\cdot\mathbf g+
+  \mathbf f\cdot\dot{\mathbf g},\qquad
+  \frac{d}{dt}(\mathbf f\times\mathbf g)=\dot{\mathbf f}\times\mathbf g+
+  \mathbf f\times\dot{\mathbf g}.
+\]
+Vector ODEs are componentwise; the trajectory is fixed by two data per degree of
+freedom. \src{Tong DynRel \S 1.1}
+
+\noindent\textbf{Inertial frames and Galilean relativity.}\quad Newton's first law is
+the existence of frames in which
+\[
+  \boxed{\mathbf F=0\quad\Longrightarrow\quad \ddot{\mathbf x}=0}.
+\]
+Inertial frames are related by
+\[
+  t'=t+t_0,\qquad
+  \mathbf x'=R\mathbf x+\mathbf a+\mathbf u t,\qquad R^TR=I,
+\]
+\[
+  \dot{\mathbf x}'=R\dot{\mathbf x}+\mathbf u,\qquad
+  \ddot{\mathbf x}'=R\ddot{\mathbf x}.
+\]
+No preferred point, direction, velocity, or time origin appears in the laws; absolute
+time means elapsed $t$ is common to all inertial frames. \src{Tong DynRel \S 1.2}
+
+\noindent\textbf{Newton's second law.}\quad
+\[
+  \boxed{\frac{d}{dt}(m\dot{\mathbf x})=\mathbf F(\mathbf x,\dot{\mathbf x},t)},
+  \qquad \mathbf p=m\dot{\mathbf x}.
+\]
+For constant mass:
+\[
+  \boxed{m\ddot{\mathbf x}=\mathbf F(\mathbf x,\dot{\mathbf x},t)}.
+\]
+Independent forces add. Pairwise third law:
+\[
+  \mathbf F_{ij}=-\mathbf F_{ji};
+\]
+strong form also requires $\mathbf F_{ij}\parallel(\mathbf x_i-\mathbf x_j)$.
+Newtonian validity: $|\dot{\mathbf x}|\ll c$, definite trajectories, prescribed
+forces or classical fields. \src{Tong DynRel \S\S 1.3-1.4}
+
+\subsection{Forces}
+
+\noindent\textbf{One-dimensional conservative motion.}\quad For $F=F(x)$,
+\[
+  F(x)=-\frac{dV}{dx},\qquad
+  V(x)=-\int_{x_0}^{x}F(x')\,\dd x',
+\]
+\[
+  m\ddot x=-V'(x),\qquad
+  \boxed{E=\half m\dot x^2+V(x)},\qquad
+  \dot E=\dot x(m\ddot x+V')=0.
+\]
+Allowed regions and turning points:
+\[
+  E\ge V(x),\qquad E=V(x)\Rightarrow \dot x=0.
+\]
+First integral:
+\[
+  \dot x=\pm\sqrt{\frac{2}{m}(E-V(x))},\qquad
+  t-t_0=\pm\int_{x_0}^{x}\frac{\dd x'}{\sqrt{(2/m)(E-V(x'))}}.
+\]
+\src{Tong DynRel \S 2.1}
+
+\noindent\textbf{Templates.}\quad
+\[
+\begin{array}{c|c|c|c}
+\text{system} & V & \text{equation} & \text{result}\\ \hline
+\text{uniform gravity, }z\text{ up} & mgz & \ddot z=-g &
+z=z_0+ut-\half gt^2,\ \dot z=u-gt\\
+\text{harmonic oscillator} & \half kx^2 & \ddot x+\omega^2x=0 &
+x=A\cos\omega t+B\sin\omega t,\ \omega^2=k/m
+\end{array}
+\]
+Oscillator period $T=2\pi/\omega$. \src{Tong DynRel \S 2.1}
+
+\noindent\textbf{Equilibria.}\quad
+\[
+  x_0\text{ equilibrium}\Longleftrightarrow V'(x_0)=0,\qquad
+  V(x)=V(x_0)+\half V''(x_0)(x-x_0)^2+O((x-x_0)^3).
+\]
+\[
+\begin{array}{c|c|c}
+V''(x_0)>0 & \text{stable} &
+x-x_0=A\cos\omega t+B\sin\omega t,\quad \omega^2=V''(x_0)/m\\
+V''(x_0)<0 & \text{unstable} &
+x-x_0=Ae^{\alpha t}+Be^{-\alpha t},\quad \alpha^2=-V''(x_0)/m\\
+V''(x_0)=0 & \text{degenerate} & \text{higher terms decide}
+\end{array}
+\]
+Any nondegenerate stable equilibrium is harmonic at small amplitude. For the
+pendulum:
+\[
+  \ddot\theta=-\frac{g}{l}\sin\theta,\qquad
+  E=\half ml^2\dot\theta^2-mgl\cos\theta,
+\]
+\[
+  T_{\rm period}=4\sqrt{\frac{l}{g}}\int_0^{\theta_0}
+  \frac{\dd\theta}{\sqrt{2\cos\theta-2\cos\theta_0}},
+  \qquad T_{\rm small}=2\pi\sqrt{\frac{l}{g}}.
+\]
+\src{Tong DynRel \S 2.1.2}
+
+\noindent\textbf{Three-dimensional conservative forces.}\quad
+\[
+  \boxed{\mathbf F=-\nabla V}
+  \Longleftrightarrow
+  \boxed{E=\half m\dot{\mathbf x}^{\,2}+V(\mathbf x)\text{ conserved}}.
+\]
+On simply connected domains:
+\[
+  \nabla\times\mathbf F=0
+  \Longleftrightarrow
+  \int_C\mathbf F\cdot\dd\mathbf x\text{ path independent}.
+\]
+Work-power relation:
+\[
+  W_{1\to2}=\int_C\mathbf F\cdot\dd\mathbf x
+  =\int_{t_1}^{t_2}\mathbf F\cdot\dot{\mathbf x}\,\dd t
+  =T(t_2)-T(t_1).
+\]
+\src{Tong DynRel \S 2.2}
+
+\noindent\textbf{Central forces and angular momentum.}\quad For $V=V(r)$,
+\[
+  \nabla V=V'(r)\rhat,\qquad
+  \mathbf F=-V'(r)\rhat.
+\]
+\[
+  \mathbf L=m\mathbf x\times\dot{\mathbf x},\qquad
+  \bm\tau=\mathbf x\times\mathbf F,\qquad
+  \boxed{\dot{\mathbf L}=\bm\tau}.
+\]
+Central force $\mathbf F\parallel\mathbf x$ gives
+\[
+  \bm\tau=0,\qquad \dot{\mathbf L}=0,\qquad
+  \mathbf x\cdot\mathbf L=\dot{\mathbf x}\cdot\mathbf L=0,
+\]
+so motion is planar. \src{Tong DynRel \S\S 2.2.1-2.2.2}
+
+\noindent\textbf{Gravity.}\quad A fixed source mass $M$:
+\[
+  V(r)=-\frac{GMm}{r},\qquad
+  \mathbf F=-\frac{GMm}{r^2}\rhat,\qquad
+  G\simeq 6.67\times10^{-11}\,{\rm m^3\,kg^{-1}\,s^{-2}}.
+\]
+Gravitational potential:
+\[
+  \Phi=-\frac{GM}{r},\qquad V=m\Phi,\qquad \mathbf F=-m\nabla\Phi.
+\]
+Superposition:
+\[
+  \Phi(\mathbf r)=-G\sum_i\frac{M_i}{|\mathbf r-\mathbf r_i|},\qquad
+  \mathbf F=-Gm\sum_i\frac{M_i(\mathbf r-\mathbf r_i)}{|\mathbf r-\mathbf r_i|^3}.
+\]
+Exterior field of a spherical body is point-mass:
+\[
+  M=4\pi\int_0^R\rho(x)x^2\,\dd x,\qquad
+  r>R\Rightarrow \Phi(r)=-\frac{GM}{r}.
+\]
+Near a planet surface:
+\[
+  V(R+z)\simeq -\frac{GMm}{R}+\frac{GMm}{R^2}z,\qquad g=\frac{GM}{R^2}.
+\]
+Escape:
+\[
+  \half mv^2-\frac{GMm}{R}\ge0,\qquad
+  \boxed{v_{\rm esc}=\sqrt{\frac{2GM}{R}}},\qquad
+  R_S=\frac{2GM}{c^2}.
+\]
+Equivalence principle input:
+\[
+  m_I\ddot{\mathbf x}=\mathbf F,\qquad
+  \mathbf F_{\rm grav}=-\frac{GM_Gm_G}{r^2}\rhat,\qquad
+  m_I=m_G\ \text{experimentally}.
+\]
+\src{Tong DynRel \S 2.3}
+
+\noindent\textbf{Electromagnetic force.}\quad
+\[
+  \boxed{\mathbf F=q(\mathbf E+\dot{\mathbf x}\times\mathbf B)}.
+\]
+For static $\mathbf E=-\nabla\phi$,
+\[
+  \boxed{E_{\rm mech}=\half m\dot{\mathbf x}^{\,2}+q\phi},\qquad
+  \dot E_{\rm mech}=q\dot{\mathbf x}\cdot(\dot{\mathbf x}\times\mathbf B)=0.
+\]
+Point charge:
+\[
+  \phi(r)=\frac{Q}{4\pi\epszero r},\qquad
+  \mathbf E=\frac{Q}{4\pi\epszero r^2}\rhat,\qquad
+  \mathbf F=\frac{qQ}{4\pi\epszero r^2}\rhat.
+\]
+Constant $\mathbf B=B\hat{\mathbf z}$:
+\[
+  m\ddot x=qB\dot y,\qquad m\ddot y=-qB\dot x,\qquad m\ddot z=0.
+\]
+With $\xi=x+iy$,
+\[
+  m\ddot\xi=-iqB\dot\xi,\qquad
+  \xi=\alpha e^{-i\omega_c t}+\beta,\qquad
+  \omega_c=\frac{qB}{m},
+\]
+\[
+  r_L=\frac{v_\perp}{|\omega_c|},\qquad
+  T_{\rm cyclotron}=\frac{2\pi}{|\omega_c|}.
+\]
+Vacuum Maxwell equations:
+\[
+  \nabla\cdot\mathbf E=0,\quad \nabla\cdot\mathbf B=0,\quad
+  \nabla\times\mathbf E=-\pd_t\mathbf B,\quad
+  \nabla\times\mathbf B=\frac{1}{c^2}\pd_t\mathbf E.
+\]
+\src{Tong DynRel \S 2.4}
+
+\noindent\textbf{Friction and drag.}\quad Dry friction:
+\[
+  |\mathbf F_{\rm fric}|=\mu R,\qquad
+  \mathbf F_{\rm fric}\ \text{opposes relative sliding}.
+\]
+Fluid drag:
+\[
+  \mathbf F=-\gamma\mathbf v\quad(R_e\ll1),\qquad
+  \mathbf F=-\gamma|\mathbf v|\mathbf v\quad(R_e\gg1),
+\]
+\[
+  R_e=\frac{\rho vL}{\eta},\qquad
+  \gamma_{\rm Stokes}=6\pi\eta L,\qquad
+  \frac{F}{A}=\eta\frac{v}{d}.
+\]
+Damped oscillator:
+\[
+  m\ddot x=-kx-\gamma\dot x,\qquad
+  \ddot x+2\alpha\dot x+\omega_0^2x=0,\quad
+  \omega_0^2=k/m,\quad \alpha=\gamma/(2m),
+\]
+\[
+  E=\half m\dot x^2+\half kx^2,\qquad \dot E=-\gamma\dot x^2\le0.
+\]
+\[
+\begin{array}{c|c}
+\omega_0^2>\alpha^2 &
+x=e^{-\alpha t}(A\cos\Omega t+B\sin\Omega t),\quad \Omega^2=\omega_0^2-\alpha^2\\
+\omega_0^2<\alpha^2 &
+x=e^{-\alpha t}(Ae^{\Omega t}+Be^{-\Omega t}),\quad \Omega^2=\alpha^2-\omega_0^2\\
+\omega_0^2=\alpha^2 &
+x=(A+Bt)e^{-\alpha t}
+\end{array}
+\]
+Quadratic drag falling, $z$ upward:
+\[
+  \dot v=-g+\frac{\gamma}{m}v^2,\qquad
+  v(t)=-\sqrt{\frac{mg}{\gamma}}\tanh\!\left(\sqrt{\frac{\gamma g}{m}}t\right),
+  \qquad
+  v_{\rm term}=-\sqrt{\frac{mg}{\gamma}}.
+\]
+Throw upward with speed $u$:
+\[
+  h=\frac{m}{2\gamma}\log\left(1+\frac{\gamma u^2}{mg}\right)
+  =\frac{u^2}{2g}\left(1-\frac{\gamma u^2}{2mg}+\cdots\right).
+\]
+Linear-drag projectile:
+\[
+  m\dot{\mathbf v}=m\mathbf g-\gamma\mathbf v,\quad \tau=m/\gamma,
+\]
+\[
+  \mathbf v=\tau\mathbf g+(\mathbf u-\tau\mathbf g)e^{-t/\tau},\qquad
+  \mathbf x=\tau\mathbf g\,t+\tau(\mathbf u-\tau\mathbf g)(1-e^{-t/\tau}).
+\]
+Drude/Ohm:
+\[
+  m\ddot{\mathbf x}=-e\mathbf E-\gamma\mathbf v,\qquad
+  \mathbf j=-en\mathbf v=\sigma\mathbf E,\qquad
+  \sigma=\frac{e^2n}{\gamma},\qquad R_{\rm wire}=\frac{L}{\sigma A}.
+\]
+\src{Tong DynRel \S 2.5}
+
+\subsection{Dimensional Analysis}
+
+\noindent\textbf{Dimensions and Buckingham $\Pi$.}\quad
+\[
+  [x]=L,\quad [m]=M,\quad [t]=T,\quad
+  [v]=LT^{-1},\quad [F]=MLT^{-2},\quad [E]=ML^2T^{-2},\quad
+  [G]=M^{-1}L^3T^{-2}.
+\]
+Only dimensionless quantities may appear as arguments of $e^x,\sin x,\log x$.
+If $n$ variables span rank $k$ dimensional directions, then $r=n-k$ independent
+dimensionless groups exist:
+\[
+  \Pi_a=\prod_i X_i^{p_{ia}},\qquad [\Pi_a]=1,
+\]
+\[
+  \boxed{Y=X_1^{a_1}\cdots X_k^{a_k}\Phi(\Pi_1,\ldots,\Pi_{n-k})}.
+\]
+Regime statements such as $x\gg1$ require $[x]=1$. \src{Tong DynRel \S 3}
+
+\noindent\textbf{Scaling examples.}\quad Pendulum:
+\[
+  T=C(\theta_0)\sqrt{\frac{l}{g}},\qquad
+  T\ \text{independent of }m.
+\]
+Blast wave, variables $\rho,R,t,E$:
+\[
+  \boxed{E=C\frac{\rho R^5}{t^2}},\qquad
+  R(t)\sim\left(\frac{Et^2}{\rho}\right)^{1/5}.
+\]
+Rowing:
+\[
+  F_{\rm drag}\sim\rho v^2A,\qquad P\sim\rho v^3A,\qquad
+  A\sim N^{2/3},\quad P\sim N
+  \Rightarrow \boxed{v\sim N^{1/9}}.
+\]
+Planck scales:
+\[
+  \ell_p=\sqrt{\frac{G\hbar}{c^3}},\qquad
+  t_p=\frac{\ell_p}{c},\qquad
+  m_p=\sqrt{\frac{\hbar c}{G}},\qquad
+  E_p=\sqrt{\frac{\hbar c^5}{G}}\sim10^{19}{\rm GeV}.
+\]
+\src{Tong DynRel \S 3}
+
+\subsection{Central Forces}
+
+\noindent\textbf{Planar reduction and polar kinematics.}\quad For $V=V(r)$,
+\[
+  m\ddot{\mathbf x}=-\nabla V=F(r)\rhat,\qquad
+  \mathbf L=m\mathbf x\times\dot{\mathbf x}=\text{constant}.
+\]
+Choose the orbital plane:
+\[
+  \mathbf x=r\rhat,\qquad
+  \dot{\mathbf x}=\dot r\,\rhat+r\dot\theta\,\thetahat,
+\]
+\[
+  \boxed{\ddot{\mathbf x}=(\ddot r-r\dot\theta^2)\rhat+
+  (r\ddot\theta+2\dot r\dot\theta)\thetahat}.
+\]
+Uniform circular motion:
+\[
+  v=r\omega,\qquad \ddot{\mathbf x}=-r\omega^2\rhat,\qquad
+  |\mathbf F|=mv^2/r.
+\]
+\src{Tong DynRel \S\S 4.1-4.2}
+
+\noindent\textbf{Effective potential.}\quad
+\[
+  \ell\equiv r^2\dot\theta=\frac{|\mathbf L|}{m}=\text{constant},
+\]
+\[
+  m\ddot r=-V'(r)+\frac{m\ell^2}{r^3}
+  =-\frac{dV_{\rm eff}}{dr},
+\]
+\[
+  \boxed{V_{\rm eff}(r)=V(r)+\frac{m\ell^2}{2r^2}},\qquad
+  \boxed{E=\half m\dot r^2+V_{\rm eff}(r)}.
+\]
+Circular orbit $r=r_\ast$:
+\[
+  V_{\rm eff}'(r_\ast)=0
+  \Longleftrightarrow
+  V'(r_\ast)=\frac{m\ell^2}{r_\ast^3},\qquad
+  \Omega=\ell/r_\ast^2.
+\]
+Stability:
+\[
+  \boxed{V_{\rm eff}''(r_\ast)>0}
+  \Longleftrightarrow
+  \boxed{V''(r_\ast)+\frac{3}{r_\ast}V'(r_\ast)>0}
+  \Longleftrightarrow
+  \boxed{F'(r_\ast)+\frac{3}{r_\ast}F(r_\ast)<0}.
+\]
+For $V=-k/r^n$, stability requires $n<2$. \src{Tong DynRel \S 4.2}
+
+\noindent\textbf{Orbit equation.}\quad With $u(\theta)=1/r$,
+\[
+  \dot\theta=\ell u^2,\qquad
+  \dot r=-\ell\frac{du}{d\theta},\qquad
+  \ddot r=-\ell^2u^2\frac{d^2u}{d\theta^2},
+\]
+\[
+  \boxed{\frac{d^2u}{d\theta^2}+u
+  =-\frac{1}{m\ell^2u^2}F(1/u)}.
+\]
+Time recovery:
+\[
+  t-t_0=\int_{\theta_0}^{\theta}\frac{\dd\vartheta}{\ell u(\vartheta)^2}.
+\]
+\src{Tong DynRel \S 4.3}
+
+\noindent\textbf{Kepler problem.}\quad Attractive inverse-square potential:
+\[
+  V(r)=-\frac{mk}{r},\qquad F(r)=-\frac{mk}{r^2},\qquad k=GM.
+\]
+Coulomb analogue uses $k=-qQ/(4\pi\epszero m)$. Orbit:
+\[
+  u''+u=\frac{k}{\ell^2},\qquad
+  u=A\cos(\theta-\theta_0)+\frac{k}{\ell^2}.
+\]
+Taking periapsis at $\theta=0$:
+\[
+  \boxed{r(\theta)=\frac{r_0}{1+e\cos\theta}},\qquad
+  r_0=\frac{\ell^2}{k},\qquad
+  e=\frac{A\ell^2}{k}.
+\]
+Energy:
+\[
+  \boxed{E=\frac{mk^2}{2\ell^2}(e^2-1)},\qquad
+  e=\sqrt{1+\frac{2E\ell^2}{mk^2}}.
+\]
+\[
+\begin{array}{c|c|c}
+e & E & \text{orbit}\\ \hline
+0 & -mk^2/(2\ell^2) & \text{circle}\\
+0<e<1 & <0 & \text{ellipse}\\
+1 & 0 & \text{parabola}\\
+e>1 & >0 & \text{hyperbola}
+\end{array}
+\]
+Ellipse data:
+\[
+  a=\frac{r_0}{1-e^2},\qquad
+  b=\frac{r_0}{\sqrt{1-e^2}},\qquad
+  x_c=-ea,\qquad
+  r_{\min}=\frac{r_0}{1+e},\quad r_{\max}=\frac{r_0}{1-e}.
+\]
+Repulsive inverse-square law:
+\[
+  r=\frac{|r_0|}{e\cos\theta-1},\qquad |r_0|=\frac{\ell^2}{|k|},\qquad e>1.
+\]
+\src{Tong DynRel \S 4.3.1}
+
+\noindent\textbf{Kepler laws and precession.}\quad
+\[
+  \frac{dA}{dt}=\half r^2\dot\theta=\frac{\ell}{2}.
+\]
+For an ellipse with semi-major axis $a$:
+\[
+  \ell^2=GMa(1-e^2),\qquad
+  \boxed{T=\frac{2\pi}{\sqrt{GM}}a^{3/2}},\qquad
+  \boxed{T^2=\frac{4\pi^2}{GM}a^3}.
+\]
+Weak-field relativistic correction used by Tong:
+\[
+  V(r)=-\frac{GMm}{r}\left(1+\frac{3GM}{c^2r}\right),\qquad k=GM,
+\]
+\[
+  u''+\left(1-\frac{6k^2}{c^2\ell^2}\right)u=\frac{k}{\ell^2}.
+\]
+Periapsis advance:
+\[
+  \boxed{\Delta\varpi\simeq\frac{6\pi G^2M^2}{c^2\ell^2}
+  =\frac{6\pi GM}{c^2a(1-e^2)}}.
+\]
+\src{Tong DynRel \S\S 4.3.2-4.3.3}
+
+\noindent\textbf{Scattering and Rutherford.}\quad If $V(r)\to0$ as $r\to\infty$,
+\[
+  E=\half mv^2,\qquad \ell=bv=b'v,
+\]
+where $b$ is the impact parameter. Closest approach:
+\[
+  E=V(r_{\min})+\frac{mb^2v^2}{2r_{\min}^2}.
+\]
+Repulsive Coulomb potential:
+\[
+  V(r)=\frac{\alpha}{r},\qquad \alpha=\frac{qQ}{4\pi\epszero}>0,\qquad
+  |k|=\alpha/m.
+\]
+With $\varphi=\pi-2\alpha_{\rm asy}$:
+\[
+  \boxed{\varphi=2\tan^{-1}\left(\frac{|k|}{bv^2}\right)
+  =2\tan^{-1}\left(\frac{\alpha}{mbv^2}\right)}.
+\]
+Equivalently, with $E_{\rm kin}=\half mv^2$,
+\[
+  b=\frac{\alpha}{2E_{\rm kin}}\cot\frac{\varphi}{2},\qquad
+  \frac{d\sigma}{d\Omega}
+  =\left(\frac{\alpha}{4E_{\rm kin}}\right)^2\csc^4\frac{\varphi}{2}.
+\]
+\src{Tong DynRel \S 4.4}
+
+\subsection{Systems of Particles}
+
+\noindent\textbf{Center of mass.}\quad
+\[
+  \dot{\mathbf p}_i=\mathbf F_i^{\rm ext}+\sum_{j\ne i}\mathbf F_{ij},\qquad
+  M=\sum_i m_i,\qquad
+  \mathbf R=\frac{1}{M}\sum_i m_i\mathbf x_i,
+\]
+\[
+  \mathbf P=\sum_i\mathbf p_i=M\dot{\mathbf R}.
+\]
+Weak third law gives
+\[
+  \boxed{\dot{\mathbf P}=\sum_i\mathbf F_i^{\rm ext}},\qquad
+  \boxed{M\ddot{\mathbf R}=\mathbf F_{\rm net}^{\rm ext}}.
+\]
+Internal forces cannot move the center of mass. \src{Tong DynRel \S 5.1}
+
+\noindent\textbf{Angular momentum and energy.}\quad
+\[
+  \mathbf L=\sum_i\mathbf x_i\times\mathbf p_i,\qquad
+  \bm\tau^{\rm ext}=\sum_i\mathbf x_i\times\mathbf F_i^{\rm ext},
+\]
+\[
+  \dot{\mathbf L}=\bm\tau^{\rm ext}
+  +\sum_{i<j}(\mathbf x_i-\mathbf x_j)\times\mathbf F_{ij}.
+\]
+Strong third law:
+\[
+  \boxed{\dot{\mathbf L}=\bm\tau^{\rm ext}}.
+\]
+COM split, $\mathbf x_i=\mathbf R+\mathbf y_i$, $\sum_i m_i\mathbf y_i=0$:
+\[
+  T=\half M\dot{\mathbf R}^{\,2}+\half\sum_i m_i\dot{\mathbf y}_i^{\,2}.
+\]
+For conservative external and internal forces,
+\[
+  \boxed{E=T+\sum_iV_i(\mathbf x_i)+\sum_{i<j}V_{ij}(|\mathbf x_i-\mathbf x_j|)}.
+\]
+Noether dictionary: translations $\leftrightarrow\mathbf P$, rotations
+$\leftrightarrow\mathbf L$, time translations $\leftrightarrow E$.
+\src{Tong DynRel \S\S 5.1.2-5.1.4}
+
+\noindent\textbf{Two-body reduction.}\quad With no external force,
+\[
+  \mathbf r=\mathbf x_1-\mathbf x_2,\qquad
+  \mu=\frac{m_1m_2}{m_1+m_2},
+\]
+\[
+  \mathbf x_1=\mathbf R+\frac{m_2}{M}\mathbf r,\qquad
+  \mathbf x_2=\mathbf R-\frac{m_1}{M}\mathbf r,\qquad
+  \ddot{\mathbf R}=0,
+\]
+\[
+  \boxed{\mu\ddot{\mathbf r}=\mathbf F_{12}},\qquad
+  T=\half M\dot{\mathbf R}^{\,2}+\half\mu\dot{\mathbf r}^{\,2}.
+\]
+Central pair force becomes a one-body central-force problem with mass $\mu$.
+\src{Tong DynRel \S 5.1.5}
+
+\noindent\textbf{Collisions and impulse.}\quad
+\[
+  \mathbf J=\int_{t_1}^{t_2}\mathbf F\,\dd t=\Delta\mathbf p.
+\]
+Elastic equal-mass collision with one particle initially at rest:
+\[
+  \mathbf v=\mathbf v_1+\mathbf v_2,\qquad
+  v^2=v_1^2+v_2^2
+  \Longrightarrow
+  \boxed{\mathbf v_1\cdot\mathbf v_2=0}.
+\]
+Two stacked balls, dropped with speed $u$:
+\[
+  \boxed{v_m^+=\frac{3M-m}{M+m}u}.
+\]
+The wall-collision digit construction uses $M=16\,100^N m$ and yields
+$p(N)-1=[10^N\pi]$ under the small-angle approximation in the diagonalized
+collision map. \src{Tong DynRel \S 5.2}
+
+\noindent\textbf{Variable mass.}\quad Newton's law applies to the complete system,
+including flux across the chosen boundary. Rocket, straight line, exhaust speed $u$
+relative to rocket:
+\[
+  \boxed{m\dot v+u\dot m=F_{\rm ext}}.
+\]
+Free rocket:
+\[
+  \boxed{v=v_0+u\log\frac{m_0}{m}}.
+\]
+Constant burn $\dot m=-\alpha$:
+\[
+  m=m_0-\alpha t,\qquad
+  v=v_0-u\log\left(1-\frac{\alpha t}{m_0}\right).
+\]
+Linear drag:
+\[
+  v(m)=\frac{\alpha u}{\gamma}\left[1-\left(\frac{m}{m_0}\right)^{\gamma/\alpha}\right],
+  \qquad v_{\rm lim}=\alpha u/\gamma.
+\]
+Avalanche model:
+\[
+  m=\rho Ax,\qquad \frac{d}{dt}(mv)=mg\sin\theta,\qquad v=\dot x,
+\]
+\[
+  \boxed{v^2=\frac{2}{3}xg\sin\theta},\qquad
+  \boxed{x=\frac{1}{6}gt^2\sin\theta}.
+\]
+\src{Tong DynRel \S 5.3}
+
+\noindent\textbf{Rigid bodies.}\quad Constraint:
+\[
+  |\mathbf x_i-\mathbf x_j|=\text{constant},\qquad
+  \dot{\mathbf x}_i=\om\times\mathbf x_i.
+\]
+Moment of inertia about $\hat{\mathbf n}$:
+\[
+  I_{\hat{\mathbf n}}=\sum_i m_i|\hat{\mathbf n}\times\mathbf x_i|^2
+  =\int\rho|\hat{\mathbf n}\times\mathbf x|^2\,\dd V,
+\]
+\[
+  T_{\rm rot}=\half I_{\hat{\mathbf n}}\omega^2,\qquad
+  \mathbf L\cdot\hat{\mathbf n}=I_{\hat{\mathbf n}}\omega.
+\]
+Useful moments:
+\[
+\begin{array}{c|c}
+\text{body/axis} & I\\ \hline
+\text{hoop, symmetry axis} & Ma^2\\
+\text{rod length }L\text{ about end} & \frac13ML^2\\
+\text{disc symmetry axis} & \frac12Ma^2\\
+\text{disc diameter} & \frac14Ma^2\\
+\text{solid sphere diameter} & \frac25Ma^2
+\end{array}
+\]
+Parallel axis:
+\[
+  \boxed{I_O=I_{\rm COM}+Mh^2},\qquad I_z=I_x+I_y\ \text{for planar laminae}.
+\]
+Inertia tensor:
+\[
+  \boxed{\Iten_{ab}=\sum_i m_i(|\mathbf x_i|^2\delta_{ab}-x_{ia}x_{ib})},
+\]
+\[
+  T_{\rm rot}=\half\om^T\Iten\om,\qquad
+  \mathbf L=\Iten\om,\qquad
+  I_{\hat{\mathbf n}}=\hat{\mathbf n}^T\Iten\hat{\mathbf n}.
+\]
+General rigid motion:
+\[
+  \dot{\mathbf r}_i=\dot{\mathbf R}+\om\times(\mathbf r_i-\mathbf R),\qquad
+  T=\half M\dot{\mathbf R}^{\,2}+\half\om^T\Iten_{\rm COM}\om.
+\]
+Rolling without slipping:
+\[
+  v_{\rm COM}=a\omega,\qquad
+  \ddot x=\frac{g\sin\alpha}{1+I_{\rm COM}/(Ma^2)}.
+\]
+Uniform rod pendulum:
+\[
+  I_{\rm pivot}=\frac13mL^2,\qquad
+  I_{\rm pivot}\ddot\theta=-mg\frac{L}{2}\sin\theta,\qquad
+  l_{\rm simple}=\frac{2L}{3}.
+\]
+\src{Tong DynRel \S 5.4}
+
+\subsection{Non-Inertial Frames}
+
+\noindent\textbf{Rotating-frame derivative.}\quad If $S'$ rotates with angular velocity
+$\om(t)$ relative to inertial $S$,
+\[
+  \dot{\mathbf e}'_i=\om\times\mathbf e'_i,\qquad
+  \boxed{\left(\frac{d\mathbf A}{dt}\right)_S
+  =\left(\frac{d\mathbf A}{dt}\right)_{S'}+\om\times\mathbf A}.
+\]
+\[
+  \mathbf v_S=\mathbf v'+\om\times\mathbf r,
+\]
+\[
+  \boxed{\mathbf a_S=\mathbf a'+2\om\times\mathbf v'
+  +\dot{\om}\times\mathbf r+\om\times(\om\times\mathbf r)}.
+\]
+\src{Tong DynRel \S 6.1}
+
+\noindent\textbf{Fictitious forces.}\quad
+\[
+  \boxed{
+  m\mathbf a'=\mathbf F
+  -2m\om\times\mathbf v'
+  -m\dot{\om}\times\mathbf r
+  -m\om\times(\om\times\mathbf r)}.
+\]
+Terms: Coriolis, Euler, centrifugal. \src{Tong DynRel \S 6.2}
+
+\noindent\textbf{Centrifugal force.}\quad
+\[
+  \mathbf F_{\rm cent}=-m\om\times(\om\times\mathbf r)=m\omega^2\mathbf r_\perp,
+\]
+\[
+  \boxed{\mathbf F_{\rm cent}=-\nabla V_{\rm cent}},\qquad
+  \boxed{V_{\rm cent}=-\half m|\om\times\mathbf r|^2}.
+\]
+Apparent gravity on Earth, latitude $\theta$ from equator:
+\[
+  \mathbf g_{\rm eff}=(-g+\omega^2R\cos^2\theta)\rhat
+  -\omega^2R\cos\theta\sin\theta\,\thetahat,
+\]
+\[
+  \boxed{\tan\phi=
+  \frac{\omega^2R\cos\theta\sin\theta}{g-\omega^2R\cos^2\theta}}.
+\]
+Rotating bucket:
+\[
+  V=mgz-\half m\omega^2r^2,\qquad
+  \boxed{z(r)=\frac{\omega^2r^2}{2g}+C}.
+\]
+\src{Tong DynRel \S 6.3}
+
+\noindent\textbf{Coriolis force.}\quad
+\[
+  \boxed{\mathbf F_{\rm cor}=-2m\om\times\mathbf v'},\qquad
+  \mathbf F_{\rm cor}\cdot\mathbf v'=0.
+\]
+Earth horizontal magnitude:
+\[
+  \boxed{|\mathbf F_{\rm cor}^{\rm horiz}|=2m\omega v\sin\theta}.
+\]
+Dropped body from height $h$, neglecting $O(\omega^2)$:
+\[
+  \ddot{\mathbf r}=\mathbf g-2\om\times\dot{\mathbf r},
+\qquad
+  \mathbf r(t)\simeq\mathbf r_0+\half\mathbf g t^2-\frac13\om\times\mathbf g\,t^3.
+\]
+At the equator:
+\[
+  t_f=\sqrt{\frac{2h}{g}},\qquad
+  \Delta x_{\rm east}=\frac13\omega g t_f^3
+  =\frac{2\omega}{3}\sqrt{\frac{2h^3}{g}}.
+\]
+\src{Tong DynRel \S\S 6.4.1-6.4.2}
+
+\noindent\textbf{Foucault pendulum and Larmor precession.}\quad Latitude $\theta$:
+\[
+  \om=\omega\cos\theta\,\mathbf e_1+\omega\sin\theta\,\rhat.
+\]
+For small amplitude $\xi=x+iy$:
+\[
+  \boxed{\ddot\xi+2i\omega\sin\theta\,\dot\xi+\frac{g}{l}\xi=0},
+\]
+\[
+  \boxed{\xi(t)=e^{-i\omega t\sin\theta}
+  \left(A\cos\sqrt{\frac{g}{l}}t+B\sin\sqrt{\frac{g}{l}}t\right)}.
+\]
+\[
+  \boxed{\Omega_F=\omega\sin\theta},\qquad
+  T_F=\frac{24{\rm h}}{|\sin\theta|}.
+\]
+Charge in Coulomb field plus weak uniform $\mathbf B$:
+\[
+  m\ddot{\mathbf r}=-\frac{k}{r^2}\rhat+q\dot{\mathbf r}\times\mathbf B.
+\]
+Rotating-frame choice
+\[
+  \boxed{\bm\Omega=-\frac{q\mathbf B}{2m}}
+\]
+cancels terms linear in $\dot{\mathbf r}$. For
+$B^2\ll4mk/(q^2r^3)$ the orbit is Keplerian in the rotating frame and precesses
+in the inertial frame with
+\[
+  \boxed{|\Omega_L|=\frac{|q|B}{2m}=\half\omega_{\rm cyclotron}}.
+\]
+\src{Tong DynRel \S\S 6.4.3-6.4.4}
+
+\subsection{Special Relativity}
+
+\noindent\textbf{Postulates and Lorentz transformations.}\quad
+\[
+  \text{Laws identical in inertial frames},\qquad
+  |\mathbf u_{\rm light}|=c\ \text{in all inertial frames}.
+\]
+For $S'$ moving at $+v\hat{\mathbf x}$ relative to $S$,
+\[
+  \beta=\frac{v}{c},\qquad
+  \gamma=\frac{1}{\sqrt{1-\beta^2}},
+\]
+\[
+  \boxed{x'=\gamma(x-vt),\quad y'=y,\quad z'=z,\quad
+  t'=\gamma\left(t-\frac{vx}{c^2}\right)}.
+\]
+Inverse: $v\to -v$. Matrix form in $(ct,x)$:
+\[
+  \begin{pmatrix}ct'\\x'\end{pmatrix}
+  =
+  \begin{pmatrix}\gamma&-\gamma\beta\\-\gamma\beta&\gamma\end{pmatrix}
+  \begin{pmatrix}ct\\x\end{pmatrix}.
+\]
+Arbitrary boost:
+\[
+  ct'=\gamma\left(ct-\frac{\mathbf v\cdot\mathbf x}{c}\right),\qquad
+  \mathbf x'_\parallel=\gamma(\mathbf x_\parallel-\mathbf v t),\qquad
+  \mathbf x'_\perp=\mathbf x_\perp.
+\]
+\src{Tong DynRel \S 7.1}
+
+\noindent\textbf{Spacetime diagrams, simultaneity, causality.}\quad In $(ct,x)$:
+\[
+  ct'\text{ axis: }x=vt,\qquad
+  x'\text{ axis: }ct=\beta x,\qquad
+  \text{light: }x=\pm ct.
+\]
+Separations:
+\[
+  \Delta t'=\gamma\left(\Delta t-\frac{v\Delta x}{c^2}\right),\qquad
+  \Delta x'=\gamma(\Delta x-v\Delta t).
+\]
+Equal-time slices:
+\[
+  t'=\text{const}\Longleftrightarrow t-\frac{vx}{c^2}=\text{const}.
+\]
+Simultaneity frame for two events:
+\[
+  \Delta t'=0\Longleftrightarrow v=\frac{c^2\Delta t}{\Delta x},
+\]
+possible only for spacelike separations $|\Delta x|>c|\Delta t|$. Timelike order is
+invariant; causal influence is confined to light cones. \src{Tong DynRel \S 7.2}
+
+\noindent\textbf{Time dilation, length contraction, velocity addition.}\quad Proper
+time:
+\[
+  \dd\tau=\dd t\sqrt{1-\frac{u^2}{c^2}}=\frac{\dd t}{\gamma(u)},\qquad
+  \tau=\int\frac{\dd t}{\gamma(u)}.
+\]
+Clock at rest in $S'$:
+\[
+  \boxed{\Delta t=\gamma\Delta\tau}.
+\]
+Proper length $L_0$:
+\[
+  \boxed{L=\frac{L_0}{\gamma}}.
+\]
+Velocity transform for boost along $x$:
+\[
+  u'_x=\frac{u_x-v}{1-u_xv/c^2},\qquad
+  u'_y=\frac{u_y}{\gamma(1-u_xv/c^2)},\qquad
+  u'_z=\frac{u_z}{\gamma(1-u_xv/c^2)}.
+\]
+Collinear inverse addition:
+\[
+  \boxed{u=\frac{u'+v}{1+u'v/c^2}}.
+\]
+If $|u'|<c$ and $|v|<c$, then $|u|<c$; if $u'=\pm c$, then $u=\pm c$.
+\src{Tong DynRel \S 7.2}
+
+\noindent\textbf{Invariant interval and Lorentz group.}\quad
+\[
+  \boxed{\Delta s^2=c^2\Delta t^2-|\Delta\mathbf x|^2},\qquad
+  \dd s^2=c^2\dd t^2-\dd x^2-\dd y^2-\dd z^2.
+\]
+\[
+\Delta s^2
+\begin{cases}
+>0 & \text{timelike},\\
+=0 & \text{null/lightlike},\\
+<0 & \text{spacelike}.
+\end{cases}
+\]
+Four-vector:
+\[
+  X^\mu=(ct,x,y,z),\qquad
+  X\cdot Y=\eta_{\mu\nu}X^\mu Y^\nu=X^0Y^0-\mathbf X\cdot\mathbf Y.
+\]
+Lorentz transformations:
+\[
+  X'=\Lambda X,\qquad
+  \boxed{\Lambda^T\eta\Lambda=\eta}.
+\]
+$O(1,3)$ has six continuous parameters: three rotations, three boosts. Proper
+orthochronous component:
+\[
+  SO^+(1,3)=\{\Lambda:\Lambda^T\eta\Lambda=\eta,\ \det\Lambda=1,\ \Lambda^0{}_0\ge1\}.
+\]
+Rapidity:
+\[
+  \beta=\tanh\phi,\qquad \gamma=\cosh\phi,\qquad \gamma\beta=\sinh\phi,
+\]
+\[
+  \Lambda(\phi)=
+  \begin{pmatrix}\cosh\phi&-\sinh\phi\\-\sinh\phi&\cosh\phi\end{pmatrix},
+  \qquad
+  \Lambda(\phi_1)\Lambda(\phi_2)=\Lambda(\phi_1+\phi_2).
+\]
+In $c=1$ units:
+\[
+  ds^2=dt^2-\dd\mathbf x^2,\qquad
+  x'=\gamma(x-vt),\qquad t'=\gamma(t-vx).
+\]
+\src{Tong DynRel \S 7.3}
+
+\subsection{Relativistic Kinematics, Particles, and Spinors}
+
+\noindent\textbf{Proper time, 4-velocity, 4-momentum.}\quad
+\[
+  X^\mu=(ct,\mathbf x),\qquad
+  U^\mu=\frac{\dd X^\mu}{\dd\tau}=\gamma_u(c,\mathbf u),\qquad
+  U^\mu U_\mu=c^2.
+\]
+\[
+  P^\mu=mU^\mu=\left(\frac{E}{c},\mathbf p\right),\qquad
+  \mathbf p=m\gamma_u\mathbf u,\qquad
+  E=m\gamma_uc^2.
+\]
+Mass shell:
+\[
+  P^\mu P_\mu=m^2c^2,\qquad
+  \boxed{E^2=p^2c^2+m^2c^4},\qquad
+  E=mc^2+\half mu^2+\cdots.
+\]
+Free reactions conserve total 4-momentum. \src{Tong DynRel \S\S 7.4.1-7.4.3}
+
+\noindent\textbf{Massless particles.}\quad
+\[
+  m=0\Rightarrow P^2=0,\qquad
+  E=pc,\qquad
+  P^\mu=\frac{E}{c}(1,\hat{\mathbf p}),\qquad |\mathbf u|=c.
+\]
+Photon:
+\[
+  E=\hbar\omega=\frac{2\pi\hbar c}{\lambda}.
+\]
+For boost along $x$, $n_x=\hat{\mathbf p}\cdot\hat{\mathbf x}$:
+\[
+  E'=\gamma E(1-\beta n_x),\qquad
+  n'_x=\frac{n_x-\beta}{1-\beta n_x},\qquad
+  \mathbf n'_\perp=\frac{\mathbf n_\perp}{\gamma(1-\beta n_x)}.
+\]
+\src{Tong DynRel \S 7.4.4}
+
+\noindent\textbf{Relativistic force and acceleration.}\quad
+\[
+  \mathcal F^\mu=\frac{\dd P^\mu}{\dd\tau}
+  =\left(\frac{\gamma_u}{c}\frac{\dd E}{\dd t},\gamma_u\mathbf f\right),
+  \qquad
+  \mathbf f=\frac{\dd\mathbf p}{\dd t},\qquad
+  \frac{\dd E}{\dd t}=\mathbf f\cdot\mathbf u.
+\]
+For fixed rest mass:
+\[
+  P_\mu\mathcal F^\mu=0.
+\]
+Electromagnetic tensor form:
+\[
+  \frac{\dd P^\mu}{\dd\tau}=\frac{q}{c}G^\mu{}_\nu U^\nu,\qquad
+  \mathbf f=q(\mathbf E+\mathbf u\times\mathbf B),\qquad
+  \frac{\dd E}{\dd t}=q\mathbf E\cdot\mathbf u.
+\]
+4-acceleration:
+\[
+  A^\mu=\frac{\dd U^\mu}{\dd\tau},\qquad U_\mu A^\mu=0,
+\]
+\[
+  \alpha^2\equiv -A^\mu A_\mu=\gamma_u^6a_\parallel^2+\gamma_u^4a_\perp^2.
+\]
+One-dimensional motion with constant proper acceleration $\alpha$:
+\[
+  a=\frac{\alpha}{\gamma_u^3},\qquad
+  u(t)=\frac{\alpha t}{\sqrt{1+\alpha^2t^2/c^2}},
+\]
+\[
+  x(t)=x_0+\frac{c^2}{\alpha}\left(\sqrt{1+\frac{\alpha^2t^2}{c^2}}-1\right),
+  \qquad
+  \tau(t)=\frac{c}{\alpha}\sinh^{-1}\left(\frac{\alpha t}{c}\right).
+\]
+\src{Tong DynRel \S\S 7.4.5-7.4.6}
+
+\noindent\textbf{Indices.}\quad
+\[
+  X_\mu=\eta_{\mu\nu}X^\nu=(ct,-\mathbf x),\qquad
+  X^\mu X_\mu=c^2t^2-\mathbf x^2.
+\]
+Repeated Lorentz indices are contracted with one up and one down. Raising and
+lowering uses $\eta_{\mu\nu}=\eta^{\mu\nu}$. \src{Tong DynRel \S 7.4.7}
+
+\noindent\textbf{Particle physics invariants.}\quad For isolated reactions,
+\[
+  P_{\rm tot}^\mu=\sum_iP_i^\mu,\qquad
+  s=P_{\rm tot}^2,\qquad
+  E_{\rm cm}=c\sqrt{s}.
+\]
+Missing-particle trick:
+\[
+  P_{\rm miss}=P_{\rm known,in}-P_{\rm known,out},\qquad
+  P_{\rm miss}^2=m_{\rm miss}^2c^2.
+\]
+Two-body decay $1\to2+3$ in rest frame of particle 1:
+\[
+  E_2^\ast=\frac{m_1^2+m_2^2-m_3^2}{2m_1}c^2,\qquad
+  E_3^\ast=\frac{m_1^2+m_3^2-m_2^2}{2m_1}c^2,
+\]
+\[
+  p_\ast=\frac{c}{2m_1}\sqrt{\lambda(m_1^2,m_2^2,m_3^2)},\qquad
+  \lambda(a,b,c)=a^2+b^2+c^2-2ab-2ac-2bc.
+\]
+Threshold for $m+m\to m+m+M$:
+\[
+  \text{collider COM: }\gamma_v\ge1+\frac{M}{2m},\qquad
+  \text{fixed target: }\gamma_u\ge1+\frac{2M}{m}+\frac{M^2}{2m^2}.
+\]
+\src{Tong DynRel \S 7.5}
+
+\noindent\textbf{$SL(2,\mathbb C)$ and spinors.}\quad Pauli matrices:
+\[
+  \sigma_1=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+  \sigma_2=\begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad
+  \sigma_3=\begin{pmatrix}1&0\\0&-1\end{pmatrix},
+\]
+\[
+  \sigma_i\sigma_j=\delta_{ij}\mathbf1+i\epsilon_{ijk}\sigma_k.
+\]
+Map 4-vectors to Hermitian matrices:
+\[
+  \widehat X=X^0\mathbf1+X^i\sigma_i
+  =
+  \begin{pmatrix}ct+z&x-iy\\x+iy&ct-z\end{pmatrix},
+\]
+\[
+  \det\widehat X=X^\mu X_\mu.
+\]
+For $A\in SL(2,\mathbb C)$,
+\[
+  \boxed{\widehat X\mapsto A\widehat X A^\dagger},
+\]
+which induces $SO^+(1,3)$; $A$ and $-A$ give the same Lorentz transformation:
+\[
+  SO^+(1,3)\cong SL(2,\mathbb C)/\mathbb Z_2.
+\]
+Rotations and boosts:
+\[
+  A_R(\theta,\mathbf n)=\pm\exp\left(\frac{i\theta}{2}n_i\sigma_i\right),\qquad
+  A_B(\phi,\mathbf n)=\pm\exp\left(-\frac{\phi}{2}n_i\sigma_i\right).
+\]
+Null rays:
+\[
+  \widehat X=\xi\xi^\dagger,\qquad \xi\sim e^{i\beta}\xi,\qquad
+  \omega=\frac{\xi_1}{\xi_2}\in\mathbb C\cup\{\infty\}.
+\]
+If $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$, observer skies transform by the
+Moebius map
+\[
+  \boxed{\omega'=\frac{a\omega+b}{c\omega+d}}.
+\]
+A left-handed Weyl spinor is a complex two-vector with
+\[
+  \xi_\alpha\mapsto A_\alpha{}^\beta\xi_\beta,\qquad A\in SL(2,\mathbb C).
+\]
+Double cover:
+\[
+  \theta=2\pi:\xi\mapsto-\xi,\qquad
+  \theta=4\pi:\xi\mapsto\xi.
+\]
+\src{Tong DynRel \S 7.6}

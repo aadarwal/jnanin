@@ -1,0 +1,401 @@
+\documentclass[12pt]{article}
+
+% imports
+\usepackage{appendix}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{bbold}
+\usepackage[justification=centering]{caption}
+\usepackage{float}
+\usepackage[margin=1em]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{layouts}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{optidef}
+\usepackage{physics}
+\usepackage{setspace}
+\usepackage{diagbox}
+\usepackage[labelformat=simple]{subcaption}
+\usepackage{xcolor}
+
+% configure imports
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
+\definecolor{darkgreen}{RGB}{46, 184, 46}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\R}{\mathbb{R}}
+\captionsetup[subfigure]{labelformat=empty, skip=0pt}
+\captionsetup{labelsep=period}
+\restylefloat{table}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\addto\captionsenglish{%
+  \renewcommand{\figurename}{FIG.}%
+  \renewcommand{\tablename}{TABLE}%
+  \renewcommand{\appendixname}{APPENDIX}%
+}
+
+\title{\vspace{-2em}Solid State}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\vspace{-4em}
+\begin{multicols}{2}
+
+\noindent
+\textbf{H$_2^+$}
+\begin{align}
+  c^{\dagger}Sc &= 1\\
+  E_s &= E_{1s} + \bra*{\phi_1}V_2\ket*{\phi_1}\\
+  V_{ss\sigma} &= E_{1s}S_1 + \bra*{\phi_1}V_2\ket*{\phi_2}\\
+  S_1 &= \braket*{\phi_1}{\phi_2}\\
+  \begin{split}
+    H &= \frac{{\lvert P_1\rvert}^2}{2M_1} + \frac{{\lvert P_2\rvert}^2}{2M_2} + E_e(\vec{R}_1 - \vec{R}_2)\\
+    &+ \frac{e^2}{4\pi\epsilon_0\lvert \vec{R}_1 - \vec{R}_2\rvert}
+  \end{split}\\
+  M\vec{R} &= M_1\vec{R}_1 + M_2\vec{R}_2\\
+  M &= M_1 + M_1\\
+  \vec{r} &= \vec{R}_2 - \vec{R}_1\\
+  \frac{1}{\mu} &= \frac{1}{M_1} + \frac{1}{M_2}\\
+  \vec{P} &= \vec{P}_1 + \vec{P}_2\\
+  \frac{\vec{p}}{\mu} &= \frac{\vec{P}_2}{M_2} - \frac{\vec{P}_1}{M_1}\\
+  T &= \frac{\lvert \vec{P}\rvert^2}{2M} + \frac{\lvert \vec{p}\rvert^2}{2\mu}\\
+  E_R &= \frac{\hbar^2\lvert \vec{K} \rvert^2}{2M}\\
+  \frac{\lvert \vec{p} \rvert^2}{2\mu} &\rightarrow -\frac{\hbar^2}{2\mu}d_r^2 + \frac{\hbar^2\ell(\ell+1)}{2\mu r^2}\\
+  \phi &= \frac{P_{nl}(r)}{r}Y_{\ell,m}(\theta,\phi)\\
+  E_r^{nell} &= V_0 + \hbar\omega_0(n + \frac{1}{2})+\frac{\hbar^2\ell(\ell + 1)}{2\mu R_0^2}
+\end{align}
+
+\noindent
+\textbf{Bravais Lattice}
+\begin{align}
+  \begin{split}
+    L {}= \{&n_1 \vec{a}_1 + n_2 \vec{a}_2 + n_3 \vec{a}_3\\
+    &\lvert \ n_1, n_2, n_3 \in \mathbb{Z}\}
+  \end{split}
+\end{align}
+
+Primitive Unit Cell is volume spanned by primitive lattice vectors
+
+\noindent
+\textbf{Wigner-Seitz Unit Cell}
+\begin{enumerate}
+  \item Choose one lattice point. Draw lines to every other lattice point.
+  \item Bisect each line with a plane normal to the line.
+  \item Space bounded by planes forms the unit cell.
+\end{enumerate}
+
+\noindent
+\textbf{Brillouin Zone} is Wigner-Seitz cell of reciprocal lattice.
+
+\begin{align}
+  B &= 2\pi A^{-T}\\
+  b_{1} &= 2\pi \frac{a_2 \times a_3}{a_1 \cdot (a_2 \times a_3)}\\
+  b_{2} &= 2\pi \frac{a_3 \times a_1}{a_1 \cdot (a_2 \times a_3)}\\
+  b_{3} &= 2\pi \frac{a_1 \times a_2}{a_1 \cdot (a_2 \times a_3)}
+  %% TODO: remove cross products after semester
+\end{align}
+
+Moire, $B^{\prime\prime} = B - B^{\prime}$
+
+\noindent
+\textbf{Graphene}
+\begin{align}
+  a_1 = a (\frac{\sqrt{3}}{2}\hat{x} + \frac{1}{2}\hat{y});
+  &\quad b_1 = \frac{4\pi}{\sqrt{3}a}(\frac{1}{2}\hat{x} + \frac{\sqrt{3}}{2}\hat{y})\\
+  a_2 = a (\frac{\sqrt{3}}{2}\hat{x} - \frac{1}{2}\hat{y});
+  &\quad b_2 = \frac{4\pi}{\sqrt{3}a}(\frac{1}{2}\hat{x} - \frac{\sqrt{3}}{2}\hat{y})
+\end{align}
+
+\noindent
+\textbf{SC}
+\begin{align}
+  a_1 = a\hat{x}; &\quad b_1 = 2\pi/a \hat{x}\\
+  a_2 = a\hat{y}; &\quad b_2 = 2\pi/a\hat{y}\\
+  a_3 = a\hat{z}; &\quad b_3 = 2\pi/a\hat{z}
+\end{align}
+
+\noindent
+\textbf{BCC}
+\begin{align}
+  a_1 = a/2(\hat{y} + \hat{z} - \hat{x}); &\quad b_1 = 2\pi/a(\hat{y} + \hat{z})\\
+  a_2 = a/2(\hat{z} + \hat{x} - \hat{y}); &\quad b_2 = 2\pi/a(\hat{z} + \hat{x})\\
+  a_3 = a/2(\hat{x} + \hat{y} - \hat{z}); &\quad b_3 = 2\pi/a(\hat{x} + \hat{y})
+\end{align}
+
+\noindent
+\textbf{FCC}
+\begin{align}
+  a_1 = a/2(\hat{y} + \hat{z}); &\quad b_1 = 2\pi/a(\hat{y} + \hat{z} - \hat{x})\\
+  a_2 = a/2(\hat{z} + \hat{x}); &\quad b_2 = 2\pi/a(\hat{z} + \hat{x} - \hat{y})\\
+  a_3 = a/2(\hat{x} + \hat{y}); &\quad b_3 = 2\pi/a(\hat{x} + \hat{y} - \hat{z})
+\end{align}
+
+Structure factor is fourier transform of basis convolved with real space form factor
+
+\noindent
+\textbf{XRD}
+\begin{align}
+  \vec{k}^{\prime} &= \vec{k} - \vec{G}\\
+  \lvert \vec{k}^{\prime} \rvert &= \lvert \vec{k} \rvert\\
+  S(\vec{x}) &= \sum_{i = -\infty}^{\infty} \delta^{3}(\vec{x} - \vec{R}_i)\\
+  S(\vec{k}) &= \frac{(2\pi)^3}{\vec{a}_1 \cdot (\vec{a}_2 \times \vec{a}_3)} \sum_i \delta^{3}(\vec{k} - \vec{G}_i)
+\end{align}
+
+\noindent
+\textbf{Lattice Waves}
+\begin{align}
+  \tilde{D}_{i,j}(\vec{R}_n, \vec{R}_m) &=
+  \frac{\partial^2 V}{\partial u_i[\vec{R}_n, t] \partial u_j[\vec{R}_m, t]}\\
+  V = V_0 + \frac{1}{2} \sum_i \sum_j &\sum_n \sum_m
+  u_i[\vec{R}_n, t] \tilde{D}_{i, j}(\vec{R}_n, \vec{R}_m) u_j[\vec{R}_m, t]\\
+  D(\vec{k})  &= \sum_{\vec{R}_m} \tilde{D}(\vec{R}_n, \vec{R}_m)e^{i\vec{k}
+    \cdot (\vec{R}_m - \vec{R}_n)}\\
+  D(\vec{k}) \vec{\epsilon} &= \omega^2 M \vec{\epsilon}\\
+  \frac{\partial}{\partial u_i[\vec{R}_n]} u_j[\vec{R}_m] &= \delta_{i, j}
+  \delta(\vec{R}_n - \vec{R}_m)\\
+  E_{\textrm{stretch}} &= \frac{1}{2} \alpha_s[\hat{b}_{i,j} \cdot (\vec{u}_j - \vec{u}_i)]^2\\
+  E_{\textrm{bend}} = \frac{1}{2} \alpha_{\phi}\{
+  &{\lvert \vec{u}_i - \vec{u}_j \rvert}^2
+  - [\hat{b}_{i,j} \cdot (\vec{u}_j - \vec{u}_i)]^2\}
+\end{align}
+
+$g(E)dE$ has units of states per unit volume
+
+\begin{align}
+  g_{1D}(\omega) &= \frac{2}{2\pi}\frac{1}{\lvert \partial_k \omega\rvert}\\
+  dk_{\textrm{perp}}\lvert \nabla_{\vec{k}}\omega(\vec{k})\rvert &= d\omega\\
+  g(\omega) &= \sum_{\sigma} \frac{1}{(2\pi)^3}\int
+  \frac{dS_{\omega}}{\lvert \nabla_k \omega_\sigma\rvert}\\
+  \frac{E}{V} &= \sum_{\sigma} \int_{\mathbb{R}^{+}}
+  \frac{\hbar \omega g_{\sigma}(\omega)}{e^{\beta\hbar\omega} - 1}d\omega
+\end{align}
+
+\noindent
+\textbf{Einstein (Optical)}
+\begin{align}
+  \begin{split}
+    \langle E \rangle &= -\partial_\beta \log Z\\
+    &= \hbar \omega(\frac{1}{e^{\beta\hbar\omega} - 1} + \frac{1}{2})
+  \end{split}\\
+  \begin{split}
+    C &= 3 \partial_T \langle E \rangle\\
+    &= 3 k_B(\beta \hbar \omega)^2 \frac{e^{\beta\hbar\omega}}{(e^{\beta\hbar\omega} - 1)^2}
+  \end{split}\\
+\end{align}
+
+\noindent
+\textbf{Debeye (Acoustic)}
+\begin{align}
+  \begin{split}
+    E &= \# \sum_{\vec{k}}\hbar\omega (\frac{1}{e^{\beta\hbar\omega} - 1} + \frac{1}{2})
+  \end{split}\\
+  \sum_{\vec{k}} &\rightarrow \frac{V}{(2\pi)^3} \int_{\mathbb{R}^3} d^3\vec{k} \quad \textrm{no V for PSSA}\\
+  \int_{\mathbb{R}^3} d^3\vec{k} &\rightarrow 4\pi \int_{\mathbb{R}^+}k^2d^2k\\
+  \omega(\vec{k}) &= v\lvert\vec{k}\rvert\\
+  \int_0^{\infty}&\frac{x}{e^x - 1}dx = \frac{\pi^4}{15}\\
+  \frac{E}{V} &= \frac{3Nk_B^4\pi^4}{5\omega_D^3\hbar^3}T^4\\
+  \frac{3}{v} &= \frac{1}{v_L} + \frac{1}{v_{T1}} + \frac{1}{v_{T2}}\\
+  g_{\sigma}(\omega) &= 3 n \frac{\omega^2}{\omega_{\sigma,D}^3} \quad \textrm{per \#}\\
+  \omega_{\sigma,D}^3 &= 6\pi^2nv_{\sigma}^3\\
+  \# n &= \int_0^{\omega_D} g(\omega)d\omega
+\end{align}
+
+\noindent
+\textbf{Tight Binding}
+\begin{align}
+  \psi(\vec{x}) &= \sum_i \sum_{\vec{R}_n} c_{i}[\vec{R}_n] \phi_{i}(\vec{x} - \vec{R}_n)\\ %% PSSA eq 7.8, AM eq 10.7
+  \tilde{H}_{i,j}(\vec{R}_n, \vec{R}_m) &= \bra*{\phi_{i}(\vec{x} - \vec{R}_{n})} \hat{H} \ket*{\phi_{j}(\vec{x} - \vec{R}_{m})}\\ % PSSA eq 7.11
+  H(\vec{k}) = &\sum_{\vec{R}_{m}} \tilde{H}(\vec{R}_{n}, \vec{R}_{m}) e^{i\vec{k} \cdot (\vec{R}_{m} - \vec{R}_{n})}\\ % PSSA eq 7.15
+  H(k)\psi &= E S(k)\psi
+\end{align}
+Equations same for $\tilde{S}(\vec{R}_n, \vec{R}_m)$, $S(k)$, as $H$.
+
+\noindent
+\textbf{Fermions}
+
+Fermis surface is the surface of constant energy $E_f$ in $\vec{k}$--space
+\begin{align}
+  g_{\sigma}(E) &= 2 \int_{BZ_1} \frac{d\vec{S}}{(2\pi)^3} {\lvert \vec{\nabla}_{\vec{k}} E_{\sigma}(\vec{k}) \rvert}^{-1}\\%% AM 8.63
+  n &= \int_0^{\infty}g(E)f(E)dE\\
+  \begin{split}
+    \int_{\mathbb{R}} H(E) f(E) dE &\approx \int_{-\infty}^{\mu} H(E) dE + \frac{\pi^2}{6} \beta^{-2} H^{\prime}(\mu)\\
+    &+ \mathcal{O}[(\beta\mu)^{-4}] \quad (\textrm{low T})
+  \end{split}\\
+  C_{V} &= \frac{\pi^2}{3}k_B^2Tg(E_F) \quad \textrm{(Sommerfeld)}\\ %%PSSA eq 3.45
+  f(E) &= \frac{1}{e^{\beta(E-\mu)} + 1}
+\end{align}
+
+\noindent
+\textbf{Bonds}
+\begin{align}
+  \bra*{\phi_{s1}} H \ket*{\phi_{s2}} &= V_{ss\sigma}\\
+  \bra*{\phi_{s1}} H \ket*{\phi_{p2}} &= V_{sp\sigma} \hat{d} \cdot \hat{b}\\
+  \begin{split}
+    \bra*{\phi_{pi1}} H \ket*{\phi_{pj2}} &=
+    V_{pp\sigma} (\hat{d}_1 \cdot \hat{b}_1) (\hat{d}_2 \cdot \hat{b}_2)\\
+    + V_{pp\pi} [\hat{b}_1 - \hat{d}_1&(\hat{d}_1 \cdot \hat{b}_1)]
+    \cdot [\hat{b}_2 - \hat{d}_2 (\hat{d}_2 \cdot \hat{b}_2)]
+  \end{split}\\ %% LEC 17 slides
+  &\hat{b} \quad \textrm{negative to positive pole}\\
+  &\vec{d} \quad \textrm{distance between atoms}\\
+  V_{ss\sigma} & \quad \textrm{two circles}\\
+  V_{sp\sigma} & \quad \textrm{pole line intersects circle}\\
+  V_{pp\sigma} & \quad \textrm{poles colinear}\\
+  V_{pp\pi} & \quad \textrm{poles parallel}
+\end{align}
+
+\noindent
+\textbf{Nearly Free Electron}
+\begin{align}
+  \psi(\vec{x}) &= \frac{1}{\sqrt{V}}\sum_{\vec{G}} u(\vec{G}) e^{i(\vec{k} + \vec{G}) \cdot \vec{x}}\\
+  Hu &= Eu\\
+  \begin{split}
+    H_{mn} &= \frac{\hbar^2}{2m}(\vec{k} + \vec{G}_n)^2 \delta[\vec{G}_m - \vec{G}_n]\\
+    &+ V[\vec{G}_m - \vec{G}_n] % PSSA eq 7.191
+  \end{split}\\
+  V[\vec{G}_m - \vec{G}_n] &= V_{WSC}^{-1} \int_{WSC} e^{-i(\vec{G}_m - \vec{G}_n) \cdot \vec{x}} V(\vec{x}) d^3x \\
+  E^{(0)}(\vec{k}) &= \frac{\hbar^2}{2m}(\vec{k} + \vec{G}_0)\\
+  E^{(1)} &= E^{(0)} + V_0\\
+  E^{(2)} &= E^{(1)} + \sum_{n \neq 0} \frac{V_n}{E^{(0)}(\vec{k} + \vec{K}_n) - E^{(0)}(\vec{k})}\\
+  \ket*{\psi^{(0)}(\vec{k})} &= \ket*{\vec{k}}\\
+  \ket*{\psi^{(1)}(\vec{k})} &= \ket*{\vec{k}} + \sum_{n \neq 0} \frac{V_n}{E^{(0)}(\vec{k} + \vec{K}_n) - E^{(0)}(\vec{k})}\\
+  &\begin{pmatrix}E^{(0)}(\vec{k}) + V_0 & V(\vec{G})\\V(-\vec{G}) & E^{(0)}(\vec{k} + \vec{G}) V_0\end{pmatrix}\\
+  g_{1D,FE}(E) &= \frac{m^{1/2}}{2^{1/2}\pi\hbar}E^{-1/2}\\
+  g_{2D,FE}(E) &= \frac{m}{\pi\hbar^2}\\
+  g_{3D,FE}(E) &= \frac{2^{1/2}m^{3/2}}{\pi^2\hbar^3}E^{1/2}
+\end{align}
+
+\noindent
+\textbf{Bloch Electrons}
+\begin{align}
+  u(\vec{x}) &= u(\vec{x} + \vec{R}) \implies\\
+  u(\vec{x}) &= \sum_{\vec{G}}e^{i\vec{k} \cdot \vec{G}} \hat{u}(\vec{G})\\
+  H(\vec{x}) &= H(\vec{x} + \vec{R}) \implies\\
+  \psi_{\vec{k}}(\vec{x} + \vec{R}) &= e^{i\vec{k} \cdot \vec{R}} \psi_{\vec{k}}(\vec{x})  \implies\\
+  \psi_{\vec{k}}(\vec{x}) &= e^{i\vec{k} \cdot \vec{x}}u(\vec{x})\\
+  \langle \vec{v}_{\sigma}(\vec{k})\rangle = \langle \vec{p}_{\sigma}(\vec{k})\rangle/m &= \frac{1}{\hbar} \vec{\nabla}_{\vec{k}} E_{\sigma}(\vec{k})\\ %% PSSA eq 7.266
+  \vec{F}_{\textrm{ext}} &= \hbar \frac{\partial \vec{k}}{\partial t} %% PSSA eq 8.42
+\end{align}
+
+\noindent
+\textbf{k $\cdot$ p method}
+\begin{align}
+  \frac{1}{m_c^{*}} &= \frac{1}{m} + 2 \frac{\hbar^2}{m^2}\frac{\lvert\bra{c} \hat{p}_x \ket{v}\rvert^2}{E_g}\\
+  E_n^{(1)} &= E_n^{(0)} + V_{nn}\\
+  E_n^{(2)} &= E_n^{(1)} + \sum_{p \neq n}\frac{\lvert V_{np} \rvert^2}{E_n^{(0)} - E_p^{(0)}}\\
+  u_{n,k_0+q} &= u_{n,k_0} + \sum_{p \neq n}\frac{\lvert V_{np} \rvert^2}{E_n^{(0)} - E_p^{(0)}}\\
+  V &= \frac{\hbar^2}{m}\vec{q} \cdot (-i \vec{\nabla} + \vec{k}) + \frac{\hbar^2}{2m}\lvert\vec{q}\rvert^2
+\end{align}
+
+\noindent
+\textbf{Effective Mass}
+\begin{align}
+  \frac{1}{m_{\sigma, i, j}^{*}(\vec{k})} &= \frac{1}{\hbar^2} \frac{\partial^2 E_{\sigma}(\vec{k})}{\partial k_i \partial k_j}\\
+  \hat{E}_{\sigma}(\vec{k}) &= \sum_{\vec{R}} E_{\sigma}[\vec{R}] e^{-i \vec{k} \cdot \vec{R}}\\
+  [E_{\sigma}(-i\vec{\nabla}) + V]\Psi_{\sigma} &= i\hbar\partial_t \Psi_{\sigma}\\
+    \Psi_{\sigma}(\vec{x}, t) &= F_{\sigma}(\vec{x}, t) \psi_{\sigma, \vec{k}_0}(\vec{x})\\ %% PSSA 8.76
+  F_{\sigma}(\vec{x}, t) &= \sum_{\vec{k}}c_{\sigma}(\vec{k}, t)e^{i(\vec{k} - \vec{k}_0) \cdot \vec{x}}\\
+  [\hat{E}_{\sigma}(-i\vec{\nabla} + \vec{k}_0) &+ U(\vec{x})]F_{\sigma}(\vec{x}, t) = i\hbar \partial_t F_{\sigma}(\vec{x}, t)\\
+  G_{\sigma}(\vec{x}, t) &= e^{i\vec{k}_0 \cdot \vec{x}}F_{\sigma}(\vec{x}, t)\\
+  \psi_{\sigma,\vec{k}_0}(\vec{x}) &= e^{i\vec{k}_0 \cdot \vec{x}}u_{\sigma, \vec{k}_0}(\vec{x})\\
+  \Phi(\vec{x}) &= \frac{e^2}{\epsilon \lvert \vec{x} \rvert}\\
+  E_n &= \frac{m^{*}_{h}e}{2\epsilon^2\hbar^2n^2} = \frac{m_h^{*}}{m_e\epsilon^2}\frac{-13.6}{n^2}eV\\
+  F(\vec{x}) &= Ae^{-r/r_0^*}\\
+  r_0^* &= \frac{\epsilon m_e}{m^{*}}r_0
+\end{align}
+
+\noindent
+\textbf{Donors}
+\begin{align}
+    \phi(\vec{x}) &= -\frac{e^2}{\epsilon \lvert \vec{x} \rvert}\\
+    \hat{E}(\vec{k}) &= E_c + \frac{\hbar^2 \vec{k}^2}{2m^{*}}\\
+    E_d &= E_c - \frac{m^{*}}{\epsilon^{2}m_e} \frac{13.56}{n^2} \textrm{eV}\\
+    \langle n_d \rangle &= N_d\frac{1}{1 + e^{\beta(E_d - \mu)}/2}\\
+    \langle p_a \rangle &= N_a\frac{1}{1 + e^{\beta(\mu - E_a)}/2}
+\end{align}
+
+\noindent
+\textbf{Semiconductors}
+\begin{align}
+  n = 2\pi^{-1/2}&N_c(T)F_{1/2}[\beta(E - E_c), \beta(\mu - E_c)]\\
+  p = 2\pi^{-1/2}&N_v(T)F_{1/2}[\beta(E_v - E), \beta(E_v - \mu)]\\
+  F_{1/2}(\chi, \nu) &= \int_{\mathbb{R}^+} \chi^{1/2}[e^{\chi - \nu} - 1]^{-1}d\chi\\
+  F_{1/2}(\chi, \nu) &\approx \pi^{1/2}2^{-1}e^{\nu}\\
+  N_i(T) &= \frac{1}{4}(\frac{2m_i^*}{\beta\pi\hbar^3})^{3/2}\\
+  {m_v^*}^{3/2} &= {m_{hh}^*}^{3/2} + {m_{lh}^*}^{3/2}\\
+  p + p_a + N_D &= n + n_d + N_a
+\end{align}
+
+\noindent
+\textbf{Transport}
+\begin{align}
+  \begin{split}
+    &(\partial_t + \vec{v} \cdot \vec{\nabla}_{\vec{x}} + \vec{a} \cdot \vec{\nabla}_{\vec{v}}) f(\vec{x}, \vec{p}, t)\\
+    &=\partial_t f_{\textrm{collision}}(\vec{x}, \vec{p}, t)
+  \end{split}\\
+  \begin{split}
+    &(\partial_t + \frac{\hbar}{m^*} \vec{k} \cdot \vec{\nabla}_{\vec{x}}
+    + \frac{1}{\hbar} \vec{F} \cdot \vec{\nabla}_{\vec{k}}) f(\vec{x}, \vec{k}, t)\\
+    &= \sum_{\vec{k}^{\prime}}f(\vec{x}, \vec{k}^{\prime}, t)S(\vec{k}^{\prime}, \vec{k}) - \sum_{\vec{k}^{\prime}} f(\vec{x}, \vec{k}, t) S(\vec{k}, \vec{k}^{\prime})
+  \end{split}
+\end{align}
+RTA,
+\begin{align}
+  f &= f_S + f_A \quad \textrm{symm. in} \; \vec{p}\\
+  f_{S, \textrm{coll., eq.}} &= f_0\\
+  \begin{split}
+    \partial_t f_{A, \textrm{coll., eq.}} &= -f_A/\tau\\
+    &= -(f - f_0)/\tau
+  \end{split}\\
+  \vec{F} &= -e\vec{E}
+\end{align}
+\begin{align}
+  \frac{1}{\tau} &= \sum_{\vec{k}^{\prime}}(1 -
+  \frac{f_A(\vec{k}^{\prime}) S(\vec{k}^{\prime}, \vec{k})}{f_A(\vec{k})S(\vec{k}, \vec{k}^{\prime})})
+  S(\vec{k}, \vec{k}^{\prime})\\
+  \langle \tau \rangle &= \frac{\langle E \tau(E)\rangle}{\langle E \rangle}\\
+  S(\vec{k}, \vec{k}^{\prime}) &= S(\vec{k}, -\vec{k}^{\prime}) \quad \textrm{isotropic} \implies\\
+  \frac{1}{\tau(\vec{k})} &= \sum_{\vec{k}^{\prime}}S(\vec{k}, \vec{k}^{\prime})\\
+  \lvert\vec{k}\rvert &= \lvert\vec{k}^{\prime}\rvert \quad \textrm{elastic} \implies\\
+  \frac{1}{\tau(\vec{k})} &= \sum_{\vec{k}^{\prime}}S(\vec{k}, \vec{k}^{\prime})(1 - \cos\alpha)\\
+  \lim_{t \rightarrow \infty} S(\vec{k}, \vec{k}^{\prime}) &= \frac{2\pi}{\hbar} \lvert U_{\vec{k}{\prime}, \vec{k}}\rvert^2 \delta(E_{\vec{k}^{\prime}} - E_{\vec{k}} \pm \hbar\omega)\\
+  U_{\vec{k}^{\prime}, \vec{k}} &= \int U(\vec{x})e^{-i(\vec{k}^{\prime} - \vec{k}) \cdot \vec{x}}d^3\vec{x}
+\end{align}
+\begin{align}
+  \bar{J} &= \bar{\bar{\sigma}} \bar{E}\\
+  &= -e \langle \vec{v} \rangle\\
+  &= -2 e \int_{1BZ} \vec{v}(\vec{k})f(\vec{k})\frac{d^3\vec{k}}{(2\pi)^3}\\
+  \bar{\bar{\sigma}} &= ne\bar{\bar{\mu}}\\ %% Lundstrom 3.57
+  \mu &= \frac{e}{m^{*}} \langle \tau \rangle \quad (\textrm{3D and 2D electron gas})\\
+  g(E) &= \frac{2}{\pi} \frac{E}{(\hbar v_F)^2} \quad \textrm{transport modification}
+\end{align}
+
+\noindent
+\textbf{Topology}
+\begin{align}
+  \dot{c}_m(t) &= [\frac{-i}{\hbar}E_m - \bra*{\phi_m(t)}\ket*{\dot{\phi}_m(t)}] c_m(t)\\
+  \gamma &= i \int_0^t \bra*{\phi_m(t^{\prime})}\ket*{\dot{\phi}_m(t^{\prime})} dt^{\prime}\\
+  &= \int_{\vec{k}_i}^{\vec{k}_t} \vec{A}(\vec{k}) \cdot d^3\vec{k}\\
+  \vec{A}(\vec{k}) &= i \bra*{\phi_m(\vec{k})}\vec{\nabla}_{\vec{k}}\ket*{\phi_m(\vec{k})}\\
+  \vec{B}(\vec{k}) &= \vec{\nabla}_{\vec{k}} \times \vec{A}(\vec{k})\\
+  \gamma &= \int_C \vec{A}(\vec{k}) \cdot d^3\vec{k} = \int_\Sigma \vec{B}(\vec{k}) \cdot \hat{n} dS
+\end{align}
+
+\noindent
+\textbf{Misc}
+\begin{align}
+  2\cos(x) &= e^{ix} + e^{-ix}\\
+  i2\sin(x) &= e^{ix} - e^{-ix}\\
+  (n - 2) \cdot 180^{\deg}
+\end{align}
+
+\end{multicols}
+
+\end{document}

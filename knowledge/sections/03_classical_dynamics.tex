@@ -1,0 +1,998 @@
+\providecommand{\half}{\tfrac{1}{2}}
+
+\section{Classical Dynamics}
+\label{sec:classical-dynamics}
+
+\subsection{Newtonian Mechanics}
+
+\noindent\textbf{Single particle.}\quad In an inertial frame,
+\[
+\mathbf p=m\dot{\mathbf r},\qquad
+\boxed{\dot{\mathbf p}=\mathbf F(\mathbf r,\dot{\mathbf r},t)}.
+\]
+For constant $m$, $\mathbf F=m\ddot{\mathbf r}$. Free motion and Galilean maps:
+\[
+\mathbf F=0,\ \dot m=0\Rightarrow \mathbf r(t)=\mathbf r_0+\mathbf v t,
+\]
+\[
+\mathbf r'=O\mathbf r,\quad O^TO=1;\qquad
+\mathbf r'=\mathbf r+\mathbf c;\qquad
+\mathbf r'=\mathbf r+\mathbf u t;\qquad
+t'=t+c.
+\]
+
+\noindent\textbf{Angular momentum, torque, central forces.}\quad
+\[
+\mathbf L=\mathbf r\times\mathbf p,\qquad
+\boldsymbol\tau=\mathbf r\times\mathbf F,\qquad
+\boxed{\dot{\mathbf L}=\boldsymbol\tau}.
+\]
+\[
+\boldsymbol\tau=0
+\Longleftrightarrow
+\mathbf r\times\mathbf F=0
+\Longleftrightarrow
+\mathbf F=f(r)\hat{\mathbf r}.
+\]
+Central force motion is planar with conserved $\mathbf L$.
+
+\noindent\textbf{Work and energy.}\quad For constant $m$,
+\[
+T=\half m\dot{\mathbf r}^{\,2},\qquad
+\frac{dT}{dt}=\mathbf F\cdot\dot{\mathbf r},\qquad
+T(t_2)-T(t_1)=\int_{\mathbf r_1}^{\mathbf r_2}\mathbf F\cdot d\mathbf r.
+\]
+Conservative force on simply connected flat space:
+\[
+\oint\mathbf F\cdot d\mathbf r=0
+\Longleftrightarrow
+\nabla\times\mathbf F=0
+\Longrightarrow
+\mathbf F=-\nabla V.
+\]
+\[
+E=T+V,\qquad
+\boxed{\dot E=0}
+\]
+for time-independent $V$. If $V=V(\mathbf r,t)$,
+\[
+\frac{d}{dt}(T+V)=\frac{\partial V}{\partial t}.
+\]
+Templates:
+\[
+\text{SHO:}\quad F=-kx,\quad V=\half kx^2,\quad
+E=\half m\dot x^2+\half kx^2,
+\]
+\[
+\text{damped SHO:}\quad F=-kx-\gamma\dot x,\quad
+\dot E=-\gamma\dot x^2\le0,
+\]
+\[
+\text{Kepler test particle:}\quad
+\mathbf F=-\frac{GMm}{r^2}\hat{\mathbf r},\quad
+V=-\frac{GMm}{r},\quad
+E=\half m\dot{\mathbf r}^{\,2}-\frac{GMm}{r}.
+\]
+
+\noindent\textbf{Many particles.}\quad
+\[
+\mathbf F_i=\dot{\mathbf p}_i,\qquad
+\mathbf F_i=\sum_{j\ne i}\mathbf F_{ij}+\mathbf F_i^{\rm ext}.
+\]
+Weak third law $\mathbf F_{ij}=-\mathbf F_{ji}$ gives
+\[
+\mathbf P=\sum_i\mathbf p_i,\qquad
+\boxed{\dot{\mathbf P}=\mathbf F^{\rm ext}},\qquad
+\mathbf F^{\rm ext}=\sum_i\mathbf F_i^{\rm ext}.
+\]
+Center of mass:
+\[
+M=\sum_i m_i,\qquad
+\mathbf R=\frac{1}{M}\sum_i m_i\mathbf r_i,\qquad
+\boxed{M\ddot{\mathbf R}=\mathbf F^{\rm ext}}.
+\]
+Angular momentum:
+\[
+\mathbf L=\sum_i\mathbf r_i\times\mathbf p_i,
+\]
+\[
+\dot{\mathbf L}
+=\sum_{i<j}(\mathbf r_i-\mathbf r_j)\times\mathbf F_{ij}
++\sum_i\mathbf r_i\times\mathbf F_i^{\rm ext}.
+\]
+Strong third law
+\[
+\mathbf F_{ij}\parallel(\mathbf r_i-\mathbf r_j)
+\]
+removes internal torques:
+\[
+\boxed{\dot{\mathbf L}=\boldsymbol\tau^{\rm ext}}.
+\]
+Electromagnetic particle forces need not satisfy particle-only third-law form; field
+momentum/angular momentum must then be included.
+
+\noindent\textbf{Center-of-mass energy split.}\quad With
+$\mathbf r_i=\mathbf R+\boldsymbol\rho_i$ and
+$\sum_i m_i\boldsymbol\rho_i=0$,
+\[
+T=\sum_i\half m_i\dot{\mathbf r}_i^{\,2}
+=\half M\dot{\mathbf R}^{\,2}
++\sum_i\half m_i\dot{\boldsymbol\rho}_i^{\,2}.
+\]
+For conservative external forces and pair potentials
+$V_{ij}=V_{ji}=V_{ij}(|\mathbf r_i-\mathbf r_j|)$,
+\[
+V=\sum_iV_i(\mathbf r_i)+\sum_{i<j}V_{ij}(|\mathbf r_i-\mathbf r_j|),
+\qquad
+\boxed{H=T+V=\text{constant}}.
+\]
+\src{Tong Classical Dynamics \S 1}
+
+\subsection{Lagrangian Formalism}
+
+\noindent\textbf{Stationary action.}\quad Configuration coordinates
+$x^A$, $A=1,\ldots,3N$:
+\[
+L(x,\dot x,t)=T(\dot x)-V(x),\qquad
+T=\half\sum_A m_A(\dot x^A)^2,
+\]
+\[
+S[x]=\int_{t_i}^{t_f}L(x,\dot x,t)\,dt,\qquad
+\delta x^A(t_i)=\delta x^A(t_f)=0.
+\]
+\[
+\delta S=\int_{t_i}^{t_f}
+\left[
+\frac{\partial L}{\partial x^A}
+-\frac{d}{dt}\left(\frac{\partial L}{\partial\dot x^A}\right)
+\right]\delta x^A\,dt.
+\]
+\[
+\boxed{\frac{d}{dt}\frac{\partial L}{\partial\dot x^A}
+-\frac{\partial L}{\partial x^A}=0}.
+\]
+For Cartesian $L=T-V$:
+\[
+\frac{\partial L}{\partial\dot x^A}=p_A=m_A\dot x^A,\qquad
+\dot p_A=-\frac{\partial V}{\partial x^A}.
+\]
+
+\noindent\textbf{Coordinate covariance.}\quad If $q^a=q^a(x,t)$ and
+$x^A=x^A(q,t)$ are invertible, then
+\[
+\dot x^A=\frac{\partial x^A}{\partial q^a}\dot q^a
++\frac{\partial x^A}{\partial t},
+\]
+\[
+\boxed{
+\frac{d}{dt}\frac{\partial L}{\partial\dot q^a}
+-\frac{\partial L}{\partial q^a}
+=
+\left[
+\frac{d}{dt}\frac{\partial L}{\partial\dot x^A}
+-\frac{\partial L}{\partial x^A}
+\right]\frac{\partial x^A}{\partial q^a}}.
+\]
+Thus Euler--Lagrange equations keep their form in generalized and time-dependent
+coordinates.
+
+\noindent\textbf{Rotating frame.}\quad For constant $\bm\omega$ and a free particle,
+\[
+L=\half m(\dot{\mathbf r}'+\bm\omega\times\mathbf r')^2,
+\]
+\[
+\boxed{\ddot{\mathbf r}'
++2\bm\omega\times\dot{\mathbf r}'
++\bm\omega\times(\bm\omega\times\mathbf r')=0}.
+\]
+Equivalent inertial forces:
+\[
+\mathbf F_{\rm cor}=-2m\bm\omega\times\dot{\mathbf r}',
+\qquad
+\mathbf F_{\rm cent}=-m\bm\omega\times(\bm\omega\times\mathbf r').
+\]
+
+\noindent\textbf{Constraints.}\quad Holonomic constraints:
+\[
+f_\alpha(x,t)=0,\qquad \alpha=1,\ldots,3N-n,
+\qquad x^A=x^A(q^1,\ldots,q^n,t).
+\]
+Multiplier Lagrangian:
+\[
+L'=L+\lambda^\alpha f_\alpha,
+\]
+\[
+f_\alpha=0,\qquad
+\frac{d}{dt}\frac{\partial L}{\partial\dot x^A}
+-\frac{\partial L}{\partial x^A}
+=\lambda^\alpha\frac{\partial f_\alpha}{\partial x^A}.
+\]
+If constraint forces are not required,
+\[
+\boxed{
+L(q,\dot q,t)=L(x(q,t),\dot x(q,\dot q,t),t),\qquad
+\frac{d}{dt}\frac{\partial L}{\partial\dot q^i}
+-\frac{\partial L}{\partial q^i}=0}.
+\]
+Generalized momentum:
+\[
+p_i\equiv\frac{\partial L}{\partial\dot q^i},\qquad
+\dot p_i=\frac{\partial L}{\partial q^i}.
+\]
+Equivalent Lagrangians:
+\[
+L\mapsto \alpha L,\quad \alpha\ne0,\qquad
+L\mapsto L+\frac{df(q,t)}{dt}.
+\]
+Non-holonomic examples: inequalities and velocity constraints not integrable to
+$f(x,t)=0$, e.g. rolling without slipping,
+\[
+\dot x=R\dot\phi\sin\theta,\qquad
+\dot y=R\dot\phi\cos\theta.
+\]
+
+\noindent\textbf{Noether theorem.}\quad If
+\[
+q^i(t)\mapsto Q^i(s,t),\qquad Q^i(0,t)=q^i(t),
+\qquad
+\left.\frac{\partial}{\partial s}L(Q,\dot Q,t)\right|_{s=0}=0,
+\]
+then
+\[
+\boxed{
+\mathcal Q=\sum_i
+\frac{\partial L}{\partial\dot q^i}
+\left.\frac{\partial Q^i}{\partial s}\right|_{s=0},
+\qquad \dot{\mathcal Q}=0}.
+\]
+Special cases:
+\[
+\partial_tL=0
+\Rightarrow
+H=\dot q^ip_i-L=\text{constant},
+\qquad
+\partial_{q^j}L=0
+\Rightarrow
+p_j=\text{constant}.
+\]
+\[
+\text{translations}\leftrightarrow\mathbf P,\qquad
+\text{rotations}\leftrightarrow\mathbf J,\qquad
+\text{time translations}\leftrightarrow H.
+\]
+
+\noindent\textbf{Bead on a rotating hoop.}\quad
+\[
+x=a\sin\psi\cos\omega t,\quad
+y=a\sin\psi\sin\omega t,\quad
+z=a-a\cos\psi,
+\]
+\[
+L=\half ma^2(\dot\psi^2+\omega^2\sin^2\psi)+mga\cos\psi
+=ma^2\left[\half\dot\psi^2-V_{\rm eff}(\psi)\right],
+\]
+\[
+V_{\rm eff}=-\frac{g}{a}\cos\psi-\half\omega^2\sin^2\psi,\qquad
+\ddot\psi=-\frac{\partial V_{\rm eff}}{\partial\psi}.
+\]
+\[
+\sin\psi(g-a\omega^2\cos\psi)=0.
+\]
+\[
+\psi=0\ \text{stable iff}\ \omega^2<g/a,\qquad
+\cos\psi=\frac{g}{a\omega^2}\ \text{stable iff}\ \omega^2\ge g/a,\qquad
+\psi=\pi\ \text{unstable}.
+\]
+
+\noindent\textbf{Double pendulum.}\quad
+\[
+L=\half(m_1+m_2)l_1^2\dot\theta_1^2
++\half m_2l_2^2\dot\theta_2^2
++m_2l_1l_2\cos(\theta_1-\theta_2)\dot\theta_1\dot\theta_2
+\]
+\[
+\hspace{2cm}
++(m_1+m_2)gl_1\cos\theta_1+m_2gl_2\cos\theta_2.
+\]
+The nonlinear equations are generally nonintegrable; above sufficient energy the
+motion is chaotic.
+
+\noindent\textbf{Spherical pendulum.}\quad
+\[
+L=\half ml^2(\dot\theta^2+\dot\phi^2\sin^2\theta)+mgl\cos\theta,
+\qquad
+J=ml^2\dot\phi\sin^2\theta.
+\]
+Eliminate $\dot\phi$ in the equation of motion, not in $L$:
+\[
+\ddot\theta=-\frac{\partial V_{\rm eff}}{\partial\theta},
+\qquad
+V_{\rm eff}(\theta)
+=-\frac{g}{l}\cos\theta+\frac{J^2}{2m^2l^4\sin^2\theta}.
+\]
+\[
+E=\half\dot\theta^2+V_{\rm eff}(\theta),\qquad
+t-t_0=\frac{1}{\sqrt2}\int
+\frac{d\theta}{\sqrt{E-V_{\rm eff}(\theta)}}.
+\]
+
+\noindent\textbf{Two-body central force.}\quad
+\[
+\mathbf R=\frac{m_1\mathbf r_1+m_2\mathbf r_2}{m_1+m_2},\qquad
+\mathbf r=\mathbf r_1-\mathbf r_2,\qquad
+\mu=\frac{m_1m_2}{m_1+m_2}.
+\]
+\[
+L=\half(m_1+m_2)\dot{\mathbf R}^{\,2}
++\half\mu\dot{\mathbf r}^{\,2}-V(r).
+\]
+Reduced planar form:
+\[
+L=\half\mu(\dot r^2+r^2\dot\phi^2)-V(r),\qquad
+J=\mu r^2\dot\phi.
+\]
+\[
+\boxed{\mu\ddot r=-\frac{\partial V_{\rm eff}}{\partial r},\qquad
+V_{\rm eff}=V(r)+\frac{J^2}{2\mu r^2}}.
+\]
+\[
+E=\half\mu\dot r^2+V_{\rm eff}(r),\qquad
+t-t_0=\sqrt{\frac{\mu}{2}}\int\frac{dr}{\sqrt{E-V_{\rm eff}(r)}}.
+\]
+Gravity:
+\[
+V(r)=-\frac{Gm_1m_2}{r},\qquad
+E<0:\ \text{elliptic},\quad E>0:\ \text{hyperbolic}.
+\]
+
+\noindent\textbf{Restricted three-body problem.}\quad For
+$m_3\ll m_1,m_2$ and a circular binary,
+\[
+\omega^2=\frac{G(m_1+m_2)}{r^3}.
+\]
+Rotating-frame Lagrangian:
+\[
+L=\half m_3[(\dot x-\omega y)^2+(\dot y+\omega x)^2]-V,
+\]
+\[
+V=-\frac{Gm_1m_3}{r_{13}}-\frac{Gm_2m_3}{r_{23}},
+\]
+\[
+r_{13}^2=(x+r\mu/m_1)^2+y^2,\qquad
+r_{23}^2=(x-r\mu/m_2)^2+y^2.
+\]
+\[
+m_3\ddot x=2m_3\omega\dot y+m_3\omega^2x-\frac{\partial V}{\partial x},
+\]
+\[
+m_3\ddot y=-2m_3\omega\dot x+m_3\omega^2y-\frac{\partial V}{\partial y}.
+\]
+Stationary rotating solutions: $L_1,L_2,L_3$ collinear unstable; $L_4,L_5$
+equilateral and stable for sufficiently small $m_2/m_1$.
+
+\noindent\textbf{Purely kinetic Lagrangians.}\quad
+\[
+L=\half g_{ab}(q)\dot q^a\dot q^b,\qquad
+g^{ab}g_{bc}=\delta^a{}_c.
+\]
+\[
+\boxed{\ddot q^a+\Gamma^a{}_{bc}\dot q^b\dot q^c=0},
+\]
+\[
+\Gamma^a{}_{bc}
+=\half g^{ad}(\partial_cg_{bd}+\partial_bg_{cd}-\partial_dg_{bc}).
+\]
+This is geodesic flow on configuration-space metric $g_{ab}$.
+
+\noindent\textbf{Charged particle in electromagnetic fields.}\quad
+\[
+\mathbf B=\nabla\times\mathbf A,\qquad
+\mathbf E=-\nabla\phi-\frac{\partial\mathbf A}{\partial t},
+\]
+\[
+L=\half m\dot{\mathbf r}^{\,2}-e\phi+e\dot{\mathbf r}\cdot\mathbf A,\qquad
+\mathbf p=m\dot{\mathbf r}+e\mathbf A.
+\]
+\[
+\boxed{m\ddot{\mathbf r}=e(\mathbf E+\dot{\mathbf r}\times\mathbf B)}.
+\]
+Gauge transformation:
+\[
+\phi\mapsto\phi-\partial_t\chi,\qquad
+\mathbf A\mapsto\mathbf A+\nabla\chi,\qquad
+L\mapsto L+e\frac{d\chi}{dt}.
+\]
+
+\noindent\textbf{Small oscillations.}\quad One degree:
+\[
+\ddot x=f(x),\qquad f(x_0)=0,\qquad x=x_0+\eta,
+\]
+\[
+\ddot\eta=f'(x_0)\eta+O(\eta^2).
+\]
+\[
+f'(x_0)<0:\ \eta=A\cos(\omega(t-t_0)),\ \omega^2=-f'(x_0),
+\qquad
+f'(x_0)>0:\ \eta=Ae^{\lambda t}+Be^{-\lambda t},\ \lambda^2=f'(x_0).
+\]
+Many degrees:
+\[
+\ddot q_i=f_i(q),\qquad q_i=q_i^{(0)}+\eta_i,\qquad
+\ddot{\bm\eta}=F\bm\eta,
+\]
+\[
+F_{ij}=\left.\frac{\partial f_i}{\partial q_j}\right|_{q=q^{(0)}}.
+\]
+\[
+F\bm\mu_a=\lambda_a^2\bm\mu_a,\qquad
+\bm\eta(t)=
+\sum_{\lambda_a^2>0}\bm\mu_a(A_ae^{\lambda_at}+B_ae^{-\lambda_at})
++\sum_{\lambda_a^2<0}\bm\mu_aC_a\cos(\omega_a(t-t_a)).
+\]
+Stable iff all $\lambda_a^2<0$. For a physical quadratic expansion,
+\[
+L=\half T_{ij}(q)\dot q_i\dot q_j-V(q),\qquad T_{ij}>0,
+\]
+\[
+T_{ij}\ddot\eta_j=-V_{ij}\eta_j,\qquad
+F=-T^{-1}V,\qquad
+V\bm\mu=-\lambda^2T\bm\mu.
+\]
+
+\noindent\textbf{Normal-mode templates.}\quad Equal double pendulum:
+\[
+\begin{pmatrix}2&1\\1&1\end{pmatrix}\ddot{\bm\theta}
+=-\frac{g}{l}
+\begin{pmatrix}2&0\\0&1\end{pmatrix}\bm\theta,
+\]
+\[
+\bm\mu_1=\begin{pmatrix}1\\ \sqrt2\end{pmatrix},\quad
+\omega_1^2=\frac{g}{l}(2-\sqrt2),\qquad
+\bm\mu_2=\begin{pmatrix}1\\ -\sqrt2\end{pmatrix},\quad
+\omega_2^2=\frac{g}{l}(2+\sqrt2).
+\]
+Linear triatomic molecule:
+\[
+F=
+\begin{pmatrix}
+-k/m&k/m&0\\
+k/M&-2k/M&k/M\\
+0&k/m&-k/m
+\end{pmatrix}.
+\]
+\[
+\bm\mu_1=(1,1,1)^T,\ \lambda_1^2=0;\qquad
+\bm\mu_2=(1,0,-1)^T,\ \omega_2^2=k/m;
+\]
+\[
+\bm\mu_3=(1,-2m/M,1)^T,\qquad
+\omega_3^2=\frac{k}{m}\left(1+\frac{2m}{M}\right).
+\]
+\src{Tong Classical Dynamics \S 2}
+
+\subsection{Rigid Bodies}
+
+\noindent\textbf{Frames and angular velocity.}\quad For a body frame
+$\{\mathbf e_a\}$ and space frame $\{\tilde{\mathbf e}_a\}$,
+\[
+\mathbf e_a=R_{ab}\tilde{\mathbf e}_b,\qquad R\in SO(3).
+\]
+\[
+\omega_{ab}\equiv\dot R_{ac}R_{bc}=(\dot R R^{-1})_{ab},\qquad
+\omega_{ab}=-\omega_{ba},\qquad
+\omega_a=\half\epsilon_{abc}\omega_{bc}.
+\]
+\[
+\dot{\mathbf e}_a=\bm\omega\times\mathbf e_a,\qquad
+\boxed{\dot{\mathbf r}=\bm\omega\times\mathbf r}.
+\]
+Convective convention:
+\[
+\Omega=R^{-1}\dot R.
+\]
+Reconstructing orientation:
+\[
+\dot R=\omega R,\qquad
+\boxed{R(t)=P\exp\left(\int_0^t\omega(t')\,dt'\right)}
+\]
+with later times ordered left.
+
+\noindent\textbf{Inertia tensor and angular momentum.}\quad
+\[
+T=\half\sum_i m_i(\bm\omega\times\mathbf r_i)^2
+=\half\omega_aI_{ab}\omega_b,
+\]
+\[
+\boxed{I_{ab}=\sum_i m_i[(\mathbf r_i^2)\delta_{ab}-(r_i)_a(r_i)_b]}.
+\]
+Continuous body:
+\[
+I=\int d^3r\,\rho(\mathbf r)
+\begin{pmatrix}
+y^2+z^2&-xy&-xz\\
+-xy&x^2+z^2&-yz\\
+-xz&-yz&x^2+y^2
+\end{pmatrix}.
+\]
+Principal axes:
+\[
+I=\operatorname{diag}(I_1,I_2,I_3),\qquad I_a\ge0.
+\]
+Parallel-axis theorem:
+\[
+(I_c)_{ab}=(I_{\rm cm})_{ab}+M(c^2\delta_{ab}-c_ac_b).
+\]
+\[
+\boxed{\mathbf L=\sum_i m_i\mathbf r_i\times\dot{\mathbf r}_i=I\bm\omega},
+\qquad
+L_a=I_{ab}\omega_b.
+\]
+
+\noindent\textbf{Euler equations.}\quad Removing center-of-mass translation,
+\[
+T=\half M\dot{\mathbf R}^{\,2}+\half\omega_aI_{ab}\omega_b.
+\]
+In principal axes:
+\[
+\boxed{
+\begin{aligned}
+I_1\dot\omega_1+(I_3-I_2)\omega_2\omega_3&=\tau_1,\\
+I_2\dot\omega_2+(I_1-I_3)\omega_3\omega_1&=\tau_2,\\
+I_3\dot\omega_3+(I_2-I_1)\omega_1\omega_2&=\tau_3.
+\end{aligned}}
+\]
+Free top: set $\bm\tau=0$.
+
+\noindent\textbf{Free tops.}\quad Sphere:
+\[
+I_1=I_2=I_3\Rightarrow \dot{\bm\omega}=0,\qquad
+\mathbf L\parallel\bm\omega.
+\]
+Symmetric top $I_1=I_2\ne I_3$:
+\[
+\dot\omega_1=\Omega\omega_2,\qquad
+\dot\omega_2=-\Omega\omega_1,\qquad
+\dot\omega_3=0,
+\]
+\[
+\Omega=\omega_3\frac{I_1-I_3}{I_1},\qquad
+(\omega_1,\omega_2)=\omega_0(\sin\Omega t,\cos\Omega t).
+\]
+Asymmetric top about $\mathbf e_1$:
+\[
+\omega_1=\Omega+\eta_1,\quad \omega_2=\eta_2,\quad\omega_3=\eta_3,
+\]
+\[
+I_2\ddot\eta_2
+=\frac{\Omega^2}{I_3}(I_3-I_1)(I_1-I_2)\eta_2.
+\]
+Stable axes: largest and smallest principal moments; unstable axis: intermediate
+moment.
+
+\noindent\textbf{Poinsot construction.}\quad Conserved surfaces:
+\[
+2T=I_1\omega_1^2+I_2\omega_2^2+I_3\omega_3^2,
+\qquad
+L^2=I_1^2\omega_1^2+I_2^2\omega_2^2+I_3^2\omega_3^2.
+\]
+Inertia ellipsoid:
+\[
+\frac{I_1\omega_1^2}{2T}
++\frac{I_2\omega_2^2}{2T}
++\frac{I_3\omega_3^2}{2T}=1,\qquad
+\mathbf L=\nabla_{\bm\omega}T.
+\]
+Polhode: curve on inertia ellipsoid. Herpolhode: curve in the invariable plane
+$\mathbf L\cdot\bm\omega=2T$.
+
+\noindent\textbf{Euler angles.}\quad Convention:
+\[
+R(\phi,\theta,\psi)=R_3(\psi)R_1(\theta)R_3(\phi),
+\]
+\[
+\bm\omega=\dot\phi\,\tilde{\mathbf e}_3+\dot\theta\,\mathbf e'_1+\dot\psi\,\mathbf e_3.
+\]
+\[
+\boxed{
+\begin{aligned}
+\omega_1&=\dot\phi\sin\theta\sin\psi+\dot\theta\cos\psi,\\
+\omega_2&=\dot\phi\sin\theta\cos\psi-\dot\theta\sin\psi,\\
+\omega_3&=\dot\psi+\dot\phi\cos\theta.
+\end{aligned}}
+\]
+Free symmetric top with $\mathbf L\parallel\tilde{\mathbf e}_3$:
+\[
+\dot\theta=0,\qquad
+\dot\psi=\omega_3\frac{I_1-I_3}{I_1},\qquad
+\dot\phi=\frac{I_3\omega_3}{I_1\cos\theta}.
+\]
+For a thin disk, $I_3=2I_1$ and small $\theta$ gives $|\dot\phi|\simeq2|\dot\psi|$.
+
+\noindent\textbf{Heavy symmetric top.}\quad Pinned top, $I_1=I_2$, center of mass
+distance $l$:
+\[
+L=\half I_1(\dot\theta^2+\sin^2\theta\,\dot\phi^2)
++\half I_3(\dot\psi+\dot\phi\cos\theta)^2-Mgl\cos\theta.
+\]
+\[
+p_\psi=I_3(\dot\psi+\dot\phi\cos\theta)=I_3\omega_3,
+\]
+\[
+p_\phi=I_1\sin^2\theta\,\dot\phi+I_3\omega_3\cos\theta,
+\]
+\[
+E=\half I_1(\dot\theta^2+\dot\phi^2\sin^2\theta)
++\half I_3\omega_3^2+Mgl\cos\theta.
+\]
+Let
+\[
+a=\frac{I_3\omega_3}{I_1},\qquad b=\frac{p_\phi}{I_1},\qquad
+E'=E-\half I_3\omega_3^2.
+\]
+\[
+\dot\phi=\frac{b-a\cos\theta}{\sin^2\theta},\qquad
+\dot\psi=\frac{I_1a}{I_3}
+-\frac{(b-a\cos\theta)\cos\theta}{\sin^2\theta}.
+\]
+\[
+E'=\half I_1\dot\theta^2+V_{\rm eff}(\theta),
+\qquad
+V_{\rm eff}=\frac{I_1(b-a\cos\theta)^2}{2\sin^2\theta}+Mgl\cos\theta.
+\]
+With $u=\cos\theta$, $\alpha=2E'/I_1$, $\beta=2Mgl/I_1$,
+\[
+\boxed{\dot u^2=(1-u^2)(\alpha-\beta u)-(b-au)^2\equiv f(u)}.
+\]
+\[
+\dot\phi=\frac{b-au}{1-u^2},\qquad
+\dot\psi=\frac{I_1a}{I_3}-\frac{u(b-au)}{1-u^2}.
+\]
+Uniform precession at $\theta_0$:
+\[
+Mgl=\dot\phi(I_3\omega_3-I_1\dot\phi\cos\theta_0),\qquad
+\omega_3>\frac{2}{I_3}\sqrt{MglI_1\cos\theta_0}.
+\]
+Sleeping top:
+\[
+\theta=\dot\theta=0,\quad a=b,\quad \alpha=\beta,\quad
+f(u)=(1-u)^2[\alpha(1+u)-a^2],
+\]
+\[
+\boxed{\omega_3^2>\frac{4I_1Mgl}{I_3^2}\quad\text{stable}}.
+\]
+
+\noindent\textbf{Deformable bodies.}\quad Shape space:
+\[
+\widetilde{\mathcal C}\simeq\mathcal C/SO(3),\qquad
+\mathbf r_i(t)=R(t)\tilde{\mathbf r}_i(t),\qquad
+\Omega=R^{-1}\dot R.
+\]
+For shape coordinates $x^A$,
+\[
+\Omega=\Omega_A(x)\dot x^A,\qquad \Omega_A\in\mathfrak{so}(3).
+\]
+Reference-orientation gauge ambiguity:
+\[
+\tilde{\mathbf r}_i\mapsto S(x)\tilde{\mathbf r}_i,\qquad
+\Omega_A\mapsto S\Omega_AS^{-1}+S\partial_AS^{-1}.
+\]
+For zero total angular momentum:
+\[
+\tilde I_{ab}=\sum_i m_i[(\tilde{\mathbf r}_i^{\,2})\delta_{ab}
+-(\tilde r_i)_a(\tilde r_i)_b],
+\]
+\[
+\tilde L_a=\epsilon_{abc}\sum_i m_i(\tilde r_i)_b(\dot{\tilde r}_i)_c,
+\qquad
+\boxed{\Omega_{ab}=\epsilon_{abc}(\tilde I^{-1})_{cd}\tilde L_d}.
+\]
+Closed loop in shape space:
+\[
+R=\widetilde P\exp\left(\int_0^T\Omega\,dt\right)
+=\widetilde P\exp\left(\oint\Omega_A\,dx^A\right).
+\]
+For a small loop $x^A=x_0^A+\alpha^A$,
+\[
+R=1+\half F_{AB}\oint\alpha^A\dot\alpha^B\,dt+O(\alpha^3),
+\]
+\[
+F_{AB}=\partial_B\Omega_A-\partial_A\Omega_B+[\Omega_A,\Omega_B].
+\]
+\src{Tong Classical Dynamics \S 3}
+
+\subsection{Hamiltonian Formalism}
+
+\noindent\textbf{Hamilton equations.}\quad
+\[
+p_i=\frac{\partial L}{\partial\dot q_i},\qquad
+H(q,p,t)=p_i\dot q_i-L(q,\dot q,t).
+\]
+\[
+dH=\dot q_i\,dp_i-\frac{\partial L}{\partial q_i}dq_i
+-\frac{\partial L}{\partial t}dt.
+\]
+\[
+\boxed{\dot q_i=\frac{\partial H}{\partial p_i},\qquad
+\dot p_i=-\frac{\partial H}{\partial q_i}},\qquad
+\frac{\partial H}{\partial t}=-\frac{\partial L}{\partial t}.
+\]
+Hamilton action:
+\[
+S_H=\int_{t_1}^{t_2}(p_i\dot q_i-H)\,dt,\qquad
+\delta q_i(t_1)=\delta q_i(t_2)=0.
+\]
+Conservation:
+\[
+\partial_tH=0\Rightarrow\dot H=0,\qquad
+\partial_{q_a}H=0\Rightarrow\dot p_a=0.
+\]
+
+\noindent\textbf{Hamiltonian examples.}\quad Particle in a potential:
+\[
+H=\frac{\mathbf p^2}{2m}+V(\mathbf r).
+\]
+Charged particle:
+\[
+H=\frac{1}{2m}(\mathbf p-e\mathbf A)^2+e\phi.
+\]
+Uniform $\mathbf B=B\hat{\mathbf z}$, $\mathbf A=(-By,0,0)$:
+\[
+H=\frac{1}{2m}(p_x+eBy)^2+\frac{p_y^2}{2m},\qquad
+\omega_c=\frac{eB}{m}.
+\]
+
+\noindent\textbf{Liouville theorem.}\quad With
+$z=(q_1,\ldots,q_n,p_1,\ldots,p_n)^T$,
+\[
+J=\begin{pmatrix}0&I\\-I&0\end{pmatrix},\qquad
+\dot z=J\nabla_zH.
+\]
+\[
+\nabla_z\cdot\dot z
+=\frac{\partial\dot q_i}{\partial q_i}
++\frac{\partial\dot p_i}{\partial p_i}=0,
+\]
+\[
+\boxed{d\Gamma=dq_1\cdots dq_n\,dp_1\cdots dp_n\ \text{is preserved}}.
+\]
+Ensemble density:
+\[
+\frac{d\rho}{dt}=0,\qquad
+\boxed{\partial_t\rho+\{\rho,H\}=0}.
+\]
+\[
+\rho=\rho(H)\Rightarrow\partial_t\rho=0,\qquad
+\rho_B\propto e^{-H/kT}.
+\]
+Poincare recurrence: finite phase-space volume plus invertible Hamiltonian flow
+implies return arbitrarily close to initial neighborhoods in finite time.
+
+\noindent\textbf{Poisson brackets.}\quad
+\[
+\boxed{\{f,g\}
+=\frac{\partial f}{\partial q_i}\frac{\partial g}{\partial p_i}
+-\frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q_i}
+=\nabla f^TJ\nabla g}.
+\]
+\[
+\{q_i,q_j\}=0,\qquad \{p_i,p_j\}=0,\qquad \{q_i,p_j\}=\delta_{ij}.
+\]
+\[
+\boxed{\dot f=\{f,H\}+\partial_tf},\qquad
+\{I,H\}=0\Rightarrow I=\text{constant}.
+\]
+Algebra: antisymmetry, bilinearity, Leibniz rule, Jacobi identity.
+
+\noindent\textbf{Poisson examples.}\quad
+\[
+\mathbf L=\mathbf r\times\mathbf p,\qquad
+\{L_a,L_b\}=\epsilon_{abc}L_c,\qquad
+\{L^2,L_a\}=0.
+\]
+Kepler Runge--Lenz vector:
+\[
+\mathbf A=\frac{1}{m}\mathbf p\times\mathbf L-\hat{\mathbf r},\qquad
+H=\frac{\mathbf p^2}{2m}-\frac{1}{r},
+\]
+\[
+\{H,\mathbf A\}=0,\qquad
+\{A_a,A_b\}=-\frac{2H}{m}\epsilon_{abc}L_c.
+\]
+Magnetic monopole:
+\[
+\{m\dot r_a,m\dot r_b\}=e\epsilon_{abc}B_c,\qquad
+\mathbf B=g\frac{\mathbf r}{r^3},
+\]
+\[
+\mathbf J=m\mathbf r\times\dot{\mathbf r}-eg\hat{\mathbf r},\qquad
+\{H,\mathbf J\}=0.
+\]
+Point vortices:
+\[
+H=-\sum_{i<j}\gamma_i\gamma_j\log|\mathbf r_i-\mathbf r_j|,
+\]
+\[
+\{f,g\}=\sum_i\frac{1}{\gamma_i}
+\left(
+\frac{\partial f}{\partial x_i}\frac{\partial g}{\partial y_i}
+-\frac{\partial f}{\partial y_i}\frac{\partial g}{\partial x_i}
+\right).
+\]
+
+\noindent\textbf{Canonical transformations.}\quad For $Z=Z(z)$ and
+$M^a{}_b=\partial Z^a/\partial z^b$,
+\[
+\boxed{MJM^T=J}
+\]
+equivalently
+\[
+\{Q_i,Q_j\}=0,\qquad \{P_i,P_j\}=0,\qquad \{Q_i,P_j\}=\delta_{ij}.
+\]
+Infinitesimal generator $G$:
+\[
+Q_i=q_i+\alpha\frac{\partial G}{\partial p_i},\qquad
+P_i=p_i-\alpha\frac{\partial G}{\partial q_i}.
+\]
+\[
+\delta H=\alpha\{H,G\},\qquad
+\{G,H\}=0\Longleftrightarrow G\ \text{symmetry generator}
+\Longleftrightarrow \dot G=0.
+\]
+Generating functions:
+\[
+F_1(q,Q):\quad p_i=\partial_{q_i}F_1,\quad P_i=-\partial_{Q_i}F_1,
+\]
+\[
+F_2(q,P):\quad p_i=\partial_{q_i}F_2,\quad Q_i=\partial_{P_i}F_2,
+\]
+\[
+F_3(p,Q):\quad q_i=-\partial_{p_i}F_3,\quad P_i=-\partial_{Q_i}F_3,
+\]
+\[
+F_4(p,P):\quad q_i=-\partial_{p_i}F_4,\quad Q_i=\partial_{P_i}F_4.
+\]
+
+\noindent\textbf{Action-angle variables.}\quad For an integrable system,
+\[
+(q_i,p_i)\mapsto(\theta_i,I_i),\qquad H=H(I),
+\]
+\[
+\dot I_i=0,\qquad
+\dot\theta_i=\omega_i(I)=\frac{\partial H}{\partial I_i}.
+\]
+Liouville integrability: $n$ independent constants $I_i$ with
+\[
+\{I_i,I_j\}=0
+\]
+give invariant tori for bounded motion. In one-dimensional bounded motion,
+\[
+\boxed{I(E)=\frac{1}{2\pi}\oint p\,dq},\qquad
+p(q,E)=\sqrt{2m(E-V(q))},
+\]
+\[
+\omega=\frac{dE}{dI},\qquad
+\theta=\frac{d}{dI}\int^q p(q',E)\,dq'.
+\]
+Kepler:
+\[
+H=\frac{p_r^2}{2m}+\frac{p_\phi^2}{2mr^2}-\frac{k}{r},\qquad
+I_\phi=p_\phi,
+\]
+\[
+\boxed{E=-\frac{mk^2}{2(I_r+I_\phi)^2}}.
+\]
+
+\noindent\textbf{Adiabatic invariants and Hannay angle.}\quad For
+$H=p^2/2m+V(q;\lambda(t))$ with
+$T_{\rm orbit}\ll|\lambda/\dot\lambda|$,
+\[
+\boxed{I=\frac{1}{2\pi}\oint p\,dq,\qquad \langle\dot I\rangle=0}.
+\]
+SHO: $I=E/\omega$. Magnetic guiding-center invariant:
+\[
+I=\frac{1}{2\pi}\oint p\,dq\propto\frac{e}{c}BR^2,\qquad
+H\propto B^2R^2.
+\]
+For a closed adiabatic parameter loop $C$,
+\[
+\theta(T)=\theta(0)+\int_0^T\omega\,dt+\Delta\theta,
+\]
+\[
+\Delta\theta=\oint_C
+\left\langle\frac{\partial\theta}{\partial\lambda_a}\right\rangle d\lambda_a.
+\]
+Surface form:
+\[
+\Delta\theta=\frac{d}{dI}\int_S W_{ab}\,dA_{ab},
+\]
+\[
+W_{ab}=
+\left\langle
+\frac{\partial\theta}{\partial\lambda_a}\frac{\partial I}{\partial\lambda_b}
+-\frac{\partial\theta}{\partial\lambda_b}\frac{\partial I}{\partial\lambda_a}
+\right\rangle .
+\]
+
+\noindent\textbf{Hamilton-Jacobi theory.}\quad Classical action as endpoint function:
+\[
+W(q,t)=S[q_{\rm cl}],\qquad
+p_i=\frac{\partial W}{\partial q_i},\qquad
+\frac{\partial W}{\partial t}=-H(q,p,t).
+\]
+\[
+\boxed{\frac{\partial W}{\partial t}
++H\left(q,\frac{\partial W}{\partial q},t\right)=0}.
+\]
+For time-independent $H$:
+\[
+W(q,t)=W_0(q)-Et,\qquad
+H\left(q,\frac{\partial W_0}{\partial q}\right)=E.
+\]
+As generating function:
+\[
+W=W(q,t;\beta),\qquad p=\partial_qW,\qquad \alpha=\partial_\beta W.
+\]
+\[
+\beta=E:\quad \alpha=\partial_EW_0-t=-t_0,
+\qquad
+\beta=I:\quad W_0=\int p\,dq,\quad \alpha=\theta-\omega t.
+\]
+
+\noindent\textbf{Quantum correspondence.}\quad
+\[
+\hat q_i\psi=q_i\psi,\qquad
+\hat p_i\psi=-i\hbar\partial_{q_i}\psi,\qquad
+[\hat q_i,\hat p_j]=i\hbar\delta_{ij}.
+\]
+\[
+\boxed{\{\, ,\,\}_{\rm cl}\longleftrightarrow\frac{1}{i\hbar}[\, ,\,]_{\rm qm}},
+\qquad
+\dot f=\{f,H\}\longrightarrow i\hbar\dot{\hat f}=[\hat f,\hat H].
+\]
+WKB/HJ limit:
+\[
+\psi=R e^{iW/\hbar},\qquad
+i\hbar\partial_t\psi=
+\left(-\frac{\hbar^2}{2m}\partial_q^2+V\right)\psi,
+\]
+\[
+\partial_tW+\frac{(\partial_qW)^2}{2m}+V=O(\hbar).
+\]
+Path integral:
+\[
+\psi(q_f,T)=\mathcal N
+\int_{q(0)=q_i}^{q(T)=q_f}\mathcal Dq\,e^{iS[q]/\hbar},
+\qquad
+\hbar\to0:\ \delta S=0\ \text{by stationary phase}.
+\]
+
+\noindent\textbf{Nambu brackets.}\quad For triplets $(q_i,p_i,r_i)$,
+\[
+\boxed{\{f,g,h\}=\sum_i
+\frac{\partial(f,g,h)}{\partial(q_i,p_i,r_i)}}.
+\]
+Dynamics requires two Hamiltonians:
+\[
+\dot f=\{f,G,H\}.
+\]
+\[
+\dot q_i=
+\frac{\partial G}{\partial p_i}\frac{\partial H}{\partial r_i}
+-\frac{\partial G}{\partial r_i}\frac{\partial H}{\partial p_i},
+\]
+\[
+\dot p_i=
+\frac{\partial G}{\partial r_i}\frac{\partial H}{\partial q_i}
+-\frac{\partial G}{\partial q_i}\frac{\partial H}{\partial r_i},
+\]
+\[
+\dot r_i=
+\frac{\partial G}{\partial q_i}\frac{\partial H}{\partial p_i}
+-\frac{\partial G}{\partial p_i}\frac{\partial H}{\partial q_i}.
+\]
+If $\partial_tG=\partial_tH=0$, both $G$ and $H$ are conserved. Nambu-canonical
+maps preserve, e.g.,
+\[
+\{Q_i,P_j,R_k\}=\delta_{ijk}.
+\]
+\src{Tong Classical Dynamics \S 4}

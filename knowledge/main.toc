@@ -1,0 +1,50 @@
+\contentsline {section}{Navigation}{1}{section*.1}%
+\contentsline {section}{\numberline {1}Vector Calculus}{3}{section.1}%
+\contentsline {section}{\numberline {2}Dynamics and Relativity}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Newtonian Mechanics}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Forces}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Dimensional Analysis}{7}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Central Forces}{7}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Systems of Particles}{9}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Non-Inertial Frames}{11}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Special Relativity}{13}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}Relativistic Kinematics, Particles, and Spinors}{14}{subsection.2.8}%
+\contentsline {section}{\numberline {3}Classical Dynamics}{17}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Newtonian Mechanics}{17}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Lagrangian Formalism}{18}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Rigid Bodies}{21}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Hamiltonian Formalism}{24}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Electromagnetism}{28}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Introduction and Maxwell Data}{28}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Electrostatics}{28}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Magnetostatics}{30}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Electrodynamics}{32}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Electromagnetism and Relativity}{33}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Electromagnetic Radiation}{35}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Electromagnetism in Matter}{36}{subsection.4.7}%
+\contentsline {section}{\numberline {5}Quantum Mechanics}{40}{section.5}%
+\contentsline {section}{\numberline {6}Topics in Quantum Mechanics}{51}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Discrete Symmetries}{51}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Approximation Methods}{52}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Atoms}{55}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Atoms in Electromagnetic Fields}{58}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Quantum Foundations}{60}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Scattering Theory}{62}{subsection.6.6}%
+\contentsline {section}{\numberline {7}Statistical Physics}{67}{section.7}%
+\contentsline {subsection}{\numberline {7.1}The Fundamentals of Statistical Mechanics}{67}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Classical Gases}{69}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Quantum Gases}{71}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Classical Thermodynamics}{73}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Phase Transitions}{74}{subsection.7.5}%
+\contentsline {section}{\numberline {8}Solid State Physics}{77}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Particles in a Magnetic Field}{77}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Band Structure}{79}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Electron Dynamics in Solids}{82}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Phonons}{84}{subsection.8.4}%
+\contentsline {section}{\numberline {9}Fluid Mechanics}{86}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Kinematics and Conservation}{86}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Inviscid Flows}{86}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}The Navier-Stokes Equation}{89}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Waves}{92}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}Instabilities}{96}{subsection.9.5}%
+\contentsline {subsection}{\numberline {9.6}Turbulence}{99}{subsection.9.6}%

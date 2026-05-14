@@ -1,0 +1,1411 @@
+\section{Topics in Quantum Mechanics}
+\label{sec:topics-quantum-mechanics}
+
+\noindent\emph{Source: \texttt{tong/topicsinqm.pdf}.}
+Conventions: ordinary vectors are bold; $\bm{\sigma}$ are Pauli matrices;
+$\alpha=e^2/(4\pi\epsilon_0\hbar c)$, $a_0=\hbar/(\alpha mc)$, and
+states are normalized unless stated otherwise.
+
+\subsection{Discrete Symmetries}
+
+\noindent\textbf{Parity.}\quad For $d=1,3$,
+\[
+P:\mathbf x\mapsto-\mathbf x,\qquad \mathbf p\mapsto-\mathbf p,
+\qquad \mathbf L=\mathbf x\times\mathbf p\mapsto\mathbf L.
+\]
+Hilbert-space parity $\Pi$:
+\[
+\Pi|\mathbf x\rangle=|-\mathbf x\rangle,\qquad
+(\Pi\psi)(\mathbf x)=\psi(-\mathbf x),\qquad
+\Pi^\dagger\Pi=1,\qquad \Pi^2=1.
+\]
+\[
+\Pi\hat{\mathbf x}\Pi^{-1}=-\hat{\mathbf x},\qquad
+\Pi\hat{\mathbf p}\Pi^{-1}=-\hat{\mathbf p},\qquad
+\Pi\hat{\mathbf L}\Pi^{-1}=+\hat{\mathbf L},\qquad
+\Pi\hat{\mathbf S}\Pi^{-1}=+\hat{\mathbf S}.
+\]
+\[
+\begin{array}{c|c}
+\text{operator type} & P \\\hline
+\text{polar vector } \mathbf V & -\mathbf V\\
+\text{axial vector } \mathbf A & +\mathbf A\\
+\text{scalar } S & +S\\
+\text{pseudoscalar } Q & -Q
+\end{array}
+\qquad
+\mathbf E\mapsto-\mathbf E,\quad
+\mathbf B\mapsto+\mathbf B,\quad
+\mathbf p\cdot\mathbf S\mapsto-\mathbf p\cdot\mathbf S.
+\]
+If $[\Pi,H]=0$, choose simultaneous parity-energy eigenstates:
+\[
+\Pi|\psi\rangle=\eta_\psi|\psi\rangle,\qquad \eta_\psi=\pm1.
+\]
+One-dimensional oscillator:
+\[
+H=\frac{p^2}{2m}+\frac12m\omega^2x^2,\qquad
+\Pi a^\dagger\Pi^{-1}=-a^\dagger,\qquad
+\Pi|n\rangle=(-1)^n|n\rangle.
+\]
+Central potential:
+\[
+\psi_{nlm}=R_{nl}(r)Y_{lm}(\theta,\phi),\qquad
+Y_{lm}(\pi-\theta,\phi+\pi)=(-1)^lY_{lm}(\theta,\phi),
+\]
+\[
+\boxed{\;\Pi|n,l,m\rangle=(-1)^l|n,l,m\rangle\;}.
+\]
+
+\noindent\textbf{Intrinsic parity.}\quad For a particle species $a$, assign
+$\eta_a=\pm1$. For two particles in the center-of-mass frame,
+\[
+\boxed{\;\eta_{\rm tot}=\eta_a\eta_b(-1)^L\;},
+\]
+where $L$ is relative orbital angular momentum. With the convention
+\[
+\eta_e=\eta_p=\eta_n=+1,\qquad
+\eta_{\bar e}=\eta_{\bar p}=\eta_{\bar n}=-1,
+\]
+parity conservation in $\pi^-d\to nn$ with $L_{\pi d}=0$ and final $L_{nn}=1$
+gives $\eta_\pi=-1$.
+
+\noindent\textbf{Time reversal.}\quad Classical transformations:
+\[
+T:t\mapsto-t,\qquad
+\mathbf x(t)\mapsto\mathbf x(-t),\qquad
+\mathbf p(t)\mapsto-\mathbf p(-t),
+\]
+\[
+\mathbf E\mapsto\mathbf E,\qquad
+\mathbf B\mapsto-\mathbf B,\qquad
+\mathbf L\mapsto-\mathbf L,\qquad
+\mathbf S\mapsto-\mathbf S.
+\]
+The Schrodinger equation maps solutions by complex conjugation and $t\mapsto -t$;
+the state map $\Theta$ is anti-linear:
+\[
+\Theta(\alpha|\psi\rangle+\beta|\phi\rangle)
+=\alpha^*\Theta|\psi\rangle+\beta^*\Theta|\phi\rangle,\qquad
+\Theta i\Theta^{-1}=-i.
+\]
+\[
+\Theta e^{iHt/\hbar}=e^{-iHt/\hbar}\Theta
+\quad\Longleftrightarrow\quad
+[H,\Theta]=0,
+\]
+with anti-unitary inner product rule
+\[
+\langle\Theta\phi|\Theta\psi\rangle=\langle\phi|\psi\rangle^*.
+\]
+Canonical transformations:
+\[
+\Theta\hat{\mathbf x}\Theta^{-1}=\hat{\mathbf x},\qquad
+\Theta\hat{\mathbf p}\Theta^{-1}=-\hat{\mathbf p}.
+\]
+Spinless particle:
+\[
+\Theta=K,\qquad
+\Theta|\mathbf x\rangle=|\mathbf x\rangle,\qquad
+\Theta|\mathbf p\rangle=|-\mathbf p\rangle,\qquad
+\Theta^2=1.
+\]
+Central potential:
+\[
+\Theta\mathbf L\Theta^{-1}=-\mathbf L,\qquad
+\psi_{nlm}^*=(-1)^m\psi_{nl,-m}.
+\]
+
+\noindent\textbf{Spin and Kramers degeneracy.}\quad For spin $1/2$,
+\[
+\Theta=i\sigma_yK,\qquad
+\Theta|\uparrow\rangle=|\downarrow\rangle,\qquad
+\Theta|\downarrow\rangle=-|\uparrow\rangle,\qquad
+\Theta^2=-1.
+\]
+For general spin $s$ in a convenient phase convention,
+\[
+\Theta|s,m\rangle=(-1)^{s-m}|s,-m\rangle,\qquad
+\boxed{\;\Theta^2=(-1)^{2s}\;}.
+\]
+Kramers theorem:
+\[
+[H,\Theta]=0,\qquad \Theta^2=-1,\qquad H|\psi\rangle=E|\psi\rangle
+\quad\Longrightarrow\quad
+H\Theta|\psi\rangle=E\Theta|\psi\rangle,
+\]
+and $|\psi\rangle,\Theta|\psi\rangle$ are orthogonal. Thus every level in an
+odd-electron time-reversal invariant system is at least doubly degenerate. A fixed
+Zeeman background $H_B=\mathbf B\cdot\mathbf S$ breaks time reversal if
+$\mathbf B$ is held fixed.
+
+\subsection{Approximation Methods}
+
+\noindent\textbf{Variational principle.}\quad For $H|n\rangle=E_n|n\rangle$,
+$E_0\le E_1\le\cdots$, and $|\psi\rangle=\sum_n a_n|n\rangle$,
+\[
+\boxed{\;\langle H\rangle_\psi=\frac{\langle\psi|H|\psi\rangle}
+{\langle\psi|\psi\rangle}\ge E_0\;}.
+\]
+For a trial family $|\psi(\alpha)\rangle$,
+\[
+E(\alpha)=\frac{\langle\psi(\alpha)|H|\psi(\alpha)\rangle}
+{\langle\psi(\alpha)|\psi(\alpha)\rangle},\qquad
+\partial_{\alpha_i}E(\alpha_*)=0.
+\]
+Energy error is quadratic in wavefunction error:
+\[
+|\psi\rangle=\frac{|0\rangle+\epsilon|\phi\rangle}{\sqrt{1+\epsilon^2}},
+\qquad \langle0|\phi\rangle=0,
+\]
+\[
+E_\psi=E_0+\epsilon^2(\langle\phi|H|\phi\rangle-E_0)+O(\epsilon^4).
+\]
+
+\noindent\textbf{Helium estimates.}\quad
+\[
+H=\sum_{i=1}^2\left(\frac{\mathbf p_i^2}{2m}
+-\frac{Ze^2}{4\pi\epsilon_0r_i}\right)
++\frac{e^2}{4\pi\epsilon_0|\mathbf r_1-\mathbf r_2|}.
+\]
+Hydrogenic orbital:
+\[
+\psi_{100}^{(Z)}(r)=\left(\frac{Z^3}{\pi a_0^3}\right)^{1/2}e^{-Zr/a_0},
+\qquad E^{(0)}=-2Z^2{\rm Ry}.
+\]
+First-order electron repulsion:
+\[
+\Delta E=\frac{e^2}{4\pi\epsilon_0}
+\int\frac{|\psi_{100}^{(Z)}(\mathbf r_1)|^2
+|\psi_{100}^{(Z)}(\mathbf r_2)|^2}
+{|\mathbf r_1-\mathbf r_2|}\dd^3r_1\dd^3r_2
+=\frac54Z{\rm Ry}.
+\]
+\[
+E_{\rm He}^{(1)}=\left(-2Z^2+\frac54Z\right){\rm Ry}.
+\]
+Variational screening ansatz $\psi_\alpha(\mathbf r_1)\psi_\alpha(\mathbf r_2)$:
+\[
+\psi_\alpha(r)=\left(\frac{\alpha^3}{\pi a_0^3}\right)^{1/2}e^{-\alpha r/a_0},
+\]
+\[
+E(\alpha)=\left[-2\alpha^2+4(\alpha-Z)\alpha+\frac54\alpha\right]{\rm Ry},
+\qquad
+\alpha_*=Z-\frac5{16},
+\]
+\[
+\boxed{\;E(\alpha_*)=-2\left(Z-\frac5{16}\right)^2{\rm Ry}\;}.
+\]
+
+\noindent\textbf{Existence and virial estimates.}\quad If $V(\mathbf x)\to0$
+at infinity, any trial state with $E[\psi]<0$ proves a bound state. Yukawa potential:
+\[
+V(r)=-\frac{Ae^{-\lambda r}}{r},\qquad
+\psi_\alpha(r)=\left(\frac{\alpha^3}{\pi}\right)^{1/2}e^{-\alpha r},
+\]
+\[
+E(\alpha)=\frac{\hbar^2\alpha^2}{2m}
+-\frac{4A\alpha^3}{(\lambda+2\alpha)^2},\qquad
+\boxed{\;\lambda<\frac{Am}{\hbar^2}\Longrightarrow E_0<0\;}.
+\]
+Scaling for $V(r)=Ar^n$:
+\[
+\psi_\alpha(\mathbf x)=\alpha^{d/2}\psi_0(\alpha\mathbf x),\qquad
+E(\alpha)=\alpha^2\langle T\rangle_0+\alpha^{-n}\langle V\rangle_0,
+\]
+\[
+\boxed{\;2\langle T\rangle=n\langle V\rangle\;}.
+\]
+In one dimension,
+\[
+E(\alpha)=\frac{\hbar^2\alpha}{4m}
++\sqrt{\frac{\alpha}{\pi}}\int_{-\infty}^{\infty}V(x)e^{-\alpha x^2}\dd x,
+\]
+\[
+\boxed{\;\int V(x)\dd x<0\Longrightarrow \text{at least one bound state}\;}.
+\]
+Excited-state variational bound:
+\[
+\langle\psi|j\rangle=0,\quad j=0,\ldots,k-1
+\quad\Longrightarrow\quad
+E_k\le\frac{\langle\psi|H|\psi\rangle}{\langle\psi|\psi\rangle}.
+\]
+
+\noindent\textbf{WKB.}\quad In one dimension,
+\[
+-\frac{\hbar^2}{2m}\psi''+V(x)\psi=E\psi,\qquad
+p(x)=\sqrt{2m(E-V(x))}.
+\]
+With $\psi=e^{iW/\hbar}$,
+\[
+i\hbar W''-(W')^2+p^2=0,\qquad
+W=W_0+\hbar W_1+\cdots,
+\]
+\[
+W_0'=\pm p,\qquad W_1=\frac{i}{2}\log p.
+\]
+Allowed and forbidden regions:
+\[
+\boxed{\;\psi_{\rm WKB}\simeq
+\frac{A_\pm}{\sqrt{p(x)}}\exp\left(\pm\frac{i}{\hbar}
+\int^x p(x')\dd x'\right)\;},\qquad E>V,
+\]
+\[
+\psi\simeq\frac{B_\pm}{\sqrt{\kappa(x)}}\exp\left(\pm\frac1{\hbar}
+\int^x\kappa(x')\dd x'\right),\qquad
+\kappa=\sqrt{2m(V-E)},\qquad E<V.
+\]
+Validity:
+\[
+\hbar|p'|\ll p^2,\qquad
+\left|\frac{\dd\lambda_{\rm dB}}{\dd x}\right|\ll2\pi,\qquad
+\lambda_{\rm dB}=\frac{2\pi\hbar}{p}.
+\]
+Near a simple turning point $x_0$, $V(x)\simeq E+C(x-x_0)$:
+\[
+u=\left(\frac{2mC}{\hbar^2}\right)^{1/3}(x-x_0),\qquad
+\psi''(u)-u\psi(u)=0.
+\]
+Connection formula for allowed $x<x_0$, forbidden $x>x_0$:
+\[
+\frac{D}{\sqrt{\kappa}}\exp\left[-\frac1{\hbar}\int_{x_0}^x\kappa\dd x'\right]
+\longleftrightarrow
+\frac{2D}{\sqrt p}\cos\left[\frac1{\hbar}\int_x^{x_0}p\dd x'-\frac{\pi}{4}\right].
+\]
+Bohr-Sommerfeld quantization:
+\[
+\boxed{\;\int_{x_{\min}}^{x_{\max}}p(x)\dd x
+=\left(n+\frac12\right)\pi\hbar\;},\qquad
+\boxed{\;\oint p\dd x=\left(n+\frac12\right)2\pi\hbar\;}.
+\]
+Barrier tunnelling:
+\[
+\boxed{\;T\sim e^{-2S/\hbar},\qquad
+S=\int_{x_0}^{x_1}\sqrt{2m(V-E)}\dd x\;}.
+\]
+Gamow exponent for an exterior Coulomb barrier $V=\alpha/x$:
+\[
+x_*=\frac{\alpha}{E},\qquad
+S=\int_R^{x_*}\sqrt{2m\left(\frac{\alpha}{x}-E\right)}\dd x
+\simeq\frac{\pi\alpha}{v},\qquad E=\frac12mv^2.
+\]
+
+\noindent\textbf{Sudden approximation.}\quad If $H_0\to H$ in time $\tau$,
+\[
+\boxed{\;\tau\ll\hbar/\Delta E\;},
+\]
+then the state is continuous across the quench; only its expansion in the new
+eigenbasis changes. Tritium beta decay overlap:
+\[
+{}^3{\rm H}\to{}^3{\rm He}^++e^-+\bar\nu_e,\qquad
+P_{1s\to1s}=\left|\int\psi_{100}^{(1)*}\psi_{100}^{(2)}\dd^3x\right|^2
+=\frac{8^3}{3^6}.
+\]
+Harmonic oscillator quench:
+\[
+H_0=\frac{p^2}{2m}+\frac12m\omega_0^2x^2,\qquad
+H=\frac{p^2}{2m}+\frac12m\omega^2x^2,
+\]
+\[
+a=\frac12\left(\sqrt{\frac{\omega}{\omega_0}}+
+\sqrt{\frac{\omega_0}{\omega}}\right)a_0
++\frac12\left(\sqrt{\frac{\omega}{\omega_0}}-
+\sqrt{\frac{\omega_0}{\omega}}\right)a_0^\dagger.
+\]
+
+\noindent\textbf{Adiabatic theorem and Berry phase.}\quad
+\[
+H(\lambda)|n(\lambda)\rangle=E_n(\lambda)|n(\lambda)\rangle,\qquad
+|\psi(t)\rangle=\sum_m a_m(t)e^{i\xi_m(t)}|m(\lambda(t))\rangle,
+\]
+\[
+\xi_m(t)=-\frac1{\hbar}\int_0^tE_m(t')\dd t',\qquad
+A_i^{(n)}=-i\langle n|\partial_i n\rangle.
+\]
+\[
+\dot a_n=-ia_nA_i^{(n)}\dot\lambda^i
+-\sum_{m\ne n}a_m e^{i(\xi_m-\xi_n)}
+\langle n|\partial_i m\rangle\dot\lambda^i,
+\]
+\[
+\langle n|\partial_i m\rangle
+=\frac{\langle n|\partial_iH|m\rangle}{E_m-E_n},\qquad m\ne n.
+\]
+Adiabatic regime:
+\[
+\boxed{\;\hbar|\dot\lambda^i\langle n|\partial_i m\rangle|
+\ll |E_m-E_n|\;}.
+\]
+Adiabatic state:
+\[
+|\psi_n(t)\rangle=
+\exp\left[-\frac{i}{\hbar}\int_0^tE_n\dd t'
+-i\int_{\lambda(0)}^{\lambda(t)}A_i^{(n)}\dd\lambda^i\right]
+|n(\lambda(t))\rangle.
+\]
+Closed loop $C$:
+\[
+\boxed{\;e^{i\gamma_n}=\exp\left[-i\oint_C A_i^{(n)}\dd\lambda^i\right]\;},
+\qquad
+A_i\mapsto A_i+\partial_i\omega.
+\]
+\[
+F_{ij}=\partial_jA_i-\partial_iA_j,\qquad
+\gamma_n=-\int_SF_{ij}\dd S^{ij},\qquad
+\int_\Sigma F_{ij}\dd S^{ij}=2\pi C,\quad C\in\mathbb Z.
+\]
+Spin in a magnetic field:
+\[
+H=-\mathbf B\cdot\bm{\sigma}+B,\qquad
+\mathbf B=B(\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta),
+\]
+\[
+A_\theta=0,\qquad A_\phi=-\sin^2\frac{\theta}{2},\qquad
+F_{\theta\phi}=-\frac12\sin\theta,\qquad
+e^{i\gamma_\downarrow}=e^{i\Omega/2}.
+\]
+
+\noindent\textbf{Born-Oppenheimer.}\quad For nuclei $\mathbf R_\alpha$ and
+electrons $\mathbf r_i$,
+\[
+H=H_{\rm nuc}+H_{\rm el}(\mathbf R),\qquad
+H_{\rm el}(\mathbf R)\phi_n(\mathbf r;\mathbf R)
+=\epsilon_n(\mathbf R)\phi_n(\mathbf r;\mathbf R),
+\]
+\[
+\Psi(\mathbf r,\mathbf R)=\sum_n\Phi_n(\mathbf R)\phi_n(\mathbf r;\mathbf R).
+\]
+Dropping off-diagonal nonadiabatic couplings,
+\[
+\boxed{\;H_n^{\rm eff}=
+\sum_\alpha-\frac{\hbar^2}{2M_\alpha}
+(\nabla_{R_\alpha}-i\mathbf A_{n,\alpha})^2
++V_{NN}(\mathbf R)+\epsilon_n(\mathbf R)\;},
+\]
+\[
+\mathbf A_{n,\alpha}=-i\langle\phi_n|\nabla_{R_\alpha}\phi_n\rangle_{\mathbf r}.
+\]
+$H_2^+$ variational molecule:
+\[
+\phi_\pm=A_\pm[\psi_0(r)\pm\psi_0(|\mathbf r-\mathbf R|)],\qquad
+A_\pm^2=\frac1{2(1\pm u)},
+\]
+\[
+u=\left(1+\frac{R}{a_0}+\frac{R^2}{3a_0^2}\right)e^{-R/a_0},\quad
+v=\frac1{a_0}\left(1+\frac{R}{a_0}\right)e^{-R/a_0},
+\]
+\[
+w=\frac1R-\frac1R\left(1+\frac{R}{a_0}\right)e^{-2R/a_0},
+\]
+\[
+\boxed{\;V_\pm^{\rm eff}(R)=E_0+\frac{e^2}{4\pi\epsilon_0}
+\left[\frac1R-\frac{w(R)\pm v(R)}{1\pm u(R)}\right]\;}.
+\]
+$+$ is bonding; $-$ is antibonding in this ansatz.
+
+\subsection{Atoms}
+
+\noindent\textbf{Hydrogenic spectrum.}\quad Reduced mass $m$, nuclear charge $Ze$:
+\[
+H_0=\frac{\mathbf p^2}{2m}-\frac{Ze^2}{4\pi\epsilon_0r},\qquad
+\psi_{nlm}=R_{nl}(r)Y_{lm}(\theta,\phi),
+\]
+\[
+\boxed{\;E_n=-\frac{(Z\alpha)^2mc^2}{2n^2}
+=-\frac{Z^2{\rm Ry}}{n^2}\;}.
+\]
+\[
+n=1,2,\ldots,\qquad l=0,\ldots,n-1,\qquad m_l=-l,\ldots,l,
+\]
+\[
+\sum_{l=0}^{n-1}(2l+1)=n^2,\qquad
+g_n=2n^2\quad\text{including spin}.
+\]
+\[
+\left\langle\frac1r\right\rangle_{nl}=\frac{Z}{a_0n^2},\qquad
+\left\langle\frac1{r^2}\right\rangle_{nl}
+=\frac{Z^2}{a_0^2n^3(l+1/2)},
+\]
+\[
+\left\langle\frac1{r^3}\right\rangle_{nl}
+=\frac{Z^3}{a_0^3n^3l(l+1/2)(l+1)},\qquad l\ne0.
+\]
+The $l$ degeneracy is Coulomb/Runge-Lenz; the $m$ degeneracy is rotational.
+
+\noindent\textbf{Fine structure.}\quad Relativistic kinetic correction:
+\[
+E_{\rm rel}=mc^2+\frac{p^2}{2m}-\frac{p^4}{8m^3c^2}+\cdots,\qquad
+\Delta H_{\rm kin}=-\frac{p^4}{8m^3c^2},
+\]
+\[
+\boxed{\;(\Delta E_{\rm kin})_{nl}
+=-\frac{(Z\alpha)^4mc^2}{2n^3}
+\left(\frac1{l+1/2}-\frac{3}{4n}\right)\;}.
+\]
+Spin-orbit coupling with Thomas factor:
+\[
+\boldsymbol\mu_e=-g\frac{e}{2m}\mathbf S,\qquad g\simeq2,\qquad
+\boldsymbol\omega_T=\frac{\mathbf v\times\mathbf a}{2c^2},
+\]
+\[
+\boxed{\;\Delta H_{\rm SO}
+=\frac{e}{2m^2c^2}\frac1r\frac{\dd\phi}{\dd r}\mathbf L\cdot\mathbf S,\qquad
+\phi(r)=\frac{Ze}{4\pi\epsilon_0r}\;}.
+\]
+\[
+\mathbf J=\mathbf L+\mathbf S,\qquad
+\mathbf L\cdot\mathbf S
+=\frac{\hbar^2}{2}\left[j(j+1)-l(l+1)-\frac34\right].
+\]
+Darwin term:
+\[
+\Delta H_D=\frac{\hbar^2}{8m^2c^2}\nabla^2V(r),\qquad
+V(r)=-\frac{Ze^2}{4\pi\epsilon_0r},
+\]
+\[
+(\Delta E_D)_{nl}=\frac{(Z\alpha)^4mc^2}{2n^3}\delta_{l0}.
+\]
+Total fine structure:
+\[
+\boxed{\;\Delta E_{nj}
+=\frac{(Z\alpha)^4mc^2}{2n^3}
+\left(\frac{3}{4n}-\frac{2}{2j+1}\right)\;}.
+\]
+Dirac spectrum:
+\[
+E_{nj}=mc^2\left[
+1+\frac{(Z\alpha)^2}
+{\left(n-j-\frac12+\sqrt{(j+\frac12)^2-(Z\alpha)^2}\right)^2}
+\right]^{-1/2}.
+\]
+
+\noindent\textbf{Hyperfine structure.}\quad Nuclear spin $\mathbf I$:
+\[
+\boldsymbol\mu_N=g_N\frac{Ze}{2M}\mathbf I,
+\]
+\[
+\mathbf B_{\mu_N}=\frac{2\mu_0}{3}\boldsymbol\mu_N\delta^3(\mathbf r)
++\frac{\mu_0}{4\pi r^3}
+\left(3(\boldsymbol\mu_N\cdot\hat{\mathbf r})\hat{\mathbf r}
+-\boldsymbol\mu_N\right).
+\]
+For $s$-states, only the contact term contributes:
+\[
+|\psi_{n0}(0)|^2=\frac{Z^3}{\pi a_0^3n^3},
+\]
+\[
+\boxed{\;\Delta H_{\rm hf}
+=\frac{4g_Nm}{3M}\frac{(Z\alpha)^4mc^2}{n^3}
+\frac{\mathbf S\cdot\mathbf I}{\hbar^2}\;}.
+\]
+\[
+\mathbf F=\mathbf S+\mathbf I,\qquad
+\frac{\mathbf S\cdot\mathbf I}{\hbar^2}
+=\frac12\{F(F+1)-S(S+1)-I(I+1)\}.
+\]
+Hydrogen $1s$: $I=S=1/2$, $F=0,1$,
+\[
+\nu\simeq1420\,{\rm MHz},\qquad \lambda\simeq21\,{\rm cm}.
+\]
+Cesium-133 defines the second:
+\[
+I=7/2,\qquad F=3,4,\qquad \Delta\nu=9192631770\,{\rm Hz}.
+\]
+
+\noindent\textbf{Atoms in an expanding universe.}\quad With cosmological constant
+$\Lambda$,
+\[
+V(r)=-\frac{Z\alpha\hbar c}{r}-\frac16m\Lambda r^2,\qquad
+r_*^3\sim Z\alpha\frac{\hbar}{mc}\frac{c^2}{\Lambda},
+\]
+\[
+r_n\sim n^2a_0,\qquad n_{\max}\sim(r_*/a_0)^{1/2}\sim10^{12},
+\]
+\[
+\tau\sim\tau_0e^{2S/\hbar},\qquad
+\tau_0\sim\frac{\hbar}{mc^2\alpha^2},\qquad
+S\sim\frac{mc^2\alpha^2}{\sqrt{\Lambda}}.
+\]
+
+\noindent\textbf{Many-electron atoms.}\quad
+\[
+H=\sum_{i=1}^N\left(-\frac{\hbar^2}{2m}\nabla_i^2
+-\frac{Ze^2}{4\pi\epsilon_0r_i}\right)
++\sum_{i<j}\frac{e^2}{4\pi\epsilon_0|\mathbf r_i-\mathbf r_j|},
+\]
+\[
+\Psi(\ldots,\mathbf r_i,\ldots,\mathbf r_j,\ldots)
+=-\Psi(\ldots,\mathbf r_j,\ldots,\mathbf r_i,\ldots).
+\]
+Hydrogenic shell capacities:
+\[
+2\sum_{k=1}^n k^2=\frac{n(n+1)(2n+1)}{3}=2,10,28,60,\ldots
+\]
+Observed noble gases:
+\[
+Z=2,10,18,36,54,86,118.
+\]
+Subshell capacities and Madelung ordering:
+\[
+(n,l):\ 2(2l+1),\qquad s,p,d,f:\ 2,6,10,14,
+\]
+\[
+1s<2s<2p<3s<3p<4s<3d<4p<5s<4d<5p<6s<4f<5d<6p<\cdots .
+\]
+Hund rule in this approximation: maximize spin in a partially filled degenerate subshell.
+
+\noindent\textbf{Helium exchange.}\quad For orbitals $a,b$,
+\[
+\Psi_\pm=\frac1{\sqrt2}\{\psi_a(1)\psi_b(2)\pm\psi_a(2)\psi_b(1)\},
+\qquad
+\Delta E_\pm=J_{ab}\pm K_{ab},
+\]
+\[
+J_{ab}=\frac{e^2}{4\pi\epsilon_0}
+\int\frac{|\psi_a(\mathbf r)|^2|\psi_b(\mathbf r')|^2}
+{|\mathbf r-\mathbf r'|}\dd^3r\dd^3r',
+\]
+\[
+K_{ab}=\frac{e^2}{4\pi\epsilon_0}
+\int\frac{\psi_a^*(\mathbf r)\psi_b^*(\mathbf r')
+\psi_a(\mathbf r')\psi_b(\mathbf r)}
+{|\mathbf r-\mathbf r'|}\dd^3r\dd^3r'.
+\]
+Spatial antisymmetry pairs with spin triplet and lowers energy by $2K_{ab}$
+relative to the singlet.
+
+\noindent\textbf{Large nuclei.}\quad
+\[
+E_{1s}\simeq-\frac{(Z\alpha)^2mc^2}{2},\qquad
+E_{1s}+2mc^2<0
+\quad\Longrightarrow\quad
+\boxed{\;Z>\frac2{\alpha}\sim274\;}.
+\]
+Supercritical bare nuclei can lower energy through pair creation and electron capture.
+
+\noindent\textbf{Hartree and Hartree-Fock.}\quad Product ansatz:
+\[
+\Psi(\mathbf r_1,\ldots,\mathbf r_N)=\prod_i\psi_i(\mathbf r_i),\qquad
+\int|\psi_i|^2\dd^3r=1.
+\]
+\[
+E=\sum_i\int\psi_i^*h_0\psi_i\dd^3r
++\sum_{i<j}\frac{e^2}{4\pi\epsilon_0}
+\int\frac{|\psi_i(\mathbf r)|^2|\psi_j(\mathbf r')|^2}
+{|\mathbf r-\mathbf r'|}\dd^3r\dd^3r',
+\]
+\[
+h_0=-\frac{\hbar^2}{2m}\nabla^2-\frac{Ze^2}{4\pi\epsilon_0r}.
+\]
+Stationarity:
+\[
+\boxed{\;\left[h_0+U_i(\mathbf r)\right]\psi_i=\epsilon_i\psi_i,\qquad
+U_i(\mathbf r)=\frac{e^2}{4\pi\epsilon_0}\sum_{j\ne i}
+\int\frac{|\psi_j(\mathbf r')|^2}{|\mathbf r-\mathbf r'|}\dd^3r'\;}.
+\]
+Slater determinant:
+\[
+\boxed{\;\Psi(x_1,\ldots,x_N)=\frac1{\sqrt{N!}}\det[\chi_i(x_j)]\;},
+\qquad x=(\mathbf r,m_s).
+\]
+Hartree-Fock energy:
+\[
+E_{\rm HF}=\sum_i h_{ii}
++\sum_{i<j}\left(J_{ij}-K_{ij}\delta_{m_{s_i}m_{s_j}}\right).
+\]
+Equation:
+\[
+\boxed{\;\left[h_0+U(\mathbf r)\right]\psi_i(\mathbf r)
+-\int U_i^{\rm ex}(\mathbf r,\mathbf r')\psi_i(\mathbf r')\dd^3r'
+=\epsilon_i\psi_i(\mathbf r)\;},
+\]
+\[
+U(\mathbf r)=\frac{e^2}{4\pi\epsilon_0}\sum_j
+\int\frac{|\psi_j(\mathbf r')|^2}{|\mathbf r-\mathbf r'|}\dd^3r',
+\]
+\[
+U_i^{\rm ex}(\mathbf r,\mathbf r')
+=\frac{e^2}{4\pi\epsilon_0}\sum_j
+\frac{\psi_j^*(\mathbf r')\psi_j(\mathbf r)}
+{|\mathbf r-\mathbf r'|}\delta_{m_{s_i}m_{s_j}}.
+\]
+The $i=j$ Hartree self-interaction cancels against exchange.
+
+\subsection{Atoms in Electromagnetic Fields}
+
+\noindent\textbf{Stark effect.}\quad Hydrogen in $\mathbf E=E\hat{\mathbf z}$:
+\[
+H=H_0+e\mathbf E\cdot\mathbf r,\qquad
+\Delta E^{(1)}=e\langle\psi|\mathbf E\cdot\mathbf r|\psi\rangle.
+\]
+For a nondegenerate parity eigenstate, $\Delta E^{(1)}=0$. In a degenerate
+$n$-manifold:
+\[
+\langle n,l',m'|z|n,l,m\rangle\ne0
+\Longrightarrow l+l'\text{ odd},\qquad m'=m,\qquad \Delta l=\pm1.
+\]
+For $n=2$,
+\[
+|2,\pm\rangle=\frac{|2,0,0\rangle\pm|2,1,0\rangle}{\sqrt2},\qquad
+\boxed{\;E_{2,\pm}=E_2^{(0)}\pm3eEa_0\;},
+\]
+while $|2,1,\pm1\rangle$ have zero first-order shift.
+
+\noindent\textbf{Quadratic Stark effect.}\quad Ground state:
+\[
+\Delta E_{100}^{(2)}
+=e^2E^2\sum_{n\ge2,l,m}
+\frac{|\langle1,0,0|z|n,l,m\rangle|^2}{E_1-E_n}
+=-4\pi\epsilon_0C a_0^3E^2,
+\]
+\[
+C=\frac94,\qquad
+\mathbf P_{\rm ind}=-\nabla_{\mathbf E}\Delta E
+=\frac92\,4\pi\epsilon_0a_0^3\mathbf E,\qquad
+\Delta E=-\frac12\mathbf P_{\rm ind}\cdot\mathbf E.
+\]
+
+\noindent\textbf{Zeeman effect.}\quad For $\mathbf B=B\hat{\mathbf z}$ and
+$\mathbf A=\frac12\mathbf B\times\mathbf r$,
+\[
+H=\frac1{2m}(\mathbf p+e\mathbf A)^2-\frac{Ze^2}{4\pi\epsilon_0r},
+\]
+\[
+H=H_0+\frac{e}{2m}\mathbf B\cdot\mathbf L
++\frac{e^2B^2}{8m}(x^2+y^2),\qquad
+\Delta H_{\rm spin}=\frac{ge}{2m}\mathbf B\cdot\mathbf S.
+\]
+Neglect diamagnetism when $eBa_0^2/\hbar\ll1$:
+\[
+\boxed{\;H_Z=\frac{e}{2m}\mathbf B\cdot(\mathbf L+2\mathbf S)
+=\mu_BB\frac{L_z+2S_z}{\hbar},\qquad
+\mu_B=\frac{e\hbar}{2m}\;}.
+\]
+Paschen-Back regime:
+\[
+\boxed{\;\Delta E_Z=\mu_BB(m_l+2m_s)\;}.
+\]
+Weak-field regime in the $|n,j,m_j;l\rangle$ basis:
+\[
+\Delta E_Z=\mu_BBg_Jm_j,\qquad
+\boxed{\;g_J=1+\frac{j(j+1)+s(s+1)-l(l+1)}{2j(j+1)}\;}.
+\]
+
+\noindent\textbf{Classical light and Rabi oscillations.}\quad Dipole approximation:
+\[
+\lambda\gg a_0,\qquad \omega\simeq\omega_0=\frac{E_2-E_1}{\hbar},\qquad
+\Delta H(t)=e\mathbf E_0\cdot\mathbf r\cos\omega t.
+\]
+Two-level state:
+\[
+|\Psi(t)\rangle=c_1(t)e^{-iE_1t/\hbar}|\psi_1\rangle
++c_2(t)e^{-iE_2t/\hbar}|\psi_2\rangle,
+\]
+\[
+\hbar\Omega=e\mathbf E_0\cdot\langle\psi_1|\mathbf r|\psi_2\rangle,\qquad
+\delta=\omega-\omega_0.
+\]
+Rotating-wave approximation:
+\[
+i\dot c_1=\frac{\Omega}{2}e^{i\delta t}c_2,\qquad
+i\dot c_2=\frac{\Omega}{2}e^{-i\delta t}c_1.
+\]
+\[
+\boxed{\;P_2(t)=\frac{\Omega^2}{\Omega^2+\delta^2}
+\sin^2\left(\frac{\sqrt{\Omega^2+\delta^2}}{2}t\right)\;}.
+\]
+On resonance:
+\[
+c_1=\cos\frac{\Omega t}{2},\qquad c_2=-i\sin\frac{\Omega t}{2},\qquad
+P_2=\sin^2\frac{\Omega t}{2}.
+\]
+
+\noindent\textbf{Einstein coefficients and selection rules.}\quad
+\[
+\dot N_2=\rho(\omega_0)(B_{12}N_1-B_{21}N_2)-A_{21}N_2.
+\]
+Thermal equilibrium with Planck spectrum gives
+\[
+\boxed{\;g_1B_{12}=g_2B_{21},\qquad
+A_{21}=\frac{\hbar\omega_0^3}{\pi^2c^3}B_{21}\;}.
+\]
+Electric dipole absorption:
+\[
+\boxed{\;B_{12}=\frac{e^2\pi}{3\epsilon_0\hbar^2}
+|\langle\psi_1|\mathbf r|\psi_2\rangle|^2\;},
+\]
+\[
+A_{21}=\frac{e^2\omega_0^3}{3\pi\epsilon_0\hbar c^3}
+|\langle\psi_1|\mathbf r|\psi_2\rangle|^2\qquad(g_1=g_2).
+\]
+Electric dipole selection:
+\[
+\text{opposite parity},\qquad \Delta l=\pm1,\qquad
+\Delta s=\Delta m_s=0,
+\]
+\[
+z:\Delta m=0,\qquad x\pm iy:\Delta m=\pm1.
+\]
+$2p\to1s$ is E1 allowed; $2s\to1s$ is E1 forbidden.
+
+\noindent\textbf{Photon Fock space and coherent states.}\quad
+\[
+\mathbf p=\hbar\mathbf k,\qquad \omega=c|\mathbf k|,\qquad
+\mathbf e_{\lambda\mathbf k}\cdot\mathbf k=0,\qquad \lambda=1,2.
+\]
+\[
+[a_{\mathbf k\lambda},a_{\mathbf k'\lambda'}^\dagger]
+=\delta_{\mathbf k\mathbf k'}\delta_{\lambda\lambda'},\qquad
+H_\gamma=\sum_{\mathbf k,\lambda}\hbar\omega
+\left(a_{\mathbf k\lambda}^\dagger a_{\mathbf k\lambda}+\frac12\right).
+\]
+\[
+|\{n_{\mathbf k\lambda}\}\rangle=
+\prod_{\mathbf k,\lambda}\frac{(a_{\mathbf k\lambda}^\dagger)^{n_{\mathbf k\lambda}}}
+{\sqrt{n_{\mathbf k\lambda}!}}|0\rangle.
+\]
+One-mode coherent state:
+\[
+|\alpha\rangle=e^{-|\alpha|^2/2}\sum_{n=0}^\infty
+\frac{\alpha^n}{\sqrt{n!}}|n\rangle,\qquad
+a|\alpha\rangle=\alpha|\alpha\rangle,\qquad
+\langle n\rangle=|\alpha|^2.
+\]
+Driven oscillator:
+\[
+H=\hbar\omega\left(a^\dagger a+\frac12\right)
++\hbar(f^*(t)a+f(t)a^\dagger),
+\]
+\[
+U_I(t)=\exp\{\alpha(t)a^\dagger-\alpha^*(t)a+i\phi(t)\},\qquad
+\alpha(t)=-i\int_0^tf(t')e^{i\omega t'}\dd t'.
+\]
+
+\noindent\textbf{Jaynes-Cummings model.}\quad
+\[
+H_{\rm JC}=\hbar\omega a^\dagger a+\frac{\hbar\omega_0}{2}\sigma_3
++\frac{\hbar g}{2}(a\sigma_+ +a^\dagger\sigma_-).
+\]
+The sectors $\{|n-1,\uparrow\rangle,|n,\downarrow\rangle\}$ decouple:
+\[
+H_n=\hbar\left(n-\frac12\right)\omega\,\mathbf{1}
++\frac{\hbar}{2}\left(\delta\sigma_3+g\sqrt n\,\sigma_1\right),
+\qquad \delta=\omega_0-\omega.
+\]
+\[
+\tan2\theta=\frac{g\sqrt n}{\delta},\qquad
+E_{n,\pm}=\hbar\left(n-\frac12\right)\omega
+\pm\frac{\hbar}{2}\sqrt{g^2n+\delta^2}.
+\]
+Fixed photon number:
+\[
+P_\uparrow(t)=\frac{g^2n}{g^2n+\delta^2}
+\sin^2\left(\frac{\sqrt{g^2n+\delta^2}}{2}t\right).
+\]
+Coherent field on resonance, $N=|\alpha|^2$:
+\[
+P_\uparrow(t)=e^{-N}\sum_{n=0}^\infty\frac{N^n}{n!}
+\sin^2\left(\frac{g\sqrt n\,t}{2}\right),
+\]
+with collapse and revival scales
+\[
+T_{\rm Rabi}\sim\frac{2\pi}{g|\alpha|},\qquad
+T_{\rm collapse}\sim\frac{4\pi}{g},\qquad
+T_{\rm revival}\sim\frac{4\pi|\alpha|}{g}.
+\]
+
+\subsection{Quantum Foundations}
+
+\noindent\textbf{Entanglement and EPR.}\quad
+\[
+\mathcal H=\mathcal H_A\otimes\mathcal H_B,\qquad
+|\Psi\rangle\text{ separable}\Longleftrightarrow
+|\Psi\rangle=|\psi_A\rangle|\psi_B\rangle.
+\]
+Singlet:
+\[
+|{\rm EPR}\rangle=\frac1{\sqrt2}
+(|\uparrow\downarrow\rangle-|\downarrow\uparrow\rangle),
+\]
+\[
+|{\rm EPR}\rangle
+=\frac1{\sqrt2}(|\theta_+\theta_-\rangle-|\theta_-\theta_+\rangle).
+\]
+Spin direction:
+\[
+\sigma_\theta=\bm{\sigma}\cdot(\sin\theta,0,\cos\theta)
+=\begin{pmatrix}\cos\theta&\sin\theta\\ \sin\theta&-\cos\theta\end{pmatrix},
+\]
+\[
+|\theta_+\rangle=\cos\frac{\theta}{2}|\uparrow\rangle
++\sin\frac{\theta}{2}|\downarrow\rangle,\qquad
+|\theta_-\rangle=-\sin\frac{\theta}{2}|\uparrow\rangle
++\cos\frac{\theta}{2}|\downarrow\rangle.
+\]
+\[
+\langle{\rm EPR}|\sigma_{\mathbf a}\otimes\sigma_{\mathbf b}|{\rm EPR}\rangle
+=-\mathbf a\cdot\mathbf b.
+\]
+No signalling:
+\[
+\rho_A=\operatorname{Tr}_B|{\rm EPR}\rangle\langle{\rm EPR}|
+=\frac12\mathbf{1}.
+\]
+
+\noindent\textbf{Bell and CHSH.}\quad Bell inequality for predetermined
+$s_z,s_\theta,s_\phi=\pm1$:
+\[
+\boxed{\;\sin^2\frac{\theta-\phi}{2}\le
+\cos^2\frac{\theta}{2}+\cos^2\frac{\phi}{2}\;},
+\]
+violated, for example, by $\theta=3\pi/2$, $\phi=3\pi/4$.
+CHSH operators $A_i^2=B_j^2=\mathbf{1}$:
+\[
+C=(A_1+A_2)B_1+(A_1-A_2)B_2,
+\]
+\[
+\boxed{\;|\langle C\rangle|_{\rm LHV}\le2\;},\qquad
+C^2=4\mathbf{1}-[A_1,A_2][B_1,B_2],\qquad
+\boxed{\;|\langle C\rangle|_{\rm QM}\le2\sqrt2\;}.
+\]
+For the singlet with coplanar settings separated successively by $\pi/4$,
+\[
+\langle C\rangle=-2\sqrt2.
+\]
+
+\noindent\textbf{GHZ and Kochen-Specker.}\quad
+\[
+|{\rm GHZ}\rangle=\frac1{\sqrt2}
+(|\uparrow\uparrow\uparrow\rangle-|\downarrow\downarrow\downarrow\rangle).
+\]
+\[
+\sigma_x^A\sigma_y^B\sigma_y^C|{\rm GHZ}\rangle
+=\sigma_y^A\sigma_x^B\sigma_y^C|{\rm GHZ}\rangle
+=\sigma_y^A\sigma_y^B\sigma_x^C|{\rm GHZ}\rangle
+=|{\rm GHZ}\rangle,
+\]
+\[
+\sigma_x^A\sigma_x^B\sigma_x^C|{\rm GHZ}\rangle=-|{\rm GHZ}\rangle.
+\]
+Hidden variables multiply the first three eigenvalue equations to predict
+$s_x^As_x^Bs_x^C=+1$, contradicting the last equation.
+Kochen-Specker:
+\[
+\dim\mathcal H\ge3:\qquad
+\not\exists\,v(A)\ \text{noncontextual with}\quad
+v(A+B)=v(A)+v(B),\quad v(AB)=v(A)v(B)
+\]
+for all commuting operators in suitable finite sets.
+
+\noindent\textbf{Entanglement as resource.}\quad CHSH game:
+\[
+x,y,a,b\in\{0,1\},\qquad \text{win iff }a\oplus b=xy,
+\]
+\[
+P_{\rm win}=\frac12+\frac18\langle A_0B_0+A_0B_1+A_1B_0-A_1B_1\rangle,
+\]
+\[
+P_{\rm cl}^{\max}=\frac34,\qquad
+P_{\rm qm}^{\max}=\frac12+\frac1{2\sqrt2}=\cos^2\frac{\pi}{8}.
+\]
+Bell basis:
+\[
+|\phi^\pm\rangle=\frac{|\uparrow\uparrow\rangle\pm|\downarrow\downarrow\rangle}{\sqrt2},
+\qquad
+|\chi^\pm\rangle=\frac{|\uparrow\downarrow\rangle\pm|\downarrow\uparrow\rangle}{\sqrt2}.
+\]
+Dense coding: Alice applies $\mathbf{1},\sigma_x,\sigma_y,\sigma_z$ to her half of an
+EPR pair, producing four orthogonal Bell states; one sent qubit plus one ebit sends
+two classical bits.
+
+\noindent\textbf{No cloning, teleportation, QKD.}\quad A universal cloner would imply
+\[
+U|\psi\rangle|0\rangle=|\psi\rangle|\psi\rangle\quad\forall\psi
+\quad\Longrightarrow\quad
+\langle\psi_1|\psi_2\rangle=\langle\psi_1|\psi_2\rangle^2,
+\]
+impossible for generic nonorthogonal states.
+Teleportation:
+\[
+|\psi\rangle_1|\chi^-\rangle_{23}
+=\frac12\Big[
+|\phi^+\rangle_{12}(-\beta|\uparrow\rangle+\alpha|\downarrow\rangle)_3
++|\phi^-\rangle_{12}(\beta|\uparrow\rangle+\alpha|\downarrow\rangle)_3
+\]
+\[
+\qquad
++|\chi^+\rangle_{12}(-\alpha|\uparrow\rangle+\beta|\downarrow\rangle)_3
+-|\chi^-\rangle_{12}|\psi\rangle_3\Big].
+\]
+Alice's Bell measurement plus two classical bits specifies Bob's Pauli correction.
+BB84:
+\[
+\{|\uparrow\rangle,|\downarrow\rangle\}\quad\text{or}\quad
+\{|\rightarrow\rangle,|\leftarrow\rangle\},
+\]
+\[
+|\rightarrow\rangle=\frac{|\uparrow\rangle+|\downarrow\rangle}{\sqrt2},\qquad
+|\leftarrow\rangle=\frac{|\uparrow\rangle-|\downarrow\rangle}{\sqrt2}.
+\]
+Random-basis intercept-resend causes error rate $1/4$ on sifted test bits.
+
+\noindent\textbf{Density matrices.}\quad
+\[
+\rho=\sum_ip_i|\psi_i\rangle\langle\psi_i|,\qquad
+\rho^\dagger=\rho,\quad \rho\ge0,\quad \operatorname{Tr}\rho=1,
+\qquad \langle A\rangle=\operatorname{Tr}(\rho A).
+\]
+\[
+\rho\text{ pure}\Longleftrightarrow \rho^2=\rho
+\Longleftrightarrow \operatorname{Tr}\rho^2=1.
+\]
+\[
+\rho_\beta=\frac{e^{-\beta H}}{Z},\qquad
+Z=\operatorname{Tr}e^{-\beta H},\qquad
+\dot\rho=-\frac{i}{\hbar}[H,\rho].
+\]
+Qubit Bloch ball:
+\[
+\rho=\frac12(\mathbf{1}+\mathbf a\cdot\bm{\sigma}),\qquad
+\det\rho=\frac14(1-|\mathbf a|^2),\qquad |\mathbf a|\le1.
+\]
+
+\noindent\textbf{Reduced states and Schmidt form.}\quad
+\[
+\rho_A=\operatorname{Tr}_B\rho_{AB},\qquad
+\operatorname{Tr}_{AB}[(A\otimes\mathbf{1})\rho_{AB}]
+=\operatorname{Tr}_A(A\rho_A).
+\]
+For a bipartite pure state,
+\[
+|\Psi\rangle=\sum_i\sqrt{p_i}|i_A\rangle|i_B\rangle,\qquad
+\rho_A=\sum_ip_i|i_A\rangle\langle i_A|,\qquad
+\rho_B=\sum_ip_i|i_B\rangle\langle i_B|.
+\]
+\[
+|\Psi\rangle\text{ separable}
+\Longleftrightarrow R_{\rm Schmidt}=1
+\Longleftrightarrow \operatorname{Tr}\rho_A^2=1.
+\]
+Purification:
+\[
+\rho_A=\sum_ip_i|i\rangle\langle i|
+\quad\Longrightarrow\quad
+|\Psi\rangle=\sum_i\sqrt{p_i}|i\rangle_A|i\rangle_B.
+\]
+
+\noindent\textbf{Entropy.}\quad
+\[
+S_{\rm Sh}(\{p_i\})=-\sum_ip_i\log p_i,\qquad
+S(\rho)=-\operatorname{Tr}\rho\log\rho.
+\]
+\[
+S(\rho)\ge0,\qquad S(\rho)=0\Longleftrightarrow \rho\text{ pure},\qquad
+S(\rho)\le\log N.
+\]
+\[
+S\left(\sum_i\lambda_i\rho_i\right)\ge\sum_i\lambda_iS(\rho_i),\qquad
+S(\rho_{AB})\le S(\rho_A)+S(\rho_B),
+\]
+\[
+S(\rho_{ABC})+S(\rho_B)\le S(\rho_{AB})+S(\rho_{BC}).
+\]
+For a bipartite pure state, $S_A=S_B=-\sum_ip_i\log p_i$.
+
+\noindent\textbf{Measurements.}\quad Projective measurement:
+\[
+O=\sum_m\lambda_mP_m,\qquad
+P_mP_n=\delta_{mn}P_m,\qquad \sum_mP_m=\mathbf{1}.
+\]
+\[
+p(m)=\operatorname{Tr}(\rho P_m),\qquad
+\rho\mapsto\frac{P_m\rho P_m}{p(m)},\qquad
+\rho\mapsto\sum_mP_m\rho P_m\quad\text{if unread}.
+\]
+POVM:
+\[
+E_m=E_m^\dagger,\qquad E_m\ge0,\qquad \sum_mE_m=\mathbf{1},\qquad
+p(m)=\operatorname{Tr}(\rho E_m).
+\]
+Measurement operators:
+\[
+E_m=M_m^\dagger M_m,\qquad \sum_mM_m^\dagger M_m=\mathbf{1},
+\]
+\[
+\rho\mapsto\frac{M_m\rho M_m^\dagger}{p(m)},\qquad
+\rho\mapsto\sum_mM_m\rho M_m^\dagger\quad\text{if unread}.
+\]
+
+\noindent\textbf{Quantum maps and decoherence.}\quad For initially separable system
+and environment,
+\[
+\rho_S(t)=\operatorname{Tr}_E[U(t)\rho_S(0)\otimes|\chi\rangle\langle\chi|U^\dagger(t)],
+\]
+\[
+M_m(t)=\langle m|U(t)|\chi\rangle,\qquad
+\rho_S(t)=\sum_mM_m\rho_S(0)M_m^\dagger,\qquad
+\sum_mM_m^\dagger M_m=\mathbf{1}.
+\]
+Phase damping:
+\[
+M_0=\sqrt{1-p}\,\mathbf{1},\quad
+M_1=\sqrt p\,|\uparrow\rangle\langle\uparrow|,\quad
+M_2=\sqrt p\,|\downarrow\rangle\langle\downarrow|,
+\]
+\[
+\rho_{01}\mapsto(1-p)\rho_{01},\qquad
+p=\Gamma\delta t\Longrightarrow \rho_{01}(t)=e^{-\Gamma t}\rho_{01}(0).
+\]
+Amplitude damping:
+\[
+M_0=|\uparrow\rangle\langle\uparrow|
++\sqrt{1-p}|\downarrow\rangle\langle\downarrow|,\qquad
+M_1=\sqrt p|\uparrow\rangle\langle\downarrow|,
+\]
+\[
+\rho(t)=
+\begin{pmatrix}
+\rho_{00}+(1-e^{-\Gamma t})\rho_{11}&e^{-\Gamma t/2}\rho_{01}\\
+e^{-\Gamma t/2}\rho_{10}&e^{-\Gamma t}\rho_{11}
+\end{pmatrix}.
+\]
+
+\noindent\textbf{Lindblad equation.}\quad For a memoryless environment,
+\[
+M_0=\mathbf{1}+\frac1{\hbar}(K-iH)\delta t,\qquad
+M_m=\frac1{\sqrt\hbar}L_m\sqrt{\delta t},\qquad
+K=-\frac12\sum_{m\ge1}L_m^\dagger L_m.
+\]
+\[
+\boxed{\;\hbar\dot\rho=-i[H,\rho]
++\sum_m\left(L_m\rho L_m^\dagger
+-\frac12L_m^\dagger L_m\rho-\frac12\rho L_m^\dagger L_m\right)\;}.
+\]
+If $L_m=L_m^\dagger$, von Neumann entropy is nondecreasing.
+
+\subsection{Scattering Theory}
+
+\noindent\textbf{One-dimensional setup.}\quad
+\[
+-\frac{\hbar^2}{2m}\psi''+V(x)\psi=E\psi,\qquad V(x)\to0.
+\]
+\[
+E<0:\ \psi\sim e^{-\lambda|x|},\quad E=-\frac{\hbar^2\lambda^2}{2m};
+\qquad
+E>0:\ \psi\sim e^{\pm ikx},\quad E=\frac{\hbar^2k^2}{2m}.
+\]
+Incidence from left/right:
+\[
+\psi_R\sim
+\begin{cases}
+e^{ikx}+re^{-ikx},&x\to-\infty,\\
+te^{ikx},&x\to+\infty,
+\end{cases}
+\qquad
+\psi_L\sim
+\begin{cases}
+t'e^{-ikx},&x\to-\infty,\\
+e^{-ikx}+r'e^{ikx},&x\to+\infty.
+\end{cases}
+\]
+Probability current:
+\[
+J=-\frac{i\hbar}{2m}(\psi^*\psi'-\psi(\psi^*)'),\qquad
+R=|r|^2,\quad T=|t|^2,\quad R+T=1.
+\]
+For real $V$,
+\[
+t'=t,\qquad r'=-\frac{r^*t}{t^*},\qquad |r'|=|r|.
+\]
+Scattering matrix:
+\[
+S=\begin{pmatrix}t&r\\ r'&t'\end{pmatrix},\qquad
+S^\dagger S=\mathbf{1},\qquad S^*(k)=S(-k).
+\]
+
+\noindent\textbf{Parity basis in one dimension.}\quad If $V(x)=V(-x)$,
+$r=r'$ and
+\[
+\psi_\pm=\pm\psi_R+\psi_L,\qquad P\psi_\pm=\pm\psi_\pm,
+\]
+\[
+S_P=\begin{pmatrix}t+r&0\\0&t-r\end{pmatrix}
+=\begin{pmatrix}e^{2i\delta_+}&0\\0&e^{2i\delta_-}\end{pmatrix}.
+\]
+Square well $V=-V_0$ for $|x|<a/2$, $q^2=k^2+2mV_0/\hbar^2$:
+\[
+r=\frac{(k^2-q^2)\sin qa\,e^{-ika}}
+{(q^2+k^2)\sin qa+2iqk\cos qa},
+\]
+\[
+t=\frac{2iqk\,e^{-ika}}{(q^2+k^2)\sin qa+2iqk\cos qa}.
+\]
+
+\noindent\textbf{Bound states and resonances in one dimension.}\quad Analytic
+continuation in $k$:
+\[
+\text{bound state pole:}\quad k=i\lambda,\quad \lambda>0,\quad
+E=-\frac{\hbar^2\lambda^2}{2m}.
+\]
+Square well poles:
+\[
+\lambda=q\tan\frac{qa}{2}\quad(+),\qquad
+q=-\lambda\tan\frac{qa}{2}\quad(-),\qquad
+\lambda^2+q^2=\frac{2mV_0}{\hbar^2}.
+\]
+Resonance:
+\[
+k=k_0-i\gamma,\qquad
+E=\frac{\hbar^2k^2}{2m}=E_0-\frac{i\Gamma}{2},\qquad
+\Gamma=\frac{2\hbar^2\gamma k_0}{m},
+\]
+\[
+\psi(t)\propto e^{-iE_0t/\hbar}e^{-\Gamma t/(2\hbar)},\qquad
+S(E)\simeq\frac{E-E_0-i\Gamma/2}{E-E_0+i\Gamma/2}.
+\]
+
+\noindent\textbf{Three-dimensional cross-sections.}\quad Classical central scattering:
+\[
+\dd\sigma=b\dd b\dd\phi,\qquad \dd\Omega=\sin\theta\dd\theta\dd\phi,
+\]
+\[
+\boxed{\;\frac{\dd\sigma}{\dd\Omega}
+=\frac{b}{\sin\theta}\left|\frac{\dd b}{\dd\theta}\right|\;}.
+\]
+Hard sphere:
+\[
+b=R\cos\frac{\theta}{2},\qquad
+\frac{\dd\sigma}{\dd\Omega}=\frac{R^2}{4},\qquad
+\sigma_T=\pi R^2.
+\]
+Classical Rutherford, $V=A/r$:
+\[
+2bE=A\cot\frac{\theta}{2},\qquad
+\frac{\dd\sigma}{\dd\Omega}
+=\left(\frac{A}{4E}\right)^2\frac1{\sin^4(\theta/2)}.
+\]
+
+\noindent\textbf{Scattering amplitude.}\quad
+\[
+\left(-\frac{\hbar^2}{2m}\nabla^2+V(r)\right)\psi
+=E\psi,\qquad E=\frac{\hbar^2k^2}{2m},
+\]
+\[
+\psi(\mathbf r)\sim e^{ikz}+f(\theta,\phi)\frac{e^{ikr}}{r}.
+\]
+Current comparison gives
+\[
+\boxed{\;\frac{\dd\sigma}{\dd\Omega}=|f(\theta,\phi)|^2\;},\qquad
+\sigma_T=\int |f|^2\dd\Omega.
+\]
+
+\noindent\textbf{Partial waves and optical theorem.}\quad For central potentials,
+\[
+\psi(r,\theta)=\sum_{l=0}^\infty R_l(r)P_l(\cos\theta),
+\]
+\[
+\left[\frac{\dd^2}{\dd r^2}+\frac2r\frac{\dd}{\dd r}
+-\frac{l(l+1)}{r^2}-\frac{2m}{\hbar^2}V(r)+k^2\right]R_l=0.
+\]
+\[
+f(\theta)=\frac1{2ik}\sum_{l=0}^\infty(2l+1)
+(e^{2i\delta_l}-1)P_l(\cos\theta),
+\]
+\[
+f_l=e^{i\delta_l}\sin\delta_l,\qquad
+S_l=e^{2i\delta_l}.
+\]
+\[
+\sigma_T=\frac{4\pi}{k^2}\sum_l(2l+1)\sin^2\delta_l,\qquad
+\boxed{\;\sigma_T=\frac{4\pi}{k}\operatorname{Im}f(0)\;}.
+\]
+Unitarity bound:
+\[
+\sigma_l\le\frac{4\pi}{k^2}(2l+1).
+\]
+
+\noindent\textbf{Hard sphere and scattering length.}\quad For $V=\infty$ at $r<a$,
+\[
+R_l=A_l(\cos\delta_l\,j_l(kr)-\sin\delta_l\,n_l(kr)),\qquad
+\boxed{\;\tan\delta_l=\frac{j_l(ka)}{n_l(ka)}\;}.
+\]
+Low energy:
+\[
+\delta_0=-ka,\qquad
+\delta_l\sim-\frac{(ka)^{2l+1}}{(2l+1)!!(2l-1)!!},\qquad
+\sigma_T\sim4\pi a^2.
+\]
+Scattering length:
+\[
+\delta_0=-ka_s+O(k^3),\qquad
+\sigma_T\sim4\pi a_s^2.
+\]
+
+\noindent\textbf{Three-dimensional bound states and resonances.}\quad Attractive well:
+\[
+V(r)=\begin{cases}-V_0,&r<a,\\0,&r>a,\end{cases}\qquad
+\gamma^2=\frac{2mV_0}{\hbar^2}.
+\]
+For $l=0$,
+\[
+\frac{\tan(ka+\delta_0)}{ka}
+=\frac{\tan(\sqrt{k^2+\gamma^2}\,a)}
+{\sqrt{k^2+\gamma^2}\,a},
+\]
+\[
+a_s=a-\frac{\tan(\gamma a)}{\gamma}.
+\]
+Bound state threshold:
+\[
+\gamma a=\left(n+\frac12\right)\pi,\qquad
+a_s\to\pm\infty,\qquad
+\sigma_0\to\frac{4\pi}{k^2}.
+\]
+Resonance in partial wave $l$:
+\[
+S_l(E)=e^{2i\theta(E)}
+\frac{E-E_0-i\Gamma/2}{E-E_0+i\Gamma/2},
+\]
+\[
+\sigma_T^{\rm res}\simeq\frac{4\pi}{k^2}(2l+1)
+\frac{\Gamma^2}{4(E-E_0)^2+\Gamma^2},\qquad
+\tau=\frac{\hbar}{\Gamma}.
+\]
+
+\noindent\textbf{Lippmann-Schwinger.}\quad
+\[
+(H_0+V)|\psi\rangle=E|\psi\rangle,\qquad
+|\psi\rangle=|\phi\rangle+\frac1{E-H_0+i\epsilon}V|\psi\rangle.
+\]
+Outgoing Green function:
+\[
+(\nabla^2+k^2)G_0^+(\mathbf r-\mathbf r')
+=\frac{2m}{\hbar^2}\delta^3(\mathbf r-\mathbf r'),
+\]
+\[
+G_0^+=-\frac{2m}{\hbar^2}\frac{e^{ik|\mathbf r-\mathbf r'|}}
+{4\pi|\mathbf r-\mathbf r'|}.
+\]
+\[
+\boxed{\;\psi(\mathbf k;\mathbf r)=e^{i\mathbf k\cdot\mathbf r}
+-\frac{2m}{\hbar^2}\int
+\frac{e^{ik|\mathbf r-\mathbf r'|}}{4\pi|\mathbf r-\mathbf r'|}
+V(\mathbf r')\psi(\mathbf k;\mathbf r')\dd^3r'\;}.
+\]
+As $r\to\infty$,
+\[
+f(\theta,\phi)=-\frac{2m}{4\pi\hbar^2}
+\int e^{-ik\hat{\mathbf r}\cdot\mathbf r'}
+V(\mathbf r')\psi(\mathbf k;\mathbf r')\dd^3r'.
+\]
+
+\noindent\textbf{Born approximation.}\quad Born series:
+\[
+\psi=\phi_0+G_0^+V\phi_0+G_0^+VG_0^+V\phi_0+\cdots,\qquad
+\phi_0=e^{i\mathbf k\cdot\mathbf r}.
+\]
+First Born:
+\[
+\mathbf k'=k\hat{\mathbf r},\qquad
+\mathbf q=\mathbf k-\mathbf k',
+\]
+\[
+\boxed{\;f_0(\mathbf k,\mathbf k')
+=-\frac{m}{2\pi\hbar^2}\widetilde V(\mathbf q)\;},\qquad
+\widetilde V(\mathbf q)=\int e^{i\mathbf q\cdot\mathbf r}V(\mathbf r)\dd^3r.
+\]
+\[
+\frac{\dd\sigma}{\dd\Omega}\simeq
+\left(\frac{m}{2\pi\hbar^2}\right)^2|\widetilde V(\mathbf q)|^2.
+\]
+Yukawa:
+\[
+V(r)=\frac{Ae^{-\mu r}}{r},\qquad
+\widetilde V(q)=\frac{4\pi A}{q^2+\mu^2},\qquad
+q^2=4k^2\sin^2\frac{\theta}{2},
+\]
+\[
+\frac{\dd\sigma}{\dd\Omega}
+=\left(\frac{2Am}{\hbar^2\mu^2+8mE\sin^2(\theta/2)}\right)^2.
+\]
+The Coulomb limit has the Rutherford form but violates the usual Born smallness
+condition.
+
+\noindent\textbf{Exact Rutherford scattering.}\quad Coulomb equation:
+\[
+\left(\nabla^2+k^2-\frac{2\gamma k}{r}\right)\psi=0,\qquad
+\gamma=\frac{mA}{\hbar^2k}.
+\]
+Asymptotic Coulomb waves carry logarithmic phase:
+\[
+R_l(r)\sim\frac{e^{\pm i(kr-\gamma\log kr)}}{r}.
+\]
+Exact amplitude:
+\[
+f(\theta)=-\frac{\gamma}{2k}
+\frac{\Gamma(1+i\gamma)}{\Gamma(1-i\gamma)}
+\frac1{\sin^2(\theta/2)}.
+\]
+\[
+\boxed{\;\frac{\dd\sigma}{\dd\Omega}
+=\left(\frac{A}{4E}\right)^2\frac1{\sin^4(\theta/2)}\;}.
+\]
+Attractive Coulomb poles:
+\[
+1+i\gamma=-(n-1),\qquad
+k=-i\frac{mA}{\hbar^2n},\qquad
+E_n=-\frac{mA^2}{2\hbar^2n^2}.
+\]
+
+\noindent\textbf{Lattice scattering.}\quad A scatterer shifted by $\mathbf R$:
+\[
+f_{\mathbf R}(\mathbf k,\mathbf k')=f(\mathbf k,\mathbf k')
+e^{i\mathbf q\cdot\mathbf R},\qquad
+\mathbf q=\mathbf k-\mathbf k'.
+\]
+Bravais lattice $\Lambda$:
+\[
+f_\Lambda=f(\mathbf k,\mathbf k')\Delta(\mathbf q),\qquad
+\Delta(\mathbf q)=\sum_{\mathbf R\in\Lambda}e^{i\mathbf q\cdot\mathbf R},
+\]
+\[
+\Delta(\mathbf q)=V^*\sum_{\mathbf Q\in\Lambda^*}\delta(\mathbf q-\mathbf Q),
+\qquad
+\boxed{\;\mathbf k-\mathbf k'\in\Lambda^*\;}.
+\]
+Elastic condition $|\mathbf k|=|\mathbf k'|$ gives the Ewald sphere. Bragg form:
+\[
+Q=2k\sin\frac{\theta}{2},\qquad d=\frac{2\pi}{Q},\qquad
+\lambda=\frac{2\pi}{k},
+\]
+\[
+\boxed{\;n\lambda=2d\sin\frac{\theta}{2}\;}.
+\]
+Basis structure factor:
+\[
+f_{\rm lattice}(\mathbf k,\mathbf k')=\Delta(\mathbf q)S(\mathbf q),\qquad
+S(\mathbf q)=\sum_if_i(\mathbf k,\mathbf k')e^{i\mathbf q\cdot\mathbf d_i}.
+\]
+BCC selection rule:
+\[
+\mathbf q=\frac{2\pi}{a}(n_1,n_2,n_3),\qquad
+S=f\left(1+e^{i\pi(n_1+n_2+n_3)}\right),
+\]
+\[
+S=2f\ \text{if }\sum_in_i\text{ even},\qquad
+S=0\ \text{if }\sum_in_i\text{ odd}.
+\]
+Diamond basis:
+\[
+S=f\left(1+e^{i\pi(n_1+n_2+n_3)/2}\right).
+\]
+Debye-Waller factor:
+\[
+\mathbf R_n\mapsto\mathbf R_n+\mathbf u_n,\qquad
+\langle0|e^{i\mathbf q\cdot\mathbf u_n}|0\rangle=e^{-W(\mathbf q)},
+\]
+\[
+\boxed{\;f_\Lambda(\mathbf k,\mathbf k')
+=e^{-W(\mathbf q)}f(\mathbf k,\mathbf k')\Delta(\mathbf q)\;}.
+\]
+Bragg peak positions stay fixed; elastic intensities acquire $e^{-2W(\mathbf q)}$.

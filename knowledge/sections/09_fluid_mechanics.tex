@@ -1,0 +1,1375 @@
+\providecommand{\half}{\frac{1}{2}}
+\providecommand{\pd}{\partial}
+\providecommand{\src}[1]{\hfill{\footnotesize #1}}
+\providecommand{\uvec}{\mathbf{u}}
+\providecommand{\Uvec}{\mathbf{U}}
+\providecommand{\xvec}{\mathbf{x}}
+\providecommand{\rvec}{\mathbf{r}}
+\providecommand{\fvec}{\mathbf{f}}
+\providecommand{\Fvec}{\mathbf{F}}
+\providecommand{\omvec}{\boldsymbol{\omega}}
+\providecommand{\zhat}{\hat{\mathbf z}}
+\providecommand{\xhat}{\hat{\mathbf x}}
+\providecommand{\yhat}{\hat{\mathbf y}}
+\providecommand{\rhatc}{\hat{\mathbf r}}
+\providecommand{\thatc}{\hat{\boldsymbol{\theta}}}
+\providecommand{\khat}{\hat{\mathbf k}}
+
+\section{Fluid Mechanics}
+\label{sec:fluid-mechanics}
+
+\subsection{Kinematics and Conservation}
+
+\noindent\textbf{Continuum variables.}\quad Eulerian fields:
+\[
+  \rho(\xvec,t),\qquad \uvec(\xvec,t),\qquad P(\xvec,t).
+\]
+The continuum approximation is a coarse graining over microscopic motion.
+
+\noindent\textbf{Pathlines, streamlines, material derivative.}\quad
+\[
+  \frac{d\xvec(t)}{dt}=\uvec(\xvec(t),t),
+  \qquad
+  \frac{d\xvec(s)}{ds}=\uvec(\xvec(s),t)\quad(t\ {\rm fixed}),
+\]
+\[
+  \boxed{\frac{D}{Dt}=\pd_t+\uvec\cdot\nabla},
+  \qquad
+  \frac{D\phi}{Dt}=\pd_t\phi+\uvec\cdot\nabla\phi,
+  \qquad
+  \frac{D\uvec}{Dt}=\pd_t\uvec+(\uvec\cdot\nabla)\uvec.
+\]
+Pathlines and streamlines coincide for steady flow.
+
+\noindent\textbf{Mass conservation.}\quad For fixed $V$,
+\[
+  \frac{d}{dt}\int_V\rho\,dV=-\int_{\pd V}\rho\uvec\cdot d\mathbf S.
+\]
+Local forms:
+\[
+  \boxed{\pd_t\rho+\nabla\cdot(\rho\uvec)=0},
+  \qquad
+  \boxed{\frac{D\rho}{Dt}+\rho\nabla\cdot\uvec=0}.
+\]
+Incompressible flow:
+\[
+  \boxed{\nabla\cdot\uvec=0}.
+\]
+Constant density implies incompressibility; more generally incompressibility allows $D\rho/Dt=0$ with spatially varying density.
+
+\noindent\textbf{Stream functions.}\quad Incompressibility gives $\uvec=\nabla\times\mathbf A$. In 2d Cartesian flow,
+\[
+  \mathbf A=\Psi(x,y,t)\zhat,\qquad
+  \boxed{u_x=\pd_y\Psi,\qquad u_y=-\pd_x\Psi}.
+\]
+Streamlines are level sets $\Psi=\text{constant}$. In polar coordinates,
+\[
+  \mathbf A=\psi(r,\theta,t)\zhat,\qquad
+  \boxed{\uvec=\frac1r\pd_\theta\psi\,\rhatc-\pd_r\psi\,\thatc}.
+\]
+\src{Tong Fluid Mechanics \S 1}
+
+\subsection{Inviscid Flows}
+
+\subsubsection*{Euler Equation, Stress, and Bernoulli}
+
+\noindent\textbf{Momentum balance.}\quad For an inviscid incompressible fluid, pressure and body-force density $\fvec$ give
+\[
+  \int_V\rho\left(\pd_t\uvec+(\uvec\cdot\nabla)\uvec\right)dV
+  =\int_V(-\nabla P+\fvec)\,dV.
+\]
+Local Euler equation:
+\[
+  \boxed{\rho\frac{D\uvec}{Dt}=-\nabla P+\fvec},
+  \qquad
+  \nabla\cdot\uvec=0.
+\]
+With $\fvec=0$,
+\[
+  \boxed{\pd_t(\rho u_i)+\pd_j\Pi_{ij}=0},
+  \qquad
+  \Pi_{ij}=\rho u_i u_j+P\delta_{ij}.
+\]
+
+\noindent\textbf{Hydrostatics.}\quad With $\fvec=\rho\mathbf g=-\rho g\zhat$ and $\uvec=0$,
+\[
+  \boxed{\nabla P=\rho\mathbf g},
+  \qquad
+  P=P_0-\rho gz.
+\]
+An immersed body displacing volume $V_d$ feels
+\[
+  \mathbf F_{\rm buoy}=-\int_{V_d}\rho\mathbf g\,dV.
+\]
+
+\noindent\textbf{Energy and Bernoulli.}\quad For conservative force $\fvec=-\nabla\Phi$,
+\[
+  \uvec\times(\nabla\times\uvec)
+  =\half\nabla|\uvec|^2-(\uvec\cdot\nabla)\uvec.
+\]
+Define
+\[
+  H=\half\rho|\uvec|^2+P+\Phi.
+\]
+Then
+\[
+  \boxed{\half\rho\,\pd_t|\uvec|^2+\nabla\cdot(\uvec H)=0}.
+\]
+For steady flow,
+\[
+  \boxed{\uvec\cdot\nabla H=0},
+\]
+so $H$ is constant along streamlines. If the steady flow is irrotational, $H$ is constant throughout each connected region.
+\src{Tong Fluid Mechanics \S 2.1}
+
+\subsubsection*{Vorticity and Kelvin Theorem}
+
+\noindent\textbf{Velocity-gradient split.}\quad
+\[
+  \pd_j u_i=E_{ij}+\Omega_{ij},
+  \qquad
+  E_{ij}=\half(\pd_j u_i+\pd_i u_j),
+  \qquad
+  \Omega_{ij}=\half(\pd_j u_i-\pd_i u_j),
+\]
+\[
+  \boxed{\omvec=\nabla\times\uvec},
+  \qquad
+  \omega_i=-\epsilon_{ijk}\Omega_{jk}.
+\]
+For $\uvec=f(r)(-y,x,0)$,
+\[
+  \omvec=\omega(r)\zhat,
+  \qquad
+  \omega=\frac1r\frac{d}{dr}\left(r^2f\right).
+\]
+The ideal point vortex has
+\[
+  f=\frac{\Gamma}{2\pi r^2},
+  \qquad
+  \omvec=\Gamma\delta^{(2)}(\mathbf r)\zhat.
+\]
+
+\noindent\textbf{Biot-Savart reconstruction.}\quad For $\nabla\cdot\uvec=0$,
+\[
+  \uvec(\xvec)=\nabla\phi(\xvec)
+  +\frac{1}{4\pi}\int
+  \frac{\omvec(\xvec')\times(\xvec-\xvec')}{|\xvec-\xvec'|^3}\,d^3x'.
+\]
+The harmonic potential part supplies boundary and circulation data.
+
+\noindent\textbf{Vorticity equation.}\quad For incompressible Euler flow with conservative force,
+\[
+  \boxed{\pd_t\omvec=\nabla\times(\uvec\times\omvec)},
+  \qquad
+  \boxed{\frac{D\omvec}{Dt}=(\omvec\cdot\nabla)\uvec}.
+\]
+Equivalently,
+\[
+  \pd_t\omega_i+\pd_j(u_j\omega_i-u_i\omega_j)=0.
+\]
+Magnitude evolution:
+\[
+  \boxed{\half\frac{D|\omvec|^2}{Dt}=\omvec\cdot E\omvec}.
+\]
+In 2d Euler flow, $\omvec=\omega\zhat$ and $D\omega/Dt=0$.
+
+\noindent\textbf{Vortex stretching template.}\quad
+\[
+  \uvec=\alpha(-x,-y,2z)+f(r,t)(-y,x,0),
+  \qquad
+  \omvec=\omega(r,t)\zhat,
+\]
+\[
+  \pd_t\omega-\alpha r\pd_r\omega=2\alpha\omega,
+  \qquad
+  \boxed{\omega(r,t)=e^{2\alpha t}W(re^{\alpha t})}.
+\]
+
+\noindent\textbf{Kelvin theorem.}\quad For a material loop $C(t)$,
+\[
+  \Gamma(t)=\oint_{C(t)}\uvec\cdot d\xvec,
+  \qquad
+  \boxed{\frac{D\Gamma}{Dt}=0}
+\]
+for inviscid incompressible flow with conservative body force. By Stokes,
+\[
+  \Gamma=\int_S\omvec\cdot d\mathbf S.
+\]
+Vortex tubes are material tubes; stretching changes cross-section and $|\omvec|$ while preserving flux.
+\src{Tong Fluid Mechanics \S 2.2}
+
+\subsubsection*{Potential Flow}
+
+\noindent\textbf{Reduction.}\quad Steady incompressible irrotational flow:
+\[
+  \boxed{\uvec=\nabla\phi,\qquad \nabla^2\phi=0}.
+\]
+On a solid with normal velocity $\Uvec$,
+\[
+  \boxed{\mathbf n\cdot\nabla\phi=\mathbf n\cdot\Uvec}.
+\]
+
+\noindent\textbf{Sphere.}\quad Source and dipole:
+\[
+  \phi=-\frac{q}{r},\qquad
+  \nabla^2\phi=4\pi q\delta^{(3)}(\xvec),
+  \qquad
+  \phi_{\rm dipole}=\frac{\mathbf p\cdot\mathbf r}{r^3}.
+\]
+Uniform flow past a sphere radius $R$:
+\[
+  \boxed{\phi=U\left(r+\frac{R^3}{2r^2}\right)\cos\theta},
+\]
+\[
+  u_r=U\left(1-\frac{R^3}{r^3}\right)\cos\theta,
+  \qquad
+  u_\theta=-U\left(1+\frac{R^3}{2r^3}\right)\sin\theta.
+\]
+On $r=R$,
+\[
+  P(\theta)=P_\infty+\half\rho U^2\left(1-\frac94\sin^2\theta\right).
+\]
+Fore-aft symmetry gives zero drag: D'Alembert paradox.
+
+\noindent\textbf{Added mass.}\quad Sphere moving through stationary fluid:
+\[
+  \phi=-\frac{UR^3}{2r^2}\cos\theta,
+  \qquad
+  T_{\rm fluid}=\frac{\pi}{3}\rho R^3U^2
+  =\half\left(\frac23\pi\rho R^3\right)U^2.
+\]
+The added mass is one half the displaced fluid mass.
+
+\noindent\textbf{2d cylinder and lift.}\quad Complex potential for uniform flow past a cylinder with circulation:
+\[
+  w(z)=U\left(z+\frac{R^2}{z}\right)-\frac{i\Gamma}{2\pi}\log z.
+\]
+Surface velocity:
+\[
+  u_\theta(R,\theta)=-2U\sin\theta+\frac{\Gamma}{2\pi R}.
+\]
+Kutta-Joukowski lift per unit length:
+\[
+  \boxed{L=\rho U\Gamma}.
+\]
+\src{Tong Fluid Mechanics \S 2.3}
+
+\subsubsection*{Variational Euler Fluids}
+
+\noindent\textbf{Clebsch action.}\quad A compact variational formulation is
+\[
+  S=\int dt\,d^3x\left[
+  \half\rho|\uvec|^2-\varepsilon(\rho)
+  +\lambda(\pd_t\rho+\nabla\cdot(\rho\uvec))
+  \right].
+\]
+Variation in $\uvec$ gives
+\[
+  \uvec=\nabla\lambda.
+\]
+This captures irrotational flow. Vorticity is included by Clebsch potentials:
+\[
+  \uvec=\nabla\lambda+\alpha\nabla\beta.
+\]
+The Euler equation follows after eliminating auxiliary fields with enthalpy $h=d\varepsilon/d\rho$:
+\[
+  \boxed{\pd_t\uvec+(\uvec\cdot\nabla)\uvec=-\nabla h}.
+\]
+\src{Tong Fluid Mechanics \S 2.4}
+
+\subsection{The Navier-Stokes Equation}
+
+\subsubsection*{Stress, Viscosity, and Energy}
+
+\noindent\textbf{Newtonian stress.}\quad For incompressible isotropic flow,
+\[
+  \boxed{\sigma_{ij}=-P\delta_{ij}+\mu(\pd_i u_j+\pd_j u_i)}
+  =-P\delta_{ij}+2\mu E_{ij}.
+\]
+Momentum conservation:
+\[
+  \rho(\pd_tu_i+u_j\pd_ju_i)=\pd_j\sigma_{ij}+f_i.
+\]
+Thus
+\[
+  \boxed{\rho\left(\pd_t\uvec+\uvec\cdot\nabla\uvec\right)
+  =-\nabla P+\mu\nabla^2\uvec+\fvec},
+  \qquad
+  \nabla\cdot\uvec=0.
+\]
+Kinematic viscosity:
+\[
+  \nu=\frac{\mu}{\rho}.
+\]
+
+\noindent\textbf{Dissipation.}\quad With no body force and no boundary flux,
+\[
+  \frac{d}{dt}\int \half\rho|\uvec|^2\,dV
+  =-\frac{\mu}{2}\int(\pd_i u_j+\pd_j u_i)^2\,dV\le0.
+\]
+Equivalent incompressible form up to boundary terms:
+\[
+  \frac{dK}{dt}=-\mu\int(\pd_i u_j)^2\,dV.
+\]
+Boundary conditions: no penetration and no slip on a stationary solid,
+\[
+  \mathbf n\cdot\uvec=0,\qquad \uvec_\parallel=0.
+\]
+\src{Tong Fluid Mechanics \S 3.1}
+
+\subsubsection*{Simple Viscous Flows}
+
+\noindent\textbf{Planar Couette.}\quad Plates at $y=0,h$ with velocities $0,U\xhat$:
+\[
+  \uvec=u(y)\xhat,\qquad
+  \nu u''=0,\qquad
+  \boxed{u(y)=\frac{U}{h}y}.
+\]
+Shear stress:
+\[
+  \sigma_{xy}=\mu U/h.
+\]
+
+\noindent\textbf{Circular Couette.}\quad Cylinders $R_1<R_2$ rotating with angular velocities $\Omega_1,\Omega_2$:
+\[
+  \uvec=u_\theta(r)\thatc,
+  \qquad
+  u_\theta=Ar+\frac{B}{r},
+\]
+\[
+  A=\frac{\Omega_2R_2^2-\Omega_1R_1^2}{R_2^2-R_1^2},
+  \qquad
+  B=\frac{R_1^2R_2^2(\Omega_1-\Omega_2)}{R_2^2-R_1^2}.
+\]
+
+\noindent\textbf{Plane Poiseuille.}\quad Pressure gradient $\pd_xP=-G$ between plates $y=\pm h$:
+\[
+  \mu u''=-G,
+  \qquad
+  \boxed{u(y)=\frac{G}{2\mu}(h^2-y^2)}.
+\]
+Flux per unit width:
+\[
+  Q=\int_{-h}^{h}u\,dy=\frac{2Gh^3}{3\mu}.
+\]
+
+\noindent\textbf{Pipe flow.}\quad Radius $R$, $\pd_zP=-G$:
+\[
+  \frac{\mu}{r}\frac{d}{dr}\left(r\frac{du}{dr}\right)=-G,
+  \qquad
+  \boxed{u(r)=\frac{G}{4\mu}(R^2-r^2)}.
+\]
+Volume flux:
+\[
+  \boxed{Q=\frac{\pi G R^4}{8\mu}}.
+\]
+\src{Tong Fluid Mechanics \S 3.2}
+
+\subsubsection*{Vorticity, Reynolds Number, and Scaling}
+
+\noindent\textbf{Viscous vorticity equation.}\quad Curling Navier-Stokes gives
+\[
+  \boxed{\pd_t\omvec=\nabla\times(\uvec\times\omvec)+\nu\nabla^2\omvec},
+\]
+or
+\[
+  \boxed{\frac{D\omvec}{Dt}=(\omvec\cdot\nabla)\uvec+\nu\nabla^2\omvec}.
+\]
+In 2d,
+\[
+  \boxed{\pd_t\omega+\uvec\cdot\nabla\omega=\nu\nabla^2\omega}.
+\]
+
+\noindent\textbf{Diffusing vortex sheet.}\quad For shear layer $u_x(y,t)$,
+\[
+  \pd_tu_x=\nu\pd_y^2u_x.
+\]
+Diffusion length:
+\[
+  \delta(t)\sim\sqrt{\nu t}.
+\]
+
+\noindent\textbf{Burgers vortex.}\quad With strain
+\[
+  \uvec=(-\alpha x,-\alpha y,2\alpha z)+u_\theta(r)\thatc,
+\]
+steady axial vorticity solves
+\[
+  -\alpha r\omega'+2\alpha\omega=\nu\frac1r(r\omega')',
+\]
+\[
+  \boxed{\omega(r)=\frac{\Gamma\alpha}{2\pi\nu}
+  \exp\left(-\frac{\alpha r^2}{2\nu}\right)}.
+\]
+
+\noindent\textbf{Reynolds number.}\quad For scale $L$ and speed $U$,
+\[
+  \boxed{Re=\frac{UL}{\nu}=\frac{\rho UL}{\mu}}.
+\]
+Dimensionless Navier-Stokes:
+\[
+  \pd_{\tilde t}\tilde\uvec+\tilde\uvec\cdot\tilde\nabla\tilde\uvec
+  =-\tilde\nabla\tilde P+\frac1{Re}\tilde\nabla^2\tilde\uvec.
+\]
+Large $Re$: inertia dominates away from thin viscous layers. Small $Re$: inertia is negligible.
+\src{Tong Fluid Mechanics \S 3.3--3.4}
+
+\subsubsection*{Stokes Flow}
+
+\noindent\textbf{Equations and reversibility.}\quad $Re\ll1$:
+\[
+  \boxed{-\nabla P+\mu\nabla^2\uvec+\fvec=0},
+  \qquad
+  \nabla\cdot\uvec=0.
+\]
+No $\pd_t$ and no $\uvec\cdot\nabla\uvec$: instantaneous, linear, kinematically reversible.
+
+\noindent\textbf{Stokeslet.}\quad Point force $\Fvec$ at the origin:
+\[
+  -\nabla P+\mu\nabla^2\uvec+\Fvec\delta^{(3)}(\xvec)=0,
+  \qquad
+  \nabla\cdot\uvec=0.
+\]
+Solution:
+\[
+  \boxed{u_i(\xvec)=\frac{1}{8\pi\mu}
+  \left(\frac{\delta_{ij}}{r}+\frac{x_ix_j}{r^3}\right)F_j},
+  \qquad
+  \boxed{P(\xvec)=\frac{\Fvec\cdot\xvec}{4\pi r^3}}.
+\]
+
+\noindent\textbf{Sphere drag.}\quad Flow past a sphere radius $R$:
+\[
+  \boxed{\Fvec_{\rm drag}=6\pi\mu R\,\Uvec}.
+\]
+Terminal velocity under effective weight $\Delta m\,g$:
+\[
+  U_{\rm term}=\frac{\Delta m\,g}{6\pi\mu R}.
+\]
+
+\noindent\textbf{Uniqueness and minimum dissipation.}\quad For fixed boundary velocities, Stokes flow is unique and minimizes
+\[
+  \Phi=\frac{\mu}{2}\int(\pd_i u_j+\pd_j u_i)^2\,dV.
+\]
+
+\noindent\textbf{Hele-Shaw cell.}\quad Flow between plates separated by $h$ with $h$ small:
+\[
+  \uvec_\perp(z)=-\frac{1}{2\mu}\nabla_\perp P\,z(h-z),
+\]
+\[
+  \bar\uvec_\perp=-\frac{h^2}{12\mu}\nabla_\perp P,
+  \qquad
+  \nabla_\perp^2P=0.
+\]
+The depth-averaged flow is potential.
+
+\noindent\textbf{Low-Re swimming.}\quad Linearity and time reversal imply the scallop theorem: a reciprocal stroke produces no net displacement at $Re=0$.
+\src{Tong Fluid Mechanics \S 3.5}
+
+\subsubsection*{Boundary Layers}
+
+\noindent\textbf{Boundary-layer thickness.}\quad For outer speed $U$ along a plate and downstream distance $x$,
+\[
+  \delta(x)\sim\sqrt{\frac{\nu x}{U}},
+  \qquad
+  Re_x=\frac{Ux}{\nu},
+  \qquad
+  \frac{\delta}{x}\sim Re_x^{-1/2}.
+\]
+
+\noindent\textbf{Prandtl equations.}\quad For steady 2d high-$Re$ flow near a flat wall,
+\[
+  \pd_xu+\pd_yv=0,
+\]
+\[
+  \boxed{u\pd_xu+v\pd_yu=-\frac1\rho\pd_xP+\nu\pd_y^2u},
+  \qquad
+  \pd_yP=0.
+\]
+Outer Euler flow fixes $\pd_xP$ at the edge.
+
+\noindent\textbf{Blasius plate.}\quad Zero pressure gradient, $U=\text{constant}$:
+\[
+  \Psi=\sqrt{\nu Ux}\,f(\eta),
+  \qquad
+  \eta=y\sqrt{\frac{U}{\nu x}},
+\]
+\[
+  u=Uf'(\eta),\qquad
+  v=\half\sqrt{\frac{\nu U}{x}}(\eta f'-f).
+\]
+Blasius equation:
+\[
+  \boxed{2f'''+ff''=0},
+  \qquad
+  f(0)=f'(0)=0,\qquad f'(\infty)=1.
+\]
+Wall shear and drag on length $L$:
+\[
+  \tau_w=\mu U\sqrt{\frac{U}{\nu x}}f''(0),
+  \qquad
+  C_D\sim Re_L^{-1/2}.
+\]
+
+\noindent\textbf{Falkner-Skan and separation.}\quad For outer flow $U(x)\propto x^m$,
+\[
+  f'''+\half ff''+\beta(1-f'^2)=0,
+  \qquad
+  \beta=\frac{2m}{m+1}.
+\]
+Separation occurs when
+\[
+  \tau_w=\mu\pd_yu|_{y=0}=0,
+\]
+typically under an adverse pressure gradient $\pd_xP>0$.
+\src{Tong Fluid Mechanics \S 3.6}
+
+\subsection{Waves}
+
+\subsubsection*{Surface Waves}
+
+\noindent\textbf{Free surface.}\quad Surface $F=z-\eta(x,y,t)=0$:
+\[
+  \frac{DF}{Dt}=0
+  \quad\Longrightarrow\quad
+  \boxed{\pd_t\eta+u_x\pd_x\eta+u_y\pd_y\eta=u_z\big|_{z=\eta}}.
+\]
+Pressure jump from surface tension:
+\[
+  \boxed{P-P_0=-\gamma_s\nabla_\perp^2\eta}
+\]
+to linear order in slope.
+
+\noindent\textbf{Linear potential problem.}\quad For depth $H$, bottom $z=-H$, surface near $z=0$:
+\[
+  \uvec=\nabla\phi,\qquad \nabla^2\phi=0,\qquad |\eta|\ll H,\qquad |\nabla_\perp\eta|\ll1,
+\]
+\[
+  \pd_z\phi|_{z=-H}=0,
+  \qquad
+  \pd_z\phi|_{z=0}=\pd_t\eta,
+\]
+\[
+  \pd_t\phi|_{z=0}+g\eta-\frac{\gamma_s}{\rho}\nabla_\perp^2\eta=0.
+\]
+For $\phi=\phi_0(z)e^{ikx-i\omega t}$ and $\eta=\eta_0e^{ikx-i\omega t}$,
+\[
+  \phi_0=A\cosh k(z+H),
+\]
+\[
+  \boxed{\omega^2=\left(gk+\frac{\gamma_s}{\rho}k^3\right)\tanh(kH)}.
+\]
+Limits:
+\[
+  kH\gg1:\ \omega^2=gk+\frac{\gamma_s}{\rho}k^3,
+  \qquad
+  kH\ll1:\ \omega^2\simeq gHk^2.
+\]
+Capillary length:
+\[
+  \ell_c=\sqrt{\frac{\gamma_s}{\rho g}}.
+\]
+
+\noindent\textbf{Deep-water particle drift.}\quad For $kH\gg1$,
+\[
+  \uvec\simeq\omega\eta_0e^{kz}
+  (\cos(kx-\omega t),0,\sin(kx-\omega t)).
+\]
+Lagrangian motion has Stokes drift
+\[
+  \boxed{v_{\rm drift}=\omega k\eta_0^2e^{2kz}
+  =c_p(k\eta_0e^{kz})^2}.
+\]
+\src{Tong Fluid Mechanics \S 4.1}
+
+\subsubsection*{Internal Gravity Waves}
+
+\noindent\textbf{Stratified incompressible flow.}\quad Equilibrium density $\rho_0(z)$ and pressure $P_0(z)$ obey
+\[
+  \frac{dP_0}{dz}=-\rho_0g.
+\]
+For vertical parcel displacement $\xi$, buoyancy oscillations have
+\[
+  \boxed{N^2=-\frac{g}{\rho_0}\frac{d\rho_0}{dz}},
+\]
+with stable stratification $N^2>0$.
+
+\noindent\textbf{Dispersion.}\quad Linear internal waves in the Boussinesq approximation satisfy
+\[
+  \boxed{\omega^2=N^2\frac{k_\perp^2}{k_\perp^2+k_z^2}}.
+\]
+Phase and group velocities are orthogonal:
+\[
+  \mathbf c_p=\omega\frac{\mathbf k}{k^2},
+  \qquad
+  \mathbf c_g=\nabla_\mathbf k\omega,
+  \qquad
+  \mathbf c_p\cdot\mathbf c_g=0.
+\]
+\src{Tong Fluid Mechanics \S 4.2}
+
+\subsubsection*{Rotating Shallow Water}
+
+\noindent\textbf{Rotating frame.}\quad With rotation $\boldsymbol{\Omega}=\Omega\zhat$,
+\[
+  \frac{D\uvec}{Dt}+2\boldsymbol{\Omega}\times\uvec
+  =-\frac1\rho\nabla P-\nabla\Phi_{\rm eff}.
+\]
+Set $f=2\Omega$.
+
+\noindent\textbf{Shallow-water equations.}\quad Mean depth $H$, surface displacement $\eta$, depth $h=H+\eta$, horizontal velocity $\uvec=(u,v)$:
+\[
+  \boxed{\pd_th+\nabla\cdot(h\uvec)=0},
+\]
+\[
+  \boxed{\pd_tu+u\pd_xu+v\pd_yu=fv-g\pd_x\eta},
+  \qquad
+  \boxed{\pd_tv+u\pd_xv+v\pd_yv=-fu-g\pd_y\eta}.
+\]
+Linearized:
+\[
+  \pd_t\eta=-H(\pd_xu+\pd_yv),\qquad
+  \pd_tu=fv-g\pd_x\eta,\qquad
+  \pd_tv=-fu-g\pd_y\eta.
+\]
+
+\noindent\textbf{Geostrophic balance and potential vorticity.}\quad Slow steady balance:
+\[
+  \boxed{u=-\frac{g}{f}\pd_y\eta,\qquad v=\frac{g}{f}\pd_x\eta}.
+\]
+Nonlinear potential vorticity:
+\[
+  \boxed{Q=\frac{\zeta+f}{h}},
+  \qquad
+  \zeta=\pd_xv-\pd_yu,
+  \qquad
+  \boxed{\frac{DQ}{Dt}=0}.
+\]
+Linearized:
+\[
+  Q_{\rm lin}=\pd_xv-\pd_yu-\frac{f}{H}\eta,
+  \qquad
+  \pd_tQ_{\rm lin}=0.
+\]
+
+\noindent\textbf{Poincare waves.}\quad For constant $f$ and $Q_{\rm lin}=0$,
+\[
+  \boxed{\omega^2=f^2+c^2k^2},
+  \qquad c=\sqrt{gH}.
+\]
+
+\noindent\textbf{Kelvin waves.}\quad Coastal Kelvin wave on $x>0$:
+\[
+  v=0,\qquad
+  \omega=-ck,\qquad
+  \eta,u\propto e^{-fx/c}.
+\]
+Equatorial Kelvin wave:
+\[
+  f=\beta y,\qquad
+  v=0,\qquad
+  \omega=ck,\qquad
+  \eta,u\propto e^{-y^2/(2L_{\rm eq}^2)},
+  \quad
+  L_{\rm eq}=\sqrt{c/\beta}.
+\]
+
+\noindent\textbf{Rossby waves.}\quad On a beta plane $f=f_0+\beta y$, quasi-geostrophic dynamics gives
+\[
+  Q\simeq\frac{f_0}{H}\left(\frac{c^2}{f_0^2}\nabla^2\eta-\eta+\frac{\beta H}{f_0}y\right),
+\]
+\[
+  \pd_tQ-\frac{g}{f_0}(\pd_y\eta)(\pd_xQ)
+  +\frac{g}{f_0}(\pd_x\eta)(\pd_yQ)=0.
+\]
+Linear Rossby dispersion:
+\[
+  \boxed{\omega=-\frac{\beta k_x}{k_x^2+k_y^2+f_0^2/c^2}}.
+\]
+
+\noindent\textbf{Topological count.}\quad The linear rotating shallow-water Hamiltonian has Berry curvature with Chern number
+\[
+  \boxed{C=\frac{1}{2\pi}\int_{\mathbb R^2}B\,d^2k=\operatorname{sign}(f)}.
+\]
+Changing sign of $f$ across the equator changes $C$ and forces equatorial modes.
+\src{Tong Fluid Mechanics \S 4.3}
+
+\subsubsection*{Sound Waves}
+
+\noindent\textbf{Compressible equations.}\quad
+\[
+  \pd_t\rho+\nabla\cdot(\rho\uvec)=0,
+  \qquad
+  \rho(\pd_t\uvec+\uvec\cdot\nabla\uvec)=-\nabla P+\mu\nabla^2\uvec
+  +\left(\zeta+\frac{\mu}{3}\right)\nabla(\nabla\cdot\uvec).
+\]
+Adiabatic equation of state:
+\[
+  P=P(\rho),\qquad c_s^2=\left(\frac{\pd P}{\pd\rho}\right)_s.
+\]
+For ideal gas:
+\[
+  P\rho^{-\gamma}=\text{constant},
+  \qquad
+  c_s^2=\gamma P/\rho.
+\]
+
+\noindent\textbf{Linear sound.}\quad Put $\rho=\rho_0+\delta\rho$, $P=P_0+c_s^2\delta\rho$, $|\uvec|\ll c_s$:
+\[
+  \pd_t\delta\rho+\rho_0\nabla\cdot\uvec=0,
+  \qquad
+  \rho_0\pd_t\uvec=-c_s^2\nabla\delta\rho.
+\]
+Then
+\[
+  \boxed{\pd_t^2\delta\rho-c_s^2\nabla^2\delta\rho=0},
+  \qquad
+  \omega^2=c_s^2k^2.
+\]
+
+\noindent\textbf{Viscous damping.}\quad Longitudinal sound mode:
+\[
+  \left(\pd_t+\uvec\cdot\nabla\right)T+(\gamma-1)T\nabla\cdot\uvec
+  =\frac{\kappa}{c_P}\nabla^2T.
+\]
+With volumetric heat capacity $c_V$, shear viscosity $\mu$, and bulk viscosity $\zeta$,
+\[
+  \boxed{\omega_{\rm heat}=-i\frac{\kappa}{\gamma c_V}k^2},
+\]
+\[
+  \boxed{\omega_{\rm sound}=\pm c_sk-\frac{i}{2}
+  \left[\frac{\zeta+\frac43\mu}{\rho_0}
+  +\frac{\gamma-1}{\gamma}\frac{\kappa}{c_V}\right]k^2+\cdots}.
+\]
+Shear mode:
+\[
+  \boxed{\omega=-i\frac{\mu}{\rho_0}k^2}.
+\]
+\src{Tong Fluid Mechanics \S 4.4}
+
+\subsubsection*{Nonlinear Sound and Shocks}
+
+\noindent\textbf{Riemann invariants.}\quad One-dimensional compressible Euler:
+\[
+  \pd_t\rho+\pd_x(\rho u)=0,\qquad
+  \pd_tu+u\pd_xu=-\frac1\rho\pd_xP,
+  \qquad
+  c_s^2(\rho)=\frac{dP}{d\rho}.
+\]
+Define
+\[
+  Q(\rho)=\int_{\rho_0}^{\rho}\frac{c_s(\rho')}{\rho'}\,d\rho',
+  \qquad
+  R_\pm=u\pm Q.
+\]
+Then
+\[
+  \boxed{(\pd_t+(u\pm c_s)\pd_x)R_\pm=0}.
+\]
+For ideal gas,
+\[
+  R_\pm=u\pm\frac{2}{\gamma-1}(c_s-c_0).
+\]
+
+\noindent\textbf{Simple waves and shock time.}\quad Right-moving simple wave $R_-=0$:
+\[
+  c_s=c_0+\half(\gamma-1)u,
+  \qquad
+  \frac{dx}{dt}=u+c_s=c_0+\half(\gamma+1)u.
+\]
+For initial $u(x,0)=U(\xi)$,
+\[
+  x(t;\xi)=\xi+\left[c_0+\half(\gamma+1)U(\xi)\right]t,
+\]
+\[
+  \boxed{t_{\rm shock}=-\frac{2}{(\gamma+1)U'(\xi)}}.
+\]
+For $U(x)=U\sin kx$:
+\[
+  t_{\rm shock}=\frac{2}{(\gamma+1)kU}.
+\]
+
+\noindent\textbf{Burgers reduction.}\quad In $X=x-c_0t$ with $v=\half(\gamma+1)u$,
+\[
+  \boxed{\pd_tv+v\pd_Xv=0},
+  \qquad
+  \boxed{\pd_tv+v\pd_Xv=\nu\pd_X^2v}\quad({\rm viscous}).
+\]
+
+\noindent\textbf{Rankine-Hugoniot.}\quad Across a stationary planar shock:
+\[
+  \boxed{\rho_1u_1=\rho_2u_2},
+  \qquad
+  \boxed{\rho_1u_1^2+P_1=\rho_2u_2^2+P_2},
+\]
+\[
+  \boxed{v_1=v_2},
+  \qquad
+  \boxed{\half u_1^2+h_1=\half u_2^2+h_2},
+  \qquad
+  h=e+\frac{P}{\rho}.
+\]
+Ideal gas:
+\[
+  e=\frac{P}{(\gamma-1)\rho},\qquad h=\frac{\gamma P}{(\gamma-1)\rho}.
+\]
+Compression ratio:
+\[
+  r=\frac{\rho_2}{\rho_1}=\frac{u_1}{u_2},
+\]
+\[
+  \boxed{r=\frac{(\gamma-1)P_1+(\gamma+1)P_2}
+  {(\gamma+1)P_1+(\gamma-1)P_2}},
+  \qquad
+  r_{\max}=\frac{\gamma+1}{\gamma-1}.
+\]
+Entropy increase selects $P_2>P_1$, $\rho_2>\rho_1$, $|u_2|<|u_1|$.
+
+\noindent\textbf{Mach numbers.}\quad
+\[
+  M_i=\frac{u_i}{c_{s,i}},
+  \qquad
+  c_s^2=\frac{\gamma P}{\rho}.
+\]
+\[
+  \boxed{M_1^2=\frac{2r}{(\gamma+1)-r(\gamma-1)}},
+  \qquad
+  \boxed{M_2^2=\frac{2}{r(\gamma+1)-(\gamma-1)}}.
+\]
+Thus $M_1>1$ and $M_2<1$ for compressive shocks.
+\[
+  \boxed{r=\frac{(\gamma+1)M_1^2}{2+(\gamma-1)M_1^2}},
+  \qquad
+  \boxed{\frac{P_2}{P_1}=1+\frac{2\gamma}{\gamma+1}(M_1^2-1)}.
+\]
+\src{Tong Fluid Mechanics \S 4.5--4.6}
+
+\subsection{Instabilities}
+
+\subsubsection*{Interfacial Instabilities}
+
+\noindent\textbf{Kelvin-Helmholtz set-up.}\quad Let
+\[
+  z=\eta(x,t)=\eta_0e^{ikx-i\omega t},
+  \qquad
+  \uvec_i=U_i\xhat+\nabla\phi_i,
+  \qquad
+  \nabla^2\phi_i=0.
+\]
+The upper and lower fluids have densities $\rho_1,\rho_2$. Decaying perturbations are
+\[
+  \phi_1=A_1e^{-kz}e^{ikx-i\omega t},
+  \qquad
+  \phi_2=A_2e^{kz}e^{ikx-i\omega t}.
+\]
+Linearized kinematic conditions:
+\[
+  -kA_1=(-i\omega+ikU_1)\eta_0,
+  \qquad
+  kA_2=(-i\omega+ikU_2)\eta_0.
+\]
+The dynamic condition gives
+\[
+  (\rho_1+\rho_2)\omega^2
+  -2k\omega(\rho_1U_1+\rho_2U_2)
+  +k^2(\rho_1U_1^2+\rho_2U_2^2)
+  =\gamma_s k^3-gk(\rho_1-\rho_2),
+\]
+\[
+  \boxed{\omega=\frac{k(\rho_1U_1+\rho_2U_2)\pm
+  \sqrt{(\rho_1+\rho_2)(\gamma_s k^3+gk(\rho_2-\rho_1))
+  -\rho_1\rho_2k^2(U_1-U_2)^2}}{\rho_1+\rho_2}}.
+\]
+Instability occurs when the radicand is negative.
+
+\noindent\textbf{Pure shear layer.}\quad For $g=\gamma_s=0$,
+\[
+  \boxed{\omega=\frac{k}{\rho_1+\rho_2}
+  \left[(\rho_1U_1+\rho_2U_2)\pm i\sqrt{\rho_1\rho_2}|U_1-U_2|\right]}.
+\]
+Growth rate:
+\[
+  \sigma=k\frac{\sqrt{\rho_1\rho_2}}{\rho_1+\rho_2}|U_1-U_2|.
+\]
+
+\noindent\textbf{Gravity and capillarity.}\quad With $\rho_2>\rho_1$, gravity stabilizes long waves and surface tension stabilizes short waves. There is an unstable band iff
+\[
+  \boxed{\rho_1\rho_2(U_1-U_2)^2>
+  2(\rho_1+\rho_2)\sqrt{\gamma_sg(\rho_2-\rho_1)}}.
+\]
+
+\noindent\textbf{Rayleigh-Taylor limit.}\quad Put $U_1=U_2=0$ and $\rho_1>\rho_2$:
+\[
+  \boxed{\omega^2=\frac{\gamma_s k^3-gk(\rho_1-\rho_2)}{\rho_1+\rho_2}}.
+\]
+Unstable long waves:
+\[
+  k^2<\frac{g(\rho_1-\rho_2)}{\gamma_s},
+  \qquad
+  \ell_c=\sqrt{\frac{\gamma_s}{g(\rho_1-\rho_2)}},
+  \qquad
+  k_{\rm max}=\frac{1}{\sqrt3\,\ell_c}.
+\]
+\src{Tong Fluid Mechanics \S 5.1}
+
+\subsubsection*{Plateau-Rayleigh Instability}
+
+\noindent\textbf{Cylindrical jet.}\quad For radius $R_0$ and exterior pressure zero,
+\[
+  P_0=\frac{\gamma_s}{R_0}.
+\]
+Perturb
+\[
+  R(z,t)=R_0+\widetilde R e^{ikz-i\omega t},
+  \qquad
+  \uvec=(u_r(r)\rhatc+u_z(r)\zhat)e^{ikz-i\omega t},
+\]
+\[
+  P=P_0+\widetilde P(r)e^{ikz-i\omega t}.
+\]
+Linearized incompressibility and Euler:
+\[
+  \frac1r\frac{d(ru_r)}{dr}+iku_z=0,
+  \qquad
+  -i\omega u_r=-\frac1\rho\frac{d\widetilde P}{dr},
+  \qquad
+  -i\omega u_z=-\frac{ik}{\rho}\widetilde P.
+\]
+The radial velocity solves
+\[
+  r^2u_r''+ru_r'-(1+k^2r^2)u_r=0,
+  \qquad
+  u_r=V I_1(kr).
+\]
+Boundary conditions:
+\[
+  V=-\frac{i\omega\widetilde R}{I_1(kR_0)},
+  \qquad
+  \widetilde P(R_0)=\frac{\gamma_s\widetilde R}{R_0^2}(k^2R_0^2-1),
+\]
+\[
+  \widetilde P(r)=\frac{i\omega\rho V}{k}I_0(kr).
+\]
+Dispersion:
+\[
+  \boxed{\omega^2=
+  \frac{k\gamma_s I_1(kR_0)}{\rho R_0^2 I_0(kR_0)}
+  (k^2R_0^2-1)}.
+\]
+Thus
+\[
+  kR_0<1\quad\Longrightarrow\quad \omega^2<0.
+\]
+Fastest mode:
+\[
+  kR_0\simeq0.697,\qquad
+  \lambda\simeq9R_0,\qquad
+  |\omega|_{\max}\simeq0.34\sqrt{\frac{\gamma_s}{\rho R_0^3}}.
+\]
+
+\noindent\textbf{Gravity-thinned jet.}\quad Bernoulli and flux conservation give
+\[
+  H=\half\rho U^2+\frac{\gamma_s}{R}-\rho gz=\text{constant},
+  \qquad
+  R^2U=R_0^2U_0.
+\]
+Hence
+\[
+  R^4\left(\half\rho U_0^2+\frac{\gamma_s}{R_0}+\rho gz\right)
+  -\gamma_s R^3-\half\rho R_0^4U_0^2=0.
+\]
+With
+\[
+  We=\frac{\rho R_0U_0^2}{\gamma_s},
+\]
+the $We\to\infty$ limit gives
+\[
+  \boxed{R(z)=R_0\left(1+\frac{2gz}{U_0^2}\right)^{-1/4}}.
+\]
+\src{Tong Fluid Mechanics \S 5.2}
+
+\subsubsection*{Rayleigh-Benard Convection}
+
+\noindent\textbf{Boussinesq equations.}\quad Heat equation:
+\[
+  \pd_tT=\frac{\kappa}{c_P}\nabla^2T.
+\]
+Boussinesq approximation:
+\[
+  \rho\simeq\rho_0[1-\alpha(T-T_0)],\qquad \nabla\cdot\uvec=0,
+\]
+\[
+  \boxed{\pd_t\uvec+\uvec\cdot\nabla\uvec
+  =-\frac1{\rho_0}\nabla P-g[1-\alpha(T-T_0)]\zhat+\nu\nabla^2\uvec},
+\]
+\[
+  \boxed{\pd_tT+\uvec\cdot\nabla T=\frac{\kappa}{c_P}\nabla^2T}.
+\]
+Conductive base state between plates:
+\[
+  \uvec=0,\qquad T=T_0-\Delta T\frac{z}{d}.
+\]
+
+\noindent\textbf{Control parameters.}\quad With $\kappa_T=\kappa/c_P$,
+\[
+  \boxed{Ra=\frac{g\alpha\Delta T\,d^3}{\nu\kappa_T}
+  =\frac{g\alpha c_Pd^3\Delta T}{\nu\kappa}},
+  \qquad
+  \boxed{\mathrm{Pr}=\frac{\nu}{\kappa_T}=\frac{c_P\nu}{\kappa}}.
+\]
+Dimensionless perturbation equations:
+\[
+  \pd_{\widetilde t}\widetilde T-\widetilde u_z
+  =\widetilde\nabla^2\widetilde T,
+\]
+\[
+  \pd_{\widetilde t}\widetilde\uvec
+  =-\widetilde\nabla\widetilde P
+  +Ra\,\mathrm{Pr}\,\widetilde T\zhat
+  +\mathrm{Pr}\,\widetilde\nabla^2\widetilde\uvec.
+\]
+
+\noindent\textbf{Stress-free threshold.}\quad Use
+\[
+  \widetilde u_z=V(\widetilde z)X(\widetilde x,\widetilde y)e^{\Gamma\widetilde t},
+  \quad
+  \widetilde T=\theta(\widetilde z)X(\widetilde x,\widetilde y)e^{\Gamma\widetilde t},
+  \quad
+  \widetilde\nabla_\perp^2X=-K^2X.
+\]
+With $D=d/d\widetilde z$,
+\[
+  (D^2-K^2)(D^2-\Gamma-K^2)
+  [\Gamma-\mathrm{Pr}(D^2-K^2)]V
+  =Ra\,\mathrm{Pr}\,K^2V.
+\]
+Stress-free boundary conditions:
+\[
+  V=D^2V=D^4V=0\qquad(\widetilde z=0,1).
+\]
+Thus $V=\sin(n\pi\widetilde z)$ and
+\[
+  (n^2\pi^2+K^2)(n^2\pi^2+K^2+\Gamma)
+  \left(n^2\pi^2+K^2+\frac{\Gamma}{\mathrm{Pr}}\right)
+  =Ra\,K^2.
+\]
+At marginality,
+\[
+  Ra>\frac{(n^2\pi^2+K^2)^3}{K^2}.
+\]
+First unstable mode:
+\[
+  \boxed{n=1,\qquad K_c^2=\frac{\pi^2}{2},\qquad Ra_c=\frac{27\pi^4}{4}\simeq660}.
+\]
+\src{Tong Fluid Mechanics \S 5.3}
+
+\subsubsection*{Shear-Flow Instabilities}
+
+\noindent\textbf{Inviscid shear.}\quad Base flow and perturbation:
+\[
+  \uvec=U(z)\xhat+\widetilde\uvec(z)e^{ik_xx+ik_yy-i\omega t},
+  \qquad
+  \delta P=\rho\widetilde P(z)e^{ik_xx+ik_yy-i\omega t}.
+\]
+Squire's theorem reduces onset to $k_y=0$. Rayleigh equation:
+\[
+  \boxed{\left[(U-c)(D^2-k^2)-U''\right]\widetilde u_z=0},
+  \qquad
+  c=\frac{\omega}{k},\qquad D=\frac{d}{dz}.
+\]
+Boundary: $\widetilde u_z(\pm h)=0$.
+
+\noindent\textbf{Necessary criteria.}\quad If $\operatorname{Im}\omega\ne0$,
+\[
+  \int_{-h}^{h}\frac{U''}{|U-c|^2}|\widetilde u_z|^2\,dz=0.
+\]
+Rayleigh criterion:
+\[
+  \boxed{U''(z_*)=0\quad \text{for some }z_*\in(-h,h)}.
+\]
+For monotone $U$ with a unique inflection point:
+\[
+  \boxed{U''(z)[U(z)-U(z_*)]\le0\quad \forall z}
+\]
+is Fjortoft's condition.
+
+\noindent\textbf{Howard semicircle.}\quad Unstable inviscid modes obey
+\[
+  \boxed{\left(\operatorname{Re}\omega-\frac{k}{2}(U_{\max}+U_{\min})\right)^2
+  +(\operatorname{Im}\omega)^2
+  \le\frac{k^2}{4}(U_{\max}-U_{\min})^2}.
+\]
+
+\noindent\textbf{Couette flow.}\quad For $U=\alpha z$,
+\[
+  (\alpha z-c)(D^2-k^2)\widetilde u_z=0.
+\]
+Neutral singular modes satisfy
+\[
+  \omega=\alpha z_c k=U(z_c)k.
+\]
+Linear Couette flow is stable to infinitesimal perturbations; finite-amplitude transition occurs at sufficiently large $Re$.
+
+\noindent\textbf{Orr-Sommerfeld and Squire.}\quad With viscosity and $K^2=k_x^2+k_y^2$,
+\[
+  \boxed{\left[i(k_xU-\omega)(D^2-K^2)-ik_xU''
+  -\nu(D^2-K^2)^2\right]\widetilde u_z=0}.
+\]
+No slip:
+\[
+  \widetilde u_z=D\widetilde u_z=0.
+\]
+Wall-normal vorticity
+\[
+  \zeta=ik_x\widetilde u_y-ik_y\widetilde u_x
+\]
+obeys
+\[
+  \boxed{\left[i(k_xU-\omega)-\nu(D^2-K^2)\right]\zeta
+  =ik_yU'\widetilde u_z}.
+\]
+Homogeneous Squire modes are damped:
+\[
+  \nu\int_{-h}^{h}\left(|D\zeta|^2+K^2|\zeta|^2\right)dz
+  =-\operatorname{Im}\omega\int_{-h}^{h}|\zeta|^2\,dz.
+\]
+
+\noindent\textbf{Plane Poiseuille.}\quad
+\[
+  U(z)=\alpha(h^2-z^2),\qquad
+  Re=\frac{U_{\max}h}{\nu}=\frac{\alpha h^3}{\nu}.
+\]
+Orr-Sommerfeld numerics give
+\[
+  \boxed{Re>Re_{\rm crit}\simeq5772}.
+\]
+\src{Tong Fluid Mechanics \S 5.4--5.5}
+
+\subsection{Turbulence}
+
+\subsubsection*{Reynolds Averaging}
+
+\noindent\textbf{Decomposition.}\quad
+\[
+  \uvec=\Uvec+\delta\uvec,\qquad
+  \Uvec=\langle\uvec\rangle,\qquad
+  \langle\delta\uvec\rangle=0,
+\]
+\[
+  P=\langle P\rangle+\delta P,\qquad
+  \langle\delta P\rangle=0.
+\]
+For incompressible flow,
+\[
+  \nabla\cdot\Uvec=0,\qquad \nabla\cdot\delta\uvec=0.
+\]
+
+\noindent\textbf{RANS.}\quad
+\[
+  \boxed{\rho(\pd_tU_i+U_j\pd_jU_i)=\pd_j\sigma_{ij}},
+\]
+\[
+  \boxed{\sigma_{ij}=-\langle P\rangle\delta_{ij}
+  +\mu(\pd_jU_i+\pd_iU_j)
+  -\rho\langle\delta u_i\delta u_j\rangle}.
+\]
+Reynolds stress:
+\[
+  R_{ij}=\rho\langle\delta u_i\delta u_j\rangle.
+\]
+The $R_{ij}$ equation depends on third moments, giving the closure hierarchy.
+
+\noindent\textbf{Eddy viscosity.}\quad
+\[
+  \boxed{R_{ij}=-\mu_T(\pd_jU_i+\pd_iU_j)+\frac23K\delta_{ij}},
+  \qquad
+  K=\half\rho\langle\delta\uvec\cdot\delta\uvec\rangle.
+\]
+Then
+\[
+  \sigma_{ij}=-P_{\rm eff}\delta_{ij}+(\mu+\mu_T)(\pd_jU_i+\pd_iU_j),
+  \qquad
+  P_{\rm eff}=\langle P\rangle+\frac23K.
+\]
+\src{Tong Fluid Mechanics \S 6.1}
+
+\subsubsection*{Kolmogorov Scaling}
+
+\noindent\textbf{Energy input and dissipation.}\quad
+\[
+  W=\int d^3x\,\fvec\cdot\uvec,
+  \qquad
+  \frac{d}{dt}\left(\half\rho\int d^3x\,|\uvec|^2\right)
+  =-\rho\nu\int d^3x\,(\pd_j u_i)^2.
+\]
+Steady turbulence has
+\[
+  \epsilon=\frac{W}{\rho V},
+  \qquad
+  [\epsilon]=L^2T^{-3}.
+\]
+At outer scale $L$ with velocity difference $\Delta U$,
+\[
+  \boxed{\epsilon\sim\frac{(\Delta U)^3}{L}},
+  \qquad
+  Re\sim\frac{\Delta U\,L}{\nu}.
+\]
+Large-scale gradients dissipate only $O(Re^{-1})$ of the required flux.
+
+\noindent\textbf{Inertial range.}\quad For eddies of size $\ell$,
+\[
+  \tau_\ell\sim\frac{\ell}{\delta u_\ell},
+  \qquad
+  \frac{(\delta u_\ell)^2}{\tau_\ell}\sim\epsilon.
+\]
+Therefore
+\[
+  \boxed{\delta u_\ell\sim(\epsilon\ell)^{1/3}},
+  \qquad
+  \ell_0\ll\ell\ll L.
+\]
+Kolmogorov scale:
+\[
+  \boxed{\ell_0\sim\left(\frac{\nu^3}{\epsilon}\right)^{1/4}
+  \sim\frac{L}{Re^{3/4}}}.
+\]
+
+\noindent\textbf{Spectrum.}\quad If $E(k)\,dk$ is kinetic energy per mass in $[k,k+dk]$,
+\[
+  \boxed{E(k)\sim\epsilon^{2/3}k^{-5/3}}.
+\]
+Consistency:
+\[
+  \int_k^\infty E(k')\,dk'\sim\epsilon^{2/3}k^{-2/3}
+  \sim(\epsilon\ell)^{2/3}.
+\]
+Intermittency correction:
+\[
+  E(k)\sim\epsilon^{2/3}k^{-5/3}(kL)^\zeta.
+\]
+\src{Tong Fluid Mechanics \S 6.2}
+
+\subsubsection*{Correlation Functions and the Four-Fifths Law}
+
+\noindent\textbf{Two-point correlations.}\quad With zero mean flow,
+\[
+  C_{ij}(\mathbf r)=\langle u_i(\xvec_1)u_j(\xvec_2)\rangle,
+  \qquad
+  \mathbf r=\xvec_1-\xvec_2.
+\]
+Isotropy:
+\[
+  \boxed{C_{ij}=C_{TT}(\delta_{ij}-\hat r_i\hat r_j)+C_{LL}\hat r_i\hat r_j}.
+\]
+At $r=0$,
+\[
+  C_{ij}(0)=\frac23E\delta_{ij},
+  \qquad
+  E=\half\langle\uvec\cdot\uvec\rangle.
+\]
+Incompressibility:
+\[
+  \boxed{C_{TT}=C_{LL}+\frac{r}{2}C_{LL}'}.
+\]
+
+\noindent\textbf{Second-order structure function.}\quad
+\[
+  S_{ij}=
+  \left\langle [u_i(\xvec_1)-u_i(\xvec_2)]
+  [u_j(\xvec_1)-u_j(\xvec_2)]\right\rangle
+  =\frac43E\delta_{ij}-2C_{ij}.
+\]
+Thus
+\[
+  S_{ij}=S_{TT}(\delta_{ij}-\hat r_i\hat r_j)+S_{LL}\hat r_i\hat r_j,
+\]
+\[
+  \boxed{S_{LL}=\frac43E-2C_{LL}},
+  \qquad
+  \boxed{S_{TT}=S_{LL}+\frac{r}{2}S_{LL}'}.
+\]
+If $S_{LL}\propto r^{2/3}$, then $S_{TT}=\frac43S_{LL}$.
+
+\noindent\textbf{Correlation equation.}\quad With
+\[
+  \pd_tu_i=-u_k\pd_ku_i-\frac1\rho(\pd_iP-f_i)+\nu\nabla^2u_i,
+\]
+pressure correlations vanish by isotropy and incompressibility. For Gaussian white forcing,
+\[
+  \langle f_i(\xvec_1,t_1)f_j(\xvec_2,t_2)\rangle
+  =\delta(t_1-t_2)\rho^2\epsilon_{ij}(r),
+\]
+\[
+  \frac1\rho\left(\langle f_i(\xvec_1)u_j(\xvec_2)\rangle
+  +\langle u_i(\xvec_1)f_j(\xvec_2)\rangle\right)=\epsilon_{ij}(r),
+  \qquad
+  \epsilon_{ii}(0)=2\epsilon.
+\]
+Then
+\[
+  \pd_t C_{ij}
+  =-\pd_{r_k}C_{ik,j}-\pd_{r_k}C_{jk,i}
+  +\epsilon_{ij}(r)+2\nu\nabla^2C_{ij},
+\]
+\[
+  C_{ij,k}=\langle u_i(\xvec_1)u_j(\xvec_1)u_k(\xvec_2)\rangle.
+\]
+
+\noindent\textbf{Three-point structure.}\quad
+\[
+  C_{ij,k}=A\delta_{ij}\hat r_k
+  +B(\delta_{ik}\hat r_j+\delta_{jk}\hat r_i)
+  +D\hat r_i\hat r_j\hat r_k.
+\]
+Incompressibility gives
+\[
+  \boxed{B=-\frac1{2r}\frac{d}{dr}(r^2A)},
+  \qquad
+  \boxed{3A+2B+D=0},
+\]
+\[
+  C_{ij,k}=A\delta_{ij}\hat r_k
+  -\half(rA'+2A)(\delta_{ik}\hat r_j+\delta_{jk}\hat r_i)
+  +(rA'-A)\hat r_i\hat r_j\hat r_k.
+\]
+For
+\[
+  S_{ijk}=
+  \left\langle [u_i(\xvec_1)-u_i(\xvec_2)]
+  [u_j(\xvec_1)-u_j(\xvec_2)]
+  [u_k(\xvec_1)-u_k(\xvec_2)]\right\rangle,
+\]
+\[
+  S_{ijk}=-2(C_{ij,k}+C_{ik,j}+C_{jk,i}),
+\]
+\[
+  S_{ijk}=2(A+rA')(\delta_{ij}\hat r_k+\delta_{ik}\hat r_j+\delta_{jk}\hat r_i)
+  -6(rA'-A)\hat r_i\hat r_j\hat r_k.
+\]
+Longitudinal component:
+\[
+  \boxed{S_{LLL}=S_{ijk}\hat r_i\hat r_j\hat r_k=12A}.
+\]
+
+\noindent\textbf{von Karman-Howarth and four-fifths.}\quad
+\[
+  \boxed{\pd_t S_{LL}
+  =\frac43\pd_tE-2\epsilon_{LL}
+  +\frac{2\nu}{r^4}\pd_r(r^4\pd_rS_{LL})
+  -\frac1{3r^4}\pd_r(r^4S_{LLL})}.
+\]
+In a statistically steady state,
+\[
+  \frac1{r^4}\pd_r\left[r^4\left(2\nu\pd_rS_{LL}-\frac13S_{LLL}\right)\right]
+  =2\epsilon_{LL}(r).
+\]
+For large-scale forcing in the inertial range, $\epsilon_{LL}\simeq2\epsilon/3$, so
+\[
+  \boxed{S_{LLL}(r)=-\frac45\epsilon r+6\nu\frac{dS_{LL}}{dr}}.
+\]
+At $r\gg\ell_0$,
+\[
+  \boxed{S_{LLL}(r)\simeq-\frac45\epsilon r}.
+\]
+\src{Tong Fluid Mechanics \S 6.3}

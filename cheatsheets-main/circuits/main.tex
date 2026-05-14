@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}
+
+% imports
+\usepackage{appendix}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{bbold}
+\usepackage[justification=centering]{caption}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage[margin=1em]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{layouts}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{optidef}
+\usepackage{physics}
+\usepackage{setspace}
+\usepackage{diagbox}
+\usepackage[labelformat=simple]{subcaption}
+\usepackage{xcolor}
+
+% configure imports
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
+\definecolor{darkgreen}{RGB}{46, 184, 46}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\R}{\mathbb{R}}
+\captionsetup[subfigure]{labelformat=empty, skip=0pt}
+\captionsetup{labelsep=period}
+\restylefloat{table}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\addto\captionsenglish{%
+  \renewcommand{\figurename}{FIG.}%
+  \renewcommand{\tablename}{TABLE}%
+  \renewcommand{\appendixname}{APPENDIX}%
+}
+
+\title{\vspace{-2em}Circuits}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\vspace{-4em}
+\begin{multicols}{2}
+  \textbf{Inductors, Capacitors, Resistors}
+  \begin{align}
+    \sum_{\textrm{path $i$ to common node}} I_i &= 0\\
+    \sum_{\textrm{device $i$ on closed loop}} V_i &= 0\\
+    V_R &= I R\\
+    \textrm{R adds in series}&\\
+    V_L &= L \dot{I}\\
+    E_L &= \frac{1}{2} LI^2\\
+    \textrm{L adds in series}&\\
+    V_C &= \frac{1}{C} \int_t I\\
+    E_C &= \frac{1}{2} CV^2\\
+    \textrm{C adds in parallel}&
+  \end{align}
+
+  \textbf{Periodic Steady State}
+  \begin{itemize}
+    \item $\langle v_L \rangle = 0$
+    \item $\langle i_C \rangle = 0$
+  \end{itemize}
+
+  \textbf{Transformer}
+  \begin{align}
+    \frac{v_1}{v_2} &= \frac{N_1}{N_2}\\ %% KPVS eq 1.1
+    \frac{i_1}{i_2} &= \frac{-N_2}{N_1} %% KPVS eq 1.2
+  \end{align}
+
+  \textbf{Misc}
+  \begin{align}
+    e &= 10^{x/10 \textrm{dB}}\\
+    x &= 10 \ \textrm{log}_{10}(e) \ \textrm{dB}\\
+    a \ \textrm{sin} (x) + b \ \textrm{cos} (x) &= \sqrt{a^2 + b^2} \ \textrm{sin}[x + \textrm{atan} \ (b/a)]
+  \end{align}
+
+  \textbf{MOS}
+  \begin{align}
+    V_T &= V_{T0} + \gamma (\sqrt{\lvert -2\phi_F + V_{SB}\rvert} - \sqrt{\lvert -2\phi_F \rvert})\\
+    I_D &= \begin{cases}
+      k[V_{GT}V_{\textrm{min}} - V_{\textrm{min}}^2/2](1 + \lambda V_{DS}), \quad V_{GT} \geq 0\\
+      0, \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad \; V_{GT} \leq 0
+    \end{cases}\\ % Rabaey eq 3.25, 3.29, 3.30, 3.39
+    V_{\textrm{min}} &= \textrm{min}(V_{DS}, V_{DSAT}, V_{GT}) \nonumber\\
+    V_{GT} &= V_{GS} - V_T \nonumber\\
+    k &= k^{\prime} W / L \nonumber\\
+    k^{\prime} &= \mu \epsilon_{\textrm{oxide}} / t_{\textrm{oxide}} \nonumber\\ % eq 3.19
+    \mu &= e \tau / m^{*} \nonumber\\
+    R_{eq} &\approx \frac{3}{4} \frac{V_{DD}}{I_{DSAT}}(1 - \frac{7}{9} \lambda V_{DD})\\ % eq 5.17
+    P_{\textrm{dyn}} &= C_L V_{DD}^2 f_{0 \rightarrow 1}\\ % eq 5.42
+    P_{\textrm{leak}} &= I_{\textrm{leak}} V_{DD}
+  \end{align}
+
+  \textbf{Inverter}
+  \begin{align}
+    V_M &= \begin{aligned}
+      &[(V_{Tn} + V_{DSATn}/2) + r (V_{DD} + V_{Tp} + V_{DSATp}/2)]\\ % Rabaey eq 5.3
+      &/ (1 + r)
+    \end{aligned}\\
+    r &= \frac{k_p V_{DSATp}}{k_n V_{DSATn}} \nonumber\\
+    t_p &= \int_{V_1}^{V_2} \frac{C_L(V)}{I(V)} dV\\ % 5.16
+    t_{pHL} &= \ln(2)R_{eqn}C_L\\ % 5.18
+    t_{pLH} &= \ln(2)R_{eqp}C_L\\ % 5.19
+    NM_H &= V_{DD} - V_{IH}\\ %  eq 5.7
+    NM_L &= V_{IL}\\
+    V_{IH}, &V_{IL} \sim \partial V_{out}/\partial V_{in} = -1\\
+    P_{DD}(t) &= I_{DD}(t) \cdot  V_{DD}\\ % eq
+    PDP &= \langle P \rangle t_p % 5.53
+  \end{align}
+
+  \textbf{Power Electronics}
+  \begin{align}
+    k_p = \frac{\langle P(t) \rangle}{I_{\textrm{rms}} V_{\textrm{rms}} }
+  \end{align}
+
+  \textbf{Symbols}
+  \\
+  \begin{circuitikz}
+    \draw (0, 0) node [ieeestd and port] {AND};
+    \draw (0, -1.5) node [ieeestd buffer port] {BUF};
+    \draw (3, 0) node [ieeestd or port] {OR};
+    \draw (3, -1.5) node [ieeestd xor port] {XOR};
+  \end{circuitikz}
+
+  \textbf{RF}
+  \begin{align}
+    Z_L &= Z_S^*
+  \end{align}
+
+\end{multicols}
+
+\end{document}

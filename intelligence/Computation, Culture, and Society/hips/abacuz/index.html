@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Abacus Explorer | University of Chicago</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cultural Abacus Explorer</h1>
+            <h2>Computation Culture and Society - University of Chicago</h2>
+        </header>
+        
+        <div class="abacus-controls">
+            <div class="selector">
+                <label for="abacus-type">Select Abacus Type:</label>
+                <div class="abacus-type-selector">
+                    <button id="japanese" class="active">Soroban (Japanese)</button>
+                    <button id="chinese">Suanpan (Chinese)</button>
+                    <button id="roman">Roman</button>
+                </div>
+            </div>
+            <div class="theme-picker">
+                <label>Choose Theme:</label>
+                <div class="color-options">
+                    <button class="color-option traditional" data-theme="traditional"></button>
+                    <button class="color-option modern" data-theme="modern"></button>
+                    <button class="color-option vintage" data-theme="vintage"></button>
+                    <button class="color-option neon" data-theme="neon"></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="visualization-container">
+            <div id="abacus-wrapper">
+                <div id="abacus-container"></div>
+                <div id="value-display">
+                    <span id="decimal-value">0</span>
+                    <div class="value-labels">
+                        <div class="value-label">Decimal</div>
+                    </div>
+                </div>
+                <div id="cultural-context">
+                    <h3>Historical Context</h3>
+                    <p id="context-text">The Japanese Soroban evolved from the Chinese Suanpan around the 14th century. It became widespread during the Edo period and remains in use today.</p>
+                </div>
+            </div>
+            <div class="digital-representation">
+                <h3>Digital Representation</h3>
+                <div class="binary-display">
+                    <span class="label">Binary:</span>
+                    <span id="binary-value">0</span>
+                </div>
+                <div class="hex-display">
+                    <span class="label">Hexadecimal:</span>
+                    <span id="hex-value">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tutorial-section">
+            <h3>How to Use</h3>
+            <div class="tutorial-content">
+                <p>Click on beads to move them. The abacus calculates values based on the position of beads.</p>
+                <button id="tutorial-button">Start Interactive Tutorial</button>
+            </div>
+        </div>
+        
+        <div class="challenges">
+            <h3>Computation Challenges</h3>
+            <div class="challenge-container">
+                <div class="challenge" id="challenge-basic">
+                    <h4>Basic Operations</h4>
+                    <p>Perform simple addition and subtraction operations.</p>
+                    <button class="start-challenge">Start</button>
+                </div>
+                <div class="challenge" id="challenge-intermediate">
+                    <h4>Intermediate</h4>
+                    <p>Try multiplication and division using abacus techniques.</p>
+                    <button class="start-challenge">Start</button>
+                </div>
+                <div class="challenge" id="challenge-advanced">
+                    <h4>Advanced</h4>
+                    <p>Calculate square roots and complex operations.</p>
+                    <button class="start-challenge">Start</button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Developed for Computation Culture and Society - University of Chicago</p>
+            <p>Original abacus by Thorsten Thormaehlen, enhanced by a student</p>
+        </footer>
+    </div>
+    
+    <div id="tutorial-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Interactive Tutorial</h2>
+            <div id="tutorial-steps">
+                <!-- Tutorial content will be loaded dynamically -->
+            </div>
+            <div class="tutorial-navigation">
+                <button id="prev-step" disabled>Previous</button>
+                <button id="next-step">Next</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="challenge-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="challenge-title">Challenge</h2>
+            <div id="challenge-description"></div>
+            <div id="challenge-problem"></div>
+            <div id="challenge-controls">
+                <button id="check-answer">Check Answer</button>
+                <button id="next-problem">Next Problem</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="abacus.js"></script>
+    <script src="enhanced-abacus.js"></script>
+</body>
+</html>

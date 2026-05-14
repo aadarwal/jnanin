@@ -1,0 +1,455 @@
+/* Cultural Abacus Explorer - University of Chicago */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #800000; /* Maroon - UChicago color */
+  --secondary-color: #767676; /* Grey - UChicago secondary color */
+  --accent-color: #ffa319; /* Gold - UChicago accent */
+  --background-color: #f5f5f5;
+  --text-color: #333;
+  --bead-color: rgba(133, 178, 255, 1.0);
+  --bead-hover-color: rgba(170, 215, 255, 1.0);
+  --frame-color: #000;
+  --theme-transition: all 0.4s ease;
+  
+  /* Theme Variables */
+  --bead-primary: rgba(133, 178, 255, 1.0);
+  --bead-secondary: rgba(170, 215, 255, 1.0);
+  --rod-color: #000;
+  --frame-primary: #5a3921;
+  --frame-secondary: #8b5a2b;
+}
+
+/* Theme: Traditional */
+.theme-traditional {
+  --bead-primary: #8b5a2b;
+  --bead-secondary: #a0522d;
+  --rod-color: #5a3921;
+  --frame-primary: #5a3921;
+  --frame-secondary: #8b5a2b; 
+}
+
+/* Theme: Modern */
+.theme-modern {
+  --bead-primary: #3498db;
+  --bead-secondary: #2980b9;
+  --rod-color: #2c3e50;
+  --frame-primary: #34495e;
+  --frame-secondary: #2c3e50;
+}
+
+/* Theme: Vintage */
+.theme-vintage {
+  --bead-primary: #d4a76a;
+  --bead-secondary: #c49355;
+  --rod-color: #614e3c;
+  --frame-primary: #735640;
+  --frame-secondary: #614e3c;
+}
+
+/* Theme: Neon */
+.theme-neon {
+  --bead-primary: #ff00ff;
+  --bead-secondary: #00ffff;
+  --rod-color: #111;
+  --frame-primary: #222;
+  --frame-secondary: #333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 1rem;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+  color: var(--primary-color);
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--secondary-color);
+}
+
+.abacus-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.abacus-type-selector {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.abacus-type-selector button {
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 1px solid var(--secondary-color);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--theme-transition);
+}
+
+.abacus-type-selector button.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.theme-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.color-options {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.color-option {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: var(--theme-transition);
+}
+
+.color-option.active {
+  border-color: var(--primary-color);
+  transform: scale(1.1);
+}
+
+.color-option.traditional {
+  background: linear-gradient(45deg, #8b5a2b, #a0522d);
+}
+
+.color-option.modern {
+  background: linear-gradient(45deg, #3498db, #2980b9);
+}
+
+.color-option.vintage {
+  background: linear-gradient(45deg, #d4a76a, #c49355);
+}
+
+.color-option.neon {
+  background: linear-gradient(45deg, #ff00ff, #00ffff);
+}
+
+.visualization-container {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+#abacus-wrapper {
+  flex: 3;
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#abacus-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 350px;
+  position: relative;
+}
+
+#abacus-container canvas {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  border-radius: 4px;
+  transition: var(--theme-transition);
+}
+
+#value-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+#decimal-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.value-labels {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}
+
+#cultural-context {
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+#cultural-context h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.digital-representation {
+  flex: 1;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.binary-display, .hex-display {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+#binary-value, #hex-value {
+  font-family: monospace;
+  font-size: 1.2rem;
+  word-break: break-all;
+}
+
+.tutorial-section, .challenges {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.tutorial-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.tutorial-content p {
+  flex: 2;
+  margin-right: 1rem;
+}
+
+#tutorial-button {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--theme-transition);
+}
+
+#tutorial-button:hover {
+  background: var(--accent-color);
+}
+
+.challenge-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.challenge {
+  flex: 1;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  transition: var(--theme-transition);
+}
+
+.challenge:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.challenge h4 {
+  margin-bottom: 0.5rem;
+}
+
+.start-challenge {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--theme-transition);
+}
+
+.start-challenge:hover {
+  background: var(--accent-color);
+}
+
+footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.tutorial-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.tutorial-navigation button {
+  padding: 0.5rem 1rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--theme-transition);
+}
+
+.tutorial-navigation button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .visualization-container {
+    flex-direction: column;
+  }
+  
+  .abacus-controls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .challenge-container {
+    flex-direction: column;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fadeIn {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Theme-specific animations for beads */
+.theme-neon #abacus-container canvas {
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff;
+  }
+  to {
+    box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+  }
+}

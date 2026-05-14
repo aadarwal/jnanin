@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rithmomachia - The Philosophers' Game</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rithmomachia</h1>
+            <h2>The Philosophers' Game - A Medieval Battle of Numbers</h2>
+        </header>
+        
+        <main>
+            <div class="game-container">
+                <div class="board-container">
+                    <div id="game-board"></div>
+                </div>
+                
+                <div class="game-info">
+                    <div class="player-info">
+                        <div id="white-player" class="player">
+                            <h3>White (Even)</h3>
+                            <div class="captured-pieces"></div>
+                        </div>
+                        <div id="black-player" class="player">
+                            <h3>Black (Odd)</h3>
+                            <div class="captured-pieces"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="controls">
+                        <button id="reset-game">New Game</button>
+                        <button id="auto-play">Auto Play</button>
+                        <button id="tutorial">Tutorial</button>
+                        <button id="rules">Game Rules</button>
+                    </div>
+                    
+                    <div id="game-status">
+                        <p>White's turn to play</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tutorial-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    <h2>Rithmomachia Tutorial</h2>
+                    <div id="tutorial-content"></div>
+                    <div class="tutorial-navigation">
+                        <button id="prev-step" disabled>Previous</button>
+                        <button id="next-step">Next</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="rules-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    <h2>Rithmomachia Rules</h2>
+                    <div id="rules-content">
+                        <h3>Introduction</h3>
+                        <p>Rithmomachia, also known as "The Philosophers' Game," is a mathematical board game dating back to medieval times. The name derives from Greek, meaning "Battle of Numbers." It was widely played among scholars and was considered intellectually superior to chess during the Middle Ages.</p>
+                        
+                        <h3>The Board</h3>
+                        <p>The game is played on a board of 16 by 8 squares. The two sides are referred to as "White" (even) and "Black" (odd), although both sides contain a mix of even and odd numbers.</p>
+                        
+                        <h3>The Pieces</h3>
+                        <p>Each player has a set of pieces with numbers according to Boethian number theory:</p>
+                        <ul>
+                            <li>Round pieces (circles): Move one square in any of the four diagonals</li>
+                            <li>Triangular pieces: Move exactly two squares vertically or horizontally, but not diagonally</li>
+                            <li>Square pieces: Move exactly three squares vertically or horizontally, but not diagonally</li>
+                            <li>Pyramids: Special pieces with composite values. The white pyramid (value 91) is made of a "36" square, a "25" square, a "16" triangle, a "9" triangle, a "4" round, and a "1" round. The black pyramid (value 190) is made of a "64" square, a "49" square, a "36" triangle, a "25" triangle, and a "16" round. Pyramids can move like any piece type they contain.</li>
+                        </ul>
+                        
+                        <h3>Game Objective</h3>
+                        <p>The goal is to achieve victory through one of several common or proper victory conditions.</p>
+                        
+                        <h3>Capturing</h3>
+                        <p>Pieces do not land on another piece to capture it, but instead remain in their square and remove the other:</p>
+                        <ul>
+                            <li>Meeting: If a piece could capture another piece with the same value by landing on it, the piece stays in its location and the opponent's piece is taken from the board.</li>
+                            <li>Assault: If a piece with a small value, multiplied by the number of vacant spaces between it and another larger piece is equal to the larger piece, the larger piece is captured.</li>
+                            <li>Ambuscade: If two pieces' sum is equal to an enemy piece that is placed between the two, the enemy piece is captured and removed from the board.</li>
+                            <li>Siege: If a piece is surrounded on all four sides, it is removed.</li>
+                        </ul>
+                        
+                        <h3>Victory Conditions</h3>
+                        <p>There are two types of victory conditions:</p>
+                        
+                        <h4>Common Victories:</h4>
+                        <ul>
+                            <li>De corpore ("by body"): If a player captures a certain number of pieces set by both players, they win the game.</li>
+                            <li>De bonis ("by goods"): If a player captures enough pieces to add up to or exceed a certain value, they win the game.</li>
+                            <li>De lite ("by lawsuit"): If a player captures enough pieces to add up to or exceed a certain value, and the number of digits in their captured pieces' values are less than a set number, they win the game.</li>
+                            <li>De honore ("by honour"): If a player captures enough pieces to add up to or exceed a certain value, and the number of pieces they captured are less than a certain number, they win the game.</li>
+                            <li>De honore liteque ("by honour and lawsuit"): A combination of De honore and De lite conditions.</li>
+                        </ul>
+                        
+                        <h4>Proper Victories:</h4>
+                        <p>These require placing pieces in arrangements on the opponent's side of the board:</p>
+                        <ul>
+                            <li>Victoria magna ("great victory"): This occurs when three pieces are arranged in an arithmetic progression.</li>
+                            <li>Victoria major ("greater victory"): This occurs when four pieces are arranged with three pieces in one type of progression, and another three pieces in another type of progression.</li>
+                            <li>Victoria excellentissima ("most excellent victory"): This occurs when four pieces are arranged with all three types of mathematical progressions (arithmetic, geometric, and harmonic) in three different groups.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="auto-play-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    <h2>Auto-Play Settings</h2>
+                    <div id="auto-play-content">
+                        <div class="setting-group">
+                            <label for="move-speed">Move Speed:</label>
+                            <select id="move-speed">
+                                <option value="2000">Slow</option>
+                                <option value="1000">Medium</option>
+                                <option value="500" selected>Fast</option>
+                                <option value="200">Very Fast</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="white-strategy">White Player Strategy:</label>
+                            <select id="white-strategy">
+                                <option value="random">Random</option>
+                                <option value="aggressive" selected>Aggressive</option>
+                                <option value="defensive">Defensive</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="black-strategy">Black Player Strategy:</label>
+                            <select id="black-strategy">
+                                <option value="random">Random</option>
+                                <option value="aggressive" selected>Aggressive</option>
+                                <option value="defensive">Defensive</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="move-limit">Maximum Moves:</label>
+                            <input type="number" id="move-limit" min="10" max="500" value="100">
+                        </div>
+                        
+                        <div class="buttons">
+                            <button id="start-auto-play-with-settings">Start Auto-Play</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2023 Rithmomachia - The Philosophers' Game. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script src="js/rithmomachia.js"></script>
+</body>
+</html> 

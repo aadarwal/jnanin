@@ -1,0 +1,917 @@
+\section{Electromagnetism}
+\label{sec:electromagnetism}
+
+\noindent\emph{Dense reference extracted from Tong's \texttt{tong/electro.pdf}.}
+SI units throughout unless stated. Fields live on $\R^3\times\R$; repeated Cartesian
+or spacetime indices are summed where clear. Relativistic convention:
+$X^\mu=(ct,\mathbf x)$ and $\eta_{\mu\nu}=\operatorname{diag}(+,-,-,-)$.
+
+\subsection{Introduction and Maxwell Data}
+
+\subsubsection*{Charge, current, and conservation}
+\[
+q\in\R,\qquad [q]=\mathrm C,\qquad q=ne,\quad e=1.602176634\times10^{-19}\,\mathrm C.
+\]
+\[
+Q_V(t)=\int_V\rho(\mathbf x,t)\,\dd^3x,\qquad
+I_S=\int_S\mathbf J\cdot\dd\mathbf S,\qquad
+\rho_q(\mathbf x,t)=q\,\delta^{(3)}(\mathbf x-\mathbf r(t)).
+\]
+\[
+\boxed{\frac{\pd\rho}{\pd t}+\nabla\cdot\mathbf J=0},\qquad
+\frac{\dd Q_V}{\dd t}=-\int_{\pd V}\mathbf J\cdot\dd\mathbf S.
+\]
+Continuity is the compatibility condition for admissible sources $(\rho,\mathbf J)$.
+\src{Tong EM \S 1.1}
+
+\subsubsection*{Lorentz force and Maxwell equations}
+\[
+\boxed{\mathbf F=q(\mathbf E+\mathbf v\times\mathbf B)},\qquad
+\mathbf f=\rho\mathbf E+\mathbf J\times\mathbf B.
+\]
+\[
+\boxed{
+\begin{aligned}
+\nabla\cdot\mathbf E&=\frac{\rho}{\epsilon_0},&
+\nabla\cdot\mathbf B&=0,\\
+\nabla\times\mathbf E&=-\frac{\pd\mathbf B}{\pd t},&
+\nabla\times\mathbf B&=\mu_0\mathbf J+\mu_0\epsilon_0\frac{\pd\mathbf E}{\pd t}.
+\end{aligned}}
+\]
+\[
+c=\frac{1}{\sqrt{\epsilon_0\mu_0}},\qquad
+\nabla\cdot(\nabla\times\mathbf B)=0
+\Longrightarrow
+\frac{\pd\rho}{\pd t}+\nabla\cdot\mathbf J=0.
+\]
+The displacement current term is forced by charge conservation. \src{Tong EM \S 1.2}
+
+\subsection{Electrostatics}
+
+\subsubsection*{Gauss law and Coulomb templates}
+Static regime:
+\[
+\pd_t\rho=0,\qquad \mathbf J=\mathbf0,\qquad
+\boxed{\nabla\cdot\mathbf E=\rho/\epsilon_0},\qquad
+\boxed{\nabla\times\mathbf E=\mathbf0}.
+\]
+\[
+\oint_{\pd V}\mathbf E\cdot\dd\mathbf S=\frac{Q_{\rm enc}}{\epsilon_0}.
+\]
+Point charge and force:
+\[
+\boxed{\mathbf E(\mathbf r)=\frac{q}{4\pi\epsilon_0r^2}\hat{\mathbf r}},\qquad
+\boxed{\mathbf F_{12}=\frac{q_1q_2}{4\pi\epsilon_0|\mathbf r_1-\mathbf r_2|^2}
+\widehat{(\mathbf r_1-\mathbf r_2)}}.
+\]
+Spherical charge of total $Q$ inside $R$:
+\[
+\mathbf E(r>R)=\frac{Q}{4\pi\epsilon_0r^2}\hat{\mathbf r}.
+\]
+Uniform solid sphere:
+\[
+\mathbf E(r)=
+\begin{cases}
+\displaystyle \frac{Qr}{4\pi\epsilon_0R^3}\hat{\mathbf r}
+=\frac{\rho r}{3\epsilon_0}\hat{\mathbf r},&r<R,\\[0.6em]
+\displaystyle \frac{Q}{4\pi\epsilon_0r^2}\hat{\mathbf r},&r>R.
+\end{cases}
+\]
+Infinite line charge $\eta$ and plane charge $\sigma$:
+\[
+\mathbf E_{\rm line}(s)=\frac{\eta}{2\pi\epsilon_0s}\hat{\mathbf s},\qquad
+\mathbf E_{\rm plane}(z>0)=\frac{\sigma}{2\epsilon_0}\hat{\mathbf z},\quad
+\mathbf E_{\rm plane}(z<0)=-\frac{\sigma}{2\epsilon_0}\hat{\mathbf z}.
+\]
+\src{Tong EM \S 2.1}
+
+\subsubsection*{Surface charge discontinuities}
+For unit normal $\hat{\mathbf n}$ from side $-$ to $+$:
+\[
+\boxed{\hat{\mathbf n}\cdot(\mathbf E_+-\mathbf E_-)=\sigma/\epsilon_0},\qquad
+\boxed{\hat{\mathbf n}\times(\mathbf E_+-\mathbf E_-)=\mathbf0}.
+\]
+Equivalently, if $\mathbf E=-\nabla\phi$,
+\[
+\phi_+=\phi_-,\qquad
+\pd_n\phi_+-\pd_n\phi_-=-\sigma/\epsilon_0.
+\]
+\src{Tong EM \S 2.1.4}
+
+\subsubsection*{Potential, Green function, and multipoles}
+\[
+\mathbf E=-\nabla\phi,\qquad
+\boxed{\nabla^2\phi=-\rho/\epsilon_0}.
+\]
+With $\phi(\infty)=0$ for compact sources:
+\[
+\boxed{\phi(\mathbf r)=\frac{1}{4\pi\epsilon_0}\int
+\frac{\rho(\mathbf r')}{|\mathbf r-\mathbf r'|}\,\dd^3r'},\qquad
+\nabla^2\frac{1}{|\mathbf r-\mathbf r'|}=-4\pi\delta^{(3)}(\mathbf r-\mathbf r').
+\]
+Point charge and dipole:
+\[
+\phi_q=\frac{q}{4\pi\epsilon_0r},\qquad
+\mathbf p=\sum_i q_i\mathbf r_i,\qquad
+\boxed{\phi_{\rm dip}(\mathbf r)=\frac{\mathbf p\cdot\hat{\mathbf r}}{4\pi\epsilon_0r^2}},
+\]
+\[
+\boxed{\mathbf E_{\rm dip}(\mathbf r)=\frac{1}{4\pi\epsilon_0r^3}
+\left[3(\mathbf p\cdot\hat{\mathbf r})\hat{\mathbf r}-\mathbf p\right]}.
+\]
+Large-$r$ expansion:
+\[
+\phi(\mathbf r)=\frac{1}{4\pi\epsilon_0}\left[
+\frac{Q}{r}+\frac{\mathbf p\cdot\hat{\mathbf r}}{r^2}
+\frac{1}{2r^3}\sum_{ij}Q_{ij}\hat r_i\hat r_j+\cdots\right],
+\]
+\[
+Q=\int\rho\,\dd^3r,\qquad
+\mathbf p=\int\rho\,\mathbf r\,\dd^3r,\qquad
+Q_{ij}=\int\rho(3x_ix_j-r^2\delta_{ij})\,\dd^3r.
+\]
+If $Q=0$, $\mathbf p$ is origin independent. \src{Tong EM \S 2.2}
+
+\subsubsection*{Energy and forces}
+Assembly energy:
+\[
+U=\frac12\int\rho\phi\,\dd^3x
+=\frac{\epsilon_0}{2}\int |\mathbf E|^2\,\dd^3x
+\quad\text{for fields decaying at infinity}.
+\]
+Discrete charges:
+\[
+U=\frac{1}{4\pi\epsilon_0}\sum_{i<j}\frac{q_iq_j}{|\mathbf r_i-\mathbf r_j|},
+\]
+excluding divergent point self-energies. Dipole in external field:
+\[
+U=-\mathbf p\cdot\mathbf E,\qquad
+\boldsymbol\tau=\mathbf p\times\mathbf E,\qquad
+\mathbf F=\nabla(\mathbf p\cdot\mathbf E)\quad(\mathbf p\ \text{fixed}).
+\]
+Dipole-dipole energy:
+\[
+U_{12}=\frac{1}{4\pi\epsilon_0r^3}
+\left[\mathbf p_1\cdot\mathbf p_2-3(\mathbf p_1\cdot\hat{\mathbf r})
+(\mathbf p_2\cdot\hat{\mathbf r})\right].
+\]
+\src{Tong EM \S 2.3}
+
+\subsubsection*{Conductors, capacitance, and boundary value problems}
+Electrostatic conductor:
+\[
+\mathbf E_{\rm inside}=0,\qquad \rho_{\rm inside}=0,\qquad
+\phi=\text{constant on each conductor},\qquad
+\mathbf E_{\rm surface}=\frac{\sigma}{\epsilon_0}\hat{\mathbf n}.
+\]
+Capacitance:
+\[
+Q=CV,\qquad U=\frac12 CV^2=\frac{Q^2}{2C}.
+\]
+Parallel plate, sphere, coaxial cylinders, concentric spheres:
+\[
+C_{\rm plate}=\frac{\epsilon_0A}{d},\qquad
+C_{\rm sphere}=4\pi\epsilon_0R,\qquad
+\frac{C_{\rm coax}}{L}=\frac{2\pi\epsilon_0}{\log(b/a)},\qquad
+C_{\rm sph}=\frac{4\pi\epsilon_0ab}{b-a}.
+\]
+Uniqueness: for $\nabla^2\phi=-\rho/\epsilon_0$ on $\Omega$, Dirichlet data on
+$\pd\Omega$ determine $\phi$ uniquely; Neumann data determine $\phi$ up to a constant
+subject to the total-charge compatibility condition. Proof kernel:
+\[
+f=\phi_1-\phi_2,\quad \nabla^2f=0,\quad
+\int_\Omega|\nabla f|^2\,\dd^3x=\int_{\pd\Omega}f\,\pd_nf\,\dd S.
+\]
+Method of images replaces conductors by fictitious charges outside the physical region
+while preserving boundary data. Grounded plane, charge $q$ at height $a$:
+\[
+q_{\rm image}=-q\ \text{at }z=-a,\qquad
+F_z=-\frac{q^2}{16\pi\epsilon_0a^2}.
+\]
+Grounded sphere radius $R$, external charge $q$ at distance $a>R$:
+\[
+q'=-\frac{R}{a}q,\qquad b=\frac{R^2}{a}.
+\]
+\src{Tong EM \S 2.4}
+
+\subsection{Magnetostatics}
+
+\subsubsection*{Ampere law and surface currents}
+Static neutral currents:
+\[
+\nabla\cdot\mathbf J=0,\qquad
+\boxed{\nabla\times\mathbf B=\mu_0\mathbf J},\qquad
+\boxed{\nabla\cdot\mathbf B=0}.
+\]
+\[
+\oint_C\mathbf B\cdot\dd\mathbf r=\mu_0I_{\rm enc}.
+\]
+Straight wire, sheet current, solenoid:
+\[
+\mathbf B_{\rm wire}(s)=\frac{\mu_0I}{2\pi s}\hat{\boldsymbol\phi},
+\]
+\[
+\mathbf K=K\hat{\mathbf x}\ \text{on }z=0:\quad
+\mathbf B(z>0)=-\frac{\mu_0K}{2}\hat{\mathbf y},\quad
+\mathbf B(z<0)=+\frac{\mu_0K}{2}\hat{\mathbf y},
+\]
+\[
+\text{long solenoid:}\qquad \mathbf B_{\rm in}=\mu_0nI\,\hat{\mathbf z},\qquad
+\mathbf B_{\rm out}\simeq0.
+\]
+Boundary conditions at surface current $\mathbf K$:
+\[
+\boxed{\hat{\mathbf n}\cdot(\mathbf B_+-\mathbf B_-)=0},\qquad
+\boxed{\hat{\mathbf n}\times(\mathbf B_+-\mathbf B_-)=\mu_0\mathbf K}.
+\]
+\src{Tong EM \S 3.1}
+
+\subsubsection*{Vector potential, gauge, Biot-Savart}
+\[
+\boxed{\mathbf B=\nabla\times\mathbf A},\qquad
+\mathbf A\mapsto\mathbf A+\nabla\chi.
+\]
+Coulomb gauge $\nabla\cdot\mathbf A=0$:
+\[
+\boxed{\nabla^2\mathbf A=-\mu_0\mathbf J},\qquad
+\boxed{\mathbf A(\mathbf r)=\frac{\mu_0}{4\pi}
+\int\frac{\mathbf J(\mathbf r')}{|\mathbf r-\mathbf r'|}\,\dd^3r'}.
+\]
+Biot-Savart:
+\[
+\boxed{\mathbf B(\mathbf r)=\frac{\mu_0}{4\pi}\int
+\frac{\mathbf J(\mathbf r')\times(\mathbf r-\mathbf r')}
+{|\mathbf r-\mathbf r'|^3}\,\dd^3r'}.
+\]
+Thin wire:
+\[
+\mathbf B(\mathbf r)=\frac{\mu_0I}{4\pi}\int_C
+\frac{\dd\mathbf r'\times(\mathbf r-\mathbf r')}{|\mathbf r-\mathbf r'|^3}.
+\]
+\src{Tong EM \S 3.2.3}
+
+\subsubsection*{Monopoles and linking number}
+If magnetic charge $g$ existed,
+\[
+\nabla\cdot\mathbf B=\mu_0\rho_m,\qquad
+\mathbf B_g=\frac{\mu_0g}{4\pi r^2}\hat{\mathbf r},
+\]
+so $\mathbf A$ cannot be globally smooth. Dirac quantisation:
+\[
+\boxed{\frac{qg}{2\pi\hbar}\in\mathbb Z}.
+\]
+For two closed curves $C,C'$:
+\[
+\boxed{L(C,C')=\frac{1}{4\pi}\oint_C\oint_{C'}
+\frac{(\dd\mathbf r\times\dd\mathbf r')\cdot(\mathbf r-\mathbf r')}
+{|\mathbf r-\mathbf r'|^3}\in\mathbb Z}.
+\]
+\src{Tong EM \S 3.2.1--3.2.4}
+
+\subsubsection*{Magnetic dipoles and forces}
+Current loop:
+\[
+\mathbf m=IA\,\hat{\mathbf n},\qquad
+\mathbf A(\mathbf r)=\frac{\mu_0}{4\pi}\frac{\mathbf m\times\mathbf r}{r^3},\qquad
+\mathbf B(\mathbf r)=\frac{\mu_0}{4\pi r^3}\left[3(\mathbf m\cdot\hat{\mathbf r})\hat{\mathbf r}-\mathbf m\right].
+\]
+General localized current:
+\[
+\mathbf m=\frac12\int\mathbf r\times\mathbf J(\mathbf r)\,\dd^3r.
+\]
+Force on current distribution:
+\[
+\mathbf F=\int\mathbf J\times\mathbf B\,\dd^3x,\qquad
+\dd\mathbf F=I\,\dd\mathbf r\times\mathbf B.
+\]
+Between two closed wires:
+\[
+\mathbf F_{12}=-\frac{\mu_0I_1I_2}{4\pi}\oint_{C_1}\oint_{C_2}
+\frac{(\dd\mathbf r_1\cdot\dd\mathbf r_2)(\mathbf r_1-\mathbf r_2)}
+{|\mathbf r_1-\mathbf r_2|^3}.
+\]
+Dipole in external field:
+\[
+U=-\mathbf m\cdot\mathbf B,\qquad
+\boldsymbol\tau=\mathbf m\times\mathbf B,\qquad
+\mathbf F=\nabla(\mathbf m\cdot\mathbf B).
+\]
+Electron scale:
+\[
+\boldsymbol\mu=-g\frac{e}{2m_e}\mathbf S,\qquad g\simeq2.
+\]
+\src{Tong EM \S 3.3--3.4}
+
+\subsubsection*{Unit systems}
+\[
+\alpha=\frac{e^2}{4\pi\epsilon_0\hbar c}\approx\frac{1}{137}.
+\]
+SI keeps $\epsilon_0,\mu_0$ explicit; Lorentz-Heaviside/natural conventions absorb
+these constants and often set $c=\hbar=1$. \src{Tong EM \S 3.5}
+
+\subsection{Electrodynamics}
+
+\subsubsection*{Faraday induction and moving circuits}
+\[
+\Phi_B=\int_S\mathbf B\cdot\dd\mathbf S,\qquad
+\mathcal E=\oint_C\mathbf E\cdot\dd\mathbf r,\qquad
+\boxed{\mathcal E=-\frac{\dd\Phi_B}{\dd t}}\quad(C,S\ \text{fixed}).
+\]
+Moving wire:
+\[
+\boxed{\mathcal E=\oint_{C(t)}(\mathbf E+\mathbf v\times\mathbf B)\cdot\dd\mathbf r
+=-\frac{\dd}{\dd t}\int_{S(t)}\mathbf B\cdot\dd\mathbf S}.
+\]
+Lenz sign: induced current opposes the flux change. \src{Tong EM \S 4.1}
+
+\subsubsection*{Inductance, field energy, and resistance}
+For linear circuits:
+\[
+\Phi_i=\sum_jL_{ij}I_j,\qquad L_{ij}=L_{ji},\qquad
+\mathcal E_i=-\sum_jL_{ij}\dot I_j.
+\]
+Single inductor:
+\[
+\Phi=LI,\qquad U_L=\frac12LI^2.
+\]
+Magnetic field energy:
+\[
+\boxed{U_B=\frac{1}{2\mu_0}\int|\mathbf B|^2\,\dd^3x}.
+\]
+Ohm law and Joule heating:
+\[
+\mathbf J=\sigma\mathbf E,\qquad \rho_{\rm res}=1/\sigma,\qquad
+V=IR,\qquad R=\rho_{\rm res}\frac{\ell}{A},
+\]
+\[
+P=IV=I^2R=\frac{V^2}{R},\qquad
+\frac{\dd U_{\rm heat}}{\dd t}=\int\mathbf J\cdot\mathbf E\,\dd^3x.
+\]
+\src{Tong EM \S 4.1.2--4.1.3}
+
+\subsubsection*{Displacement current and waves}
+Ampere correction:
+\[
+\boxed{\nabla\times\mathbf B=\mu_0\mathbf J+\mu_0\epsilon_0\frac{\pd\mathbf E}{\pd t}}.
+\]
+Vacuum wave equations:
+\[
+\boxed{\left(\frac{1}{c^2}\pd_t^2-\nabla^2\right)\mathbf E=0},\qquad
+\boxed{\left(\frac{1}{c^2}\pd_t^2-\nabla^2\right)\mathbf B=0}.
+\]
+Plane wave:
+\[
+\mathbf E=\mathbf E_0e^{i(\mathbf k\cdot\mathbf x-\omega t)},\qquad
+\mathbf B=\mathbf B_0e^{i(\mathbf k\cdot\mathbf x-\omega t)},\qquad
+\omega=c|\mathbf k|,
+\]
+\[
+\mathbf k\cdot\mathbf E_0=\mathbf k\cdot\mathbf B_0=0,\qquad
+\boxed{\mathbf B_0=\frac{1}{c}\hat{\mathbf k}\times\mathbf E_0}.
+\]
+Linear and circular polarisations:
+\[
+\mathbf E_0=E_1\mathbf e_1+E_2e^{i\delta}\mathbf e_2,\qquad
+\delta=0,\pi:\ \text{linear},\quad \delta=\pm\pi/2,\ |E_1|=|E_2|:\ \text{circular}.
+\]
+\src{Tong EM \S 4.2--4.3}
+
+\subsubsection*{Reflection from a perfect conductor}
+At a perfect conductor surface:
+\[
+\mathbf E_{\parallel}=0,\qquad \mathbf B_\perp=0.
+\]
+Normal incidence on $z=0$, conductor $z>0$:
+\[
+\mathbf E_I=E_0\hat{\mathbf x}e^{i(kz-\omega t)},\qquad
+\mathbf E_R=-E_0\hat{\mathbf x}e^{i(-kz-\omega t)}.
+\]
+Outside field:
+\[
+\mathbf E=2iE_0\hat{\mathbf x}\,e^{-i\omega t}\sin kz,\qquad
+\mathbf B=\frac{2E_0}{c}\hat{\mathbf y}\,e^{-i\omega t}\cos kz.
+\]
+Surface current supports the tangential magnetic discontinuity:
+\[
+\hat{\mathbf n}\times(\mathbf B_{\rm out}-\mathbf B_{\rm in})=\mu_0\mathbf K.
+\]
+\src{Tong EM \S 4.3.3}
+
+\subsubsection*{Poynting theorem}
+\[
+u_{\rm em}=\frac{\epsilon_0}{2}|\mathbf E|^2+\frac{1}{2\mu_0}|\mathbf B|^2,\qquad
+\boxed{\mathbf S=\frac{1}{\mu_0}\mathbf E\times\mathbf B}.
+\]
+\[
+\boxed{\frac{\pd u_{\rm em}}{\pd t}+\nabla\cdot\mathbf S=-\mathbf J\cdot\mathbf E}.
+\]
+For matter energy obeying $\pd_tu_{\rm matter}=\mathbf J\cdot\mathbf E$:
+\[
+\pd_t(u_{\rm em}+u_{\rm matter})+\nabla\cdot\mathbf S=0.
+\]
+\src{Tong EM \S 4.4}
+
+\subsection{Electromagnetism and Relativity}
+
+\subsubsection*{Four-vectors and current}
+\[
+X^\mu=(ct,\mathbf x),\qquad
+\pd_\mu=\left(\frac{1}{c}\pd_t,\nabla\right),\qquad
+\pd^\mu=\left(\frac{1}{c}\pd_t,-\nabla\right).
+\]
+Proper time and four-velocity:
+\[
+\dd\tau=\frac{\dd t}{\gamma},\qquad
+\gamma=(1-v^2/c^2)^{-1/2},\qquad
+U^\mu=\frac{\dd X^\mu}{\dd\tau}=\gamma(c,\mathbf v).
+\]
+Four-current:
+\[
+\boxed{J^\mu=(c\rho,\mathbf J)},\qquad
+\boxed{\pd_\mu J^\mu=0}.
+\]
+\src{Tong EM \S 5.1--5.2}
+
+\subsubsection*{Gauge potential and field tensor}
+\[
+A^\mu=(\phi/c,\mathbf A),\qquad
+\mathbf E=-\nabla\phi-\pd_t\mathbf A,\qquad
+\mathbf B=\nabla\times\mathbf A.
+\]
+Gauge symmetry:
+\[
+\mathbf A\mapsto\mathbf A+\nabla\chi,\qquad
+\phi\mapsto\phi-\pd_t\chi,\qquad
+A_\mu\mapsto A_\mu-\pd_\mu\chi.
+\]
+\[
+\boxed{F_{\mu\nu}=\pd_\mu A_\nu-\pd_\nu A_\mu},\qquad
+F^{0i}=-E_i/c,\qquad F^{ij}=-\epsilon^{ijk}B_k
+\]
+with sign conventions fixed by the metric above. Dual:
+\[
+\widetilde F^{\mu\nu}=\frac12\epsilon^{\mu\nu\rho\sigma}F_{\rho\sigma}.
+\]
+Lorentz scalars:
+\[
+\boxed{F_{\mu\nu}F^{\mu\nu}=2(B^2-E^2/c^2)},\qquad
+\boxed{\widetilde F_{\mu\nu}F^{\mu\nu}=-4\mathbf E\cdot\mathbf B/c}.
+\]
+Boost along $x$:
+\[
+E_\parallel'=E_\parallel,\quad B_\parallel'=B_\parallel,\qquad
+\mathbf E'_\perp=\gamma(\mathbf E+\mathbf v\times\mathbf B)_\perp,
+\]
+\[
+\mathbf B'_\perp=\gamma\left(\mathbf B-\frac{\mathbf v\times\mathbf E}{c^2}\right)_\perp .
+\]
+\src{Tong EM \S 5.3}
+
+\subsubsection*{Covariant Maxwell equations and Lorentz force}
+\[
+\boxed{\pd_\mu F^{\mu\nu}=\mu_0J^\nu},\qquad
+\boxed{\pd_\mu\widetilde F^{\mu\nu}=0}.
+\]
+Equivalently:
+\[
+\pd_\rho F_{\mu\nu}+\pd_\nu F_{\rho\mu}+\pd_\mu F_{\nu\rho}=0.
+\]
+Particle equation:
+\[
+p^\mu=mU^\mu,\qquad
+\boxed{\frac{\dd p^\mu}{\dd\tau}=qF^{\mu\nu}U_\nu}.
+\]
+Spatial part gives $\dd(\gamma m\mathbf v)/\dd t=q(\mathbf E+\mathbf v\times\mathbf B)$.
+\src{Tong EM \S 5.4}
+
+\subsubsection*{Actions and stress tensor}
+Nonrelativistic charged particle:
+\[
+S=\int\left(\frac12m\dot{\mathbf x}^2-q\phi+q\dot{\mathbf x}\cdot\mathbf A\right)\dd t,
+\quad
+\mathbf p_{\rm canonical}=m\dot{\mathbf x}+q\mathbf A.
+\]
+Relativistic particle plus interaction:
+\[
+S_{\rm p}=-mc^2\int\dd\tau,\qquad
+S_{\rm int}=-\int J^\mu A_\mu\,\dd^4x.
+\]
+Maxwell action:
+\[
+\boxed{S_{\rm EM}=-\frac{1}{4\mu_0}\int F_{\mu\nu}F^{\mu\nu}\,\dd^4x
+-\int J^\mu A_\mu\,\dd^4x}
+\]
+gives $\pd_\mu F^{\mu\nu}=\mu_0J^\nu$. Stress tensor:
+\[
+\boxed{T^{\mu\nu}=\frac{1}{\mu_0}
+\left(-F^{\mu\rho}F^\nu{}_\rho+\frac14\eta^{\mu\nu}F_{\rho\sigma}F^{\rho\sigma}\right)}.
+\]
+Components:
+\[
+T^{00}=u_{\rm em},\qquad T^{0i}=c\,g_i,\qquad
+\mathbf g=\epsilon_0\mathbf E\times\mathbf B=\mathbf S/c^2,
+\]
+\[
+\sigma_{ij}=\epsilon_0\left(E_iE_j-\frac12\delta_{ij}E^2\right)
+\frac{1}{\mu_0}\left(B_iB_j-\frac12\delta_{ij}B^2\right).
+\]
+Local balance with sources:
+\[
+\pd_\mu T^{\mu\nu}=-F^{\nu\rho}J_\rho.
+\]
+\src{Tong EM \S 5.5--5.6}
+
+\subsection{Electromagnetic Radiation}
+
+\subsubsection*{Retarded potentials and Green functions}
+Lorenz gauge:
+\[
+\boxed{\pd_\mu A^\mu=0}\quad\Longleftrightarrow\quad
+\nabla\cdot\mathbf A+\frac{1}{c^2}\pd_t\phi=0.
+\]
+Wave equations:
+\[
+\left(\nabla^2-\frac{1}{c^2}\pd_t^2\right)\phi=-\frac{\rho}{\epsilon_0},\qquad
+\left(\nabla^2-\frac{1}{c^2}\pd_t^2\right)\mathbf A=-\mu_0\mathbf J.
+\]
+Retarded Green function:
+\[
+G_{\rm ret}(\mathbf x,t;\mathbf x',t')
+=\frac{\delta(t'-t+|\mathbf x-\mathbf x'|/c)}
+{4\pi|\mathbf x-\mathbf x'|}.
+\]
+Retarded potentials:
+\[
+\boxed{\phi(\mathbf x,t)=\frac{1}{4\pi\epsilon_0}\int
+\frac{\rho(\mathbf x',t_r)}{|\mathbf x-\mathbf x'|}\,\dd^3x'},\qquad
+\boxed{\mathbf A(\mathbf x,t)=\frac{\mu_0}{4\pi}\int
+\frac{\mathbf J(\mathbf x',t_r)}{|\mathbf x-\mathbf x'|}\,\dd^3x'},
+\]
+\[
+t_r=t-\frac{|\mathbf x-\mathbf x'|}{c}.
+\]
+\src{Tong EM \S 6.1}
+
+\subsubsection*{Dipole radiation}
+Localized source size $d\ll\lambda$, observer $r\gg d$, $\hat{\mathbf n}=\mathbf x/r$:
+\[
+\mathbf p(t)=\int\rho(\mathbf x,t)\mathbf x\,\dd^3x.
+\]
+Radiation-zone fields:
+\[
+\boxed{\mathbf E_{\rm rad}(\mathbf x,t)=\frac{1}{4\pi\epsilon_0c^2r}
+\hat{\mathbf n}\times\big[\hat{\mathbf n}\times\ddot{\mathbf p}(t-r/c)\big]},
+\]
+\[
+\boxed{\mathbf B_{\rm rad}=\frac{1}{c}\hat{\mathbf n}\times\mathbf E_{\rm rad}}.
+\]
+Angular and total power:
+\[
+\frac{\dd P}{\dd\Omega}=
+\frac{|\ddot{\mathbf p}|^2\sin^2\theta}{16\pi^2\epsilon_0c^3},\qquad
+\boxed{P=\frac{|\ddot{\mathbf p}|^2}{6\pi\epsilon_0c^3}}.
+\]
+For $\mathbf p(t)=\mathbf p_0\cos\omega t$:
+\[
+\langle P\rangle=\frac{\omega^4p_0^2}{12\pi\epsilon_0c^3}.
+\]
+Nonrelativistic point charge, $\mathbf p=q\mathbf r$:
+\[
+\boxed{P_{\rm Larmor}=\frac{q^2a^2}{6\pi\epsilon_0c^3}}.
+\]
+Next multipoles:
+\[
+P_{\rm mag\ dip}=\frac{\mu_0|\ddot{\mathbf m}|^2}{6\pi c^3},\qquad
+P_{\rm elec\ quad}\sim \frac{1}{c^5}\left(\dddot Q_{ij}\right)^2.
+\]
+\src{Tong EM \S 6.2}
+
+\subsubsection*{Scattering}
+Driven nonrelativistic charge:
+\[
+m\ddot{\mathbf x}=q\mathbf E_0e^{-i\omega t},\qquad
+\ddot{\mathbf p}=q\ddot{\mathbf x}=\frac{q^2}{m}\mathbf E_0e^{-i\omega t}.
+\]
+Thomson differential cross-section for incident polarisation $\boldsymbol\epsilon$:
+\[
+\boxed{\frac{\dd\sigma}{\dd\Omega}=
+\left(\frac{q^2}{4\pi\epsilon_0mc^2}\right)^2
+|\hat{\mathbf n}\times(\hat{\mathbf n}\times\boldsymbol\epsilon)|^2}.
+\]
+Unpolarised:
+\[
+\frac{\dd\sigma}{\dd\Omega}=\frac{r_e^2}{2}(1+\cos^2\theta),\qquad
+\sigma_T=\frac{8\pi}{3}r_e^2,\qquad
+r_e=\frac{e^2}{4\pi\epsilon_0m_ec^2}.
+\]
+Rayleigh scattering for bound charge with natural frequency $\omega_0$:
+\[
+\sigma_{\rm Rayleigh}\propto\omega^4\quad(\omega\ll\omega_0).
+\]
+\src{Tong EM \S 6.3}
+
+\subsubsection*{Lienard-Wiechert fields}
+Point charge worldline $\mathbf r(t)$; retarded time $t_\ast$:
+\[
+t_\ast+\frac{|\mathbf x-\mathbf r(t_\ast)|}{c}=t,\qquad
+\mathbf R=\mathbf x-\mathbf r(t_\ast),\quad
+\mathbf n=\mathbf R/R,\quad \boldsymbol\beta=\mathbf v(t_\ast)/c.
+\]
+Potentials:
+\[
+\boxed{\phi=\frac{q}{4\pi\epsilon_0}\frac{1}{R(1-\mathbf n\cdot\boldsymbol\beta)}},\qquad
+\boxed{\mathbf A=\frac{\mu_0q}{4\pi}\frac{\mathbf v}{R(1-\mathbf n\cdot\boldsymbol\beta)}}.
+\]
+Fields:
+\[
+\mathbf E=\frac{q}{4\pi\epsilon_0}\left[
+\frac{(1-\beta^2)(\mathbf n-\boldsymbol\beta)}
+{R^2(1-\mathbf n\cdot\boldsymbol\beta)^3}
+\frac{\mathbf n\times\{(\mathbf n-\boldsymbol\beta)\times\dot{\boldsymbol\beta}\}}
+{cR(1-\mathbf n\cdot\boldsymbol\beta)^3}\right]_{t_\ast},
+\]
+\[
+\boxed{\mathbf B=\frac{1}{c}\mathbf n\times\mathbf E}.
+\]
+First term is velocity/Coulomb field $\sim R^{-2}$; second is radiation field $\sim R^{-1}$.
+Relativistic radiated power:
+\[
+\boxed{P=\frac{q^2\gamma^6}{6\pi\epsilon_0c^3}
+\left(a^2-\frac{|\mathbf v\times\mathbf a|^2}{c^2}\right)}.
+\]
+Circular nonrelativistic motion gives cyclotron radiation; relativistic beaming gives synchrotron radiation.
+\src{Tong EM \S 6.4}
+
+\subsection{Electromagnetism in Matter}
+
+\subsubsection*{Polarisation, displacement, and bound charge}
+Atomic polarisation:
+\[
+\mathbf p=\alpha\mathbf E,\qquad
+\mathbf P=n\langle\mathbf p\rangle,\qquad
+\mathbf P=\epsilon_0\chi_e\mathbf E\quad\text{linear dielectric}.
+\]
+Uniform electron cloud model:
+\[
+\alpha=4\pi\epsilon_0a^3.
+\]
+Bound charge:
+\[
+\boxed{\rho_{\rm b}=-\nabla\cdot\mathbf P},\qquad
+\boxed{\sigma_{\rm b}=\mathbf P\cdot\hat{\mathbf n}}.
+\]
+Displacement:
+\[
+\boxed{\mathbf D=\epsilon_0\mathbf E+\mathbf P},\qquad
+\boxed{\nabla\cdot\mathbf D=\rho_{\rm f}}.
+\]
+Linear medium:
+\[
+\mathbf D=\epsilon\mathbf E,\qquad
+\epsilon=\epsilon_0(1+\chi_e),\qquad
+\epsilon_r=\epsilon/\epsilon_0.
+\]
+Point charge $Q$ in dielectric sphere:
+\[
+\mathbf D=\frac{Q}{4\pi r^2}\hat{\mathbf r},\qquad
+\mathbf E_{\rm in}=\frac{Q}{4\pi\epsilon r^2}\hat{\mathbf r},\qquad
+\mathbf E_{\rm out}=\frac{Q}{4\pi\epsilon_0r^2}\hat{\mathbf r}.
+\]
+\src{Tong EM \S 7.1}
+
+\subsubsection*{Magnetisation, H field, and bound currents}
+\[
+\mathbf M=n\langle\mathbf m\rangle,\qquad
+\boxed{\mathbf J_{\rm b}=\nabla\times\mathbf M},\qquad
+\boxed{\mathbf K_{\rm b}=\mathbf M\times\hat{\mathbf n}}.
+\]
+\[
+\boxed{\mathbf H=\frac{1}{\mu_0}\mathbf B-\mathbf M},\qquad
+\boxed{\nabla\times\mathbf H=\mathbf J_{\rm f}}.
+\]
+Linear magnetic medium:
+\[
+\mathbf M=\chi_m\mathbf H,\qquad
+\mathbf B=\mu\mathbf H,\qquad
+\mu=\mu_0(1+\chi_m).
+\]
+Diamagnet: $-1<\chi_m<0$; paramagnet: $\chi_m>0$; ferromagnet: $\mathbf M\neq0$ at $\mathbf B=0$.
+\src{Tong EM \S 7.2}
+
+\subsubsection*{Macroscopic Maxwell equations and boundary data}
+Time-dependent bound current:
+\[
+\boxed{\mathbf J_{\rm b}=\nabla\times\mathbf M+\frac{\pd\mathbf P}{\pd t}}.
+\]
+\[
+\boxed{
+\begin{aligned}
+\nabla\cdot\mathbf D&=\rho_{\rm f},&
+\nabla\times\mathbf H-\frac{\pd\mathbf D}{\pd t}&=\mathbf J_{\rm f},\\
+\nabla\cdot\mathbf B&=0,&
+\nabla\times\mathbf E+\frac{\pd\mathbf B}{\pd t}&=0.
+\end{aligned}}
+\]
+For $\mathbf D=\epsilon\mathbf E$, $\mathbf B=\mu\mathbf H$, no free sources:
+\[
+\nabla^2\mathbf E-\frac{1}{v^2}\pd_t^2\mathbf E=0,\qquad
+v=\frac{1}{\sqrt{\epsilon\mu}},\qquad n=\frac{c}{v}\simeq\sqrt{\epsilon_r}\quad(\mu\simeq\mu_0).
+\]
+Plane wave:
+\[
+\omega^2=v^2k^2,\qquad \mathbf k\cdot\mathbf E_0=\mathbf k\cdot\mathbf B_0=0,\qquad
+\mathbf B_0=\frac{\hat{\mathbf k}\times\mathbf E_0}{v}.
+\]
+Interface normal $\hat{\mathbf n}:1\to2$:
+\[
+\hat{\mathbf n}\cdot(\mathbf D_2-\mathbf D_1)=\sigma_{\rm f},\qquad
+\hat{\mathbf n}\cdot(\mathbf B_2-\mathbf B_1)=0,
+\]
+\[
+\hat{\mathbf n}\times(\mathbf E_2-\mathbf E_1)=0,\qquad
+\hat{\mathbf n}\times(\mathbf H_2-\mathbf H_1)=\mathbf K_{\rm f}.
+\]
+\src{Tong EM \S 7.3}
+
+\subsubsection*{Reflection, refraction, Fresnel coefficients}
+Phase matching at a planar interface:
+\[
+\omega_I=\omega_R=\omega_T,\qquad
+k_I\sin\theta_I=k_R\sin\theta_R=k_T\sin\theta_T.
+\]
+\[
+\boxed{\theta_R=\theta_I},\qquad
+\boxed{n_1\sin\theta_I=n_2\sin\theta_T}.
+\]
+For $\mu_1\simeq\mu_2\simeq\mu_0$, $s$ polarisation:
+\[
+\frac{E_R}{E_I}=\frac{n_1\cos\theta_I-n_2\cos\theta_T}
+{n_1\cos\theta_I+n_2\cos\theta_T},\qquad
+\frac{E_T}{E_I}=\frac{2n_1\cos\theta_I}
+{n_1\cos\theta_I+n_2\cos\theta_T}.
+\]
+$p$ polarisation:
+\[
+\frac{E_R}{E_I}=\frac{n_1\cos\theta_T-n_2\cos\theta_I}
+{n_1\cos\theta_T+n_2\cos\theta_I},\qquad
+\frac{E_T}{E_I}=\frac{2n_1\cos\theta_I}
+{n_1\cos\theta_T+n_2\cos\theta_I}.
+\]
+Brewster and critical angles:
+\[
+\boxed{\tan\theta_B=\frac{n_2}{n_1}},\qquad
+\boxed{\sin\theta_C=\frac{n_2}{n_1}}\quad(n_1>n_2).
+\]
+For $\theta_I>\theta_C$:
+\[
+k_{T,x}=\pm i\frac{\omega}{v_2}
+\sqrt{\frac{n_1^2}{n_2^2}\sin^2\theta_I-1},
+\]
+giving an evanescent transmitted field. \src{Tong EM \S 7.4}
+
+\subsubsection*{Dispersion and Kramers-Kronig}
+Driven atomic oscillator:
+\[
+m\ddot{\mathbf r}+m\gamma\dot{\mathbf r}+m\omega_0^2\mathbf r=-q\mathbf E_0e^{-i\omega t},
+\qquad
+\boxed{\alpha(\omega)=\frac{q^2/m}{\omega_0^2-\omega^2-i\gamma\omega}}.
+\]
+\[
+\epsilon(\omega)=\epsilon_0+n_{\rm at}\alpha(\omega),\qquad
+\mathbf D=\epsilon(\omega)\mathbf E.
+\]
+Complex wavevector:
+\[
+k^2=\mu\epsilon(\omega)\omega^2,\qquad
+\epsilon=\epsilon_1+i\epsilon_2,\qquad k=k_1+ik_2,
+\]
+\[
+\mathbf E(z,t)=\mathbf E(\omega)e^{-k_2z}e^{i(k_1z-\omega t)}.
+\]
+Velocities:
+\[
+v_p=\frac{\omega}{k_1},\qquad
+v_g=\frac{\dd\omega}{\dd k_1},\qquad
+\frac{1}{v_g}=\frac{1}{v_p}+\frac{\omega}{c}\frac{\dd n}{\dd\omega}.
+\]
+Lorentz oscillator real/imaginary parts:
+\[
+\epsilon_1=\epsilon_0-\frac{n_{\rm at}q^2}{m}
+\frac{\omega^2-\omega_0^2}{(\omega^2-\omega_0^2)^2+\gamma^2\omega^2},
+\]
+\[
+\epsilon_2=\frac{n_{\rm at}q^2}{m}
+\frac{\gamma\omega}{(\omega^2-\omega_0^2)^2+\gamma^2\omega^2},\qquad
+\omega_p^2=\frac{n_{\rm at}q^2}{m\epsilon_0}.
+\]
+Causal response:
+\[
+p(t)=\int_{-\infty}^{\infty}\tilde\alpha(t-t')E(t')\,\dd t',\qquad
+\tilde\alpha(t<0)=0
+\Longrightarrow \alpha(\omega)\ \text{analytic for }\operatorname{Im}\omega>0.
+\]
+Kramers-Kronig:
+\[
+\operatorname{Re}\alpha(\omega)=\mathcal P\int_{-\infty}^{\infty}\frac{\dd\omega'}{\pi}
+\frac{\operatorname{Im}\alpha(\omega')}{\omega'-\omega},\qquad
+\operatorname{Im}\alpha(\omega)=-\mathcal P\int_{-\infty}^{\infty}\frac{\dd\omega'}{\pi}
+\frac{\operatorname{Re}\alpha(\omega')}{\omega'-\omega}.
+\]
+\src{Tong EM \S 7.5}
+
+\subsubsection*{Conductors and plasma}
+Drude equation:
+\[
+m\frac{\dd\mathbf v}{\dd t}=q\mathbf E-\frac{m}{\tau}\mathbf v,\qquad
+\mathbf J=nq\mathbf v=\sigma(\omega)\mathbf E,
+\]
+\[
+\boxed{\sigma(\omega)=\frac{\sigma_{\rm DC}}{1-i\omega\tau}},\qquad
+\boxed{\sigma_{\rm DC}=\frac{nq^2\tau}{m}}.
+\]
+Conducting medium:
+\[
+\epsilon_{\rm eff}(\omega)=\epsilon(\omega)+i\frac{\sigma(\omega)}{\omega},\qquad
+\boxed{k^2=\mu\epsilon_{\rm eff}(\omega)\omega^2}.
+\]
+Low frequency $\omega\tau\ll1$:
+\[
+\epsilon_{\rm eff}\simeq i\frac{\sigma_{\rm DC}}{\omega},\qquad
+k=\sqrt{\frac{\mu\omega\sigma_{\rm DC}}{2}}(1+i),
+\]
+\[
+\boxed{\delta=\sqrt{\frac{2}{\mu\omega\sigma_{\rm DC}}}},\qquad
+\mathbf E(z,t)=\mathbf E_0e^{-z/\delta}e^{i(k_1z-\omega t)}.
+\]
+High frequency:
+\[
+\epsilon_{\rm eff}\simeq\epsilon_0\left(1-\frac{\omega_p^2}{\omega^2}\right),\qquad
+\omega_p^2=\frac{nq^2}{m\epsilon_0}.
+\]
+\[
+\omega>\omega_p:\ \omega^2=\omega_p^2+c^2k^2,\qquad
+\omega<\omega_p:\ k\ \text{imaginary, reflection}.
+\]
+Longitudinal plasma oscillations:
+\[
+\epsilon_{\rm eff}(\omega)=0,\qquad
+\omega=\omega_p,\qquad \mathbf E\parallel\mathbf k,\qquad \mathbf B=0.
+\]
+\src{Tong EM \S 7.6}
+
+\subsubsection*{Screening, dielectric function, Thomas-Fermi, Lindhard}
+Classical Debye-Huckel:
+\[
+\nabla^2\phi=-\frac{1}{\epsilon_0}\left[Q\delta^{(3)}(\mathbf r)-\rho_0+\rho(\mathbf r)\right],
+\qquad
+\rho(\mathbf r)=\rho_0e^{-q\phi/k_BT}.
+\]
+Linearised:
+\[
+\left(\nabla^2-\lambda_D^{-2}\right)\phi=-\frac{Q}{\epsilon_0}\delta^{(3)}(\mathbf r),\qquad
+\boxed{\lambda_D^2=\frac{\epsilon_0k_BT}{q^2n_0}},
+\]
+\[
+\boxed{\phi(r)=\frac{Q}{4\pi\epsilon_0r}e^{-r/\lambda_D}}.
+\]
+Static dielectric function:
+\[
+\phi_{\rm ext}(\mathbf k)=\epsilon(\mathbf k)\phi(\mathbf k),\qquad
+\boxed{\epsilon(k)=1-\frac{\rho_{\rm ind}(k)}{\epsilon_0k^2\phi(k)}}.
+\]
+Debye-Huckel gives
+\[
+\epsilon(k)=1+\frac{k_D^2}{k^2},\qquad k_D=\lambda_D^{-1}.
+\]
+Thomas-Fermi:
+\[
+\rho_{\rm ind}\simeq-q\phi\,\frac{\pd\rho}{\pd\mu},\qquad
+\epsilon(k)=1+\frac{q}{\epsilon_0k^2}\frac{\pd\rho}{\pd\mu}.
+\]
+At $T=0$:
+\[
+\boxed{\epsilon(k)=1+\frac{q^2g(E_F)}{\epsilon_0k^2}}
+\equiv1+\frac{k_{TF}^2}{k^2}.
+\]
+For 3D nonrelativistic fermions:
+\[
+g(E)=\frac{g_s}{4\pi^2}\left(\frac{2m}{\hbar^2}\right)^{3/2}E^{1/2},\qquad
+k_{TF}^2=\frac{3q\rho_0}{2\epsilon_0E_F}.
+\]
+Lindhard:
+\[
+\frac{\rho_{\rm ind}(\mathbf k)}{\phi(\mathbf k)}
+=q^2g_s\int\frac{\dd^3k'}{(2\pi)^3}
+\frac{f(|\mathbf k+\mathbf k'|)-f(k')}
+{E(|\mathbf k+\mathbf k'|)-E(k')},
+\]
+\[
+\boxed{\epsilon(k)=1+\frac{k_{TF}^2}{k^2}F\!\left(\frac{k}{2k_F}\right)},\qquad
+\boxed{F(x)=\frac12+\frac{1-x^2}{4x}\log\left|\frac{x+1}{x-1}\right|}.
+\]
+Nonanalyticity at $k=2k_F$ gives Friedel tail for a screened point charge:
+\[
+\boxed{\rho_{\rm ind}(r)\approx
+\frac{Qk_{TF}^2}{8\pi k_F^2}\frac{\cos(2k_Fr)}{r^3}}.
+\]
+\src{Tong EM \S 7.7}

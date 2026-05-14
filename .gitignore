@@ -216,3 +216,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# macOS / tool noise
+.DS_Store
+.codex_tmp/
+
+# JS dependencies — regenerate with `npm install`
+node_modules/
+
+# PDFs — kept locally / synced via iCloud, not in git
+*.pdf

@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+
+% imports
+\usepackage{appendix}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{bbold}
+\usepackage[justification=centering]{caption}
+\usepackage{float}
+\usepackage[margin=1em]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{layouts}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{optidef}
+\usepackage{physics}
+\usepackage{setspace}
+\usepackage{diagbox}
+\usepackage[labelformat=simple]{subcaption}
+\usepackage{xcolor}
+
+% configure imports
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
+\definecolor{darkgreen}{RGB}{46, 184, 46}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\R}{\mathbb{R}}
+\captionsetup[subfigure]{labelformat=empty, skip=0pt}
+\captionsetup{labelsep=period}
+\restylefloat{table}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\addto\captionsenglish{%
+  \renewcommand{\figurename}{FIG.}%
+  \renewcommand{\tablename}{TABLE}%
+  \renewcommand{\appendixname}{APPENDIX}%
+}
+
+\title{\vspace{-2em}EM}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\vspace{-4em}
+\begin{multicols}{3}
+
+  \textbf{Multipoles}
+  \begin{align}
+    q &= \int \rho(\vec{x}) d^3x\\
+    \vec{p} &= \int \vec{x} \rho(\vec{x}) d^3x\\
+    Q_{ij} &= \int (3x_ix_j-r^2\delta_{ij})\rho(\vec{x})d^3x\\ % Wald Ch. 2
+    \vec{F}(\vec{x}) &= \int \rho(\vec{x}^{\prime} - \vec{x}) \vec{E}(\vec{x}^{\prime} - \vec{x}) d^3x^{\prime}\\
+    &= \begin{aligned}[t]
+      &q\vec{E}(\vec{x}^{\prime})\lvert_{\vec{x}} \ + \ (\vec{p} \cdot \vec{\nabla}_{\vec{x}^{\prime}}) \vec{E}(\vec{x}^{\prime}) \lvert_{\vec{x}}\\
+      &+ \  \frac{1}{6} Q_{jk} \frac{\partial^2 \vec{E}(\vec{x}^{\prime})}{\partial x^{\prime}_j \partial x^{\prime}_k} \lvert_{\vec{x}} \ + \ \dots
+    \end{aligned}\\
+    \phi(\vec{x}) &= \frac{q}{\lvert \vec{x} \rvert} + \frac{\vec{p} \cdot \hat{x}}{{\lvert \vec{x} \rvert}^2} + \frac{1}{2} Q_{ij} \frac{\hat{x}_i \hat{x}_j}{{\lvert \vec{x} \rvert}^3} + \dots
+  \end{align}
+\end{multicols}
+
+\end{document}

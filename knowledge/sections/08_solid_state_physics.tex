@@ -1,0 +1,791 @@
+\section{Solid State Physics}
+\label{sec:solid-state-physics}
+
+\noindent\textbf{Conventions.}\quad
+General charge $q$; electron charge $-e$ with $e>0$. $\hbar$ is explicit.
+Crystal momentum $\hbar\mathbf k$ is defined modulo reciprocal lattice vectors.
+
+\subsection{Particles in a Magnetic Field}
+
+\subsubsection*{Gauge Fields}
+
+\noindent\textbf{Potentials, Lorentz force, Hamiltonian.}
+\[
+\mathbf E=-\nabla\phi-\partial_t\mathbf A,\qquad
+\mathbf B=\nabla\times\mathbf A,
+\]
+\[
+L=\tfrac12m\dot{\mathbf x}^{\,2}+q\dot{\mathbf x}\cdot\mathbf A-q\phi,
+\qquad
+\boxed{m\ddot{\mathbf x}=q(\mathbf E+\dot{\mathbf x}\times\mathbf B)}.
+\]
+\[
+\mathbf p=\frac{\partial L}{\partial\dot{\mathbf x}}=m\dot{\mathbf x}+q\mathbf A,
+\qquad
+\boxed{H=\frac{1}{2m}(\mathbf p-q\mathbf A)^2+q\phi}.
+\]
+\[
+\{x_i,p_j\}=\delta_{ij},\qquad [x_i,p_j]=i\hbar\delta_{ij}.
+\]
+For $\mathbf B=B\hat{\mathbf z}$, $\mathbf E=0$:
+\[
+m\ddot x=qB\dot y,\qquad m\ddot y=-qB\dot x,\qquad
+\omega_B=\frac{qB}{m},
+\]
+\[
+x=X+R\sin[\omega_B(t-t_0)],\qquad
+y=Y+R\cos[\omega_B(t-t_0)].
+\]
+\src{Tong SS \S 1.1}
+
+\noindent\textbf{Gauge covariance.}
+\[
+\phi\mapsto\phi-\partial_t\alpha,\qquad
+\mathbf A\mapsto\mathbf A+\nabla\alpha,\qquad
+\psi\mapsto e^{iq\alpha/\hbar}\psi.
+\]
+\[
+i\hbar\partial_t\psi
+=\left[\frac{1}{2m}(-i\hbar\nabla-q\mathbf A)^2+q\phi\right]\psi.
+\]
+\[
+D_t=\partial_t+\frac{iq}{\hbar}\phi,\qquad
+D_i=\partial_i-\frac{iq}{\hbar}A_i,\qquad
+\boxed{i\hbar D_t\psi=-\frac{\hbar^2}{2m}D_iD_i\psi}.
+\]
+Gauge-dependent object: canonical $\mathbf p$. Gauge-invariant object:
+$m\dot{\mathbf x}=\mathbf p-q\mathbf A$. \src{Tong SS \S 1.1.2}
+
+\subsubsection*{Landau Levels}
+
+\noindent\textbf{Landau gauge.}
+\[
+\mathbf B=B\hat{\mathbf z},\qquad \mathbf A=(0,Bx,0),\qquad
+H=\frac{1}{2m}\{p_x^2+(p_y-qBx)^2+p_z^2\}.
+\]
+\[
+\psi=e^{ik_yy+ik_zz}\chi(x),\qquad
+\widetilde H=\frac{p_x^2}{2m}+
+\frac{m\omega_B^2}{2}(x-k_yl_B^2)^2,\qquad
+l_B=\sqrt{\frac{\hbar}{qB}}\quad(qB>0).
+\]
+\[
+\boxed{E_{n,k_z}=\hbar\omega_B\left(n+\tfrac12\right)
++\frac{\hbar^2k_z^2}{2m}},\qquad n=0,1,2,\ldots
+\]
+\[
+\psi_{n,k_y,k_z}\propto e^{ik_yy+ik_zz}
+H_n\!\left(\frac{x-k_yl_B^2}{l_B}\right)
+\exp\!\left[-\frac{(x-k_yl_B^2)^2}{2l_B^2}\right].
+\]
+For planar motion: $E_n=\hbar\omega_B(n+\tfrac12)$.
+
+\noindent\textbf{Degeneracy.}
+\[
+k_y=\frac{2\pi r}{L_y},\qquad
+0\le k_y\le \frac{L_x}{l_B^2},\qquad
+\boxed{N_{\rm LL}=\frac{A}{2\pi l_B^2}=\frac{qBA}{2\pi\hbar}}.
+\]
+
+\noindent\textbf{Symmetric gauge and lowest level.}
+\[
+\mathbf A=-\tfrac12\mathbf x\times\mathbf B=\frac{B}{2}(-y,x,0),
+\]
+\[
+H=-\frac{\hbar^2}{2m}\nabla^2-\frac{qB}{2m}L_z
++\frac{q^2B^2}{8m}(x^2+y^2)\quad(k_z=0).
+\]
+With $w=x+iy$,
+\[
+\psi_0=f(w)e^{-|w|^2/4l_B^2},\qquad
+H\psi_0=\frac{\hbar\omega_B}{2}\psi_0.
+\]
+\[
+\psi_{0,M}=w^Me^{-|w|^2/4l_B^2},\qquad
+L_z\psi_{0,M}=\hbar M\psi_{0,M},\qquad
+r_{\rm peak}\simeq \sqrt{2M}\,l_B.
+\]
+For a disc, $N\simeq R^2/(2l_B^2)=A/(2\pi l_B^2)$.
+\src{Tong SS \S 1.2}
+
+\noindent\textbf{Quantum Hall bookkeeping.}
+\[
+N_{\rm LL}=\frac{eBA}{2\pi\hbar},\qquad
+\nu=\frac{N_e}{N_{\rm LL}},\qquad
+\rho=\begin{pmatrix}\rho_{xx}&\rho_{xy}\\-\rho_{xy}&\rho_{xx}\end{pmatrix}.
+\]
+\[
+\boxed{\rho_{xy}=\frac{2\pi\hbar}{e^2}\frac1\nu
+=\frac{h}{e^2}\frac1\nu,\qquad \nu\in\mathbb Z_{>0},\qquad
+\rho_{xx}=0\ \text{on integer plateaux}.}
+\]
+Fractional plateaux at rational $\nu$ require interactions within a macroscopically
+degenerate Landau level. \src{Tong SS \S 1.2.3}
+
+\subsubsection*{Aharonov--Bohm Effect}
+
+\noindent\textbf{Flux tube.}
+\[
+\oint\mathbf A\cdot d\mathbf x=\Phi,\qquad
+A_\varphi=\frac{\Phi}{2\pi r},\qquad \Phi_0=\frac{2\pi\hbar}{q}.
+\]
+Particle on a ring:
+\[
+H=\frac{1}{2mr^2}\left(-i\hbar\partial_\varphi-\frac{q\Phi}{2\pi}\right)^2,
+\qquad
+\psi_n=\frac{1}{\sqrt{2\pi r}}e^{in\varphi},\quad n\in\mathbb Z,
+\]
+\[
+\boxed{E_n=\frac{\hbar^2}{2mr^2}\left(n-\frac{\Phi}{\Phi_0}\right)^2}.
+\]
+Only $\Phi/\Phi_0\in\mathbb Z$ is spectrally invisible.
+
+\noindent\textbf{AB phase.}
+\[
+\Delta\theta
+=\frac{q}{\hbar}\int_{P_1}\mathbf A\cdot d\mathbf x
+-\frac{q}{\hbar}\int_{P_2}\mathbf A\cdot d\mathbf x
+=\frac{q}{\hbar}\oint\mathbf A\cdot d\mathbf x
+=\frac{q\Phi}{\hbar},
+\]
+\[
+\boxed{\text{interference factor}=e^{iq\Phi/\hbar}}.
+\]
+\src{Tong SS \S 1.3}
+
+\subsubsection*{Magnetic Monopoles}
+
+\noindent\textbf{Dirac quantisation.}
+\[
+\mathbf B=\frac{g}{4\pi r^2}\hat{\mathbf r},\qquad
+\int_{S^2}\mathbf B\cdot d\mathbf S=g.
+\]
+For two spanning surfaces of a charge loop,
+\[
+\alpha=\frac{\Omega g}{4\pi},\qquad
+\alpha'=-\frac{(4\pi-\Omega)g}{4\pi},
+\]
+\[
+e^{iq\alpha/\hbar}=e^{iq\alpha'/\hbar}
+\quad\Longrightarrow\quad
+\boxed{qg=2\pi\hbar n,\qquad n\in\mathbb Z}.
+\]
+Dyons:
+\[
+\boxed{q_1g_2-q_2g_1\in2\pi\hbar\mathbb Z}.
+\]
+
+\noindent\textbf{Patch potentials.}
+\[
+A_\varphi^N=\frac{g(1-\cos\theta)}{4\pi r\sin\theta},\qquad
+A_\varphi^S=-\frac{g(1+\cos\theta)}{4\pi r\sin\theta},
+\]
+\[
+\nabla\times\mathbf A^{N,S}=\frac{g}{4\pi r^2}\hat{\mathbf r},\qquad
+A_\varphi^N=A_\varphi^S+\frac{1}{r\sin\theta}\partial_\varphi\alpha,\quad
+\alpha=\frac{g\varphi}{2\pi}.
+\]
+Single-valued charged wavefunctions require $e^{iqg/\hbar}=1$.
+
+\noindent\textbf{Angular momentum.}
+\[
+\dot{\mathbf p}=q\dot{\mathbf x}\times\mathbf B,\qquad
+\frac{d}{dt}(\mathbf x\times\mathbf p)
+=\frac{d}{dt}\left(\frac{qg}{4\pi}\hat{\mathbf r}\right),
+\]
+\[
+\boxed{\mathbf L=\mathbf x\times\mathbf p-\frac{qg}{4\pi}\hat{\mathbf r}},
+\qquad
+\mathbf L\cdot\hat{\mathbf r}=-\frac{qg}{4\pi}.
+\]
+Angular momentum quantisation again implies $qg=2\pi\hbar n$.
+\src{Tong SS \S 1.4}
+
+\subsubsection*{Spin in a Magnetic Field}
+
+\[
+\mathbf S=\frac{\hbar}{2}\bm\sigma,\qquad
+\mathbf m_{\rm orb}=\frac{q}{2m}\mathbf L,\qquad
+\mathbf m_{\rm spin}=g\frac{q}{2m}\mathbf S,
+\]
+\[
+\boxed{H_{\rm spin}=-g\frac{q}{2m}\mathbf S\cdot\mathbf B}.
+\]
+For electron $q=-e$, $g_e\simeq2$, $\mathbf B=B\hat{\mathbf z}$:
+\[
+H=\frac{e\hbar}{2m}\bm\sigma\cdot\mathbf B,\qquad
+\omega_B=\frac{eB}{m},
+\]
+\[
+H|\uparrow\rangle=\frac{\hbar\omega_B}{2}|\uparrow\rangle,\qquad
+H|\downarrow\rangle=-\frac{\hbar\omega_B}{2}|\downarrow\rangle.
+\]
+\[
+|\psi(t)\rangle=e^{-i\omega_Bt/2}\left[
+\cos\frac{\theta}{2}|\uparrow\rangle+
+e^{i(\varphi+\omega_Bt)}\sin\frac{\theta}{2}|\downarrow\rangle\right].
+\]
+Hydrogen Zeeman splitting:
+\[
+\Delta H=\frac{e}{2m}(\mathbf L+g_e\mathbf S)\cdot\mathbf B,\qquad
+\boxed{E_{n,m_l,m_s}=E_n+\mu_BB(m_l+2m_s)},\quad
+\mu_B=\frac{e\hbar}{2m}.
+\]
+\src{Tong SS \S 1.5}
+
+\subsection{Band Structure}
+
+\subsubsection*{One-Dimensional Models}
+
+\noindent\textbf{Tight binding.}
+\[
+H=E_0\sum_n|n\rangle\langle n|
+-t\sum_n(|n\rangle\langle n+1|+|n+1\rangle\langle n|),
+\quad |N+1\rangle=|1\rangle.
+\]
+\[
+E_0\psi_n-t(\psi_{n+1}+\psi_{n-1})=E\psi_n,\qquad
+\psi_n=N^{-1/2}e^{ikna}.
+\]
+\[
+e^{ikNa}=1,\qquad
+k\sim k+\frac{2\pi}{a},\qquad
+k\in\left[-\frac{\pi}{a},\frac{\pi}{a}\right),
+\]
+\[
+\boxed{E(k)=E_0-2t\cos(ka)},\qquad \Delta E_{\rm band}=4t.
+\]
+Low $k$:
+\[
+E(k)\simeq E_0-2t+ta^2k^2
+=E_0-2t+\frac{\hbar^2k^2}{2m^\star},\qquad
+\boxed{m^\star=\frac{\hbar^2}{2ta^2}}.
+\]
+One spin-degenerate band holds $2N$ electrons; $Z=1$ is half-filled, $Z=2$ filled.
+\src{Tong SS \S 2.1.1}
+
+\noindent\textbf{Nearly free electrons.}
+\[
+H=\frac{p^2}{2m}+V(x),\qquad V(x+a)=V(x),\qquad
+E_0(k)=\frac{\hbar^2k^2}{2m}.
+\]
+\[
+V(x)=\sum_{n\in\mathbb Z}V_ne^{2\pi inx/a},\qquad
+V_n=\frac1a\int_0^aV(x)e^{-2\pi inx/a}\dd x,
+\]
+\[
+\boxed{\langle k|V|k'\rangle
+=\sum_nV_n\delta_{k-k',\,2\pi n/a}}.
+\]
+Degenerate mixing occurs at $k=n\pi/a$. At $k=-k'=n\pi/a$:
+\[
+\begin{pmatrix}E_0+V_0&V_n\\V_n^\star&E_0+V_0\end{pmatrix}
+\binom{\alpha}{\beta}=E\binom{\alpha}{\beta},
+\]
+\[
+\boxed{E_\pm=\frac{\hbar^2n^2\pi^2}{2ma^2}+V_0\pm |V_n|},\qquad
+\boxed{\Delta_n=2|V_n|}.
+\]
+Near the boundary, with $k=n\pi/a+\delta$,
+\[
+E_\pm=\frac{\hbar^2}{2m}\left(\frac{n^2\pi^2}{a^2}+\delta^2\right)+V_0
+\pm\sqrt{|V_n|^2+\left(\frac{\hbar^2n\pi\delta}{ma}\right)^2}.
+\]
+\src{Tong SS \S 2.1.2}
+
+\noindent\textbf{Floquet and Bloch.}
+\[
+-\frac{\hbar^2}{2m}\psi''+V(x)\psi=E\psi,\qquad
+\binom{\psi_1(x+a)}{\psi_2(x+a)}=F(E)\binom{\psi_1(x)}{\psi_2(x)}.
+\]
+\[
+\det F=1,\qquad \operatorname{tr}F\in\mathbb R,\qquad
+(\operatorname{tr}F)^2<4\Rightarrow\text{band},\quad
+(\operatorname{tr}F)^2>4\Rightarrow\text{gap}.
+\]
+\[
+T_l\psi(x)=\psi(x+l),\qquad T_l=e^{ilp/\hbar},\qquad [H,T_a]=0.
+\]
+\[
+\boxed{\psi_k(x)=e^{ikx}u_k(x)},\qquad
+u_k(x+a)=u_k(x),\qquad
+k\in\left[-\frac{\pi}{a},\frac{\pi}{a}\right).
+\]
+Crystal momentum is conserved modulo $2\pi\hbar/a$. \src{Tong SS \S 2.1.3--2.1.4}
+
+\subsubsection*{Lattices and Reciprocal Space}
+
+\[
+\Lambda=\left\{\mathbf r=\sum_i n_i\mathbf a_i,\ n_i\in\mathbb Z\right\},\qquad
+V=|\mathbf a_1\cdot(\mathbf a_2\times\mathbf a_3)|.
+\]
+\[
+\Gamma=\{\mathbf x:\ |\mathbf x|<|\mathbf x-\mathbf r|\ \forall\mathbf r\in\Lambda,\ \mathbf r\ne0\}.
+\]
+Crystal with basis $\{\mathbf d_i\}$:
+\[
+\mathcal L=\bigcup_i(\Lambda+\mathbf d_i).
+\]
+Common primitive vectors:
+\[
+\begin{array}{ll}
+\text{cubic:}&a\hat{\mathbf x},\,a\hat{\mathbf y},\,a\hat{\mathbf z},\\[0.2em]
+\text{BCC:}&\frac a2(-\hat{\mathbf x}+\hat{\mathbf y}+\hat{\mathbf z}),\,
+\frac a2(\hat{\mathbf x}-\hat{\mathbf y}+\hat{\mathbf z}),\,
+\frac a2(\hat{\mathbf x}+\hat{\mathbf y}-\hat{\mathbf z}),\\[0.2em]
+\text{FCC:}&\frac a2(\hat{\mathbf y}+\hat{\mathbf z}),\,
+\frac a2(\hat{\mathbf x}+\hat{\mathbf z}),\,
+\frac a2(\hat{\mathbf x}+\hat{\mathbf y}).
+\end{array}
+\]
+\[
+\Lambda^\star=\left\{\mathbf q=\sum_i n_i\mathbf b_i\right\},\qquad
+\boxed{\mathbf a_i\cdot\mathbf b_j=2\pi\delta_{ij}},
+\]
+\[
+\mathbf b_i=\frac{2\pi}{V}\frac12\epsilon_{ijk}\mathbf a_j\times\mathbf a_k,\qquad
+V^\star=\frac{(2\pi)^3}{V}.
+\]
+Equivalent condition:
+\[
+e^{i\mathbf q\cdot\mathbf r}=1\quad
+\forall\mathbf r\in\Lambda,\ \mathbf q\in\Lambda^\star.
+\]
+If $f(\mathbf x+\mathbf r)=f(\mathbf x)$,
+\[
+\sum_{\mathbf r\in\Lambda}e^{-i\mathbf k\cdot\mathbf r}
+=\boxed{V^\star\sum_{\mathbf q\in\Lambda^\star}\delta(\mathbf k-\mathbf q)}.
+\]
+The Brillouin zone is the Wigner--Seitz cell of $\Lambda^\star$; faces are identified,
+so ${\rm BZ}\simeq T^d$. \src{Tong SS \S 2.2}
+
+\subsubsection*{Higher-Dimensional Bands}
+
+\noindent\textbf{Bloch theorem and gaps.}
+\[
+V(\mathbf x+\mathbf r)=V(\mathbf x),\qquad
+\boxed{\psi_{\mathbf k,n}(\mathbf x)=e^{i\mathbf k\cdot\mathbf x}u_{\mathbf k,n}(\mathbf x)},
+\qquad
+u_{\mathbf k,n}(\mathbf x+\mathbf r)=u_{\mathbf k,n}(\mathbf x).
+\]
+\[
+\mathbf k\sim\mathbf k+\mathbf q,\qquad \mathbf q\in\Lambda^\star.
+\]
+For nearly-free electrons,
+\[
+V(\mathbf x)=\sum_{\mathbf q\in\Lambda^\star}V_{\mathbf q}e^{i\mathbf q\cdot\mathbf x},
+\qquad
+\langle\mathbf k|V|\mathbf k'\rangle\ne0\iff\mathbf k-\mathbf k'\in\Lambda^\star.
+\]
+Degenerate free states satisfy
+\[
+E_0(\mathbf k)=E_0(\mathbf k+\mathbf q)
+\iff 2\mathbf k\cdot\mathbf q+q^2=0,
+\]
+the Brillouin-zone boundary bisector. A finite periodic lattice has
+\[
+\mathbf k=\sum_i\frac{m_i}{N_i}\mathbf b_i,\qquad
+\#(\text{states per BZ})=N_1N_2N_3.
+\]
+\src{Tong SS \S 2.3.1--2.3.2}
+
+\noindent\textbf{Wannier and tight binding.}
+\[
+w_{\mathbf r}(\mathbf x)=\frac1{\sqrt N}\sum_{\mathbf k\in{\rm BZ}}
+e^{-i\mathbf k\cdot\mathbf r}\psi_{\mathbf k}(\mathbf x),\qquad
+\psi_{\mathbf k}(\mathbf x)=\frac1{\sqrt N}\sum_{\mathbf r}
+e^{i\mathbf k\cdot\mathbf r}w(\mathbf x-\mathbf r).
+\]
+\[
+\int w^\star(\mathbf x-\mathbf r')w(\mathbf x-\mathbf r)\dd^3x=\delta_{\mathbf r,\mathbf r'}.
+\]
+\[
+H=\sum_{\mathbf r}\left[E_0|\mathbf r\rangle\langle\mathbf r|
+-\sum_{\mathbf a}t_{\mathbf a}|\mathbf r\rangle\langle\mathbf r+\mathbf a|\right],
+\]
+\[
+|\psi(\mathbf k)\rangle=\frac1{\sqrt N}\sum_{\mathbf r}e^{i\mathbf k\cdot\mathbf r}|\mathbf r\rangle,\qquad
+E(\mathbf k)=E_0-\frac12\sum_{\mathbf a}2t_{\mathbf a}\cos(\mathbf k\cdot\mathbf a).
+\]
+Cubic nearest-neighbour:
+\[
+\boxed{E(\mathbf k)=E_0-2t[\cos(k_xa)+\cos(k_ya)+\cos(k_za)]},\qquad
+\Delta E=12t.
+\]
+LCAO:
+\[
+\psi_{\mathbf k}(\mathbf x)=\frac1{\sqrt N}\sum_{\mathbf r}e^{i\mathbf k\cdot\mathbf r}
+\sum_n c_n\phi_n(\mathbf x-\mathbf r),
+\]
+\[
+\sum_n M_{nn'}(\mathbf k)c_n=0,\qquad
+\boxed{\det M(\mathbf k,E)=0}.
+\]
+With $p$ retained orbitals per site, one obtains $p$ bands. \src{Tong SS \S 2.3.3--2.3.5}
+
+\subsubsection*{Scattering}
+
+\[
+\psi(\mathbf r)\sim e^{i\mathbf k\cdot\mathbf r}
++f(\mathbf k,\mathbf k')\frac{e^{ikr}}{r},\qquad
+\mathbf k'=k\hat{\mathbf r},\qquad \mathbf q=\mathbf k-\mathbf k'.
+\]
+For a Bravais lattice,
+\[
+f_\Lambda=f(\mathbf k,\mathbf k')\sum_{\mathbf R\in\Lambda}e^{i\mathbf q\cdot\mathbf R}
+=f(\mathbf k,\mathbf k')\Delta(\mathbf q),
+\]
+\[
+\boxed{\mathbf k-\mathbf k'\in\Lambda^\star}\qquad\text{(Laue condition)}.
+\]
+Bragg form:
+\[
+2k\sin\frac{\theta}{2}=|\mathbf Q|,\qquad d=\frac{2\pi}{|\mathbf Q|},\qquad
+\boxed{n\lambda=2d\sin\frac{\theta}{2}}.
+\]
+With basis $\mathbf d_i$:
+\[
+f_{\rm lattice}=\Delta(\mathbf q)S(\mathbf q),\qquad
+S(\mathbf q)=\sum_if_i(\mathbf k,\mathbf k')e^{i\mathbf q\cdot\mathbf d_i}.
+\]
+BCC as cubic plus basis $0,a(1,1,1)/2$:
+\[
+S=f\left(1+e^{i\pi\sum_i n_i}\right)
+=\begin{cases}2f,&\sum_i n_i\ \text{even},\\
+0,&\sum_i n_i\ \text{odd}.
+\end{cases}
+\]
+Debye--Waller elastic factor:
+\[
+\widetilde\Delta(\mathbf q)=
+\sum_ne^{i\mathbf q\cdot\mathbf R_n}\langle0|e^{i\mathbf q\cdot\mathbf u_n}|0\rangle,
+\]
+\[
+\boxed{f_\Lambda=e^{-W(q)}f\,\Delta(q)},\qquad
+W(q)=\sum_{k\ne0}\frac{\hbar q^2}{4mN\omega(k)}.
+\]
+Vibrations reduce Bragg intensity but preserve peak support. \src{Tong SS \S 2.4}
+
+\subsection{Electron Dynamics in Solids}
+
+\subsubsection*{Fermi Surfaces and Filling}
+
+\[
+k_i=\frac{2\pi n_i}{L},\qquad
+E(\mathbf k)=\frac{\hbar^2k^2}{2m},\qquad
+E_F=\frac{\hbar^2k_F^2}{2m}.
+\]
+Fermi sea: filled region in $\mathbf k$-space. Fermi surface: boundary.
+\[
+\#(\mathbf k\text{ states per band})=N,\qquad
+\#(\text{electrons per band})=2N,\qquad
+N_e=ZN.
+\]
+\[
+\boxed{
+\begin{array}{ccl}
+\text{partially filled band}&\Longleftrightarrow&\text{metal; Fermi surface; gapless},\\
+\text{filled bands only}&\Longleftrightarrow&\text{band insulator; no Fermi surface; gapped}.
+\end{array}}
+\]
+Semiconductor: small gap, typically $\Delta\lesssim2\,{\rm eV}$. Mott insulator:
+interactions invalidate independent band filling. Topological insulator: gapped bulk
+with nontrivial Bloch-state winding. \src{Tong SS \S 3.1--3.1.1}
+
+\noindent\textbf{Graphene.}
+\[
+\mathbf a_1=\frac{\sqrt3a}{2}(\sqrt3,1),\qquad
+\mathbf a_2=\frac{\sqrt3a}{2}(\sqrt3,-1),\qquad
+\mathbf d=(-a,0),
+\]
+\[
+\mathbf b_1=\frac{2\pi}{3a}(1,\sqrt3),\qquad
+\mathbf b_2=\frac{2\pi}{3a}(1,-\sqrt3),
+\]
+\[
+\mathbf K=\frac13(2\mathbf b_1+\mathbf b_2),\qquad
+\mathbf K'=\frac13(\mathbf b_1+2\mathbf b_2).
+\]
+Nearest-neighbour Hamiltonian:
+\[
+H=-t\sum_{\mathbf r}\left[
+|\mathbf r;A\rangle\langle\mathbf r;B|
++|\mathbf r;A\rangle\langle\mathbf r+\mathbf a_1;B|
++|\mathbf r;A\rangle\langle\mathbf r+\mathbf a_2;B|+\mathrm{h.c.}\right].
+\]
+\[
+\begin{pmatrix}0&\gamma(\mathbf k)\\\gamma^\star(\mathbf k)&0\end{pmatrix}
+\binom{c_A}{c_B}=E(\mathbf k)\binom{c_A}{c_B},
+\qquad
+\gamma=-t(1+e^{i\mathbf k\cdot\mathbf a_1}+e^{i\mathbf k\cdot\mathbf a_2}).
+\]
+\[
+\boxed{E(\mathbf k)=\pm|\gamma(\mathbf k)|}.
+\]
+Near $\mathbf K$, $\mathbf k=\mathbf K+\mathbf q$:
+\[
+E\simeq\pm\hbar v_F|\mathbf q|,\qquad v_F=\frac{3ta}{2\hbar},
+\]
+\[
+H_{\mathbf K}=v_F\hbar
+\begin{pmatrix}0&iq_x-q_y\\-iq_x-q_y&0\end{pmatrix}
+=-v_F\hbar(q_x\sigma^y+q_y\sigma^x).
+\]
+Sublattice pseudospin plus spin and valley degeneracy gives four massless Dirac
+fermions. \src{Tong SS \S 3.1.3}
+
+\subsubsection*{Bloch Electron Dynamics}
+
+\[
+\boxed{\mathbf v=\frac1\hbar\nabla_{\mathbf k}E(\mathbf k)},\qquad
+\psi_{\mathbf k}=e^{i\mathbf k\cdot\mathbf x}u_{\mathbf k}.
+\]
+Filled band:
+\[
+\mathbf j_{\rm filled}
+=-\frac{2e}{\hbar}\int_{\rm BZ}\frac{\dd^3k}{(2\pi)^3}\nabla_{\mathbf k}E=0,
+\qquad
+\mathbf j_E=\frac1\hbar\int_{\rm BZ}\frac{\dd^3k}{(2\pi)^3}\nabla_{\mathbf k}(E^2)=0.
+\]
+Effective mass:
+\[
+\boxed{(m_\star^{-1})_{ij}
+=\frac1{\hbar^2}\frac{\partial^2E}{\partial k_i\partial k_j}},\qquad
+m^\star=\hbar^2\left(\frac{\partial^2E}{\partial k^2}\right)^{-1}.
+\]
+Semiclassical wavepacket in weak, slowly varying $U(\mathbf x)$:
+\[
+\dot{\mathbf x}=\frac1\hbar\nabla_{\mathbf k}E,\qquad
+\boxed{\hbar\dot{\mathbf k}=-\nabla U=\mathbf F},\qquad
+m^\star\dot{\mathbf v}=\mathbf F\quad\text{(isotropic)}.
+\]
+Bloch oscillations in $E(k)=-C\cos(ka)$ and constant electric field:
+\[
+\hbar\dot k=-eE,\qquad
+v(k)=\frac{Ca}{\hbar}\sin(ka),\qquad
+\boxed{\omega_{\rm Bloch}=\frac{eEa}{\hbar}}.
+\]
+Holes:
+\[
+E_h=-E,\qquad \mathbf k_h=-\mathbf k,\qquad m_h^\star=-m^\star,\qquad
+\mathbf F_h=+e\mathbf E.
+\]
+\[
+\mathbf j=-2e\int_{\rm filled}\frac{\dd^3k}{(2\pi)^3}\mathbf v
+=+2e\int_{\rm unfilled}\frac{\dd^3k}{(2\pi)^3}\mathbf v.
+\]
+Drude:
+\[
+m^\star\dot{\mathbf v}=-e\mathbf E-\frac{m^\star}{\tau}\mathbf v,\qquad
+\boxed{\sigma=\frac{e^2\tau n}{m^\star}}.
+\]
+With $\mathbf B=B\hat{\mathbf z}$:
+\[
+\rho=\begin{pmatrix}\rho_{xx}&\rho_{xy}&0\\-\rho_{xy}&\rho_{xx}&0\\0&0&\rho_{xx}\end{pmatrix},
+\qquad
+\rho_{xx}=\sigma^{-1},\qquad
+\boxed{\rho_{xy}=\frac{B}{ne}},\qquad R_H=\frac1{ne}.
+\]
+For holes, $R_H$ changes sign. \src{Tong SS \S 3.2}
+
+\subsubsection*{Magnetic Orbits and Oscillations}
+
+\[
+\boxed{\hbar\dot{\mathbf k}=-e\mathbf v\times\mathbf B},\qquad
+\mathbf v=\frac1\hbar\nabla_{\mathbf k}E.
+\]
+\[
+\frac{d}{dt}(\mathbf k\cdot\mathbf B)=0,\qquad
+\frac{dE}{dt}=0.
+\]
+Orbit in $\mathbf k$-space: intersection of constant-energy surface with
+$\mathbf k\cdot\mathbf B=\text{const}$.
+\[
+\mathbf r_\perp(t)=\mathbf r_\perp(0)
+-\frac{\hbar}{eB}\hat{\mathbf B}\times[\mathbf k(t)-\mathbf k(0)].
+\]
+For closed orbit area $A(E)$:
+\[
+\boxed{T=\frac{\hbar^2}{eB}\frac{\partial A}{\partial E}},\qquad
+\boxed{\omega_c=\frac{2\pi eB}{\hbar^2}
+\left(\frac{\partial A}{\partial E}\right)^{-1}}.
+\]
+Onsager quantisation:
+\[
+\frac1{2\pi}\oint\mathbf p\cdot d\mathbf r=\hbar(n+\gamma),\qquad
+\boxed{A_n=\frac{2\pi eB}{\hbar}(n+\gamma)}.
+\]
+Real-space flux:
+\[
+\Phi_n=\left(\frac{\hbar}{eB}\right)^2BA_n=(n+\gamma)\Phi_0,\qquad
+\Phi_0=\frac{2\pi\hbar}{e}.
+\]
+Quantum oscillations when $A_n=A_{\rm ext}$:
+\[
+\boxed{\Delta\!\left(\frac1B\right)=\frac{2\pi e}{\hbar A_{\rm ext}}}.
+\]
+Observables: de Haas--van Alphen magnetisation and Shubnikov--de Haas conductivity.
+\src{Tong SS \S 3.3}
+
+\subsection{Phonons}
+
+\subsubsection*{Lattices in One Dimension}
+
+\noindent\textbf{Monatomic chain.}
+\[
+x_n=na+u_n,\qquad
+H=\sum_n\frac{p_n^2}{2m}+\frac{\lambda}{2}\sum_n(u_n-u_{n-1})^2,
+\]
+\[
+m\ddot u_n=-\lambda(2u_n-u_{n-1}-u_{n+1}).
+\]
+\[
+u_n=Ae^{-i\omega t-ikna},\qquad
+k=\frac{2\pi l}{Na},\qquad
+k\in\left[-\frac{\pi}{a},\frac{\pi}{a}\right),
+\]
+\[
+\boxed{\omega(k)=2\sqrt{\frac{\lambda}{m}}\left|\sin\frac{ka}{2}\right|},\qquad
+\omega\simeq c_s|k|,\quad
+\boxed{c_s=a\sqrt{\lambda/m}}.
+\]
+\src{Tong SS \S 4.1.1}
+
+\noindent\textbf{Diatomic chain.}
+\[
+m\ddot u_{2n}=-\lambda(2u_{2n}-u_{2n-1}-u_{2n+1}),\qquad
+M\ddot u_{2n+1}=-\lambda(2u_{2n+1}-u_{2n}-u_{2n+2}).
+\]
+\[
+u_{2n}=Ae^{-i\omega t-2ikna},\qquad
+u_{2n+1}=Be^{-i\omega t-2ikna},\qquad
+k\in\left[-\frac{\pi}{2a},\frac{\pi}{2a}\right).
+\]
+\[
+\omega^2\begin{pmatrix}m&0\\0&M\end{pmatrix}\binom AB
+=\lambda
+\begin{pmatrix}2&-(1+e^{-2ika})\\-(1+e^{2ika})&2\end{pmatrix}\binom AB.
+\]
+\[
+\boxed{\omega_\pm^2=\frac{\lambda}{mM}
+\left[m+M\pm\sqrt{(m-M)^2+4mM\cos^2(ka)}\right]}.
+\]
+$\omega_-$ is acoustic; $\omega_+$ is optical. At $k\to0$:
+\[
+\omega_-=0,\quad (A,B)\propto(1,1),\qquad
+\omega_+^2=2\lambda(m^{-1}+M^{-1}),\quad (A,B)\propto(M,-m).
+\]
+\src{Tong SS \S 4.1.2}
+
+\noindent\textbf{Peierls transition.}
+For a half-filled 1D band, dimerisation doubles the period:
+\[
+U_{\rm lattice}\sim N\lambda(\delta x)^2,\qquad
+k\in\left[-\frac{\pi}{2a},\frac{\pi}{2a}\right).
+\]
+Near $k=\pi/2a$, $q=k-\pi/2a$,
+\[
+E_0(k)\simeq\mu+\nu q,\qquad
+E_\pm(q)=\mu\pm\sqrt{\nu^2q^2+\frac{\Delta^2}{4}},\qquad
+\Delta\sim\delta x.
+\]
+\[
+U_{\rm electron}\simeq
+-\frac{Na}{\pi}\left[
+\frac{\Delta^2}{16\nu}
+-\frac{\Delta^2}{8\nu}\log\left(\frac{\Delta}{4\nu\Lambda}\right)
+\right].
+\]
+The logarithmic gain dominates the elastic cost as $\Delta\to0$:
+\[
+\boxed{\text{1D half-filled metal is unstable to dimerisation.}}
+\]
+\src{Tong SS \S 4.1.3}
+
+\noindent\textbf{Quantised chain and phonons.}
+\[
+u_n(t)=X_0(t)+\sum_{l\ne0}\left[
+\alpha_l e^{-i(\omega_lt-k_lna)}
++\alpha_l^\dagger e^{i(\omega_lt-k_lna)}\right],
+\]
+\[
+[\alpha_l,\alpha_{l'}^\dagger]=\frac{\hbar}{2m\omega_lN}\delta_{ll'},\qquad
+\alpha_l=\sqrt{\frac{\hbar}{2m\omega_lN}}\,a_l,\qquad
+[a_l,a_{l'}^\dagger]=\delta_{ll'}.
+\]
+\[
+\boxed{H=\sum_{l\ne0}\hbar\omega_la_l^\dagger a_l}
+\]
+after dropping centre-of-mass and zero-point terms. A phonon has
+$E=\hbar\omega_l$, crystal momentum $\hbar k_l$, and bosonic statistics.
+\src{Tong SS \S 4.1.4}
+
+\noindent\textbf{Mossbauer recoil.}
+\[
+p_\gamma=\frac{E_\gamma}{c},\qquad
+E_{\rm recoil}=\frac{E_\gamma^2}{2Mc^2},
+\]
+\[
+E_\gamma\simeq E_{\rm excite}+\frac{E_{\rm excite}^2}{2Mc^2},\qquad
+\Gamma\sim\frac{\hbar}{\tau}.
+\]
+In a solid, a zero-phonon process lets the whole crystal absorb the recoil:
+\[
+M\to M_{\rm solid}\sim10^{23}M_{\rm atom},\qquad E_{\rm recoil}\approx0.
+\]
+\src{Tong SS \S 4.1.5}
+
+\subsubsection*{From Atoms to Fields}
+
+\noindent\textbf{1D continuum field.}
+\[
+u(x=na,t)=u_n(t),\qquad
+\rho\partial_t^2u=\lambda'\partial_x^2u,\qquad
+\rho=\frac ma,\quad \lambda'=\lambda a,\quad c_s^2=\frac{\lambda'}{\rho}.
+\]
+\[
+S=\int\dd t\,\dd x\left[
+\frac{\rho}{2}(\partial_tu)^2-\frac{\lambda'}{2}(\partial_xu)^2\right].
+\]
+
+\noindent\textbf{3D isotropic elasticity.}
+\[
+u_{ij}=\tfrac12(\partial_iu_j+\partial_ju_i),
+\]
+\[
+S=\int\dd t\,\dd^3x\,\frac12\left[
+\rho(\partial_tu_i)^2-2\mu u_{ij}u_{ij}-\lambda u_{ii}u_{jj}\right].
+\]
+\[
+\rho\partial_t^2u_i=(\mu+\lambda)\partial_i\partial_ju_j+\mu\partial_j\partial_ju_i.
+\]
+For $u_i=\epsilon_i e^{i(\mathbf k\cdot\mathbf x+\omega t)}$,
+\[
+\rho\omega^2\epsilon_i=\mu k^2\epsilon_i+(\mu+\lambda)(\bm\epsilon\cdot\mathbf k)k_i.
+\]
+\[
+\bm\epsilon\parallel\mathbf k:\quad \omega^2=\frac{2\mu+\lambda}{\rho}k^2,
+\qquad
+\bm\epsilon\cdot\mathbf k=0:\quad \omega^2=\frac{\mu}{\rho}k^2.
+\]
+
+\noindent\textbf{Quantised elastic field.}
+\[
+u_i(\mathbf x,t)=\sum_s\int\frac{\dd^3k}{(2\pi)^3}
+\epsilon_i^s\sqrt{\frac{\hbar}{2\rho\omega_s(k)}}
+\left[a_s(\mathbf k)e^{i(\mathbf k\cdot\mathbf x-\omega_st)}
++a_s^\dagger(\mathbf k)e^{-i(\mathbf k\cdot\mathbf x-\omega_st)}\right].
+\]
+\[
+\pi_i=\rho\dot u_i,\qquad
+[u_i(\mathbf x),\pi_j(\mathbf x')]=i\hbar\delta_{ij}\delta^3(\mathbf x-\mathbf x'),
+\]
+\[
+[a_s(\mathbf k),a_{s'}^\dagger(\mathbf k')]=\delta_{ss'}\delta^3(\mathbf k-\mathbf k').
+\]
+\[
+\boxed{H=\sum_s\int\frac{\dd^3k}{(2\pi)^3}
+\hbar\omega_s(k)a_s^\dagger(\mathbf k)a_s(\mathbf k)}.
+\]
+The created particle has energy $\hbar\omega_s(k)$, crystal momentum $\hbar\mathbf k$,
+and polarisation $\bm\epsilon^s$. \src{Tong SS \S 4.2}

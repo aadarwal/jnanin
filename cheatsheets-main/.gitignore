@@ -1,0 +1,19 @@
+# binary
+*.pdf
+*.DS_Store
+
+# LaTeX
+*.blg
+*.bbl
+*.log
+*.out
+*.aux
+
+# binary
+*.jpeg
+*.pages
+
+# editor
+*~
+*\#
+*.#

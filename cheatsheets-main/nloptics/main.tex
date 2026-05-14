@@ -1,0 +1,199 @@
+\documentclass[12pt]{article}
+
+% imports
+\usepackage{appendix}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{bbold}
+\usepackage[justification=centering]{caption}
+\usepackage{float}
+\usepackage[margin=1em]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{layouts}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{optidef}
+\usepackage{physics}
+\usepackage{setspace}
+\usepackage{diagbox}
+\usepackage[labelformat=simple]{subcaption}
+\usepackage{xcolor}
+
+% configure imports
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
+\definecolor{darkgreen}{RGB}{46, 184, 46}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\R}{\mathbb{R}}
+\captionsetup[subfigure]{labelformat=empty, skip=0pt}
+\captionsetup{labelsep=period}
+\restylefloat{table}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\addto\captionsenglish{%
+  \renewcommand{\figurename}{FIG.}%
+  \renewcommand{\tablename}{TABLE}%
+  \renewcommand{\appendixname}{APPENDIX}%
+}
+
+\title{\vspace{-2em}NLOptics}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\vspace{-4em}
+\begin{multicols}{3}
+
+\textbf{NL}
+\begin{align}
+  \begin{aligned}
+    \bar{\bar{\kappa}}_{ij} {}&= \bar{\bar{\epsilon}}_{ij}^{-1}\\
+    &= \epsilon_0^{-1} (n_{ij}^{-2} \delta_{ij} + r_{ijk} E_k) % Yariv eq 9.1-3
+  \end{aligned}
+\end{align}
+\begin{align}
+  \bar{P}^{(i)} &= \epsilon_0 \bar{\bar{\chi}}^{(i)} \bar{E}^{i}\\
+  d_{ijk} &= \frac{1}{2} \chi_{ijk}\\ %% Boyd
+  n_{e}(\theta) &= (n_e^{-2}\sin^2\theta + n_0^{-2}\cos^2\theta)^{-1/2}\\ %% Boyd eq 2.3.8
+  \begin{split}
+    \tan\rho &{}= \frac{\lvert\hat{S} \cross \hat{k}\rvert}{\hat{S} \cdot \hat{k}}\\
+    &= \frac{\lvert \bar{E} \cross \bar{D} \rvert}{\bar{E} \cdot \bar{D}}\\
+    &= \frac{1}{2}n_e(\theta)^2\sin2\theta(n_e^{-2} - n_o^{-2} )\\
+    &(\textrm{Type I - Neg. Uniaxial})
+  \end{split}
+\end{align}
+For walk-off angle, choose outgoing wave $D_k$ in kDB to lie along axis chosen for phase matching.
+Transform out of kDB. Use $\bar{E} = \bar{\bar{\kappa}} \bar{D}$ to find outgoing E field. Use
+formula for $\tan\rho$.
+
+\textbf{kDB}
+\begin{align}
+  \bar{\bar{T}} &=
+  \begin{pmatrix}
+    \cos\theta\cos\phi & -\sin\phi & \sin\theta\cos\phi\\
+    \cos\theta\sin\phi & \cos\phi & \sin\theta\sin\phi\\
+    -\sin\theta & 0 & \cos\theta
+  \end{pmatrix}\\
+  &= R_z(\phi) R_y(\theta)
+\end{align}
+\begin{align}
+  \begin{split}
+    &\begin{pmatrix} \hat{e}_1 = e & \hat{e}_2 = o & \hat{e}_3=\hat{k}\end{pmatrix}^T\\
+    &= \bar{\bar{T}}
+    \begin{pmatrix} \hat{x} & \hat{y} & \hat{z}\end{pmatrix}^T
+  \end{split}
+\end{align}
+\begin{align}
+  \bar{E}_k &= \bar{\bar{\kappa}}_k \bar{D}_k + \bar{\bar{\chi}}_k \bar{B}_k\\
+  \bar{H}_k &= \bar{\bar{\nu}}_k \bar{B}_k + \bar{\bar{\gamma}}_k \bar{D}_k
+\end{align}
+\begin{align}
+  \begin{split}
+  &\begin{pmatrix}
+    \kappa_{11} & \kappa_{12}\\
+    \kappa_{21} & \kappa_{22}
+  \end{pmatrix}
+  {}\begin{pmatrix}
+    D_1\\
+    D_2
+  \end{pmatrix} =\\
+  -&\begin{pmatrix}
+    \chi_{11} & \chi_{12} - u\\
+    \chi_{21} + u & \chi_{22}
+  \end{pmatrix}
+  \begin{pmatrix}
+    B_1\\
+    B_2
+  \end{pmatrix}
+  \end{split}\\
+  \begin{split}
+  &\begin{pmatrix}
+    \nu_{11} & \nu_{12}\\
+    \nu_{21} & \nu_{22}
+  \end{pmatrix}
+  {}\begin{pmatrix}
+    B_1\\
+    B_2
+  \end{pmatrix} =\\
+  -&\begin{pmatrix}
+    \gamma_{11} & \gamma_{12} + u\\
+    \gamma_{21} - u & \gamma_{22}
+  \end{pmatrix}
+  \begin{pmatrix}
+      D_1\\
+      D_2
+  \end{pmatrix}
+  \end{split}\\
+  u &= \omega / k
+\end{align}
+
+\textbf{NLWE}
+\begin{align}
+  \begin{split}
+    -\nabla_T^2 \mathcal{E} + i2k\partial_z\mathcal{E}
+    &+ i2\omega\mu_0\epsilon \partial_t \mathcal{E}\\
+    = \mu_0\omega^2(\hat{e} \cdot \hat{p})&e^{i(k-k_p)z}\mathcal{P}
+  \end{split}
+\end{align}
+
+\textbf{NLWE GV}
+\begin{align}
+\begin{split}
+  \partial_z E &= i[k(\omega) - k(\omega_0)] E\\
+  &= \begin{aligned}
+    &i[\partial_{\omega} k (\omega - \omega_0)\\
+      &+ \frac{1}{2}\partial_{\omega}^2 k (\omega - \omega_0)^2] E
+  \end{aligned}\\
+  &= [-\partial_{\omega} k \partial_t - \frac{i}{2}\partial_{\omega}^2 k \partial^2_t] E
+\end{split}
+\end{align}
+
+\textbf{QPM}
+\begin{align}
+  \frac{W}{\Lambda} &= \frac{1}{2m}\\
+  k_{m} &= \frac{2\pi m}{\Lambda} = \Delta k\\
+  \begin{split}
+    C_m &= \frac{2}{m\pi}\sin(\frac{m\pi W}{\Lambda}) \quad (m \neq 0)\\
+    &= \frac{2W}{\Lambda} - 1 \quad (m = 0)
+  \end{split}
+\end{align}
+
+\textbf{Classical Polarization Model}
+\begin{align}
+P &= -Nex(t)\\
+\mathcal{L} &= \partial_t^2 + \Gamma\partial_t + \omega_0^2\\
+c(\omega) &= (\omega_0^2 - \omega^2 + i\Gamma\omega)^{-1}\\
+\mathcal{L}x &= \frac{F}{m} - \alpha x^2\\
+x &= x^{(1)} + x^{(2)} + x^{(3)} + \dots
+\end{align}
+Consider iterative solutions that include one higher order in $x^{(i)}$. Drop terms in the
+EOM that are of order $i + 1$ and higher.
+
+\textbf{Misc}
+\begin{align}
+  2\cos(x) &= e^{ix} + e^{-ix}\\
+  i2\sin(x) &= e^{ix} - e^{-ix}\\
+  2\cosh(x) &= e^x + e^{-x}\\
+  2\sinh(x) &= e^x - e^{-x}\\
+  \partial_x \sinh(x) &= \cosh(x)\\
+  \partial_x \cosh(x) &= \sinh(x)\\
+  \epsilon_{ijk} \epsilon_{ilm} &= \delta_{jl} \delta_{km} - \delta_{jm} \delta_{kl}
+\end{align}
+
+\end{multicols}
+
+\begin{table}
+  \begin{tabular}{c|c|c}
+    &(+) uniaxial ($n_e > n_o$)& (-) uniaxial ($n_e < n_o$)\\
+    \hline
+    Type I & $n_3^o \omega_3 = n_1^e \omega_1 + n_2^e \omega_2$ & $n_3^e \omega_3 = n_1^o \omega_1 + n_2^o \omega_2$\\
+    Type II & $n_3^o \omega_3 = n_1^o \omega_1 + n_2^e \omega_2$ & $n_3^e \omega_3 = n_1^e \omega_1 + n_2^o \omega_2$\\
+    && $\omega_3 > \omega_2 > \omega_1$\\
+  \end{tabular}
+\end{table}
+
+\end{document}
