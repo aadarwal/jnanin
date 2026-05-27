@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TUIs — a living evaluation</title>
+<style>
+  :root {
+    --bg: #faf8f3;
+    --bg-card: #fffdf7;
+    --ink: #1a1814;
+    --ink-soft: #5a554c;
+    --ink-muted: #8a8478;
+    --rule: #e6e1d4;
+    --accent: #a8431f;
+    --accent-soft: #f4e8e0;
+    --code-bg: #f0ebde;
+    --good: #4a7c3a;
+    --bad: #a8431f;
+    --warn: #b88a1c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body {
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 760px);
+    gap: 64px;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 56px 32px 120px;
+  }
+  nav.toc {
+    position: sticky;
+    top: 32px;
+    align-self: start;
+    font-family: ui-sans-serif, -apple-system, system-ui, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  nav.toc .label {
+    color: var(--ink-muted);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  nav.toc ul { list-style: none; }
+  nav.toc li { margin-bottom: 7px; }
+  nav.toc li.sub { padding-left: 14px; font-size: 12.5px; color: var(--ink-soft); }
+  nav.toc a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px dashed transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  nav.toc a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  main { min-width: 0; }
+  header.intro { margin-bottom: 48px; }
+  header.intro .eyebrow {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 44px;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  header.intro p {
+    color: var(--ink-soft);
+    font-size: 18px;
+    max-width: 60ch;
+  }
+  header.intro .meta {
+    margin-top: 24px;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+  }
+
+  section { margin-top: 56px; }
+  h2 {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  h3 {
+    font-size: 19px;
+    font-weight: 600;
+    margin-top: 32px;
+    margin-bottom: 10px;
+    letter-spacing: -0.005em;
+  }
+  h4 {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  p { margin-bottom: 14px; }
+  p + p { margin-top: 0; }
+  strong { font-weight: 600; color: var(--ink); }
+  em { font-style: italic; }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  a:hover { border-bottom-color: var(--accent); }
+
+  ul.body, ol.body { padding-left: 22px; margin-bottom: 14px; }
+  ul.body li, ol.body li { margin-bottom: 6px; }
+
+  code, kbd, samp {
+    font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.88em;
+    background: var(--code-bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  pre {
+    background: var(--code-bg);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 14px 0 20px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  pre code {
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+  }
+  pre .com { color: var(--ink-muted); font-style: italic; }
+  pre .key { color: var(--accent); }
+  pre .str { color: var(--good); }
+
+  .tldr {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    padding: 18px 22px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+  .tldr h4 { margin-top: 0; color: var(--accent); }
+  .tldr p:last-child { margin-bottom: 0; }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+  .card .title {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .card .name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .card .desc { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0 24px;
+    font-size: 14.5px;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  table th, table td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  table th {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 600;
+    background: var(--bg);
+  }
+  table tr:last-child td { border-bottom: none; }
+  table td.label { font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .tag {
+    display: inline-block;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 1px 7px;
+    border-radius: 10px;
+    letter-spacing: 0.02em;
+  }
+  .tag.good { background: #e3efdc; color: var(--good); }
+  .tag.bad { background: #f4dccd; color: var(--bad); }
+  .tag.warn { background: #f5e8c8; color: var(--warn); }
+  .tag.neutral { background: var(--rule); color: var(--ink-soft); }
+
+  .rule-block {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin: 14px 0;
+  }
+  .rule-block .if {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .rule-block .then {
+    font-size: 17px;
+    color: var(--ink);
+  }
+  .rule-block .why {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  .placeholder {
+    border: 1px dashed var(--ink-muted);
+    border-radius: 6px;
+    padding: 18px 22px;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    margin: 12px 0;
+    background: transparent;
+  }
+  .placeholder .name {
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+
+  footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 12.5px;
+    color: var(--ink-muted);
+  }
+
+  @media (max-width: 880px) {
+    .layout { grid-template-columns: 1fr; gap: 32px; padding: 32px 20px 80px; }
+    nav.toc { position: static; }
+    h1 { font-size: 34px; }
+    .grid-3 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav class="toc">
+    <div class="label">Contents</div>
+    <ul>
+      <li><a href="#tldr">TL;DR</a></li>
+      <li><a href="#contenders">The three contenders</a></li>
+      <li class="sub"><a href="#bubbletea">Bubble Tea (Go)</a></li>
+      <li class="sub"><a href="#ratatui">Ratatui (Rust)</a></li>
+      <li class="sub"><a href="#textual">Textual (Python)</a></li>
+      <li><a href="#dimensions">Axes of comparison</a></li>
+      <li class="sub"><a href="#architecture">Architectural model</a></li>
+      <li class="sub"><a href="#perf">Perf &amp; runtime</a></li>
+      <li class="sub"><a href="#distribution">Distribution</a></li>
+      <li class="sub"><a href="#ecosystem">Ecosystem</a></li>
+      <li><a href="#decision">Decision guide</a></li>
+      <li><a href="#open">Open questions</a></li>
+      <li><a href="#log">Changelog</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <header class="intro">
+      <div class="eyebrow">A living evaluation</div>
+      <h1>TUI frameworks &amp; approaches</h1>
+      <p>Notes on what makes a good terminal UI framework, what the real tradeoffs are between Go, Rust, and Python in this space, and which one to reach for when. This page grows as I evaluate more options.</p>
+      <div class="meta">Started 2026-05-27 · Currently shipping: <code>artha</code> (Go + Bubble Tea)</div>
+    </header>
+
+    <section id="tldr">
+      <h2>TL;DR</h2>
+      <div class="tldr">
+        <h4>The rule of thumb</h4>
+        <p>If your TUI could plausibly fit on a single screen with keyboard navigation, <strong>Bubble Tea (Go)</strong>. If it's a multi-pane, mouse-driven dashboard with scrollable history and animations, <strong>Textual (Python)</strong>. If you'd reach for Rust regardless of the project, <strong>Ratatui (Rust)</strong>.</p>
+        <p>For most personal-tool TUIs — the kind you symlink into <code>~/.local/bin/</code> and run a hundred times a week — <strong>Go is the right default</strong>. Distribution alone wins it.</p>
+      </div>
+    </section>
+
+    <section id="contenders">
+      <h2>The three contenders</h2>
+      <p>These are the three frameworks worth taking seriously today. Others exist (Ink for Node, ncurses for C, FTXUI for C++) but none match these on ecosystem and ergonomics.</p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="title">Go</div>
+          <div class="name">Bubble Tea</div>
+          <div class="desc">Elm Architecture. Most polished ecosystem. Single static binary.</div>
+        </div>
+        <div class="card">
+          <div class="title">Rust</div>
+          <div class="name">Ratatui</div>
+          <div class="desc">Immediate-mode. Maximum control. Steepest learning curve.</div>
+        </div>
+        <div class="card">
+          <div class="title">Python</div>
+          <div class="name">Textual</div>
+          <div class="desc">Reactive/DOM with real CSS. Richest UI primitives. Distribution pain.</div>
+        </div>
+      </div>
+
+      <h3 id="bubbletea">Bubble Tea — Go</h3>
+      <h4>Mental model</h4>
+      <p>The Elm Architecture, ported faithfully. Your whole app is three things: a <code>Model</code> (all state), an <code>Update(msg, model) → (model, cmd)</code> function (every state change), and a <code>View(model) → string</code> (renders the full screen each frame). Messages flow through one channel. Async work is wrapped in a <code>Cmd</code> that runs in a goroutine and emits a message when done.</p>
+      <pre><code><span class="key">func</span> (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+    <span class="key">switch</span> msg := msg.(<span class="key">type</span>) {
+    <span class="key">case</span> tickMsg:     <span class="key">return</span> m, fetchPrices    <span class="com">// async cmd</span>
+    <span class="key">case</span> pricesMsg:   m.prices = msg.data; <span class="key">return</span> m, <span class="key">nil</span>
+    <span class="key">case</span> tea.KeyMsg:  <span class="com">// handle keys</span>
+    }
+    <span class="key">return</span> m, <span class="key">nil</span>
+}</code></pre>
+      <h4>Strengths</h4>
+      <ul class="body">
+        <li>The rigidity <em>is</em> the feature. One way to do things → apps stay clean as they grow.</li>
+        <li>Single static binary. Cross-compile from Mac to Linux/Windows with one env var.</li>
+        <li>Goroutines map perfectly onto TUI work — background fetches without blocking the UI.</li>
+        <li>The Charm ecosystem (Bubbles, Lipgloss, Huh, Glamour, Wish, VHS) is the gold standard.</li>
+      </ul>
+      <h4>Weaknesses</h4>
+      <ul class="body">
+        <li>Mouse support, scrollable panes, and modals are DIY (improving fast, still not Textual-level).</li>
+        <li>Re-rendering the full screen each frame is fine, but if you want partial updates you'll fight the framework.</li>
+        <li>Go's verbosity shows up in long <code>switch msg.(type)</code> blocks.</li>
+      </ul>
+
+      <h3 id="ratatui">Ratatui — Rust</h3>
+      <h4>Mental model</h4>
+      <p>Immediate-mode. <em>You</em> own the event loop. Each frame you call <code>terminal.draw(|f| { ... })</code> and rebuild the widget tree from scratch out of your current state. Widgets are stateless values constructed each frame. There is no framework-imposed architecture — you decide where state lives and how it changes.</p>
+      <pre><code><span class="key">loop</span> {
+    terminal.draw(|f| {
+        <span class="key">let</span> block = Block::default().title(<span class="str">"Prices"</span>).borders(Borders::ALL);
+        f.render_widget(Paragraph::new(state.text()).block(block), f.size());
+    })?;
+    <span class="key">if let</span> Event::Key(key) = event::read()? { <span class="com">/* mutate state */</span> }
+}</code></pre>
+      <h4>Strengths</h4>
+      <ul class="body">
+        <li>Total control: layout, render timing, allocations. Nothing happens behind your back.</li>
+        <li>Truly fast — sub-5ms startup, ~3MB memory. The only one where perf is a <em>reason</em>.</li>
+        <li>No GC pauses. Matters for animation-heavy or live-data TUIs (it won't for most of yours).</li>
+        <li>Single static binary, like Go.</li>
+      </ul>
+      <h4>Weaknesses</h4>
+      <ul class="body">
+        <li>More boilerplate. A 50-line Bubble Tea app is 150 lines of Ratatui.</li>
+        <li>Slow compile times slow iteration.</li>
+        <li>No imposed architecture means your second app may look nothing like your first.</li>
+        <li>Async (tokio) is opt-in and adds a layer of complexity.</li>
+      </ul>
+
+      <h3 id="textual">Textual — Python</h3>
+      <h4>Mental model</h4>
+      <p>A DOM tree of <code>Widget</code> objects with parent/child relationships, styled by a real CSS file (<code>.tcss</code>). State lives in <code>reactive</code> attributes that auto-trigger re-renders when they change. Messages bubble up the widget tree, like DOM events. Built on top of Rich (the rendering library).</p>
+      <pre><code><span class="key">class</span> Portfolio(App):
+    CSS_PATH = <span class="str">"portfolio.tcss"</span>
+    prices = reactive({})
+
+    <span class="key">def</span> compose(self) -&gt; ComposeResult:
+        <span class="key">yield</span> Header()
+        <span class="key">yield</span> DataTable(id=<span class="str">"holdings"</span>)
+        <span class="key">yield</span> Footer()
+
+    <span class="key">def</span> watch_prices(self, new):
+        self.query_one(DataTable).update(new)</code></pre>
+      <h4>Strengths</h4>
+      <ul class="body">
+        <li>Mouse, scrollable containers, modals, animations, a command palette — all standard.</li>
+        <li>Real CSS file with live reload in dev mode (<code>textual run --dev</code>).</li>
+        <li>Can also serve your TUI as a web app via <code>textual-web</code>. Unique to this stack.</li>
+        <li>Fastest iteration loop — no compile, hot CSS reload.</li>
+      </ul>
+      <h4>Weaknesses</h4>
+      <ul class="body">
+        <li>Distribution is the wart. <code>pip install</code>, <code>pipx</code>, or a fat PyInstaller bundle. None as clean as <code>go build</code>.</li>
+        <li>Startup latency: 200–500ms (importing Textual + Rich). Noticeable for tools you launch often.</li>
+        <li>~50MB resident. Fine for dashboards; heavy for utilities.</li>
+        <li>Async-first (asyncio) — adds cognitive overhead if you're not already living in it.</li>
+      </ul>
+    </section>
+
+    <section id="dimensions">
+      <h2>Axes of comparison</h2>
+
+      <h3 id="architecture">Architectural model</h3>
+      <table>
+        <thead><tr><th>Framework</th><th>Paradigm</th><th>Who drives the loop</th><th>State management</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Bubble Tea</td><td>Elm / MVU</td><td>Framework</td><td>Imposed (single Model)</td></tr>
+          <tr><td class="label">Ratatui</td><td>Immediate-mode</td><td>You</td><td>None — your call</td></tr>
+          <tr><td class="label">Textual</td><td>Reactive / DOM</td><td>Framework</td><td>Imposed (reactive attrs)</td></tr>
+        </tbody>
+      </table>
+
+      <h3 id="perf">Performance &amp; runtime</h3>
+      <table>
+        <thead><tr><th>Metric</th><th>Bubble Tea</th><th>Ratatui</th><th>Textual</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Cold start</td><td>~10 ms</td><td>~5 ms</td><td>200–500 ms</td></tr>
+          <tr><td class="label">Idle memory</td><td>~10 MB</td><td>~3 MB</td><td>~50 MB</td></tr>
+          <tr><td class="label">GC pauses</td><td>negligible</td><td>none</td><td>negligible (but slower baseline)</td></tr>
+          <tr><td class="label">Notice the difference?</td><td>Almost never</td><td>Almost never</td><td>Yes, for snappy CLI-style tools</td></tr>
+        </tbody>
+      </table>
+
+      <h3 id="distribution">Distribution — matters more than people think</h3>
+      <table>
+        <thead><tr><th>Framework</th><th>Story</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Bubble Tea</td><td><code>go build</code> → one static binary. Cross-compile with <code>GOOS=linux go build</code>.</td><td><span class="tag good">painless</span></td></tr>
+          <tr><td class="label">Ratatui</td><td><code>cargo build --release</code> → one binary. Cross-compile slightly fiddlier but fine.</td><td><span class="tag good">painless</span></td></tr>
+          <tr><td class="label">Textual</td><td><code>pipx install</code>, or PyInstaller/shiv/Nuitka for a 30–80 MB bundle with quirks.</td><td><span class="tag bad">noticeable friction</span></td></tr>
+        </tbody>
+      </table>
+
+      <h3 id="ecosystem">Ecosystem</h3>
+      <table>
+        <thead><tr><th>Framework</th><th>Components / Add-ons</th><th>Dev tooling</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Bubble Tea</td><td>Bubbles (widgets), Lipgloss (styling), Huh (forms), Glamour (markdown), Wish (TUI-over-SSH), VHS (record GIFs)</td><td>Cohesive, designed together</td></tr>
+          <tr><td class="label">Ratatui</td><td>À-la-carte. Component crates exist but feel less unified.</td><td>Mature, scattered</td></tr>
+          <tr><td class="label">Textual</td><td>Component gallery, devtools with CSS hot-reload, <code>textual-web</code></td><td>Most full-featured dev loop</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="decision">
+      <h2>Decision guide</h2>
+
+      <div class="rule-block">
+        <div class="if">If</div>
+        <div class="then">A CLI-style tool you'll install with one binary and run hundreds of times</div>
+        <div class="why"><strong>Bubble Tea.</strong> Distribution + startup + Charm ecosystem. This is where <code>artha</code> lives.</div>
+      </div>
+      <div class="rule-block">
+        <div class="if">If</div>
+        <div class="then">A multi-pane mouseable dashboard with scrollable history and live updates</div>
+        <div class="why"><strong>Textual.</strong> The widget primitives and CSS make this 5× faster to build. Accept that users install via pipx.</div>
+      </div>
+      <div class="rule-block">
+        <div class="if">If</div>
+        <div class="then">You want to learn Rust, or your TUI is part of a bigger Rust project</div>
+        <div class="why"><strong>Ratatui.</strong> Don't pick it for TUIs alone — pick it if Rust is the broader investment.</div>
+      </div>
+      <div class="rule-block">
+        <div class="if">If</div>
+        <div class="then">You want to share the TUI over SSH or expose it to non-terminal users</div>
+        <div class="why"><strong>Bubble Tea + Wish</strong> (SSH server hosting a TUI), or <strong>Textual + textual-web</strong> (TUI rendered in a browser). Different vibes — try both.</div>
+      </div>
+    </section>
+
+    <section id="open">
+      <h2>Open questions / to investigate</h2>
+      <p>Things I want to evaluate but haven't yet. Each is a stub for a future entry.</p>
+
+      <div class="placeholder">
+        <div class="name">Ink (Node / React)</div>
+        Build TUIs with React components. How does the model compare to Textual's reactive DOM? Distribution story?
+      </div>
+      <div class="placeholder">
+        <div class="name">FTXUI (C++)</div>
+        Functional, declarative C++ TUI lib. When would this ever beat the big three?
+      </div>
+      <div class="placeholder">
+        <div class="name">Notcurses (C)</div>
+        Pixel-accurate, image/video-in-terminal. Different ambitions — worth knowing what's possible.</div>
+      <div class="placeholder">
+        <div class="name">tview / termui (Go alternatives)</div>
+        Pre-Bubble-Tea Go TUI libs. Is there ever a reason to pick them over Bubble Tea now?
+      </div>
+      <div class="placeholder">
+        <div class="name">Bracketed paste, OSC 52, Sixel, Kitty graphics</div>
+        Cross-cutting terminal features. Which frameworks expose them cleanly?
+      </div>
+      <div class="placeholder">
+        <div class="name">Build a real comparison app</div>
+        Pick one fixed spec (e.g. a 3-pane file browser) and implement it in all three. Most honest test.
+      </div>
+      <div class="placeholder">
+        <div class="name">When does a TUI become a GUI?</div>
+        Egui, Slint, Tauri sit nearby. What's the line where leaving the terminal is the right call?
+      </div>
+    </section>
+
+    <section id="log">
+      <h2>Changelog</h2>
+      <table>
+        <thead><tr><th>Date</th><th>Entry</th></tr></thead>
+        <tbody>
+          <tr><td class="label">2026-05-27</td><td>Initial page. Bubble Tea / Ratatui / Textual evaluated.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      Living document. Edit <code>index.html</code> directly to add frameworks, refine takes, or close out open questions.
+    </footer>
+  </main>
+</div>
+</body>
+</html>
